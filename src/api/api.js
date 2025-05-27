@@ -29,7 +29,7 @@ export const getAllClasses = async (count, search) => {
     return data;
 }
 
-// / get top 6 classes
+// get top 6 classes
 export const getTopClasses = async () => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/classes/top`);
     const data = await response.json();

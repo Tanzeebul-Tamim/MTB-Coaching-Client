@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import SectionTitle from "../../reusable/sectionTitle";
+import SectionTitle from "../../reusable/SectionTitle";
 import SingleInstructorClassCard from "./SingleInstructorClassCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

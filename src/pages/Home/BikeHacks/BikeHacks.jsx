@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SectionTitle from "../../../reusable/sectionTitle";
+import SectionTitle from "../../../reusable/SectionTitle";
 import HackCard from "./HackCard";
 import { Slide } from "react-awesome-reveal";
 import { Swiper, SwiperSlide } from "swiper/react";

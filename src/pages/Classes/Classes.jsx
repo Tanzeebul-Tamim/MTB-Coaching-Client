@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import useTitle from "../../Helmet/useTitle";
-import SectionTitle from "../../reusable/sectionTitle";
+import SectionTitle from "../../reusable/SectionTitle";
 import ClassesBanner from "./ClassesBanner/ClassesBanner";
 import { ScaleLoader } from "react-spinners";
 import ClassesTable from "./ClassesTable/ClassesTable";

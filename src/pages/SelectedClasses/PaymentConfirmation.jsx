@@ -5,8 +5,8 @@ import "./CheckOutForm.css";
 import { useLoaderData } from "react-router-dom";
 import useTitle from "../../Helmet/useTitle";
 import { useState } from "react";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
+import Cards from "react-credit-cards-2";
+import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./style.css";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
