@@ -9,7 +9,7 @@ import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./style.css";
 
-const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
+const stripePromise = loadStripe(`${import.meta.env.PAYMENT_GATEWAY_PK}`);
 
 const PaymentConfirmation = () => {
   const classItem = useLoaderData();
