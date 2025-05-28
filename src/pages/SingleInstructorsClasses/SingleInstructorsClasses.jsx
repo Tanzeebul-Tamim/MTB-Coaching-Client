@@ -26,7 +26,7 @@ const SingleInstructorsClasses = () => {
             url('${
               instructor.cover
                 ? instructor.cover
-                : "https://img.redbull.com/images/c_crop,x_0,y_0,h_2949,w_5242/c_fill,w_1750,h_1000/q_auto,f_webp/redbullcom/2022/5/11/k3hfsyxcl8wsaaie8mre/fabio-wibmer-trials-berlin"
+                : "../../../public/instructor_default_banner.avif"
             }')`,
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -90,7 +90,7 @@ const SingleInstructorsClasses = () => {
             url('${
               instructor.cover
                 ? instructor.cover
-                : "https://img.redbull.com/images/c_crop,x_0,y_0,h_2949,w_5242/c_fill,w_1750,h_1000/q_auto,f_webp/redbullcom/2022/5/11/k3hfsyxcl8wsaaie8mre/fabio-wibmer-trials-berlin"
+                : "../../../public/instructor_default_banner.avif"
             }')`,
           backgroundPosition: "center",
           backgroundSize: "cover",

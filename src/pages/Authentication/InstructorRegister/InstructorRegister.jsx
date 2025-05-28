@@ -253,7 +253,7 @@ const InstructorRegister = () => {
       className="min-h-screen pt-32 pb-24 lg:px-10 relative"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('https://i.ibb.co/Qp5fr7r/register-cover.jpg')",
+          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('../../../../public/instructor_register_banner.jpg')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

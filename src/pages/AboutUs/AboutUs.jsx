@@ -8,7 +8,7 @@ const AboutUs = () => {
       className="pt-40 pb-24 lg:px-10 relative"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.700), rgba(0, 0, 0, 0.450)), url('https://img.redbull.com/images/c_crop,x_0,y_361,h_1440,w_3200/c_fill,w_1680,h_780/q_auto,f_auto/redbullcom/2021/5/26/tr9pzyj0bzce64hhjk4e/red-bull-hardline-gee-atherton')",
+          "linear-gradient(rgba(0, 0, 0, 0.700), rgba(0, 0, 0, 0.450)), url('../../../public/about_us_banner.avif')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

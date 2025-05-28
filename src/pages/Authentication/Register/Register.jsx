@@ -257,7 +257,7 @@ const Register = () => {
       className="min-h-screen pt-32 pb-24 lg:px-10 relative"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('https://img.redbull.com/images/c_crop,x_0,y_449,h_1728,w_3840/c_fill,w_1680,h_780/q_auto,f_auto/redbullcom/2023/2/21/zw1f2ijxn6i0zvov6mkp/robin-goomes-and-georgia-astle-speed-and-style-crankworx-innsbruck-austria-2022')",
+          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('../../../../public/register_banner.avif')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

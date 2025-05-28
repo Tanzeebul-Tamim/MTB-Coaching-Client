@@ -38,7 +38,7 @@ const SideNav = () => {
         <div
             style={{
                 backgroundImage:
-                    "linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.500)), url('https://blog.54ka.org/wp-content/uploads/2015/10/downhill-mountain-bike-extreme-jump_by_54ka.jpg')",
+                    "linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.500)), url('../../../public/sidenav_banner.jpg')",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
