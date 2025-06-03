@@ -20,13 +20,13 @@ const Navbar = () => {
   const [userDetails, setUserDetails] = useState({});
   const [userBookings, setUserBookings] = useState([]);
   const location = useLocation();
-  if (
-    !user &&
-    (location.pathname === "/" ||
+  const checkPrivatePath = location.pathname === "/" ||
       location.pathname === "/instructors" ||
       location.pathname === "/classes" ||
-      location.pathname === "/about-us")
-  ) {
+      location.pathname === "/legal" ||
+      location.pathname === "/about-us";
+
+  if (!user && checkPrivatePath) {
     localStorage.setItem("location", location.pathname);
   }
 
@@ -121,7 +121,7 @@ const Navbar = () => {
         <Link to="/">
           <img
             className="lg:w-[400px] hover:scale-110 duration-200"
-            src="https://i.ibb.co/7gCjkHF/pmbia-logo-word-reverse.png"
+            src="/MTB_Coaching.png"
             alt="Logo"
           />
         </Link>
@@ -187,7 +187,7 @@ const Navbar = () => {
               <div className="flex flex-col items-center">
                 <img
                   className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
-                  src="https://i.ibb.co/yktKPFk/149071.png"
+                  src="/user_avatar.png"
                 />
                 <h1 className="text-yellow-400 text-sm">My Profile</h1>
               </div>
@@ -230,7 +230,7 @@ const Navbar = () => {
           <div>
             <img
               className="h-[35px] w-[35px] rounded-full"
-              src="https://i.ibb.co/yktKPFk/149071.png"
+              src="/user_avatar.png"
               alt=""
             />
           </div>
