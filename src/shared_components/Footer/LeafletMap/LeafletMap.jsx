@@ -1,9 +1,17 @@
+import L from "leaflet";
 import "./LeafletMap.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"; 
 import osm from "./osm-providers";
 import "leaflet/dist/leaflet.css";
 import { useRef } from "react";
 
+// Fix Leaflet's default icon path for static hosting
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: "/marker-icon.png",
+  iconRetinaUrl: "/marker-icon-2x.png",
+  shadowUrl: "/marker-shadow.png",
+});
 
 const LeafletMap = () => {
   const center ={ lat: 51.87107730756795, lng:  5.391547183634315};
@@ -15,7 +23,7 @@ const LeafletMap = () => {
             <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
             <Marker position={[51.871103804911, 5.3915042682885606]}>
                 <Popup>
-                  PMBIA
+                  MTB-Coaching-Network
                   <br />
                   Duifkruid 84, 4007 SZ Tiel,
                   <br />
