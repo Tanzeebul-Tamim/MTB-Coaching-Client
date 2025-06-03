@@ -25,6 +25,8 @@ const AuthProvider = ({ children }) => {
   const [booking, setBooking] = useState(false);
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
+  facebookProvider.addScope('email');
+  facebookProvider.addScope('public_profile');
 
   const googleSignIn = () => {
     setLoading(true);
