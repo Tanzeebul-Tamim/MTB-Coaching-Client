@@ -7,6 +7,12 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
 <br>
 
+<p align="center">
+   <img src="documentation/doc_banner.png" alt="Banner" />
+</p>
+
+<br>
+
 ## 📚 Table of Contents
 - [Packages & Technologies Used](#-packages--technologies-used)
 - [Project Structure](#-project-structure)
@@ -95,14 +101,6 @@ MTB-Coaching-Client/
    </span>
 </summary>
 </summary>
-
-<br>
-
-
-- ***Visually Appealing Design:*** The website is designed with a unique and visually appealing layout, ensuring proper alignment, color contrast, and customization of component libraries.
-   <p align="center">
-      <img src="documentation/visually-appealing-design.png" width="750" alt="Banner"/>
-   </p>
 
 <br>
 
