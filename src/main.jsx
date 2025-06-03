@@ -23,6 +23,11 @@ import EnrolledClass from "./pages/EnrolledClass/EnrolledClass";
 import PaymentHistory from "./pages/PaymentHistory/PaymentHistory";
 import InstructorRegister from "./pages/Authentication/InstructorRegister/InstructorRegister";
 import AddClass from "./pages/AddClass/AddClass";
+import Legal from "./pages/Legal/Legal";
+import RoleRoute from "./roleRoute/RoleRoute";
+import MyCourses from "./pages/MyCourses/MyCourses";
+import MyStudents from "./pages/MyCourses/MyCoursesTable/MyStudents/MyStudents";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,67 +72,83 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/instructor/${params.id}`),
       },
+      {
+        path: "legal",
+        element:(
+          <Legal></Legal>
+        )
+      }
     ],
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile></MyProfile>
-          </PrivateRoute>
-        ),
+        element: <MyProfile></MyProfile>,
       },
       {
         path: "selected-classes",
-        element: (
-          <PrivateRoute>
-            <SelectedClasses></SelectedClasses>
-          </PrivateRoute>
+        element: (        
+            <RoleRoute allowedRole="Student">
+              <SelectedClasses></SelectedClasses>
+            </RoleRoute>
         ),
       },
       {
         path: "payment/:studentId/:itemId",
-        element: (
-          <PrivateRoute>
-            <PaymentConfirmation></PaymentConfirmation>
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `${import.meta.env.VITE_API_URL}/book-class/${params.studentId}/${
-              params.itemId
-            }`
-          ),
+        element: (        
+            <RoleRoute allowedRole="Student">              
+              <PaymentConfirmation></PaymentConfirmation>
+            </RoleRoute>
+        )    
       },
       {
         path: "enrolled-classes",
-        element: (
-          <PrivateRoute>
-            <EnrolledClass></EnrolledClass>
-          </PrivateRoute>
+        element: (        
+            <RoleRoute allowedRole="Student">
+              <EnrolledClass></EnrolledClass>
+            </RoleRoute>
         ),
       },
       {
         path: "payment",
-        element: (
-          <PrivateRoute>
-            <PaymentHistory></PaymentHistory>
-          </PrivateRoute>
+        element: (        
+            <RoleRoute allowedRole="Student">
+              <PaymentHistory></PaymentHistory>
+            </RoleRoute>
         ),
       },
       {
         path: "add-class",
-        element: (
-          <PrivateRoute>
-            <AddClass></AddClass>
-          </PrivateRoute>
+        element: (        
+            <RoleRoute allowedRole="Instructor">
+              <AddClass></AddClass>
+            </RoleRoute>
         ),
       },
+      {
+        path: "my-classes",
+        element: (        
+            <RoleRoute allowedRole="Instructor">
+              <MyCourses></MyCourses>
+            </RoleRoute>
+        ),
+      },
+      {
+        path: "my-class/students/:id/:idx",
+        element: (
+          <RoleRoute allowedRole="Instructor">
+            <MyStudents></MyStudents>
+          </RoleRoute>
+        )
+      }
     ],
   },
 ]);
@@ -135,19 +156,21 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+        <RouterProvider router={router} />
+        <ToastContainer        
+          className=""
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          limit={2}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
     </AuthProvider>
   </React.StrictMode>
 );
