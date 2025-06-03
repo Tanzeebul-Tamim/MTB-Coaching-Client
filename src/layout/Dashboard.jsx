@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import SideNav from "../shared_components/SideNav/SideNav";
+import RouteTracker from "../RouteTracker";
 
 const Dashboard = () => {
   return (
     <div className="relative">
+      <RouteTracker/>
       <ScrollToTop />
       <div className="flex">
         <SideNav />
@@ -12,7 +14,7 @@ const Dashboard = () => {
           <div
             style={{
               backgroundImage:
-                "url('https://img.redbull.com/images/c_crop,x_0,y_0,h_4128,w_8256/c_fill,w_1490,h_710/q_auto,f_auto/redbullcom/2022/6/21/fc9itii98dyr4imm5z1a/crankworx-stop-1-innsbruck-full-recap-program-szymon-godziek')",
+                "url('/dashboard_banner.avif')",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
