@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../Helmet/useTitle";
-import SectionTitle from "../../reusable/sectionTitle";
+import SectionTitle from "../../reusable/SectionTitle";
 import InstructorsBanner from "./InstructorsBanner/InstructorsBanner";
 import InstructorsTable from "./InstructorsTable/InstructorsTable";
 import { getAllInstructors } from "../../api/api";
@@ -42,13 +42,11 @@ const Instructors = () => {
     setSearch(searchRef.current.value);
   };
 
-  getUserData()
-  
+  getUserData();
   const handleLoadMore = () => {
     if (visibleCount % 5 == 0) {
       setVisibleCount((prevCount) => prevCount + 5);
-    }
-    else {
+    } else {
       setVisibleCount((prevCount) => prevCount + (visibleCount % 5));
     }
   };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { ImPriceTags } from "react-icons/im";

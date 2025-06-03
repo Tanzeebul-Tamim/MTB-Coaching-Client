@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SectionTitle from "../../../reusable/sectionTitle";
+import SectionTitle from "../../../reusable/SectionTitle";
 import HackCard from "./HackCard";
 import { Slide } from "react-awesome-reveal";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -37,7 +37,7 @@ const BikeHacks = () => {
       className="lg:pb-20 pb-8 relative pt-24 lg:pt-56 px-5 lg:px-10"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.300)), url('https://img.redbull.com/images/c_crop,x_0,y_178,h_1728,w_3840/c_fill,w_1680,h_780/q_auto,f_auto/redbullcom/2023/6/5/asp64xcyx7bpnkloetet/loic-bruni-leogang')",
+          "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.300)), url('/bike_hack_banner.avif')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

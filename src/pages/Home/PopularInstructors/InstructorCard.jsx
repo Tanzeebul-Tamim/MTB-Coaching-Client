@@ -17,7 +17,7 @@ const InstructorCard = ({ topInstructor }) => {
           )}
           <div className="text-white flex gap-2 items-center">
             <IoSchoolSharp className="text-lg" />
-            <strong>Student Count:</strong> {topInstructor.totalStudents}
+            <strong>Total Attendees:</strong> {topInstructor.totalStudents}
           </div>
           <div className="text-white flex gap-2 items-center">
             <GiTeacher className="text-lg" />

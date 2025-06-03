@@ -8,7 +8,7 @@ const ErrorPage = () => {
     <div
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.200), #0e0d0d), url('https://img.redbull.com/images/c_crop,x_0,y_0,h_2560,w_3840/c_fill,w_1680,h_1100/q_auto,f_auto/redbullcom/2022/12/8/z0l0aeamwiozihqcfaj5/fabio-wibmer-video-game')",
+          "linear-gradient(rgba(0, 0, 0, 0.200), #0e0d0d), url('/error_banner.avif')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -19,7 +19,7 @@ const ErrorPage = () => {
         {status} {statusText}
       </h1>
       <img
-        src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzMwNjMxMDY4MmZjNGQ3NmJlMDdkYjgxNmM2MjI2MWIxYjBiMDZlNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/VqlV27H99BNBQXLOyL/giphy.gif"
+        src="/error_gif.gif"
         className="rounded-xl"
       />
       <p className="description text-white w-3/4 mb-4 mt-5 text-2xl text-center">

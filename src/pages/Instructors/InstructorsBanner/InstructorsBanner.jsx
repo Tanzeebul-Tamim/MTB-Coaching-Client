@@ -2,7 +2,7 @@ const InstructorsBanner = () => {
   return (
     <div className="relative">
       <img
-        src="https://i.ibb.co/PY0xrB1/51389217-2197714463641092-5003903857827250176-n-1.jpg"
+        src="/instructors_banner.png"
         alt=""
       />
       <div className="z-[10] left-10 text-center absolute bottom-0">

@@ -1,4 +1,4 @@
-import SectionTitle from "../../../reusable/sectionTitle";
+import SectionTitle from "../../../reusable/SectionTitle";
 import ClassCard from "./ClassCard";
 import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
