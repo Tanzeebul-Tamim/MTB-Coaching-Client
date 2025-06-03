@@ -13,8 +13,10 @@ const MyProfile = () => {
   const { user } = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState({});
   const [loading, setLoading] = useState(false);
-  useTitle("| My Profile");
-
+  const firstName = userDetails?.name?.split(" ")[0];
+  const title = firstName ? `${firstName}'s` : "My";
+  useTitle(`| ${title} Profile`);
+  
   useEffect(() => {
     setLoading(true);
     getUserData(user.email)
