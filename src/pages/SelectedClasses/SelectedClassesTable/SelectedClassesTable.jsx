@@ -39,7 +39,7 @@ const SelectedClassesTable = ({ userBookings, userDetails }) => {
 
   if (userBookings?.length === 0) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-[55vh] items-center justify-center">
         <h1 className="z-[10] description text-5xl">
           You Haven&apos;t Booked Any Courses Yet
         </h1>

@@ -1,28 +1,78 @@
+import { useContext, useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
-import "./CheckOutForm.css";
-import { useLoaderData } from "react-router-dom";
+import "./styles/CheckOutForm.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useTitle from "../../Helmet/useTitle";
-import { useState } from "react";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
-import "./style.css";
+import Cards from "react-credit-cards-2";
+import "react-credit-cards-2/dist/es/styles-compiled.css";
+import "./styles/style.css";
+import { AuthContext } from "../../providers/AuthProvider";
+import { getUserData } from "../../api/authApi";
+import { toast } from "react-toastify";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
 
 const PaymentConfirmation = () => {
-  const classItem = useLoaderData();
+  const [classItem, setClassItem] = useState(null);
   const [flipped, setFlipped] = useState(false);
-  const studentName = classItem.studentName;
+  const studentName = classItem?.studentName;
   const [focus, setFocus] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+  const {studentId, itemId} = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [cardDetails, setCardDetails] = useState({
     cvc: "",
     expiry: "",
     name: studentName,
     number: "",
   });
-  useTitle("| Confirm Payment");
+  const { user, loading } = useContext(AuthContext);
+  const [loading2, setLoading2] = useState(false);
+  useTitle("| Payment");
+
+  useEffect(() => {
+    if (user?.email) {
+      getUserData(user.email)
+        .then((data) => setUserDetails(data));
+    }
+  } ,[user])
+
+  useEffect(() => {
+  if (userDetails?._id && studentId && itemId) {
+    setLoading2(true);
+    fetch(`${import.meta.env.VITE_API_URL}/book-class/${userDetails._id}/${studentId}/${itemId}`)
+      .then(async (res) => {
+        if (res.status === 403) {
+          toast.warning("You are not authorized to access this page!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+
+          const fallbackLocation = localStorage.getItem("lastLocation") || "/dashboard/profile";
+          setLoading2(false);
+          navigate(fallbackLocation, { state: { from: location } });
+          return; // Stop further execution
+        }
+        const data = await res.json();
+        setClassItem(data);
+        setLoading2(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [userDetails, studentId, itemId]);
 
   const handleNumberChange = (event) => {
     let { value } = event.target;
@@ -83,8 +133,8 @@ const PaymentConfirmation = () => {
                   <div className="front">
                     <div className="z-50 flex justify-center items-center">
                       <img
-                        src={classItem.classImage}
-                        className="w-[340px] h-[200px] rounded-2xl"
+                        src={loading || loading2 ? "/class-loading.gif" : classItem?.classImage}
+                        className={`w-[340px] h-[200px] rounded-2xl ${loading || loading2 && 'object-cover'}`}
                       />
                     </div>
                   </div>
@@ -105,15 +155,15 @@ const PaymentConfirmation = () => {
             <div className="mt-7">
               <div className="z-50 flex items-center">
                 <strong className="">Course :</strong>{" "}
-                <div className=" ml-1">{classItem["class-name"]}</div>
+                <div className=" ml-1">{classItem?.["class-name"]}</div>
               </div>
               <div className="z-50 flex items-center">
                 <strong className="">Instructor :</strong>{" "}
-                <div className=" ml-1">{classItem.instructorName}</div>
+                <div className=" ml-1">{classItem?.instructorName}</div>
               </div>
               <div className="z-50 flex items-center">
                 <strong className="">Price :</strong>{" "}
-                <div className=" ml-1">{`$ ${classItem.classFee}`}</div>
+                <div className=" ml-1">{`$ ${classItem?.classFee}`}</div>
               </div>
             </div>
           </div>

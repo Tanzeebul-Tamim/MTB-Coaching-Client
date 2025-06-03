@@ -39,6 +39,7 @@ const EnrolledClass = () => {
     } else if (!user) {
       setUserBookings([]);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDetails, userBookings]);
 
   if (loading) {

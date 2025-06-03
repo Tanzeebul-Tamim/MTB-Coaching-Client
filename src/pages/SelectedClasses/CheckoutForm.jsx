@@ -168,7 +168,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
             cardDetails.cvc.length !== 3
           }
         >
-          <BsFillCreditCardFill /> Pay $ {classItem.classFee}
+          <BsFillCreditCardFill /> Pay $ {classItem?.classFee}
         </button>
         <Link to="/dashboard/selected-classes">
           <button className="btn text-md btn-sm text-white border-0 rounded-lg hover:bg-stone-800 bg-stone-700">
