@@ -3,10 +3,10 @@ import { useEffect } from "react"
 const useTitle = (title, location) => {
     useEffect(() => {
         if (location) {
-            document.title = 'Professional Mountain Biking Instructors Association'
+            document.title = 'MTB Coaching Network'
         }
         else {
-            document.title = `PMBIA ${title}`
+            document.title = `MTB ${title}`
         }
     }, [title, location])
 };
