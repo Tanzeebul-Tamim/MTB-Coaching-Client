@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useState, useEffect } from "react";
 import ClassesTableHead from "./ClassesTableHead";
 import { getTotalClasses } from "../../../api/api";

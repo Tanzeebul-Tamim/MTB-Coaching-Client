@@ -1,7 +1,7 @@
 const ClassesBanner = () => {
   return (
     <div className="relative">
-      <img src="https://i.ibb.co/n7jL1Jt/aa.jpg" alt="" />
+      <img src="/courses_banner.png" alt="" />
       <div className="z-[10] right-10 text-center absolute bottom-0">
         <h1 className="text-yellow-500 title lg:text-6xl uppercase font-bold">
           Exciting
