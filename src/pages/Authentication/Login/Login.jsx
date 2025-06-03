@@ -163,7 +163,7 @@ const Login = () => {
       className="min-h-screen pt-32 pb-24 lg:px-10 relative"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('https://img.redbull.com/images/c_crop,x_0,y_64,h_1440,w_3200/c_fill,w_1680,h_780/q_auto,f_auto/redbullcom/2022/4/22/gsuzfhoej0lwercwcpay/crankworx-stop-2-whistler-brett-rheeder')",
+          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/login_banner.avif')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

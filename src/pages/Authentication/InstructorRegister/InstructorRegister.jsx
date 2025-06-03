@@ -25,6 +25,15 @@ const InstructorRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [imageButtonText, setImageButtonText] = useState("Upload Image");
+  const [formFields, setFormFields] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    address: "",
+    password: "",
+    confirmPassword: "",
+    image: null,
+  });
   const navigate = useNavigate();
   const location = useLocation();
   const getPrevLocation = localStorage.getItem("location");
@@ -36,21 +45,29 @@ const InstructorRegister = () => {
     setSelectedGender(selectGender);
   };
 
+  const isFormValid =
+    formFields.name &&
+    formFields.email &&
+    formFields.contact &&
+    formFields.address &&
+    formFields.password &&
+    formFields.confirmPassword &&
+    selectedGender &&
+    formFields.image;
+
   const handleRegister = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const contactNo = form.contact.value;
-    const address = form.address.value;
+    const name = formFields.name;
+    const email = formFields.email;
+    const contactNo = formFields.contact;
+    const address = formFields.address;
     const gender = selectedGender;
-    const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
-
-    const image = form.image.files[0];
+    const password = formFields.password;
+    const confirmPassword = formFields.confirmPassword;
+    const image = formFields.image;
     const formData = new FormData();
     formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?key=${
+    const url = `${import.meta.env.VITE_IMGBB_API_URL}?key=${
       import.meta.env.VITE_IMGBB_KEY
     }`;
 
@@ -248,12 +265,29 @@ const InstructorRegister = () => {
       });
   };
 
+  // Update field values on change
+  const handleFieldChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setFormFields((prev) => ({
+        ...prev,
+        image: files[0] || null,
+      }));
+      if (files[0]) handleImageButtonText(files[0]);
+    } else {
+      setFormFields((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
   return (
     <div
       className="min-h-screen pt-32 pb-24 lg:px-10 relative"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('https://i.ibb.co/Qp5fr7r/register-cover.jpg')",
+          "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/instructor_register_banner.jpg')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -286,7 +320,7 @@ const InstructorRegister = () => {
             </Link>
           </div>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-[420px] shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-full max-w-[500px] shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="flex justify-center gap-3">
               <div className="form-control">
@@ -299,6 +333,8 @@ const InstructorRegister = () => {
                   type="text"
                   required
                   name="name"
+                  value={formFields.name}
+                  onChange={handleFieldChange}
                   placeholder="Enter your username"
                   className="input input-bordered"
                 />
@@ -314,6 +350,8 @@ const InstructorRegister = () => {
                   type="email"
                   required
                   name="email"
+                  value={formFields.email}
+                  onChange={handleFieldChange}
                   placeholder="Enter your email"
                   className="input input-bordered"
                 />
@@ -331,6 +369,8 @@ const InstructorRegister = () => {
                   type="number"
                   required
                   name="contact"
+                  value={formFields.contact}
+                  onChange={handleFieldChange}
                   placeholder="Enter your contact no"
                   className="input input-bordered"
                 />
@@ -346,6 +386,8 @@ const InstructorRegister = () => {
                   type="text"
                   required
                   name="address"
+                  value={formFields.address}
+                  onChange={handleFieldChange}
                   placeholder="Enter your address"
                   className="input input-bordered"
                 />
@@ -361,9 +403,7 @@ const InstructorRegister = () => {
                 </label>
                 <label>
                   <input
-                    onChange={(event) =>
-                      handleImageButtonText(event.target.files[0])
-                    }
+                    onChange={handleFieldChange}
                     type="file"
                     name="image"
                     className="input input-bordered hidden"
@@ -387,6 +427,7 @@ const InstructorRegister = () => {
                     onChange={handleSelectGender}
                     name="gender"
                     className="input input-bordered select font-light text-base text-gray-400 w-full max-w-xs"
+                    value={selectedGender}
                   >
                     <option hidden>Enter your gender</option>
                     <option value="Male">Male</option>
@@ -408,6 +449,8 @@ const InstructorRegister = () => {
                   required
                   autoComplete="off"
                   name="password"
+                  value={formFields.password}
+                  onChange={handleFieldChange}
                   placeholder="Enter your password"
                   className="input input-bordered"
                 />
@@ -415,7 +458,7 @@ const InstructorRegister = () => {
                   style={{
                     position: "absolute",
                     top: "60%",
-                    left: "140px",
+                    left: "175px",
                     cursor: "pointer",
                     fontSize: "20px",
                   }}
@@ -436,6 +479,8 @@ const InstructorRegister = () => {
                   required
                   autoComplete="off"
                   name="confirmPassword"
+                  value={formFields.confirmPassword}
+                  onChange={handleFieldChange}
                   placeholder="Confirm your password"
                   className="input input-bordered"
                 />
@@ -443,7 +488,7 @@ const InstructorRegister = () => {
                   style={{
                     position: "absolute",
                     top: "60%",
-                    right: "0px",
+                    right: "15px",
                     cursor: "pointer",
                     fontSize: "20px",
                   }}
@@ -486,7 +531,7 @@ const InstructorRegister = () => {
             </div>
             <div className="z-[10] mt-6 form-control">
               <button
-                disabled={loading}
+                disabled={loading || !isFormValid}
                 type="submit"
                 className="btn bg-yellow-500 disabled:bg-yellow-900 disabled:text-stone-500 hover:bg-yellow-600 text-white text-xl"
               >
