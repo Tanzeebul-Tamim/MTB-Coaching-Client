@@ -13,17 +13,20 @@ import "../PopularInstructors/style.css";
 const popularClassesDes =
   "We offer a curated collection of the most sought-after courses which are highly recommended for mountain bike enthusiasts. Discover a range of exciting and educational courses designed to enhance your MTB skills and knowledge.";
 
-// You need to refresh the page once in order to make the carousel cards responsive
-let numberOfSlides = null;
-
-if (window.innerWidth > 576) {
-  numberOfSlides = 3;
-} else {
-  numberOfSlides = 1;
-}
-
 const PopularClasses = () => {
   const [topClasses, setTopClasses] = useState([]);
+  const [numberOfSlides, setNumberOfSlides] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setNumberOfSlides(window.innerWidth > 576 ? 3 : 1);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     getTopClasses()

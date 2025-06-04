@@ -14,17 +14,20 @@ import "./style.css";
 const popularInstructorsDes =
   "Get to know some of our highly skilled and experienced instructors who'll lead your way throughout this journey. Each of our instructor brings a unique teaching style and a wealth of practical experience, ensuring that our students receive the best instruction possible.";
 
-// You need to refresh the page once in order to make the carousel cards responsive
-let numberOfSlides = null;
-
-if (window.innerWidth > 576) {
-  numberOfSlides = 3;
-} else {
-  numberOfSlides = 1;
-}
-
 const PopularInstructors = () => {
   const [topInstructors, setTopInstructors] = useState([]);
+  const [numberOfSlides, setNumberOfSlides] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setNumberOfSlides(window.innerWidth > 576 ? 3 : 1);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     getTopInstructors()

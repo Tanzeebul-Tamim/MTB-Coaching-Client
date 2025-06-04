@@ -16,17 +16,12 @@ const BikeHacks = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 576) {
-        setNumberOfSlides(4);
-      } else {
-        setNumberOfSlides(1);
-      }
+      setNumberOfSlides(window.innerWidth > 576 ? 4 : 1);
     };
 
     handleResize();
 
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,9 +31,11 @@ const BikeHacks = () => {
     <div
       className="lg:pb-20 pb-8 relative pt-24 lg:pt-56 px-5 lg:px-10"
       style={{
+        backgroundAttachment: "fixed",
         backgroundImage:
           "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.300)), url('/bike_hack_banner.avif')",
-        backgroundPosition: "center",
+        backgroundPosition:
+          window.innerWidth <= 576 ? "55% 50%" : "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
@@ -78,7 +75,6 @@ const BikeHacks = () => {
           </SwiperSlide>
           <SwiperSlide>
             <HackCard
-              videoTitle="10 MTB Tips & Hacks that will knock your socks off!"
               videoId="n1-hqwaL4-I"
             />
           </SwiperSlide>
