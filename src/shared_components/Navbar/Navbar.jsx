@@ -67,7 +67,7 @@ const Navbar = () => {
       <div className="navbar-start gap-1 lg:gap-6 flex items-center">
         <div
           className={`mt-2 flex flex-col bg-opacity-80 absolute duration-300 ${
-            open ? "top-10 right-5" : "top-10 -right-28"
+            open ? "top-10 right-5" : "top-10 -right-[150px]"
           } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
         >
           <ActiveLink
@@ -240,9 +240,15 @@ const Navbar = () => {
             data-tip={user?.displayName}
             className="tooltip tooltip-bottom tooltip-warning"
           >
+            {userBookings.length >= 1 && (
+              <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[2px] badge-md badge-warning title indicator-item">
+                <MdShoppingCart />
+                <span className="text-[0.65rem]">{userBookings?.length}</span>
+              </span>
+            )}
             <img
-              className="h-[35px] w-[35px] rounded-full"
-              src={user.photoURL}
+              className="h-[42.5px] w-[42.5px] rounded-full"
+              src={user?.photoURL}
               alt=""
             />
           </Link>

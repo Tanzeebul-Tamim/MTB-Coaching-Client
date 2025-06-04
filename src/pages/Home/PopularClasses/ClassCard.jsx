@@ -22,7 +22,7 @@ const ClassCard = ({ topClass }) => {
           <strong>Attendees:</strong> {topClass.totalStudent}
         </div>
         <img
-        className="group-hover:scale-110 duration-200 lg:w-[100px] w-[calc(26vw)] lg:h-[100px] h-[calc(26vw)] rounded-full border-zinc-400 border-[2px] lg:border-[4px] absolute bottom-[20%] right-[5%]"
+        className="group-hover:scale-110 duration-200 lg:w-[100px] w-[calc(22vw)] lg:h-[100px] h-[calc(22vw)] rounded-full border-zinc-400 border-[2px] lg:border-[4px] absolute bottom-[30%] lg:bottom-[20%] right-[4%]"
         src={topClass.instructorImg} />
       </div>
       <div className="absolute lg:bottom-0 right-0 w-1/2 h-full bg-gradient-to-r from-transparent to-base-100"></div>

@@ -132,13 +132,13 @@ const Footer = () => {
                         2006.
                     </p>
                 </div>
-                <div className="flex flex-col items-center">
-                    <h4 className="text-center text-xs lg:text-md tracking-widest">
+                <div className="flex flex-col items-center text-xs"> 
+                    <h4 className="text-center lg:text-md lg:tracking-widest">
                         This website is for educational purposes only and is not
                         affiliated with any official organizations or
                         institutions.
                     </h4>
-                    <h4 className="text-center text-xs lg:text-md tracking-widest">
+                    <h4 className="text-center lg:text-md lg:tracking-widest">
                         © 2023 MTB Club. All rights reserved. Designed & Developed
                         by
                         <a
