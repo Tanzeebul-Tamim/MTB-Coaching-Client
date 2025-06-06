@@ -7,16 +7,16 @@ import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { MdOutlineSchool, MdShoppingCart } from "react-icons/md";
 import { LuLayoutDashboard, LuScale } from "react-icons/lu";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { user, logOut, loading, booking } = useContext(AuthContext);
+  const { user, logOut, loading, booking } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [userBookings, setUserBookings] = useState([]);
   const location = useLocation();
@@ -66,7 +66,7 @@ const Navbar = () => {
     <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
       <div className="navbar-start gap-1 lg:gap-6 flex items-center">
         <div
-          className={`mt-2 flex flex-col bg-opacity-80 absolute duration-300 ${
+          className={`mt-2 flex flex-col bg-opacity-80 absolute duration-300 uppercase ${
             open ? "top-10 right-5" : "top-10 -right-[150px]"
           } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
         >
@@ -76,7 +76,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-1">
               <AiOutlineHome className="text-xs" />
-              HOMe
+              Home
             </span>
           </ActiveLink>
           <ActiveLink
@@ -85,7 +85,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-1">
               <FaChalkboardTeacher className="text-xs" />
-              INSTRUCTORS
+              Instructors
             </span>
           </ActiveLink>
           <ActiveLink
@@ -104,7 +104,7 @@ const Navbar = () => {
             >
               <span className="flex items-center gap-1">
                 <LuLayoutDashboard className="text-xs" />
-                DASHBOARD
+                Dashboard
               </span>
             </ActiveLink>
           )}
@@ -114,7 +114,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-1">
               <AiOutlineInfoCircle className="text-xs" />
-              ABOUT US
+              About Us
             </span>
           </ActiveLink>
           <ActiveLink
@@ -123,7 +123,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-1">
               <LuScale className="text-xs" />
-              LEGAL
+              Legal
             </span>
           </ActiveLink>
         </div>

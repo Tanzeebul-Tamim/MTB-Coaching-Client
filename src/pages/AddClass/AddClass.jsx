@@ -1,10 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import useTitle from "../../Helmet/useTitle";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData, saveUser } from "../../api/authApi";
-import { toast } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useAuth from "../../hooks/useAuth";
 
 const AddClass = () => {
     const [imageButtonText, setImageButtonText] = useState("Upload Thumbnail");
@@ -16,7 +16,7 @@ const AddClass = () => {
         studentSlot: "",
         image: null,
     });
-    const { user, setLoading } = useContext(AuthContext);
+    const { user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
 
     const handleImageButtonText = (image) => {
@@ -85,6 +85,7 @@ const AddClass = () => {
                 autoClose: 1100,
                 hideProgressBar: false,
                 closeOnClick: true,
+                transition: Flip,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,

@@ -62,6 +62,7 @@ MTB-Coaching-Client/
 │   ├── api/                   # API utility functions for axios, auth and booking
 │   ├── firebase/              # Firebase configuration
 │   ├── Helmet/                # Custom React hooks for document title
+│   ├── hooks/                 # Custom React hooks for reusable logic and state management
 │   ├── layout/                # Main layout and dashboard layout components
 │   ├── pages/                 # All main page components (Home, Auth, Classes, etc.)
 │   ├── privateRoute/          # Route protection: restricts access to authenticated (logged-in) users only
@@ -71,8 +72,7 @@ MTB-Coaching-Client/
 │   ├── ScrollToTop/           # Scroll-to-top utility component
 │   ├── shared_components/     # Shared UI components (Navbar, Footer, SideNav, etc.)
 │   ├── index.css              # Global styles
-│   ├── main.jsx               # App entry point
-│   └── RouteTracker.jsx       # Remembers last allowed route for smart redirect after unauthorized access attempt
+│   └── main.jsx               # App entry point for smart redirect after unauthorized access attempt
 │
 ├── public/                    # Static assets (images, banners, icons, etc.)
 ├── documentation/             # Project screenshots and documentation images

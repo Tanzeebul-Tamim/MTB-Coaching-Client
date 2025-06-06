@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { ImPriceTags } from "react-icons/im";
 import { MdLibraryAdd } from "react-icons/md";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData } from "../../api/authApi";
 import { bookClass, getBookedClasses } from "../../api/bookApi";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
   const availableSeat = classItem.studentSlot - classItem.totalStudent;
-  const { user, booking, setBooking, loading } = useContext(AuthContext);
+  const { user, booking, setBooking, loading } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [userLoading, setUserLoading] = useState(false);
   const [userBookings, setUserBookings] = useState([]);

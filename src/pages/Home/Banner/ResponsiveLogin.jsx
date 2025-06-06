@@ -1,11 +1,10 @@
 import { SlNote } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
+import useAuth from "../../../hooks/useAuth";
 
 const ResponsiveLogin = ({ alignment }) => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
 
     const handleLogOut = () => {
         logOut()

@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "../providers/AuthProvider";
 import { PropagateLoader } from "react-spinners";
+import useAuth from "../hooks/useAuth";
 
 const PrivateRoute = ({ children }) => {
-    const { loading, user } = useContext(AuthContext);
+    const { loading, user } = useAuth();
     const location = useLocation();
 
     if (loading) {

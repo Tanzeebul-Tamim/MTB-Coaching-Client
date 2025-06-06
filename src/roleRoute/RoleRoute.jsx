@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { getUserData } from "../api/authApi";
 import { toast } from "react-toastify";
+import useAuth from "../hooks/useAuth";
 
 const RoleRoute = ({ allowedRole, children }) => {
-    const { loading, user } = useContext(AuthContext);
+    const { loading, user } = useAuth();
     const location = useLocation();
     const [userDetails, setUserDetails] = useState(null);
     const [detailsLoading, setDetailsLoading] = useState(true);

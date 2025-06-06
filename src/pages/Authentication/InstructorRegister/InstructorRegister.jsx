@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaEyeSlash, FaEye, FaFacebookF } from "react-icons/fa";
 import useTitle from "../../../Helmet/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../providers/AuthProvider";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const InstructorRegister = () => {
   const [error, setError] = useState("");
@@ -21,7 +21,7 @@ const InstructorRegister = () => {
     googleSignIn,
     facebookSignIn,
     emailVerification
-  } = useContext(AuthContext);
+  } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [imageButtonText, setImageButtonText] = useState("Upload Image");

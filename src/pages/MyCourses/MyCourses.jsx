@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import { getUserData } from "../../api/authApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import { PropagateLoader } from "react-spinners";
 import useTitle from "../../Helmet/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
+import useAuth from "../../hooks/useAuth";
 
 const MyCourses = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [loading, setLoading] = useState(false);
   useTitle("| My Courses");

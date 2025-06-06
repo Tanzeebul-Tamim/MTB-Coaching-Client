@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import useTitle from "../../../../Helmet/useTitle";
 import { getUserData } from "../../../../api/authApi";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import { PropagateLoader } from "react-spinners";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { useParams } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 const MyStudents = () => {
   const { idx } = useParams();
   const parsedIdx = parseInt(idx);
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);

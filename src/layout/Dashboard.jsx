@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import SideNav from "../shared_components/SideNav/SideNav";
-import RouteTracker from "../RouteTracker";
+import RouteTracker from "../shared_components/RouteTracker";
 
 const Dashboard = () => {
   return (

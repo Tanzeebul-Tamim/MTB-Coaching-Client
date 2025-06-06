@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useEffect, useState } from "react";
 import useTitle from "../../Helmet/useTitle";
 import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import { PropagateLoader } from "react-spinners";
 import EnrolledClassesTable from "./EnrolledClassesTable/EnrolledClassesTable";
+import useAuth from "../../hooks/useAuth";
 
 const EnrolledClass = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [userBookings, setUserBookings] = useState([]);
   const [loading, setLoading] = useState(false);

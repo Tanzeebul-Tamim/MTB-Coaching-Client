@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
@@ -8,9 +8,9 @@ import useTitle from "../../Helmet/useTitle";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./styles/style.css";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData } from "../../api/authApi";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
 
@@ -30,7 +30,7 @@ const PaymentConfirmation = () => {
     name: studentName,
     number: "",
   });
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuth();
   const [loading2, setLoading2] = useState(false);
   useTitle("| Payment");
 

@@ -2,9 +2,11 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import LeafletMap from "./LeafletMap/LeafletMap";
 import scrollWithOffset from "../../ScrollToTop/ScrollWithOffset";
+import useScreenSize from "../../hooks/useScreeSize";
 
 const Footer = () => {
     const location = useLocation();
+    const { isSmallDevice } = useScreenSize();
 
     return (
         <div
@@ -14,8 +16,7 @@ const Footer = () => {
                     location.pathname == "/classes"
                         ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/footer.avif')"
                         : "none",
-                backgroundPosition:
-                    window.innerWidth <= 576 ? "70% 50%" : "center",
+                backgroundPosition: isSmallDevice ? "70% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
             }}
@@ -84,7 +85,10 @@ const Footer = () => {
                     </span>
                 </div>
                 <div>
-                    <RouterLink to="/legal" className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500">
+                    <RouterLink
+                        to="/legal"
+                        className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500"
+                    >
                         Legal
                     </RouterLink>
                     <HashLink
@@ -123,25 +127,25 @@ const Footer = () => {
             </footer>
             <footer className="footer border-t border-slate-500 px-10 py-6 bg-transparent text-base-content">
                 <div className="items-center grid-flow-col">
-                    <img
-                        style={{ height: "60px" }}
-                        src="/logo.png"
-                        alt=""
-                    />
+                    <img style={{ height: "60px" }} src="/logo.png" alt="" />
                     <p className="text-sm description">
-                        MTB Coaching Network Ltd. <br /> Delivering exceptional services since
-                        2006.
+                        MTB Coaching Network Ltd. <br /> Delivering exceptional
+                        services since 2006.
                     </p>
                 </div>
-                <div className="flex flex-col items-center text-xs"> 
-                    <h4 className="text-center lg:text-md lg:tracking-widest">
+                <div
+                    className={`flex flex-col ${
+                        !isSmallDevice && "items-center"
+                    } text-xs`}
+                >
+                    <h4 className="lg:text-md lg:tracking-widest">
                         This website is for educational purposes only and is not
                         affiliated with any official organizations or
                         institutions.
                     </h4>
-                    <h4 className="text-center lg:text-md lg:tracking-widest">
-                        © 2023 MTB Club. All rights reserved. Designed & Developed
-                        by
+                    <h4 className="lg:text-md lg:tracking-widest">
+                        © 2023 MTB Club. All rights reserved. Designed &
+                        Developed by
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
                             className="uppercase ms-1 font-bold text-yellow-500 underline"

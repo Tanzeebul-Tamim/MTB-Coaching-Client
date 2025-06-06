@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { useEffect } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useState } from "react";
 import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
@@ -8,9 +6,10 @@ import DashboardPageTitle from "../../shared_components/DashboardPageTitle/Dashb
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
 import { PropagateLoader } from "react-spinners";
 import useTitle from "../../Helmet/useTitle";
+import useAuth from "../../hooks/useAuth";
 
 const SelectedClasses = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [userBookings, setUserBookings] = useState([]);
   const [loading, setLoading] = useState(false);

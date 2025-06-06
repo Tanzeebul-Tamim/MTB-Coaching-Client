@@ -1,16 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useContext } from "react";
 import { useState } from "react";
 import { BsFillCreditCardFill } from "react-icons/bs";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { purchaseClass, updateStudentCount } from "../../api/bookApi";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");

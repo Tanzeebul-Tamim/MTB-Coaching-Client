@@ -5,13 +5,13 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ActiveLink2 from "../../activeLink2/ActiveLink2";
 import { getUserData } from "../../api/authApi";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { ScaleLoader } from "react-spinners";
-import { AuthContext } from "../../providers/AuthProvider";
 import { useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const SideNav = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userLoading, setUserLoading] = useState(false);
     const [title, setTitle] = useState(null);

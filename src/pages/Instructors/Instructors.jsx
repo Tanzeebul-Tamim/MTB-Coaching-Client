@@ -10,6 +10,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useRef } from "react";
 import { getUserData } from "../../api/authApi";
 import { FaChalkboardTeacher } from "react-icons/fa";
+import useScreenSize from "../../hooks/useScreeSize";
 
 const titleDescription =
     "Get to know our team of experienced and passionate mountain bike instructors. Our instructors are dedicated to sharing their expertise and guiding riders of all levels on exhilarating mountain biking adventures. Join us and learn from the best in the field as we navigate the thrilling world of mountain biking together.";
@@ -19,17 +20,18 @@ const Instructors = () => {
     const [loading, setLoading] = useState(false);
     const [visibleCount, setVisibleCount] = useState(5);
     const [search, setSearch] = useState("");
-    const [isSmallDevice, setIsSmallDevice] = useState(null);
     const [totalInstructors, setTotalInstructors] = useState({});
     const searchRef = useRef(null);
     const tableRef = useRef(null);
+    const { isSmallDevice } = useScreenSize();
     useTitle("| Instructors");
 
-
     useEffect(() => {
+        setLoading(true);
         getTotalInstructors()
             .then((data) => {
                 setTotalInstructors(data);
+                setLoading(false);
             })
             .catch((error) => console.error(error));
     }, []);
@@ -72,23 +74,10 @@ const Instructors = () => {
         }
     };
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsSmallDevice(window.innerWidth <= 576 ? true : false);
-        };
-
-        handleResize();
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     return (
         <div className="lg:pb-24 pb-8">
             <InstructorsBanner />
-            <div
-                className={`lg:px-10 lg:pt-16 px-5 pt-8`}
-            >
+            <div className={`lg:px-10 lg:pt-16 px-5 pt-8`}>
                 <SectionTitle
                     title1="Meet Our"
                     title2="Expert Instructors"
@@ -127,13 +116,15 @@ const Instructors = () => {
                     </div>
                 ) : (
                     <div className="lg:pt-10 pt-5">
-                        <div className="lg:mb-5 mb-2 flex gap-2 text-white description lg:text-xl">
-                            <strong className="flex items-center gap-2">
-                                <FaChalkboardTeacher className="lg:text-2xl text-xl" />
-                                <span>Instructors Count :</span>
-                            </strong>{" "}
-                            {totalInstructors.totalInstructors}
-                        </div>
+                        {instructors.length > 0 && (
+                            <div className="lg:mb-5 mb-2 flex gap-2 text-white description lg:text-xl">
+                                <strong className="flex items-center gap-2">
+                                    <FaChalkboardTeacher className="lg:text-2xl text-xl" />
+                                    <span>Instructors Count :</span>
+                                </strong>{" "}
+                                {totalInstructors.totalInstructors}
+                            </div>
+                        )}
                         <InstructorsTable
                             tableRef={tableRef}
                             instructors={instructors}

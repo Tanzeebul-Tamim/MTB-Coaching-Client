@@ -8,7 +8,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import app from "../../firebase/firebase.config";
-import { toast } from "react-toastify";
+import { Slide, toast } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
 
 const auth = getAuth(app);
@@ -81,6 +81,7 @@ const ChangePassword = () => {
             autoClose: 1100,
             hideProgressBar: false,
             closeOnClick: true,
+            transition: Slide,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,

@@ -8,7 +8,7 @@ const AutoplaySlider = withAutoplay(AwesomeSlider);
 const Banner = () => {
     return (
         <AutoplaySlider
-            play={false}
+            play={true}
             cancelOnInteraction={false}
             interval={2000}
             className="w-full"

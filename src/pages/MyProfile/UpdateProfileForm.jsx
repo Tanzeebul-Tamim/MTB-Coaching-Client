@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData, saveUser } from "../../api/authApi";
-import { toast } from "react-toastify";
+import { toast, Zoom, Flip } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useAuth from "../../hooks/useAuth";
 
 const UpdateProfileForm = ({ userDetails }) => {
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
@@ -12,7 +12,7 @@ const UpdateProfileForm = ({ userDetails }) => {
     const [selectedGender, setSelectedGender] = useState(
         userDetails.gender || ""
     );
-    const { updateUser, user, setLoading } = useContext(AuthContext);
+    const { updateUser, user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
     const [, setCoverImage] = useState(null);
 
@@ -54,6 +54,33 @@ const UpdateProfileForm = ({ userDetails }) => {
         const image = form?.image?.files[0];
         const coverImg = form?.cover?.files[0];
         const formData = new FormData();
+
+        const quoteMaxLength = 25;
+        const quoteLength = form?.quote.value.length;
+
+        // Quote length check
+        if (quoteLength > quoteMaxLength) {
+            toast.error(
+                <>
+                    Quote is too long!
+                    <br />
+                    Max {quoteMaxLength} characters
+                </>,
+                {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    limit: 3,
+                    transition: Zoom,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                }
+            );
+            return;
+        }
 
         const url = `${import.meta.env.VITE_IMGBB_API_URL}?key=${
             import.meta.env.VITE_IMGBB_KEY
@@ -137,6 +164,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                                             autoClose: 1100,
                                                             hideProgressBar: false,
                                                             closeOnClick: true,
+                                                            transition: Flip,
                                                             pauseOnHover: true,
                                                             draggable: true,
                                                             progress: undefined,
@@ -171,6 +199,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                                 autoClose: 1100,
                                                 hideProgressBar: false,
                                                 closeOnClick: true,
+                                                transition: Flip,
                                                 pauseOnHover: true,
                                                 draggable: true,
                                                 progress: undefined,
@@ -226,6 +255,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                     autoClose: 1100,
                                     hideProgressBar: false,
                                     closeOnClick: true,
+                                    transition: Flip,
                                     pauseOnHover: true,
                                     draggable: true,
                                     progress: undefined,
@@ -251,6 +281,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                             autoClose: 1100,
                             hideProgressBar: false,
                             closeOnClick: true,
+                            transition: Flip,
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
@@ -277,13 +308,13 @@ const UpdateProfileForm = ({ userDetails }) => {
             setUserDoc(data);
         }
         fetchUser();
-    }, [user.email]);
+    }, [user.email]);    
 
     // Synchronous monitorChange
     const monitorChange = (event) => {
         if (!userDoc) return true; // disable button while loading data
         const form = event.target.form || event.target.closest('form');
-        if (!form) return true;
+        if (!form) return true;        
 
         // Map form field names to userDoc keys
         const fieldMap = {
@@ -297,7 +328,6 @@ const UpdateProfileForm = ({ userDetails }) => {
         for (const [formField, userValue] of Object.entries(fieldMap)) {
             if (form[formField] && form[formField].value !== userValue) return false; // enable if changed
         }
-        
         // Check for file changes
         if (form.image && form.image.files.length > 0) return false;
         if (form.cover && form.cover.files.length > 0) return false;

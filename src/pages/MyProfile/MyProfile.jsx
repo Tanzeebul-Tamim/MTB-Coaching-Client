@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
 import { getUserData } from "../../api/authApi";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,9 +6,10 @@ import useTitle from "../../Helmet/useTitle";
 import UpdateProfileForm from "./UpdateProfileForm";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import ChangePassword from "./ChangePassword";
+import useAuth from "../../hooks/useAuth";
 
 const MyProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [userDetails, setUserDetails] = useState({});
   const [loading, setLoading] = useState(false);
   const firstName = userDetails?.name?.split(" ")[0];
