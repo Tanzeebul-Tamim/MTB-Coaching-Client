@@ -1,25 +1,34 @@
 import useTitle from "../../Helmet/useTitle";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../ScrollToTop/ScrollWithOffset";
+import useScreenSize from "../../hooks/useScreeSize";
 
 const Legal = () => {
     useTitle("| Legal");
+    const { isSmallDevice } = useScreenSize();
+
     return (
         <div
-            className="pt-40 pb-24 lg:px-10 relative min-h-screen"
+            className="lg:pt-40 pt-20 lg:pb-24 pb-12 lg:px-10 relative min-h-screen"
             style={{
                 backgroundImage: "url('/legal.avif')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
+                backgroundPosition: isSmallDevice ? "70% 50%" : "center",
                 backgroundAttachment: "fixed",
             }}
         >
             <div className="relative z-20">
                 <div className="text-lg text-white flex flex-col gap-8 text-center description max-w-[90%] mx-3 md:mx-auto bg-black bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-yellow-500">
-                    <h1 className="z-[10] title text-yellow-400 text-2xl md:text-4xl md:mb-8 text-center uppercase tracking-widest drop-shadow-lg">
+                    <h1
+                        style={{
+                            letterSpacing: isSmallDevice ? "0.2em" : "0.9em",
+                        }}
+                        className="z-[10] title font-extrabold text-yellow-400 text-xl md:text-4xl md:mb-8 text-center uppercase tracking-widest drop-shadow-lg"
+                    >
                         Legal Information
                     </h1>
-                    <p className="mb-2 text-sm md:text-lg leading-relaxed text">
+                    <p className="lg:mb-2 mb-1 text-sm md:text-lg leading-relaxed text">
                         This website is a personal practice project built by{" "}
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
@@ -41,14 +50,14 @@ const Legal = () => {
                             <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Privacy Policy
                             </h2>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 This project uses Firebase Authentication to
                                 simulate real-world login flows. Data entered
                                 during login (e.g., your Google account email)
                                 is not stored, shared, or processed in any way
                                 beyond what&#39;s required to authenticate you.
                             </p>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 No personal information is sold or used for
                                 marketing purposes. Your data stays within
                                 Firebase&#39;s secure infrastructure and is only
@@ -76,7 +85,7 @@ const Legal = () => {
                             <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Terms of Service
                             </h2>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 This is a non-commercial, development-stage
                                 project created for educational and personal
                                 growth purposes only. You are accessing a test
@@ -100,20 +109,22 @@ const Legal = () => {
                             <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 User Data Deletion
                             </h2>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 If you logged into this site using your email,
                                 Google or Facebook and want your data removed
                                 from Firebase, you can email a request to:
                             </p>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 {" "}
                                 <a href="mailto:tamim200091@gmail.com">
                                     <strong className="text-yellow-100 underline">
-                                        tamim200091@gmail.com {" "}
+                                        tamim200091@gmail.com{" "}
                                     </strong>
                                 </a>
                                 with the subject line{" "}
-                                <em className="text-yellow-100">&quot;Data Deletion Request&quot;</em>
+                                <em className="text-yellow-100">
+                                    &quot;Data Deletion Request&quot;
+                                </em>
                             </p>
                             <p className="text-sm md:text-base">
                                 Include the Google email you used to sign in.
@@ -129,7 +140,7 @@ const Legal = () => {
                             <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Cookie Notice
                             </h2>
-                            <p className="mb-2 text-sm md:text-base">
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 This site does not use cookies for tracking,
                                 advertising, or analytics. However, Firebase
                                 Authentication may set essential cookies for
