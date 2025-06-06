@@ -10,7 +10,7 @@ const Main = () => {
             <RouteTracker />
             <ScrollToTop></ScrollToTop>
             <Navbar></Navbar>
-            <Outlet location2={location.pathname} ></Outlet>
+            <Outlet></Outlet>
             <Footer></Footer>
         </div>
     );

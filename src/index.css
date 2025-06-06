@@ -6,9 +6,15 @@
   font-family: 'Khand', sans-serif;
 }
 
-.title {
+@media (min-width: 1024px) {
+  .title {
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 3px;
+  }
+}
+
+.title-res {
   font-family: "Oswald", sans-serif;
-  letter-spacing: 3px;
 }
 
 .title-sm {

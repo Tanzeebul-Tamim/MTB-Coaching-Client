@@ -14,7 +14,8 @@ const Footer = () => {
                     location.pathname == "/classes"
                         ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/footer.avif')"
                         : "none",
-                backgroundPosition: "center",
+                backgroundPosition:
+                    window.innerWidth <= 576 ? "70% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
             }}

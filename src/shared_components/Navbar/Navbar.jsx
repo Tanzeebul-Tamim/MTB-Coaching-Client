@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { MdOutlineSchool, MdShoppingCart } from "react-icons/md";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLayoutDashboard, LuScale } from "react-icons/lu";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
@@ -76,7 +76,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-1">
               <AiOutlineHome className="text-xs" />
-              HOME
+              HOMe
             </span>
           </ActiveLink>
           <ActiveLink
@@ -115,6 +115,15 @@ const Navbar = () => {
             <span className="flex items-center gap-1">
               <AiOutlineInfoCircle className="text-xs" />
               ABOUT US
+            </span>
+          </ActiveLink>
+          <ActiveLink
+            to="/legal"
+            className="block text-sm text-white hover:text-yellow-400"
+          >
+            <span className="flex items-center gap-1">
+              <LuScale className="text-xs" />
+              LEGAL
             </span>
           </ActiveLink>
         </div>
