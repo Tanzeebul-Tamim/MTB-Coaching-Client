@@ -10,8 +10,9 @@ import { ScaleLoader } from "react-spinners";
 import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
+import { RiArrowRightDoubleFill } from "react-icons/ri";
 
-const SideNav = ({ setSideNavOpen }) => {
+const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
     const { user, loading } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userLoading, setUserLoading] = useState(false);
@@ -46,6 +47,20 @@ const SideNav = ({ setSideNavOpen }) => {
             }}
             className="h-screen fixed p-7 bg-base-200"
         >
+            <button
+                className={`lg:hidden fixed top-[5%] -right-[17.5%] z-30 text-yellow-500 bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
+                    sideNavOpen ? "rotate-180" : "rotate-0"
+                }`}
+                onClick={() => setSideNavOpen((open) => !open)}
+                aria-label="Toggle navigation"
+            >
+                <RiArrowRightDoubleFill
+                    className={`text-4xl transition-transform duration-700 ${
+                        sideNavOpen ? "scale-110" : "scale-100"
+                    }`}
+                    style={{ transitionProperty: "transform" }}
+                />
+            </button>
             <div className="flex justify-center items-center">
                 <img className="w-[300px]" src="/MTB_Coaching.png" />
             </div>

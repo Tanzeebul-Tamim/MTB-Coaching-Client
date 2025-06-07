@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getUserData, saveUser } from "../../api/authApi";
-import { toast, Zoom, Flip } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useAuth from "../../hooks/useAuth";
+import useScreenSize from "../../hooks/useScreeSize";
 
 const UpdateProfileForm = ({ userDetails }) => {
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
@@ -12,9 +13,11 @@ const UpdateProfileForm = ({ userDetails }) => {
     const [selectedGender, setSelectedGender] = useState(
         userDetails.gender || ""
     );
+    const { isSmallDevice } = useScreenSize();
     const { updateUser, user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
     const [, setCoverImage] = useState(null);
+    const [isValidLength, setIsValidLength] = useState(true);
 
     const handleImageButtonText = (image) => {
         const imageName = image.name;
@@ -41,6 +44,7 @@ const UpdateProfileForm = ({ userDetails }) => {
         setSelectedGender(selectGender);
     };
 
+    const quoteMaxLength = 25;
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -55,30 +59,38 @@ const UpdateProfileForm = ({ userDetails }) => {
         const coverImg = form?.cover?.files[0];
         const formData = new FormData();
 
-        const quoteMaxLength = 25;
         const quoteLength = form?.quote.value.length;
+        const isValid = quoteLength <= quoteMaxLength;
 
-        // Quote length check
-        if (quoteLength > quoteMaxLength) {
-            toast.error(
-                <>
-                    Quote is too long!
-                    <br />
-                    Max {quoteMaxLength} characters
-                </>,
-                {
-                    position: "top-right",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    limit: 3,
-                    transition: Zoom,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                }
-            );
+        if (!isValid) {
+            const time = 2000;
+
+            if (!isSmallDevice) {
+                setIsValidLength(false);
+                setTimeout(() => {
+                    setIsValidLength(true);
+                }, time);
+            } else {
+                toast.error(
+                    <>
+                        Quote is too long!
+                        <br />
+                        Max {quoteMaxLength} characters
+                    </>,
+                    {
+                        position: "top-right",
+                        autoClose: time,
+                        hideProgressBar: false,
+                        limit: 3,
+                        transition: Flip,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    }
+                );
+            }
             return;
         }
 
@@ -308,13 +320,13 @@ const UpdateProfileForm = ({ userDetails }) => {
             setUserDoc(data);
         }
         fetchUser();
-    }, [user.email]);    
+    }, [user.email]);
 
     // Synchronous monitorChange
     const monitorChange = (event) => {
         if (!userDoc) return true; // disable button while loading data
-        const form = event.target.form || event.target.closest('form');
-        if (!form) return true;        
+        const form = event.target.form || event.target.closest("form");
+        if (!form) return true;
 
         // Map form field names to userDoc keys
         const fieldMap = {
@@ -326,7 +338,8 @@ const UpdateProfileForm = ({ userDetails }) => {
         };
 
         for (const [formField, userValue] of Object.entries(fieldMap)) {
-            if (form[formField] && form[formField].value !== userValue) return false; // enable if changed
+            if (form[formField] && form[formField].value !== userValue)
+                return false; // enable if changed
         }
         // Check for file changes
         if (form.image && form.image.files.length > 0) return false;
@@ -342,14 +355,16 @@ const UpdateProfileForm = ({ userDetails }) => {
                 method="dialog"
                 className="modal-box bg-opacity-90"
             >
-                <h1 className="z-[10] text-white text-2xl tracking-[9px] text-center uppercase font-extrabold">
+                <h1 className="z-[10] text-white lg:text-2xl text-lg lg:tracking-[9px] tracking-[5px] text-center uppercase font-extrabold">
                     Update Profile
                 </h1>
-                <p className="z-[10] mt-1 text-white text-xs text-center">
-                    Press esc to cancel
+                <p className={`z-[10] mt-1 ${isValidLength ? 'text-white' : 'text-red-500'} text-center`}>
+                    {isValidLength
+                        ? "Press esc to cancel"
+                        : `Quote is too long! Max ${quoteMaxLength} characters`}
                 </p>
 
-                <div className="card-body">
+                <div className="card-body p-0 md:p-6">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>
@@ -363,8 +378,8 @@ const UpdateProfileForm = ({ userDetails }) => {
                         />
                     </div>
 
-                    <div className="flex justify-between gap-2">
-                        <div className="form-control">
+                    <div className="flex flex-col md:flex-row justify-between gap-2">
+                        <div className="form-control w-full md:w-1/2">
                             <label className="label">
                                 <span className="label-text">Address</span>
                             </label>
@@ -373,11 +388,11 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="address"
                                 defaultValue={userDetails?.address}
                                 placeholder="Enter your address"
-                                className="input input-bordered w-[195px]"
+                                className="input input-bordered"
                             />
                         </div>
 
-                        <div className="form-control">
+                        <div className="form-control w-full md:w-1/2">
                             <label className="label">
                                 <span className="label-text">Contact no</span>
                             </label>
@@ -386,15 +401,15 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="contact"
                                 defaultValue={userDetails?.contactNo}
                                 placeholder="Enter your contact no"
-                                className="input input-bordered w-[195px]"
+                                className="input input-bordered"
                             />
                         </div>
                     </div>
 
                     {userDetails.role === "Instructor" ? (
                         <>
-                            <div className="flex justify-between gap-2">
-                                <div className="form-control">
+                            <div className="flex flex-col md:flex-row justify-between gap-2">
+                                <div className="form-control w-full md:w-1/2">
                                     <label className="label">
                                         <span className="label-text">
                                             User image
@@ -413,12 +428,12 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700">
+                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
                                             {imageButtonText}
                                         </div>
                                     </label>
                                 </div>
-                                <div className="form-control">
+                                <div className="form-control w-full md:w-1/2">
                                     <label className="label">
                                         <span className="label-text">
                                             Cover image
@@ -437,15 +452,15 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700">
+                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
                                             {coverImageButtonText}
                                         </div>
                                     </label>
                                 </div>
                             </div>
 
-                            <div className="flex justify-between gap-2">
-                                <div className="form-control w-1/2">
+                            <div className="flex flex-col md:flex-row justify-between gap-2">
+                                <div className="form-control w-full md:w-1/2">
                                     <label className="label">
                                         <span className="label-text">
                                             Quote
@@ -459,7 +474,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         className="input input-bordered"
                                     />
                                 </div>
-                                <div className="form-control w-1/2">
+                                <div className="form-control w-full md:w-1/2">
                                     <label className="label">
                                         <span className="label-text">
                                             Gender
@@ -485,8 +500,8 @@ const UpdateProfileForm = ({ userDetails }) => {
                             </div>
                         </>
                     ) : (
-                        <div className="flex justify-between gap-2">
-                            <div className="form-control">
+                        <div className="flex flex-col md:flex-row justify-between gap-2">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">
                                         User image
@@ -505,12 +520,12 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-800 bg-stone-700">
+                                    <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
                                         {imageButtonText}
                                     </div>
                                 </label>
                             </div>
-                            <div className="form-control w-1/2">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">Gender</span>
                                 </label>
@@ -536,7 +551,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <button
                             disabled={btnStatus || loading2}
                             type="submit"
-                            className="btn btn-md disabled:bg-stone-900 text-md rounded-md bg-stone-700 hover:bg-stone-800"
+                            className="btn btn-md disabled:bg-stone-900 text-md rounded-md bg-stone-700 hover:bg-stone-800 w-full md:w-auto"
                         >
                             {loading2 ? (
                                 <TbFidgetSpinner className="text-2xl animate-spin" />
