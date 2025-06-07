@@ -63,17 +63,18 @@ const Navbar = () => {
             .catch((error) => console.error(error));
     };
 
+    const customColor = "text-amber-200";
+
     return (
         <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
             <div className="navbar-start gap-1 lg:gap-6 flex items-center">
                 <div
-                    className={`mt-2 flex flex-col bg-opacity-80 absolute duration-300 uppercase ${
+                    className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
                         open ? "top-10 right-5" : "top-10 -right-[150px]"
                     } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
                 >
                     <ActiveLink
                         to="/"
-                        className="gap-2 mb-2 text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <AiOutlineHome className="text-xs" />
@@ -82,7 +83,6 @@ const Navbar = () => {
                     </ActiveLink>
                     <ActiveLink
                         to="/instructors"
-                        className="block mb-2 text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <FaChalkboardTeacher className="text-xs" />
@@ -91,7 +91,6 @@ const Navbar = () => {
                     </ActiveLink>
                     <ActiveLink
                         to="/classes"
-                        className="block mb-2 text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <MdOutlineSchool className="text-xs" />
@@ -101,7 +100,6 @@ const Navbar = () => {
                     {user && (
                         <ActiveLink
                             to="/dashboard/profile"
-                            className="block text-sm text-white hover:text-yellow-400"
                         >
                             <span className="flex items-center gap-1">
                                 <LuLayoutDashboard className="text-xs" />
@@ -111,7 +109,6 @@ const Navbar = () => {
                     )}
                     <ActiveLink
                         to="/about-us"
-                        className="block text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <AiOutlineInfoCircle className="text-xs" />
@@ -120,7 +117,6 @@ const Navbar = () => {
                     </ActiveLink>
                     <ActiveLink
                         to="/legal"
-                        className="block text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <LuScale className="text-xs" />
@@ -129,8 +125,8 @@ const Navbar = () => {
                     </ActiveLink>
                     <hr className="opacity-60 pb-[3px]" />
                     <ActiveLink
+                        customColor={customColor}
                         to="/register"
-                        className="block text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <SlNote className="text-xs" />
@@ -138,8 +134,8 @@ const Navbar = () => {
                         </span>
                     </ActiveLink>
                     <ActiveLink
+                        customColor={customColor}
                         to="/login"
-                        className="block text-sm text-white hover:text-yellow-400"
                     >
                         <span className="flex items-center gap-1">
                             <FiLogIn className="text-xs" />
@@ -149,9 +145,9 @@ const Navbar = () => {
                     {user && (
                         <div
                             onClick={handleLogOut}
-                            className="block text-white hover:text-yellow-400"
+                            className="block"
                         >
-                            <span className="flex items-center gap-1">
+                            <span className={`${customColor} flex items-center gap-1` }>
                                 <FiLogOut className="text-xs" />
                                 Logout
                             </span>

@@ -112,16 +112,16 @@ const AddClass = () => {
         formData.image !== null;
 
     return (
-        <div>
+        <>
             <DashboardPageTitle title={"Add a Course"} />
-            <div className="flex justify-center">
+            <div className="flex mt-[35%] lg:mt-0 flex-col md:flex-row mb-10 px-2 md:px-5 gap-6 md:gap-10 items-center justify-center w-full">
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col bg-base-100 py-5 rounded-2xl bg-opacity-50 description"
+                    className="flex flex-col bg-base-100 lg:py-5 py-3 px-3 lg:px-0 rounded-2xl lg:bg-opacity-50 bg-opacity-60 description w-full max-w-xl"
                 >
-                    <div className="card-body">
-                        <div className="flex justify-between gap-2">
-                            <div className="form-control z-[10]">
+                    <div className="card-body p-0 md:p-6">
+                        <div className="flex flex-col md:flex-row justify-between gap-2">
+                            <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">
                                         Course Name
@@ -137,7 +137,7 @@ const AddClass = () => {
                                     required
                                 />
                             </div>
-                            <div className="form-control z-[10]">
+                            <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">
                                         Price ($)
@@ -155,8 +155,8 @@ const AddClass = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-between gap-2">
-                            <div className="form-control z-[10]">
+                        <div className="flex flex-col md:flex-row justify-between gap-2">
+                            <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">
                                         Course Thumbnail
@@ -172,12 +172,12 @@ const AddClass = () => {
                                         accept="image/*"
                                         required
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800">
+                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800 w-full md:w-auto">
                                         {imageButtonText}
                                     </div>
                                 </label>
                             </div>
-                            <div className="form-control z-[10]">
+                            <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
                                     <span className="label-text">
                                         Student Slot
@@ -198,7 +198,7 @@ const AddClass = () => {
                         <div className="form-control mt-6 z-[10]">
                             <button
                                 type="submit"
-                                className="btn btn-md text-md rounded-md bg-base-200 hover:bg-stone-800 disabled:bg-stone-900"
+                                className="btn btn-md text-md rounded-md bg-base-200 hover:bg-stone-800 disabled:bg-stone-900 w-full md:w-auto"
                                 disabled={!isFormValid || loading2}
                             >
                                 {loading2 ? (
@@ -211,7 +211,7 @@ const AddClass = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     );
 };
 

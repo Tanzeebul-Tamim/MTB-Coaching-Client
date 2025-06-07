@@ -49,9 +49,9 @@ const SingleInstructorsClasses = () => {
     };
 
     const InstructorHeader = () => (
-        <div className="mb-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-0">
+        <div className="lg:mb-10 mb-5 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-0">
             <img
-                className="mask mask-squircle h-32 w-32 md:h-44 md:w-44 lg:h-[180px] lg:w-[180px] mb-6 lg:mb-0"
+                className="mask mask-squircle h-32 w-32 md:h-44 md:w-44 lg:h-[180px] lg:w-[180px] lg:mb-0"
                 src={instructor.image}
                 alt=""
             />
@@ -78,7 +78,7 @@ const SingleInstructorsClasses = () => {
             />
             {classes?.length > 0 ? (
                 <>
-                    <div className="mb-5 flex flex-col md:flex-row gap-2 md:gap-6 text-white description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
+                    <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-white description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
                         <strong className="flex items-center gap-2">
                             <GiTeacher className="text-xl md:text-2xl" />
                             {classes.length}

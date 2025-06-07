@@ -1,7 +1,7 @@
 const SectionTitle = ({ title1, title2, description, textAlign, enlarge }) => {
     return (
         <div
-            className={`mb-9 ${
+            className={`lg:mb-9 mb-5 ${
                 textAlign && "transform scale-x-[-1]"
             } flex flex-col`}
         >
@@ -42,7 +42,7 @@ const SectionTitle = ({ title1, title2, description, textAlign, enlarge }) => {
             <p
                 className={`${
                     textAlign && "transform scale-x-[-1] text-end"
-                } mt-5 text-white ${enlarge ? 'text-lg' : 'text-sm'} lg:text-xl lg:w-1/2 description`}
+                } lg:mt-5 mt-2 text-white ${enlarge ? 'text-lg' : 'text-sm'} lg:text-xl lg:w-1/2 description`}
             >
                 {description}
             </p>
