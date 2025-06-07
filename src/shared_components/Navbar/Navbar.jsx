@@ -126,6 +126,24 @@ const Navbar = () => {
               Legal
             </span>
           </ActiveLink>
+          <ActiveLink
+            to="/login"
+            className="block text-sm text-white hover:text-yellow-400"
+          >
+            <span className="flex items-center gap-1">
+              <FiLogIn className="text-xs" />
+              Login
+            </span>
+          </ActiveLink>
+          <ActiveLink
+            to="/register"
+            className="block text-sm text-white hover:text-yellow-400"
+          >
+            <span className="flex items-center gap-1">
+              <SlNote className="text-xs" />
+              Register
+            </span>
+          </ActiveLink>
         </div>
         <Link to="/">
           <img

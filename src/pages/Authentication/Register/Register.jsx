@@ -7,6 +7,7 @@ import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useScreenSize from "../../../hooks/useScreeSize";
 
 const Register = () => {
     const [error, setError] = useState("");
@@ -36,6 +37,7 @@ const Register = () => {
     });
     const navigate = useNavigate();
     const location = useLocation();
+    const { isSmallDevice } = useScreenSize();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
     useTitle("| Student-Registration");
@@ -318,7 +320,7 @@ const Register = () => {
 
     return (
         <div
-            className="min-h-screen pt-32 pb-24 lg:px-10 relative"
+            className="min-h-screen lg:pt-32 pt-16 lg:pb-24 pb-20 px-3 sm:px-6 md:px-10 lg:px-10 relative flex flex-col justify-center"
             style={{
                 backgroundImage:
                     "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/register_banner.avif')",
@@ -329,13 +331,30 @@ const Register = () => {
         >
             <form
                 onSubmit={handleRegister}
-                className="flex items-center justify-center gap-20 flex-col lg:flex-row-reverse"
+                className="flex flex-col lg:flex-row-reverse items-center justify-center gap-10 md:gap-16 lg:gap-20 w-full"
             >
-                <div className="z-10 text-center lg:text-left">
-                    <h1 className="text-5xl text-end font-bold title uppercase text-yellow-500">
+                <div className="block lg:hidden w-full">
+                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-yellow-500 text-center">
                         Register now!
                     </h1>
-                    <p className="py-6 text-end description text-xl text-white">
+                    <div className="text-center">
+                        <Link
+                            to="/instructor-register"
+                            className="description text-sm link link-hover"
+                        >
+                            Not a student?{" "}
+                            <span className="text-yellow-500 underline">
+                                Register as an instructor
+                            </span>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="hidden lg:block z-10 text-right w-full lg:w-1/2">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-yellow-500 text-end">
+                        Register now!
+                    </h1>
+                    <p className="py-4 md:py-6 text-end description text-base md:text-lg lg:text-xl text-white">
                         Create your account and become part of our vibrant
                         mountain biking community. Whether you&apos;re a
                         seasoned rider or just getting started, our registration
@@ -357,10 +376,11 @@ const Register = () => {
                         </Link>
                     </div>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-[500px] shadow-2xl bg-base-100">
-                    <div className="card-body">
-                        <div className="flex justify-center gap-3">
-                            <div className="form-control">
+                <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[500px] shadow-2xl bg-base-100">
+                    <div className="card-body p-4 md:p-6 lg:p-8">
+                        {/* Responsive input fields: stack vertically on mobile, horizontally on larger screens */}
+                        <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Name
@@ -373,11 +393,11 @@ const Register = () => {
                                     value={formFields.name}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your username"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                             </div>
 
-                            <div className="form-control">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Email
@@ -390,13 +410,13 @@ const Register = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                             </div>
                         </div>
 
-                        <div className="flex justify-center gap-3">
-                            <div className="form-control">
+                        <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Contact No
@@ -409,11 +429,11 @@ const Register = () => {
                                     value={formFields.contact}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your contact no"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                             </div>
 
-                            <div className="form-control">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Address
@@ -426,13 +446,13 @@ const Register = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                             </div>
                         </div>
 
-                        <div className="flex justify-between">
-                            <div className="form-control">
+                        <div className="flex flex-col md:flex-row justify-between gap-3 w-full">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         User image
@@ -447,13 +467,13 @@ const Register = () => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800">
+                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800 w-full">
                                         {imageButtonText}
                                     </div>
                                 </label>
                             </div>
 
-                            <div className="form-control">
+                            <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Gender
@@ -476,8 +496,8 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className="flex relative justify-center gap-3">
-                            <div className="z-[10] form-control">
+                        <div className="flex flex-col md:flex-row relative justify-center gap-3 w-full">
+                            <div className="z-[10] form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Password
@@ -491,13 +511,13 @@ const Register = () => {
                                     value={formFields.password}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your password"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                                 <div
                                     style={{
                                         position: "absolute",
-                                        top: "60%",
-                                        left: "175px",
+                                        top: isSmallDevice ? "28%" : "60%",
+                                        left: isSmallDevice ? "90%" : "175px",
                                         cursor: "pointer",
                                         fontSize: "20px",
                                     }}
@@ -507,7 +527,7 @@ const Register = () => {
                                 </div>
                             </div>
 
-                            <div className="z-[10] form-control">
+                            <div className="z-[10] form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-white">
                                         Confirm Password
@@ -521,13 +541,13 @@ const Register = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="input input-bordered"
+                                    className="input input-bordered w-full"
                                 />
                                 <div
                                     style={{
                                         position: "absolute",
-                                        top: "60%",
-                                        right: "15px",
+                                        top: isSmallDevice ? "82%" : "60%",
+                                        left: isSmallDevice ? "90%" : "395px",
                                         cursor: "pointer",
                                         fontSize: "20px",
                                     }}
@@ -593,7 +613,8 @@ const Register = () => {
                     </div>
                 </div>
             </form>
-            <div className="absolute lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300"></div>
+            <div className="absolute lg:hidden -bottom-1 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
+            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
         </div>
     );
 };

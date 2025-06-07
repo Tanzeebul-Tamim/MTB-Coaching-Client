@@ -177,7 +177,7 @@ const Login = () => {
 
     return (
         <div
-            className="min-h-screen pt-32 pb-24 lg:px-10 relative"
+            className="min-h-screen lg:pt-24 pt-16 lg:pb-16 pb-20 px-3 sm:px-6 md:px-10 lg:px-10 relative flex flex-col justify-center"
             style={{
                 backgroundImage:
                     "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/login_banner.avif')",
@@ -188,13 +188,19 @@ const Login = () => {
         >
             <form
                 onSubmit={handleLogin}
-                className="flex items-center justify-center gap-20 flex-col lg:flex-row"
+                className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-20 w-full"
             >
-                <div className="z-10 text-center lg:text-left">
-                    <h1 className="text-5xl font-bold title uppercase text-yellow-500">
+                <div className="block lg:hidden w-full">
+                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-yellow-500 text-center">
                         Login now!
                     </h1>
-                    <p className="py-6 description text-xl text-white">
+                </div>
+
+                <div className="hidden lg:block z-10 text-left w-full lg:w-1/2">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-yellow-500">
+                        Login now!
+                    </h1>
+                    <p className="py-4 md:py-6 description text-base md:text-lg lg:text-xl text-white">
                         Gear up and get ready to embark on an exciting journey
                         into the world of mountain biking. Join our vibrant
                         community of riders, where you can connect, learn, and
@@ -207,8 +213,8 @@ const Login = () => {
                         begin!
                     </p>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm shadow-2xl bg-base-100">
+                    <div className="card-body p-4 md:p-6 lg:p-8">
                         <div className="form-control">
                             <label className="label">
                                 <span className="uppercase label-text font-bold tracking-widest text-white">
@@ -322,7 +328,7 @@ const Login = () => {
                             <button
                                 disabled={disabled || (loading && true)}
                                 type="submit"
-                                className="btn bg-yellow-500 disabled:bg-yellow-900 disabled:text-stone-500 hover:bg-yellow-600 text-white text-xl"
+                                className="btn bg-yellow-500 disabled:bg-yellow-900 disabled:text-stone-500 hover:bg-yellow-600 text-white text-lg md:text-xl"
                             >
                                 {loading ? (
                                     <TbFidgetSpinner className="text-2xl text-stone-400 animate-spin" />
@@ -334,7 +340,8 @@ const Login = () => {
                     </div>
                 </div>
             </form>
-            <div className="absolute lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300"></div>
+            <div className="absolute lg:hidden -bottom-1 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
+            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
         </div>
     );
 };
