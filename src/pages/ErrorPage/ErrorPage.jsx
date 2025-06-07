@@ -86,7 +86,16 @@ const ErrorPage = () => {
                     </p>
                     <Link
                         to="/"
-                        className="absolute bottom-48 description uppercase bg-yellow-500 text-xl p-3 text-white rounded-xl hover:bg-yellow-600 duration-150"
+                        className={`absolute ${
+                            (typeof status !== "undefined" &&
+                                status !== null &&
+                                status !== "") ||
+                            (typeof statusText !== "undefined" &&
+                                statusText !== null &&
+                                statusText !== "")
+                                ? "bottom-48"
+                                : "bottom-56"
+                        } description uppercase bg-yellow-500 text-xl p-3 text-white rounded-xl hover:bg-yellow-600 duration-150`}
                     >
                         Back to Homepage
                     </Link>

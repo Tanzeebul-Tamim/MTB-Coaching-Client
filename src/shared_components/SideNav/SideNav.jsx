@@ -9,12 +9,14 @@ import { useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
+import useScreenSize from "../../hooks/useScreeSize";
 
-const SideNav = () => {
+const SideNav = ({ setSideNavOpen }) => {
     const { user, loading } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userLoading, setUserLoading] = useState(false);
     const [title, setTitle] = useState(null);
+    const { isSmallDevice } = useScreenSize();
 
     useEffect(() => {
         setUserLoading(true);
@@ -24,13 +26,13 @@ const SideNav = () => {
 
             if (!loading && !userLoading) {
                 if (userDetails?.role === "Instructor") {
-                    setTitle("Instructor")
+                    setTitle("Instructor");
                 } else if (userDetails?.role === "Student") {
                     setTitle("Student");
                 }
             }
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user?.email, userDetails.role]);
 
     return (
@@ -51,28 +53,28 @@ const SideNav = () => {
             <h1 className="title mb-10 uppercase text-center text-2xl">
                 {title} Dashboard
             </h1>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col lg:gap-5 gap-3">
                 <Link
                     to="/"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description text-lg"
+                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
                 >
                     <AiFillHome className="text-xl" /> Home
                 </Link>
                 <Link
                     to="/instructors"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description text-lg"
+                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
                 >
                     <FaChalkboardTeacher className="text-xl" /> Instructors
                 </Link>
                 <Link
                     to="/classes"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description text-lg"
+                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
                 >
                     <IoSchoolSharp className="text-xl" /> Courses
                 </Link>
                 <Link
                     to="/about-us"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description text-lg"
+                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
                 >
                     <BsFillInfoCircleFill className="text-xl" /> About Us
                 </Link>
@@ -83,17 +85,29 @@ const SideNav = () => {
                     !loading &&
                     !userLoading && (
                         <>
-                            <ActiveLink2 to="/dashboard/profile">
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/profile"
+                            >
                                 My Profile
                             </ActiveLink2>
-                            <ActiveLink2 to="/dashboard/selected-classes">
-                                My Booked Courses
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/selected-classes"
+                            >
+                                {!isSmallDevice && "My"} Booked Courses
                             </ActiveLink2>
-                            <ActiveLink2 to="/dashboard/enrolled-classes">
-                                My Enrolled Courses
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/enrolled-classes"
+                            >
+                                {!isSmallDevice && "My"} Enrolled Courses
                             </ActiveLink2>
-                            <ActiveLink2 to="/dashboard/payment">
-                                My Payment History
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/payment"
+                            >
+                                {!isSmallDevice && "My"} Payment History
                             </ActiveLink2>
                         </>
                     )}
@@ -101,16 +115,28 @@ const SideNav = () => {
                     !loading &&
                     !userLoading && (
                         <>
-                            <ActiveLink2 to="/dashboard/profile">
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/profile"
+                            >
                                 My Profile
                             </ActiveLink2>
-                            <ActiveLink2 to={`/instructor/${userDetails._id}`}>
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to={`/instructor/${userDetails._id}`}
+                            >
                                 My Wall
                             </ActiveLink2>
-                            <ActiveLink2 to="/dashboard/add-class">
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/add-class"
+                            >
                                 Add a Course
                             </ActiveLink2>
-                            <ActiveLink2 to="/dashboard/my-classes">
+                            <ActiveLink2
+                                setSideNavOpen={setSideNavOpen}
+                                to="/dashboard/my-classes"
+                            >
                                 My Courses
                             </ActiveLink2>
                         </>
