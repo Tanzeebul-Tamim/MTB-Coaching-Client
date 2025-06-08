@@ -14,7 +14,7 @@ const MyStudents = () => {
     const parsedIdx = parseInt(idx);
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({});
-    const [students, setStudents] = useState([]);
+    let [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
     // const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -63,8 +63,7 @@ const MyStudents = () => {
                 students.filter(
                     (student) =>
                         student?.name?.toLowerCase().includes(lowerSearch) ||
-                        student?.email?.toLowerCase().includes(lowerSearch) ||
-                        student?.contactNo?.toLowerCase().includes(lowerSearch)
+                        student?.email?.toLowerCase().includes(lowerSearch)
                 )
             );
         }
@@ -105,7 +104,7 @@ const MyStudents = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
                 type="text"
-                placeholder="Search by Name, Email, or Contact No."
+                placeholder="Search by Name or Email"
                 className="z-10 mt-[35%] lg:mt-0 lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-white rounded-full lg:w-1/3 w-3/4"
             />
             <button>
@@ -124,11 +123,12 @@ const MyStudents = () => {
     );
 
     const wrapCondition = isSmallDevice && courseName?.length > 20;
+    const renderCondition = students && students.length > 0;
 
     return (
         <>
             <DashboardPageTitle title={"My Students"} />
-            {SearchBar}
+            {renderCondition && SearchBar}
             <div
                 className={`lg:mb-5 mb-2 z-10 ${
                     wrapCondition
@@ -141,10 +141,12 @@ const MyStudents = () => {
                     <span>{courseName}</span>
                 </strong>
                 {wrapCondition && <br></br>}
-                <strong className="z-[100]">
-                    <span>Total Students : </span>
-                    <span>{students.length}</span>
-                </strong>
+                {renderCondition && (
+                    <strong className="z-[100]">
+                        <span>Total Students : </span>
+                        <span>{students.length}</span>
+                    </strong>
+                )}
             </div>
             <MyStudentsTable
                 search={search}

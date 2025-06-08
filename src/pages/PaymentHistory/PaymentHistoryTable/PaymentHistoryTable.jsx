@@ -9,8 +9,8 @@ const PaymentHistoryTable = ({ userBookings }) => {
 
   if (sortedBookings?.length === 0) {
     return (
-      <div className="flex h-[55vh] items-center justify-center">
-        <h1 className="z-[10] description text-5xl">
+      <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
+        <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
           You Haven&apos;t Made Any Payment Yet
         </h1>
       </div>

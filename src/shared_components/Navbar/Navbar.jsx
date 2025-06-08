@@ -73,81 +73,87 @@ const Navbar = () => {
                         open ? "top-10 right-5" : "top-10 -right-[150px]"
                     } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
                 >
-                    <ActiveLink
-                        to="/"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink to="/">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <AiOutlineHome className="text-xs" />
                             Home
                         </span>
                     </ActiveLink>
-                    <ActiveLink
-                        to="/instructors"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink to="/instructors">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <FaChalkboardTeacher className="text-xs" />
                             Instructors
                         </span>
                     </ActiveLink>
-                    <ActiveLink
-                        to="/classes"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink to="/classes">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <MdOutlineSchool className="text-xs" />
                             Courses
                         </span>
                     </ActiveLink>
                     {user && (
-                        <ActiveLink
-                            to="/dashboard/profile"
-                        >
-                            <span className="flex items-center gap-1">
+                        <ActiveLink to="/dashboard/profile">
+                            <span
+                                onClick={() => setOpen(!open)}
+                                className="flex items-center gap-1"
+                            >
                                 <LuLayoutDashboard className="text-xs" />
                                 Dashboard
                             </span>
                         </ActiveLink>
                     )}
-                    <ActiveLink
-                        to="/about-us"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink to="/about-us">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <AiOutlineInfoCircle className="text-xs" />
                             About Us
                         </span>
                     </ActiveLink>
-                    <ActiveLink
-                        to="/legal"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink to="/legal">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <LuScale className="text-xs" />
                             Legal
                         </span>
                     </ActiveLink>
                     <hr className="opacity-60 pb-[3px]" />
-                    <ActiveLink
-                        customColor={customColor}
-                        to="/register"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink customColor={customColor} to="/register">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <SlNote className="text-xs" />
                             Register
                         </span>
                     </ActiveLink>
-                    <ActiveLink
-                        customColor={customColor}
-                        to="/login"
-                    >
-                        <span className="flex items-center gap-1">
+                    <ActiveLink customColor={customColor} to="/login">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
                             <FiLogIn className="text-xs" />
                             Login
                         </span>
                     </ActiveLink>
                     {user && (
-                        <div
-                            onClick={handleLogOut}
-                            className="block"
-                        >
-                            <span className={`${customColor} flex items-center gap-1` }>
+                        <div onClick={handleLogOut} className="block">
+                            <span
+                                onClick={() => setOpen(!open)}
+                                className={`${customColor} flex items-center gap-1`}
+                            >
                                 <FiLogOut className="text-xs" />
                                 Logout
                             </span>

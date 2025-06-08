@@ -41,7 +41,7 @@ const MyCourses = () => {
         }
     }, [userDetails]);
 
-    let instructorCourses = 0;
+    let instructorCourses = [];
 
     if (userDetails && userDetails?.role === "Instructor") {
         instructorCourses = userDetails?.classes;
@@ -66,17 +66,21 @@ const MyCourses = () => {
             <DashboardPageTitle
                 title={`My ${isSmallDevice ? "" : "Offered"} Courses`}
             />
-            <div className="lg:mb-5 mb-2 mt-[35%] z-10 lg:mt-0 flex justify-between gap-2 text-white description lg:text-xl">
-                <strong className="z-[100]">
-                    <span>{!isSmallDevice && "Offered"} Courses Count : </span>
-                    <span>{instructorCourses.length}</span>
-                </strong>
+            {instructorCourses && instructorCourses.length > 0 && (
+                <div className="lg:mb-5 mb-2 mt-[35%] z-10 lg:mt-0 flex justify-between gap-2 text-white description lg:text-xl">
+                    <strong className="z-[100]">
+                        <span>
+                            {!isSmallDevice && "Offered"} Courses Count :{" "}
+                        </span>
+                        <span>{instructorCourses.length}</span>
+                    </strong>
 
-                <strong className="z-[100]">
-                    <span>Total Students : </span>
-                    <span>{totalStudent}</span>
-                </strong>
-            </div>
+                    <strong className="z-[100]">
+                        <span>Total Students : </span>
+                        <span>{totalStudent}</span>
+                    </strong>
+                </div>
+            )}
             <MyCoursesTable
                 isSmallDevice={isSmallDevice}
                 userDetails={userDetails}
