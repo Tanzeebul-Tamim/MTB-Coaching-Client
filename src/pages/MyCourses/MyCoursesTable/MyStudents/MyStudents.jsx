@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 import useScreenSize from "../../../../hooks/useScreeSize";
 import { BsSearch } from "react-icons/bs";
+import { PiStudentFill } from "react-icons/pi";
+import { FaBookOpen } from "react-icons/fa";
 
 const MyStudents = () => {
     const { idx } = useParams();
@@ -122,7 +124,7 @@ const MyStudents = () => {
         </div>
     );
 
-    const wrapCondition = isSmallDevice && courseName?.length > 20;
+    const wrapCondition = isSmallDevice && courseName?.length > 15;
     const renderCondition = students && students.length > 0;
 
     return (
@@ -132,20 +134,21 @@ const MyStudents = () => {
             <div
                 className={`lg:mb-5 mb-2 z-10 ${
                     wrapCondition
-                        ? "lg:flex lg:justify-between"
+                        ? "flex lg:flex-row lg:justify-between flex-col items-center"
                         : "flex justify-between"
-                } gap-2 text-white description lg:text-xl`}
+                } lg:gap-2 text-white description lg:text-xl`}
             >
-                <strong className="z-[100]">
-                    <span>Course{!isSmallDevice && "Name"} : </span>
+                <span className="z-[100] flex items-center gap-2">
+                    <FaBookOpen className="lg:text-2xl" />
+                    <strong>Course {!isSmallDevice && "Name"} : </strong>
                     <span>{courseName}</span>
-                </strong>
-                {wrapCondition && <br></br>}
+                </span>
                 {renderCondition && (
-                    <strong className="z-[100]">
-                        <span>Total Students : </span>
+                    <span className="z-[100] flex items-center gap-2">
+                        <PiStudentFill className="lg:text-2xl" />
+                        <strong>Total Students : </strong>
                         <span>{students.length}</span>
-                    </strong>
+                    </span>
                 )}
             </div>
             <MyStudentsTable

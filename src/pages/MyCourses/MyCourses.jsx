@@ -6,6 +6,8 @@ import useTitle from "../../Helmet/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
+import { GiTeacher } from "react-icons/gi";
+import { PiStudentFill } from "react-icons/pi";
 
 const MyCourses = () => {
     const { user } = useAuth();
@@ -50,7 +52,9 @@ const MyCourses = () => {
     if (loading) {
         return (
             <>
-                <DashboardPageTitle title={"My Offered Courses"} />
+                <DashboardPageTitle
+                    title={`My ${isSmallDevice ? "" : "Offered"} Courses`}
+                />
                 <div
                     style={{ height: "400px" }}
                     className="flex justify-center items-center"
@@ -61,24 +65,34 @@ const MyCourses = () => {
         );
     }
 
+    const renderCondition = instructorCourses && instructorCourses.length > 0;
+
     return (
         <>
             <DashboardPageTitle
                 title={`My ${isSmallDevice ? "" : "Offered"} Courses`}
             />
-            {instructorCourses && instructorCourses.length > 0 && (
-                <div className="lg:mb-5 mb-2 mt-[35%] z-10 lg:mt-0 flex justify-between gap-2 text-white description lg:text-xl">
-                    <strong className="z-[100]">
-                        <span>
+            {renderCondition && (
+                <div
+                    className={`lg:mb-5 mb-2 mt-[35%] z-10 lg:mt-0 ${
+                        isSmallDevice
+                            ? "flex lg:flex-row lg:justify-between flex-col items-center"
+                            : "flex justify-between"
+                    } lg:gap-2 text-white description lg:text-xl`}
+                >
+                    <span className="z-[100] flex items-center gap-2">
+                        <GiTeacher className="lg:text-2xl" />
+                        <strong>
                             {!isSmallDevice && "Offered"} Courses Count :{" "}
-                        </span>
+                        </strong>
                         <span>{instructorCourses.length}</span>
-                    </strong>
+                    </span>
 
-                    <strong className="z-[100]">
-                        <span>Total Students : </span>
+                    <span className="z-[100] flex items-center gap-2">
+                        <PiStudentFill className="lg:text-2xl" />
+                        <strong>Total Students : </strong>
                         <span>{totalStudent}</span>
-                    </strong>
+                    </span>
                 </div>
             )}
             <MyCoursesTable

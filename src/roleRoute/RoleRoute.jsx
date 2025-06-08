@@ -46,7 +46,7 @@ const RoleRoute = ({ allowedRole, children }) => {
     if (loading || detailsLoading) {
         return (
             <div
-                style={{ height: "700px" }}
+                style={{ height: "400px" }}
                 className="flex justify-center items-center"
             >
                 <PropagateLoader color="rgb(234 179 8)" />

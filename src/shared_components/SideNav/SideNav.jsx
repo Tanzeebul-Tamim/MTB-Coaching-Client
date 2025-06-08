@@ -48,7 +48,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
             className="h-screen fixed p-7 bg-base-200"
         >
             <button
-                className={`lg:hidden fixed top-[5%] -right-[17.5%] z-30 text-yellow-500 bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
+                className={`lg:hidden fixed top-[10%] -right-[17.5%] z-30 text-yellow-500 bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
                     sideNavOpen ? "rotate-180" : "rotate-0"
                 }`}
                 onClick={() => setSideNavOpen((open) => !open)}

@@ -16,6 +16,7 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
     return (
         <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
             <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+                {/* head */}
                 <MyCoursesTableHead isSmallDevice={isSmallDevice} />
                 <tbody className={"text-sm"}>
                     {instructorCourses.map((course, index) => {
@@ -27,7 +28,7 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
                                 <td>{index + 1}</td>
                                 <td className="flex justify-center">
                                     <img
-                                        className={`w-20 rounded-lg lg:rounded-xl ${
+                                        className={`w-16 rounded-lg lg:rounded-xl ${
                                             isSmallDevice && "object-cover"
                                         }`}
                                         src={course.image}

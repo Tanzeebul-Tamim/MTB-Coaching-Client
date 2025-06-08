@@ -1,42 +1,10 @@
-import { GiTeacher } from "react-icons/gi";
 import SelectedClassesTableHead from "./SelectedClassesTableHead";
 import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
-import { deleteAllClass, deleteClass } from "../../../api/bookApi";
+import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
-const SelectedClassesTable = ({ userBookings, userDetails }) => {
-    const handleClearList = () => {
-        Swal.fire({
-            title: "Are you sure you want to clear your booking list?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            color: "white",
-            iconColor: "rgb(234 179 8)",
-            showCancelButton: true,
-            confirmButtonColor: "rgb(234 179 8)",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, clear list!",
-            background: "#201e1e",
-            backdrop: "#00000",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Booking List has been Cleared!",
-                    icon: "success",
-                    color: "white",
-                    iconColor: "lightgreen",
-                    confirmButtonColor: "lightgreen",
-                    confirmButtonText: "OK",
-                    background: "#201e1e",
-                    backdrop: "#00000",
-                });
-                deleteAllClass(userDetails._id);
-            }
-        });
-    };
-
+const SelectedClassesTable = ({ userBookings, userDetails, isSmallDevice }) => {
     if (userBookings?.length === 0) {
         return (
             <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
@@ -73,21 +41,8 @@ const SelectedClassesTable = ({ userBookings, userDetails }) => {
     };
 
     return (
-        <div className="overflow-x-auto">
-            <div className="mb-5 flex justify-between gap-2 text-white description text-xl">
-                <strong className="z-[100] flex items-center gap-2">
-                    <GiTeacher className="text-2xl" />
-                    <span>Booked Courses Count :</span>
-                    <span>{userBookings?.length}</span>
-                </strong>{" "}
-                <button
-                    onClick={handleClearList}
-                    className="z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
-                >
-                    <span>Clear List</span>
-                </button>
-            </div>
-            <table className="z-[100] table text-center description text-white">
+        <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+            <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
@@ -105,14 +60,23 @@ const SelectedClassesTable = ({ userBookings, userDetails }) => {
                                 <td>{index + 1}</td>
                                 <td className="flex justify-center">
                                     <img
-                                        className="w-16 rounded-xl h-8"
+                                        className={`w-20 rounded-lg lg:rounded-xl ${
+                                            isSmallDevice && "object-cover"
+                                        }`}
                                         src={classItem.classImage}
                                     />
                                 </td>
                                 <td>
                                     <div>
                                         <div className="font-bold">
-                                            {classItem["class-name"]}
+                                            {isSmallDevice
+                                                ? classItem?.["class-name"]
+                                                      .length > 15
+                                                    ? classItem[
+                                                          "class-name"
+                                                      ].slice(0, 15) + "...."
+                                                    : classItem["class-name"]
+                                                : classItem?.["class-name"]}
                                         </div>
                                     </div>
                                 </td>
@@ -133,10 +97,20 @@ const SelectedClassesTable = ({ userBookings, userDetails }) => {
                                             userDetails.gender &&
                                             `/dashboard/payment/${classItem.studentId}/${classItem._id}`
                                         }
-                                        className="btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
                                     >
-                                        <BsFillCreditCardFill />{" "}
-                                        <span>Pay</span>
+                                        {isSmallDevice ? (
+                                            <>
+                                                <span className="text-[12px]">
+                                                    Pay
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <BsFillCreditCardFill />
+                                                <span>Pay</span>
+                                            </>
+                                        )}
                                     </Link>
                                 </td>
                                 <td>
@@ -148,9 +122,20 @@ const SelectedClassesTable = ({ userBookings, userDetails }) => {
                                                 classItem.classIndex
                                             )
                                         }
-                                        className="btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
                                     >
-                                        <BsFillTrash3Fill /> <span>Delete</span>
+                                        {isSmallDevice ? (
+                                            <>
+                                                <span className="text-[12px]">
+                                                    Delete
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <BsFillTrash3Fill />
+                                                <span>Delete</span>
+                                            </>
+                                        )}
                                     </button>
                                 </td>
                             </tr>

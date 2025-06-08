@@ -16,6 +16,7 @@ const MyStudentsTable = ({ students, search, filteredStudents }) => {
     return (
         <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
             <table className="z-[100] table text-center description text-white lg:whitespace-normal whitespace-nowrap">
+                {/* head */}
                 <MyStudentsTableHead />
                 <tbody className="text-sm">
                     {students.map((student, index) => {

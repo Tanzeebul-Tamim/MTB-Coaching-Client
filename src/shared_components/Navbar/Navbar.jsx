@@ -309,8 +309,30 @@ const Navbar = () => {
                 ) : (
                     ""
                 )}
-                <div onClick={() => setOpen(!open)}>
-                    {open ? <IoMdClose /> : <CgMenuGridO />}
+                <div
+                    className="relative w-8 h-8 flex items-center justify-center cursor-pointer text-2xl"
+                    onClick={() => setOpen(!open)}
+                >
+                    <span
+                        className={`absolute transition-opacity duration-500 ease-in-out ${
+                            open
+                                ? "opacity-0 pointer-events-none"
+                                : "opacity-100"
+                        }`}
+                        style={{ transitionProperty: "opacity" }}
+                    >
+                        <CgMenuGridO />
+                    </span>
+                    <span
+                        className={`absolute transition-opacity duration-500 ease-in-out ${
+                            open
+                                ? "opacity-100"
+                                : "opacity-0 pointer-events-none"
+                        }`}
+                        style={{ transitionProperty: "opacity" }}
+                    >
+                        <IoMdClose />
+                    </span>
                 </div>
             </div>
         </div>

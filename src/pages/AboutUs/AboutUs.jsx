@@ -17,7 +17,7 @@ const AboutUs = () => {
             }}
         >
             <div className="relative z-20">
-                <div className="text-lg text-white flex flex-col gap-8 text-center description max-w-7xl mx-3 md:mx-auto bg-black bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-yellow-500">
+                <div className="text-lg text-white flex flex-col lg:gap-8 gap-5 text-center description max-w-7xl mx-3 md:mx-auto bg-black bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-yellow-500">
                     <h1
                         style={{
                             letterSpacing: isSmallDevice ? "0.2em" : "1em",

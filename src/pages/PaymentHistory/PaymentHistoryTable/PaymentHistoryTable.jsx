@@ -1,4 +1,3 @@
-import { BsFillCreditCardFill } from "react-icons/bs";
 import PaymentHistoryTableHead from "./PaymentHistoryTableHead";
 import moment from "moment/moment";
 
@@ -18,15 +17,8 @@ const PaymentHistoryTable = ({ userBookings }) => {
   }
 
   return (
-    <div className="overflow-x-auto">
-      <div className="mb-5 flex justify-between gap-2 text-white description text-xl">
-        <strong className="z-[100] flex items-center gap-2">
-          <BsFillCreditCardFill className="text-2xl" />
-          <span>Transactions Count :</span>
-          <span>{userBookings?.length}</span>
-        </strong>{" "}
-      </div>
-      <table className="z-[100] table text-center description text-white">
+    <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">      
+      <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
         {/* head */}
         <PaymentHistoryTableHead />
         <tbody className="text-sm">

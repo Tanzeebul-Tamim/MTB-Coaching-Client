@@ -45,7 +45,7 @@ const Dashboard = () => {
                               }
                             : undefined
                     }
-                    className="w-full lg:w-3/4 flex-1 relative overflow-y-auto"
+                    className="w-full lg:w-3/4 flex-1 relative overflow-y-auto lg:flex flex-col justify-center"
                 >
                     {isSmallDevice ? (
                         <div className="p-3 flex flex-col h-screen">
