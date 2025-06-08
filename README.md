@@ -71,6 +71,7 @@ MTB-Coaching-Client/
 │   ├── roleRoute/             # Role-based protection: restricts access to users with specific roles (e.g., Student, Instructor)
 │   ├── ScrollToTop/           # Scroll-to-top utility component
 │   ├── shared_components/     # Shared UI components (Navbar, Footer, SideNav, etc.)
+│   ├── skeletons/             # Loading skeleton components to display placeholders while data is being fetched
 │   ├── index.css              # Global styles
 │   └── main.jsx               # App entry point for smart redirect after unauthorized access attempt
 │
@@ -416,6 +417,7 @@ MTB-Coaching-Client/
         VITE_IMGBB_API_URL=imgbb_api_url
         VITE_IMGBB_KEY=imgbb_api_key
         VITE_PAYMENT_GATEWAY_PK=stripe_public_key
+        VITE_YOUTUBE_API_KEY=your_youtube_api_key_here
         ```
 
     - **Guide & Configuration Details**
@@ -445,9 +447,16 @@ MTB-Coaching-Client/
             **`VITE_PAYMENT_GATEWAY_PK`**: [**_Stripe_**](https://stripe.com/) public key for payment processing.
             <br>
 
-        > ⚠️ **Important Notes:** <br>
-        > - Public keys (_Firebase_, _Stripe_, _imgbb_, etc.) are safe to expose. They’re required for client-side setup and do not pose security risks.
-        > - Never commit your actual `.env` file. This file may contain sensitive info and should always be listed in `.gitignore`.
+        - **VITE_YOUTUBE_API_KEY**:
+            **`VITE_YOUTUBE_API_KEY`**: Your Google Cloud YouTube Data API v3 key used to fetch video data dynamically.
+            <br>
+         
+   > ⚠️ **Important Notes:** <br>
+   > - Public keys (_Firebase_, _Stripe_, _imgbb_, etc.) are safe to expose. They’re required for client-side setup and do not pose security risks.
+   > - Unlike some public keys, the YouTube API key should be kept **private and not exposed publicly** in your repository or documentation. <br>
+   > - Make sure to restrict the key in Google Cloud Console to only be used by your app's domain and for the YouTube Data API v3. <br>
+   > - Never commit your actual `.env` file. This file may contain sensitive info and should always be listed in `.gitignore`.
+
 
 
 4. **_Running the Project_**

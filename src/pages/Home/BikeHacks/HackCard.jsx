@@ -14,7 +14,7 @@ const HackCard = ({ videoId, videoTitle }) => {
   };
 
   return (
-    <div className="group h-full mr-5 ml-5">
+    <div className="group h-full mx-5">
       <div className="group-hover:scale-90 lg:w-[300px] duration-100 rounded-lg p-2 h-full bg-base-100">
         <YouTube
           className="w-full duration-200"
