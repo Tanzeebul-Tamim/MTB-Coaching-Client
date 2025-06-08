@@ -1,74 +1,24 @@
-import { useEffect, useState } from "react";
 import MyStudentsTableHead from "./MyStudentsTableHead";
-import { BsSearch } from "react-icons/bs";
 
-const MyStudentsTable = ({ students, courseName }) => {
-  const [search, setSearch] = useState("");
-  const [filteredStudents, setFilteredStudents] = useState(students || []);
-
-  // Update filtered students when students or search changes
-  useEffect(() => {
-    if (!search) {
-      setFilteredStudents(students);
-    } else {
-      const lowerSearch = search.toLowerCase();
-      setFilteredStudents(
-        students.filter((student) =>
-          student?.name?.toLowerCase().includes(lowerSearch) ||
-          student?.email?.toLowerCase().includes(lowerSearch) ||
-          student?.contactNo?.toLowerCase().includes(lowerSearch)
-        )
-      );
-    }
-  }, [students, search]);
-
+const MyStudentsTable = ({ students, search, filteredStudents }) => {
   if (!filteredStudents || filteredStudents.length === 0) {
     return (
-      <div className="flex h-[55vh] items-center justify-center">
-        <h1 className="z-[10] description text-5xl">
-          You Don&apos;t Have Any Students Yet
-        </h1>
+      <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+        <div className="flex h-[45vh] items-center justify-center">
+          <h1 className="z-[10] description text-3xl text-center">
+            {search ? "No students found for your search." : "You Don't Have Any Students Yet"}
+          </h1>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto">
-      <div className="relative flex justify-center mb-2">
-        <input
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-          type="text"
-          placeholder="Search by Name, Email, or Contact No."
-          className="z-40 py-2 px-3 outline-none bg-base-200 description placeholder-stone-400 placeholder:text-sm rounded-full w-1/3"
-        />
-        <button>
-          <BsSearch
-            className="z-50"
-            style={{
-              color: "white",
-              position: "absolute",
-              top: "25%",
-              right: "35%",
-              fontSize: "20px",
-            }}
-          ></BsSearch>
-      </button>
-      </div>
-      <div className="mb-5 flex justify-between gap-2 text-white description text-xl">
-        <strong className="z-[100] flex items-center gap-2">
-          <span>Course Name :</span>
-          <span>{courseName}</span>
-        </strong>
-        <strong className="z-[100] flex items-center gap-2">
-          <span>Total Students :</span>
-          <span>{filteredStudents.length}</span>
-        </strong>
-      </div>
-      <table className="z-[100] table text-center description text-white">
+    <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">      
+      <table className="z-[100] table text-center description text-white lg:whitespace-normal whitespace-nowrap">
         <MyStudentsTableHead />
         <tbody className="text-sm">
-          {filteredStudents.map((student, index) => {
+          {students.map((student, index) => {
             return (
               <tr key={student?._id}>
                 <td>{index + 1}</td>

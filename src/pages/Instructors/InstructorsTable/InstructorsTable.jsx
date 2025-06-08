@@ -9,10 +9,10 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                     <h1>No results found for your search</h1>
                 </div>
             ) : (
-                <div ref={tableRef} className="overflow-x-auto">                 
-                    <table className="table text-center description text-white">
+                <div ref={tableRef} className="overflow-x-auto">
+                    <table className="table text-center description text-white lg:whitespace-normal whitespace-nowrap">
                         {/* head */}
-                        <InstructorsTableHead isSmallDevice={isSmallDevice} />
+                        <InstructorsTableHead />
                         <tbody className="lg:text-xl text-xs">
                             {instructors.map((instructor, index) => {
                                 return (
@@ -38,15 +38,21 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                                 {instructor.email}
                                             </span>
                                         </td>
-                                        {!isSmallDevice && (
-                                            <td>
-                                                <div>
-                                                    <div className="quote">
-                                                        {instructor?.quote}
-                                                    </div>
+                                        <td>
+                                            <div>
+                                                <div className="quote">
+                                                    {isSmallDevice
+                                                        ? instructor?.quote
+                                                              .length > 25
+                                                            ? instructor.quote.slice(
+                                                                  0,
+                                                                  25
+                                                              ) + "...."
+                                                            : instructor.quote
+                                                        : instructor?.quote}
                                                 </div>
-                                            </td>
-                                        )}
+                                            </div>
+                                        </td>
                                         <td>{instructor?.classes?.length}</td>
                                         <td>
                                             <Link
@@ -54,8 +60,8 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                                 className="btn text-white btn-sm lg:rounded-lg rounded-full hover:bg-stone-700 bg-stone-800"
                                             >
                                                 {isSmallDevice ? (
-                                                    <span className="text-[12px]"> 
-                                                      View
+                                                    <span className="text-[12px]">
+                                                        View
                                                     </span>
                                                 ) : (
                                                     <>

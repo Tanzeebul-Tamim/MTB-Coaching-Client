@@ -74,7 +74,7 @@ const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
                 </div>
             ) : (
                 <div ref={tableRef} className="overflow-x-auto">
-                    <table className="table text-center description text-white">
+                    <table className="table text-center description text-white lg:whitespace-normal whitespace-nowrap">
                         {/* head */}
                         <ClassesTableHead
                             isSmallDevice={isSmallDevice}
@@ -153,7 +153,15 @@ const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
                                         <td>
                                             <div>
                                                 <div className="font-bold">
-                                                    {classItem?.name}
+                                                    {isSmallDevice
+                                                        ? classItem?.name
+                                                              .length > 25
+                                                            ? classItem.name.slice(
+                                                                  0,
+                                                                  25
+                                                              ) + "...."
+                                                            : classItem.name
+                                                        : classItem?.name}
                                                 </div>
                                             </div>
                                         </td>

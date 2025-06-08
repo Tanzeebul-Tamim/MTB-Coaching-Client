@@ -96,7 +96,7 @@ const Classes = () => {
                             style={{
                                 color: "white",
                                 position: "absolute",
-                                top: isSmallDevice ? "30%" : "30%",
+                                top: "30%",
                                 right: isSmallDevice ? "16%" : "35%",
                                 fontSize: isSmallDevice ? "15px" : "20px",
                             }}
