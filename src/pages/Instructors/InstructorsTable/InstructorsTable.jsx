@@ -2,6 +2,8 @@ import InstructorsTableHead from "./InstructorsTableHead";
 import { Link } from "react-router-dom";
 
 const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
+    const maxLength = isSmallDevice ? 25 : 50;
+
     return (
         <>
             {instructors.length == 0 ? (
@@ -41,15 +43,14 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                         <td>
                                             <div>
                                                 <div className="quote">
-                                                    {isSmallDevice
-                                                        ? instructor?.quote
-                                                              .length > 25
-                                                            ? instructor.quote.slice(
-                                                                  0,
-                                                                  25
-                                                              ) + "...."
-                                                            : instructor.quote
-                                                        : instructor?.quote}
+                                                    {instructor?.quote?.length >
+                                                    maxLength
+                                                        ? instructor.quote.slice(
+                                                              0,
+                                                              maxLength
+                                                          ) + "..."
+                                                        : instructor?.quote ||
+                                                          ""}
                                                 </div>
                                             </div>
                                         </td>

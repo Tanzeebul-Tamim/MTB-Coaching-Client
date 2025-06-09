@@ -160,7 +160,7 @@ const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
                                                             ? classItem.name.slice(
                                                                   0,
                                                                   25
-                                                              ) + "...."
+                                                              ) + "..."
                                                             : classItem.name
                                                         : classItem?.name}
                                                 </div>

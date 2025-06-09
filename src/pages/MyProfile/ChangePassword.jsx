@@ -10,6 +10,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import app from "../../firebase/firebase.config";
 import { Slide, toast } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useScreenSize from "../../hooks/useScreeSize";
 
 const auth = getAuth(app);
 
@@ -22,6 +23,7 @@ const ChangePassword = () => {
     const newPasswordRef = useRef();
     const confirmPasswordRef = useRef();
     const modalRef = useRef(null);
+    const { isSmallDevice } = useScreenSize();
 
     const [currentPassInput, setCurrentPassInput] = useState(null);
     const [newPassInput, setNewPassInput] = useState(null);
@@ -130,11 +132,18 @@ const ChangePassword = () => {
             ref={modalRef}
             id="my_modal_1"
             className="modal text-white description"
+            onClick={(e) => {
+                // Only close if clicking the backdrop (not the form) and on mobile
+                if (e.target === e.currentTarget && isSmallDevice) {
+                    e.currentTarget.close();
+                }
+            }}
         >
             <form
                 onSubmit={handleSubmit}
                 method="dialog"
-                className="modal-box bg-opacity-90"
+                className="modal-box bg-opacity-80 border border-gray-500"
+                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the form
             >
                 <h1 className="z-[10] text-white lg:text-2xl text-lg lg:tracking-[9px] tracking-[5px] text-center uppercase font-extrabold">
                     Change Password
@@ -256,7 +265,7 @@ const ChangePassword = () => {
                                 !confirmPassInput ||
                                 loading
                             }
-                            className="btn btn-md disabled:bg-stone-900 text-md rounded-md bg-stone-700 hover:bg-stone-800"
+                            className="btn btn-md disabled:bg-stone-900 text-md rounded-md bg-stone-700 hover:bg-stone-800 border disabled:border-stone-600"
                         >
                             {loading ? (
                                 <TbFidgetSpinner className="text-2xl animate-spin" />

@@ -74,7 +74,7 @@ const SelectedClassesTable = ({ userBookings, userDetails, isSmallDevice }) => {
                                                       .length > 15
                                                     ? classItem[
                                                           "class-name"
-                                                      ].slice(0, 15) + "...."
+                                                      ].slice(0, 15) + "..."
                                                     : classItem["class-name"]
                                                 : classItem?.["class-name"]}
                                         </div>

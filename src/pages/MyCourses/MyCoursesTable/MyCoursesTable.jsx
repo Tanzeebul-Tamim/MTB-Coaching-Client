@@ -38,7 +38,7 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
                                 <td>
                                     {isSmallDevice
                                         ? course?.name.length > 15
-                                            ? course.name.slice(0, 15) + "...."
+                                            ? course.name.slice(0, 15) + "..."
                                             : course.name
                                         : course?.name}
                                 </td>

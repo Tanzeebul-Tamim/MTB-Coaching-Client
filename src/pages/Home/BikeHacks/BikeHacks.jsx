@@ -36,9 +36,7 @@ const BikeHacks = () => {
     const fetchCondition = user && videos.length > 0;
     return (
         <div
-            className={`lg:pb-20 pb-8 relative ${
-                fetchCondition ? "lg:pt-20 pt-10" : "lg:pt-40 pt-20"
-            } px-5 lg:px-10`}
+            className="lg:pb-20 pb-8 relative lg:pt-20 pt-10 px-5 lg:px-10"
             style={{
                 backgroundAttachment: "fixed",
                 backgroundImage:
@@ -48,7 +46,6 @@ const BikeHacks = () => {
                 backgroundRepeat: "no-repeat",
             }}
         >
-            {fetchCondition && (
                 <div className="mb-4 flex items-center justify-center">
                     <select
                         onChange={handleSelectBikeType}
@@ -64,7 +61,7 @@ const BikeHacks = () => {
                         ))}
                     </select>
                 </div>
-            )}
+            
             <Slide>
                 <SectionTitle
                     title1={"bike hacks"}
