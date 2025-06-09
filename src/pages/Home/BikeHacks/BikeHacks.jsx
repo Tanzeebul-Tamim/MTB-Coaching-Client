@@ -11,6 +11,7 @@ import useScreenSize from "../../../hooks/useScreeSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
 import useAuth from "../../../hooks/useAuth";
 import bikeHacksData from "./bikeHack.json";
+import SklBikeHacks from "../../../skeletons/SklBikeHacks";
 
 const bikeHacksDes =
     "Discover innovative ways to maintain and optimize your bike, improve your riding skills, and overcome common challenges on the road or trail. Here we're to provide you with helpful knowledge and shortcuts that can make your biking adventures more enjoyable and rewarding.";
@@ -33,7 +34,6 @@ const BikeHacks = () => {
     };
 
     const fetchCondition = user && videos.length > 0;
-
     return (
         <div
             className={`lg:pb-20 pb-8 relative ${
@@ -80,7 +80,15 @@ const BikeHacks = () => {
                     modules={[Navigation]}
                     className="popularClassSection cursor-pointer"
                 >
-                    {fetchCondition
+                    {loading
+                        ? Array.from({ length: isSmallDevice ? 1 : 4 }).map(
+                              (_, i) => (
+                                  <SwiperSlide key={i}>
+                                      <SklBikeHacks />
+                                  </SwiperSlide>
+                              )
+                          )
+                        : fetchCondition
                         ? videos.map((video) => (
                               <SwiperSlide key={video.id.videoId}>
                                   <HackCard
@@ -101,10 +109,6 @@ const BikeHacks = () => {
                                   />
                               </SwiperSlide>
                           ))}
-
-                    {/* {loading
-                        ? "loading"
-                        : } */}
                 </Swiper>
             )}
             <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-b from-transparent to-base-300"></div>

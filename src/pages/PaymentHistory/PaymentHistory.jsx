@@ -28,7 +28,8 @@ const PaymentHistory = () => {
                     setUserDetails(data);
                     setLoading(false);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.error(error))
+                .finally(() => setLoading(false));
         }
     }, [user]);
 

@@ -31,7 +31,8 @@ const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
                     setUserDetails(data);
                     setUserLoading(false);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.error(error))
+                .finally(() => setUserLoading(false));
         } else if (!user) {
             setUserDetails({});
         }

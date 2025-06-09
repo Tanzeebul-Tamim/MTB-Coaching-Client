@@ -37,7 +37,7 @@ const Navbar = () => {
                 .then((data) => {
                     setUserDetails(data);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.error(error))
         }
     }, [user]);
 
@@ -247,13 +247,9 @@ const Navbar = () => {
                     </Link>
                 </div>
             ) : loading ? (
-                <div className="navbar-end uppercase gap-5 lg:flex hidden">
-                    <div className="text-transparent w-1/6 rounded-md opacity-25 border-yellow-400 border bg-transparent">
-                        a
-                    </div>
-                    <div className="text-transparent w-1/6 rounded-md opacity-25 border-white border bg-transparent">
-                        a
-                    </div>
+                <div className="navbar-end uppercase gap-5 lg:flex hidden animate-pulse">
+                    <div className="h-6 bg-gray-200 rounded-md w-1/6"></div>
+                    <div className="h-6 bg-gray-200 rounded-md w-1/6"></div>
                 </div>
             ) : (
                 <div className="navbar-end uppercase gap-5 lg:flex hidden">

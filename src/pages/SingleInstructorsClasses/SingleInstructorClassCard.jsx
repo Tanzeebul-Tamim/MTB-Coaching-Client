@@ -31,7 +31,8 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
           setUserDetails(data);
           setUserLoading(false);
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.error(error))
+        .finally(() => setUserLoading(false));
     }
   }, [user]);
 

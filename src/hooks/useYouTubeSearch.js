@@ -20,7 +20,7 @@ const useYoutubeSearch = (query, maxResults = 8) => {
             } catch (err) {
                 console.error("Failed to fetch YouTube videos:", err);
             } finally {
-                setLoading(false);
+                setTimeout(() => setLoading(false), 2000);
             }
         };
 

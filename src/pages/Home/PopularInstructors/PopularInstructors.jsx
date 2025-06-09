@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import "./style.css";
 import useScreenSize from "../../../hooks/useScreeSize";
+import SklPopularInstructors from "../../../skeletons/SklPopularInstructors";
 
 const popularInstructorsDes =
     "Get to know some of our highly skilled and experienced instructors who'll lead your way throughout this journey. Each of our instructor brings a unique teaching style and a wealth of practical experience, ensuring that our students receive the best instruction possible.";
@@ -18,6 +19,7 @@ const popularInstructorsDes =
 const PopularInstructors = () => {
     const [topInstructors, setTopInstructors] = useState([]);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
+    const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
 
     useEffect(() => {
@@ -25,11 +27,14 @@ const PopularInstructors = () => {
     }, [isSmallDevice]);
 
     useEffect(() => {
+        setLoading(true);
         getTopInstructors()
             .then((data) => {
                 setTopInstructors(data.topInstructors);
+                setLoading(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, []);
 
     return (
@@ -47,15 +52,23 @@ const PopularInstructors = () => {
                 modules={[Navigation]}
                 className="popularClassSection cursor-pointer"
             >
-                {topInstructors.map((topInstructor) => {
-                    return (
-                        <SwiperSlide key={topInstructor.id}>
-                            <InstructorCard
-                                topInstructor={topInstructor}
-                            ></InstructorCard>
-                        </SwiperSlide>
-                    );
-                })}
+                {loading
+                    ? Array.from({ length: isSmallDevice ? 1 : 3 }).map(
+                          (_, i) => (
+                              <SwiperSlide key={i}>
+                                  <SklPopularInstructors />
+                              </SwiperSlide>
+                          )
+                      )
+                    : topInstructors.map((topInstructor) => {
+                          return (
+                              <SwiperSlide key={topInstructor.id}>
+                                  <InstructorCard
+                                      topInstructor={topInstructor}
+                                  ></InstructorCard>
+                              </SwiperSlide>
+                          );
+                      })}
             </Swiper>
         </div>
     );

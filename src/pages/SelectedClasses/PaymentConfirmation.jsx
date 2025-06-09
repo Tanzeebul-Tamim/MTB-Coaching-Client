@@ -78,7 +78,8 @@ const PaymentConfirmation = () => {
                 })
                 .catch((error) => {
                     console.error(error);
-                });
+                })
+                .finally(() => setLoading2(false));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userDetails, studentId, itemId]);

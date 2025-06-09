@@ -4,13 +4,13 @@ import SectionTitle from "../../reusable/SectionTitle";
 import InstructorsBanner from "./InstructorsBanner/InstructorsBanner";
 import InstructorsTable from "./InstructorsTable/InstructorsTable";
 import { getAllInstructors, getTotalInstructors } from "../../api/api";
-import { ScaleLoader } from "react-spinners";
 import { BsSearch } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useRef } from "react";
 import { getUserData } from "../../api/authApi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import useScreenSize from "../../hooks/useScreeSize";
+import SklInstructors from "../../skeletons/SklInstructors";
 
 const titleDescription =
     "Get to know our team of experienced and passionate mountain bike instructors. Our instructors are dedicated to sharing their expertise and guiding riders of all levels on exhilarating mountain biking adventures. Join us and learn from the best in the field as we navigate the thrilling world of mountain biking together.";
@@ -33,7 +33,8 @@ const Instructors = () => {
                 setTotalInstructors(data);
                 setLoading(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, []);
 
     useEffect(() => {
@@ -43,7 +44,8 @@ const Instructors = () => {
                 setInstructors(data);
                 setLoading(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, [visibleCount, search]);
 
     useEffect(() => {
@@ -105,15 +107,7 @@ const Instructors = () => {
                 </div>
 
                 {loading ? (
-                    <div className="lg:pt-10 pt-5 flex justify-center pb-24">
-                        <ScaleLoader
-                            height={85}
-                            width={10}
-                            radius={8}
-                            margin={8}
-                            color="rgb(202 138 4)"
-                        />
-                    </div>
+                    <SklInstructors />
                 ) : (
                     <div className="lg:pt-10 pt-5">
                         {instructors.length > 0 && (

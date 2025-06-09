@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "../PopularInstructors/style.css";
 import useScreenSize from "../../../hooks/useScreeSize";
+import SklPopularClasses from "../../../skeletons/SklPopularClasses";
 
 const popularClassesDes =
     "We offer a curated collection of the most sought-after courses which are highly recommended for mountain bike enthusiasts. Discover a range of exciting and educational courses designed to enhance your MTB skills and knowledge.";
@@ -17,6 +18,7 @@ const popularClassesDes =
 const PopularClasses = () => {
     const [topClasses, setTopClasses] = useState([]);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
+    const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
 
     useEffect(() => {
@@ -24,11 +26,14 @@ const PopularClasses = () => {
     }, [isSmallDevice]);
 
     useEffect(() => {
+        setLoading(true);
         getTopClasses()
             .then((data) => {
                 setTopClasses(data);
+                setLoading(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, []);
 
     return (
@@ -48,13 +53,21 @@ const PopularClasses = () => {
                 modules={[Navigation]}
                 className="popularClassSection cursor-pointer"
             >
-                {topClasses.map((topClass) => {
-                    return (
-                        <SwiperSlide key={topClass.id}>
-                            <ClassCard topClass={topClass}></ClassCard>
-                        </SwiperSlide>
-                    );
-                })}
+                {loading
+                    ? Array.from({ length: isSmallDevice ? 1 : 3 }).map(
+                          (_, i) => (
+                              <SwiperSlide key={i}>
+                                  <SklPopularClasses />
+                              </SwiperSlide>
+                          )
+                      )
+                    : topClasses.map((topClass) => {
+                          return (
+                              <SwiperSlide key={topClass.id}>
+                                  <ClassCard topClass={topClass}></ClassCard>
+                              </SwiperSlide>
+                          );
+                      })}
             </Swiper>
         </div>
     );

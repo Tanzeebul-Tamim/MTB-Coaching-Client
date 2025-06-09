@@ -32,7 +32,8 @@ const MyStudents = () => {
                     setUserDetails(data);
                     setLoading(false);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => console.error(error))
+                .finally(() => setLoading(false));
         }
     }, [user]);
 
@@ -48,7 +49,9 @@ const MyStudents = () => {
                 .then((data) => {
                     setStudents(data.students);
                     setLoading(false);
-                });
+                })
+                .catch((error) => console.error(error))
+                .finally(() => setLoading(false));
         }
     }, [idx, userDetails]);
 

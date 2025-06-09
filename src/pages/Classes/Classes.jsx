@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import useTitle from "../../Helmet/useTitle";
 import SectionTitle from "../../reusable/SectionTitle";
 import ClassesBanner from "./ClassesBanner/ClassesBanner";
-import { ScaleLoader } from "react-spinners";
 import ClassesTable from "./ClassesTable/ClassesTable";
 import { useState } from "react";
 import { getAllClasses, getTotalClasses } from "../../api/api";
@@ -10,6 +9,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";
+import SklClasses from "../../skeletons/SklClasses";
 
 const titleDescription =
     "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
@@ -41,7 +41,8 @@ const Classes = () => {
                 setClasses(data);
                 setLoading(false);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
     }, [visibleCount, search]);
 
     useEffect(() => {
@@ -105,15 +106,7 @@ const Classes = () => {
                 </div>
 
                 {loading ? (
-                    <div className="lg:pt-10 pt-5 flex justify-center pb-24">
-                        <ScaleLoader
-                            height={85}
-                            width={10}
-                            radius={8}
-                            margin={8}
-                            color="rgb(202 138 4)"
-                        />
-                    </div>
+                    <SklClasses />
                 ) : (
                     <div className="lg:pt-10 pt-5">
                         {classes.length > 0 && (

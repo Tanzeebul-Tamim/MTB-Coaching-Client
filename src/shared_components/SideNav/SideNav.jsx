@@ -6,33 +6,36 @@ import { Link } from "react-router-dom";
 import ActiveLink2 from "../../activeLink2/ActiveLink2";
 import { getUserData } from "../../api/authApi";
 import { useState } from "react";
-import { ScaleLoader } from "react-spinners";
 import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
+import SklSideNav from "../../skeletons/SklSideNav";
 
 const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
     const { user, loading } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userLoading, setUserLoading] = useState(false);
-    const [title, setTitle] = useState(null);
+    const [title, setTitle] = useState('User');
     const { isSmallDevice } = useScreenSize();
 
     useEffect(() => {
         setUserLoading(true);
-        getUserData(user?.email).then((data) => {
-            setUserDetails(data);
-            setUserLoading(false);
+        getUserData(user?.email)
+            .then((data) => {
+                setUserDetails(data);
+                setUserLoading(false);
 
-            if (!loading && !userLoading) {
-                if (userDetails?.role === "Instructor") {
-                    setTitle("Instructor");
-                } else if (userDetails?.role === "Student") {
-                    setTitle("Student");
+                if (!loading && !userLoading) {
+                    if (userDetails?.role === "Instructor") {
+                        setTitle("Instructor");
+                    } else if (userDetails?.role === "Student") {
+                        setTitle("Student");
+                    }
                 }
-            }
-        });
+            })
+            .catch((error) => console.error(error))
+            .finally(() => setUserLoading(false));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user?.email, userDetails.role]);
 
@@ -158,9 +161,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
                     )}
                 {loading ||
                     (userLoading && (
-                        <div className="flex mt-20 gap-11 justify-center">
-                            <ScaleLoader color="white" height={50} width={10} />
-                        </div>
+                        <SklSideNav/>
                     ))}
             </div>
         </div>
