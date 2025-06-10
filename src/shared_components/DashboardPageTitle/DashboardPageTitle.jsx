@@ -11,7 +11,7 @@ const DashboardPageTitle = ({ title }) => {
         );
     } else {
         return (
-            <h1 className="z-[10] text-yellow-600 text-5xl mb-16 tracking-[9px] text-center uppercase font-extrabold">
+            <h1 className="z-[10] text-yellow-600 text-5xl mb-10 tracking-[9px] text-center uppercase font-extrabold">
                 {title}
             </h1>
         );

@@ -37,7 +37,7 @@ const Navbar = () => {
                 .then((data) => {
                     setUserDetails(data);
                 })
-                .catch((error) => console.error(error))
+                .catch((error) => console.error(error));
         }
     }, [user]);
 
@@ -215,12 +215,14 @@ const Navbar = () => {
                         data-tip={user?.displayName}
                         className="tooltip tooltip-bottom tooltip-warning"
                     >
-                        {user.photoURL ? (
+                        {userDetails?.image || user?.photoURL ? (
                             <div className="hover:scale-110 duration-200 flex flex-col items-center">
                                 <div className="indicator">
                                     <img
                                         className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
-                                        src={user?.photoURL}
+                                        src={
+                                            userDetails?.image || user.photoURL
+                                        }
                                     />
                                     {userBookings.length >= 1 && (
                                         <span className="badge flex gap-1 badge-md badge-warning title indicator-item">

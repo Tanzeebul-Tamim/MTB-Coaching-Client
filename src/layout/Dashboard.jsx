@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useState } from "react";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import SideNav from "../shared_components/SideNav/SideNav";
@@ -8,6 +8,11 @@ import useScreenSize from "../hooks/useScreeSize";
 const Dashboard = () => {
     const [sideNavOpen, setSideNavOpen] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const location = useLocation();
+    const validLocations = ["/profile", "/payment/", "/add-class"];
+    const isValidLocation = validLocations.some((validLocation) =>
+        location.pathname.includes(validLocation)
+    );
 
     return (
         <div className="relative min-h-screen">
@@ -45,7 +50,9 @@ const Dashboard = () => {
                               }
                             : undefined
                     }
-                    className="w-full lg:w-3/4 flex-1 relative overflow-y-auto lg:flex flex-col justify-center"
+                    className={`w-full lg:w-3/4 flex-1 relative overflow-y-auto lg:flex flex-col ${
+                        isValidLocation && "justify-center"
+                    }`}
                 >
                     {isSmallDevice ? (
                         <div className="p-3 flex flex-col h-screen">

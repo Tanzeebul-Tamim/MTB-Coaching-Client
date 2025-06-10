@@ -213,7 +213,7 @@ const PaymentConfirmation = () => {
                                             : "ml-1"
                                     }
                                 >
-                                    {!loading && !loading2
+                                    {!loading && !loading2 && classItem
                                         ? "$ " + classItem?.classFee
                                         : ""}
                                 </div>

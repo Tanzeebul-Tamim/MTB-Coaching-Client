@@ -9,7 +9,7 @@ const SklDashboardTitle = () => {
         );
     } else {
         return (
-            <div className="z-[10] opacity-30 rounded-lg w-1/3 h-14 bg-yellow-600 mb-16 animate-pulse"></div>
+            <div className="z-[10] opacity-30 rounded-lg w-1/3 h-14 bg-yellow-600 mb-10 animate-pulse"></div>
         );
     }
 };
