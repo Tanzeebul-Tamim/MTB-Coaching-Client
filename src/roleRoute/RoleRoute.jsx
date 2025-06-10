@@ -4,10 +4,13 @@ import { PropagateLoader } from "react-spinners";
 import { getUserData } from "../api/authApi";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import useScreenSize from "../hooks/useScreeSize";
+import SklDashboardTitle from "../skeletons/SklDashboardTitle";
 
 const RoleRoute = ({ allowedRole, children }) => {
     const { loading, user } = useAuth();
     const location = useLocation();
+    const { isSmallDevice } = useScreenSize();
     const [userDetails, setUserDetails] = useState(null);
     const [detailsLoading, setDetailsLoading] = useState(true);
 
@@ -45,22 +48,30 @@ const RoleRoute = ({ allowedRole, children }) => {
 
     if (loading || detailsLoading) {
         return (
-            <div
-                style={{ height: "400px" }}
-                className="flex justify-center items-center"
-            >
-                <PropagateLoader color="rgb(234 179 8)" />
+            <div>
+                <div className="flex justify-center">
+                    <SklDashboardTitle />
+                </div>
+                <div
+                    style={{ height: isSmallDevice ? "90vh" : "300px" }}
+                    className="flex justify-center items-center"
+                >
+                    <PropagateLoader
+                        style={{ zIndex: 10 }}
+                        color="rgb(234 198 8)"
+                    />
+                </div>
             </div>
         );
     }
 
-    
-    const isAuthorized = userDetails?.role === allowedRole;
-    
+    const userRole = userDetails?.role || "Student";
+    const isAuthorized = userRole === allowedRole;
+
     if (userDetails && isAuthorized) {
         return children;
     }
-    
+
     toast.warning("You are not authorized to access this page!", {
         position: "top-center",
         autoClose: 2000,
@@ -70,18 +81,14 @@ const RoleRoute = ({ allowedRole, children }) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-      });
+    });
 
     // Use lastLocation set by RouteTracker
-    const fallbackLocation = localStorage.getItem("lastLocation") || "/dashboard/profile";
+    const fallbackLocation =
+        localStorage.getItem("lastLocation") || "/dashboard/profile";
 
     // Redirect to last authorized location, or fallback
-    return (
-        <Navigate
-            to={fallbackLocation}
-            state={{ from: location }}
-        />
-    );
+    return <Navigate to={fallbackLocation} state={{ from: location }} />;
 };
 
 export default RoleRoute;

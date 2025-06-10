@@ -6,14 +6,11 @@ import useAuth from "../hooks/useAuth";
 const PrivateRoute = ({ children }) => {
     const { loading, user } = useAuth();
     const location = useLocation();
-    const heightCondition = location.pathname.includes("/dashboard");
 
     if (loading) {
         return (
             <div
-                style={
-                    heightCondition ? { height: "400px" } : { height: "700px" }
-                }
+                style={{ height: "700px" }}
                 className="flex justify-center items-center"
             >
                 <PropagateLoader color="rgb(234 179 8)" />
