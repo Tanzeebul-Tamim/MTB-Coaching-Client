@@ -123,9 +123,9 @@ const AddClass = () => {
                         <div className="flex flex-col md:flex-row justify-between gap-2">
                             <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">
+                                    <strong className="label-text">
                                         Course Name
-                                    </span>
+                                    </strong>
                                 </label>
                                 <input
                                     type="text"
@@ -139,9 +139,9 @@ const AddClass = () => {
                             </div>
                             <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">
+                                    <strong className="label-text">
                                         Price ($)
-                                    </span>
+                                    </strong>
                                 </label>
                                 <input
                                     type="number"
@@ -158,9 +158,9 @@ const AddClass = () => {
                         <div className="flex flex-col md:flex-row justify-between gap-2">
                             <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">
+                                    <strong className="label-text">
                                         Course Thumbnail
-                                    </span>
+                                    </strong>
                                 </label>
                                 <label>
                                     <input
@@ -179,9 +179,9 @@ const AddClass = () => {
                             </div>
                             <div className="form-control z-[10] w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">
+                                    <strong className="label-text">
                                         Student Slot
-                                    </span>
+                                    </strong>
                                 </label>
                                 <input
                                     type="number"

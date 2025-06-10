@@ -3,7 +3,7 @@ import useTitle from "../../../../Helmet/useTitle";
 import { getUserData } from "../../../../api/authApi";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
 import useScreenSize from "../../../../hooks/useScreeSize";
 import { PiStudentFill } from "react-icons/pi";
@@ -129,6 +129,11 @@ const MyStudents = () => {
             />
             {/* Pagination Controls at the bottom */}
             <Pagination search={search} paginationHook={paginationHook} />
+            <div className="flex justify-center items-center mt-3">
+                <Link to="/dashboard/my-classes" className="lg:z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700">
+                    <span>Go Back</span>
+                </Link>
+            </div>
         </>
     );
 };

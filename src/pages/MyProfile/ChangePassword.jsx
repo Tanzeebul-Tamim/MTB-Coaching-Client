@@ -160,9 +160,9 @@ const ChangePassword = () => {
                     <div className="relative">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">
+                                <strong className="label-text">
                                     Current Password
-                                </span>
+                                </strong>
                             </label>
                             <input
                                 autoComplete="off"
@@ -194,7 +194,7 @@ const ChangePassword = () => {
                     <div className="relative">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">New Password</span>
+                                <strong className="label-text">New Password</strong>
                             </label>
                             <input
                                 autoComplete="off"
@@ -226,9 +226,9 @@ const ChangePassword = () => {
                     <div className="relative">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">
+                                <strong className="label-text">
                                     Confirm Password
-                                </span>
+                                </strong>
                             </label>
                             <input
                                 autoComplete="off"

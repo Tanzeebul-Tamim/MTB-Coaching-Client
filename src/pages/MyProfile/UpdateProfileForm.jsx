@@ -388,7 +388,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                 <div className="card-body p-0 md:p-6">
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Name</span>
+                            <strong className="label-text">Name</strong>
                         </label>
                         <input
                             type="text"
@@ -402,7 +402,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                     <div className="flex flex-col md:flex-row justify-between gap-2">
                         <div className="form-control w-full md:w-1/2">
                             <label className="label">
-                                <span className="label-text">Address</span>
+                                <strong className="label-text">Address</strong>
                             </label>
                             <input
                                 type="text"
@@ -415,7 +415,7 @@ const UpdateProfileForm = ({ userDetails }) => {
 
                         <div className="form-control w-full md:w-1/2">
                             <label className="label">
-                                <span className="label-text">Contact no</span>
+                                <strong className="label-text">Contact no</strong>
                             </label>
                             <input
                                 type="number"
@@ -432,9 +432,9 @@ const UpdateProfileForm = ({ userDetails }) => {
                             <div className="flex flex-col md:flex-row justify-between gap-2">
                                 <div className="form-control w-full md:w-1/2">
                                     <label className="label">
-                                        <span className="label-text">
+                                        <strong className="label-text">
                                             User image
-                                        </span>
+                                        </strong>
                                     </label>
                                     <label>
                                         <input
@@ -456,9 +456,9 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 </div>
                                 <div className="form-control w-full md:w-1/2">
                                     <label className="label">
-                                        <span className="label-text">
+                                        <strong className="label-text">
                                             Cover image
-                                        </span>
+                                        </strong>
                                     </label>
                                     <label>
                                         <input
@@ -483,9 +483,9 @@ const UpdateProfileForm = ({ userDetails }) => {
                             <div className="flex flex-col md:flex-row justify-between gap-2">
                                 <div className="form-control w-full md:w-1/2">
                                     <label className="label">
-                                        <span className="label-text">
+                                        <strong className="label-text">
                                             Quote
-                                        </span>
+                                        </strong>
                                     </label>
                                     <input
                                         type="text"
@@ -497,9 +497,9 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 </div>
                                 <div className="form-control w-full md:w-1/2">
                                     <label className="label">
-                                        <span className="label-text">
+                                        <strong className="label-text">
                                             Gender
-                                        </span>
+                                        </strong>
                                     </label>
                                     <label>
                                         <select

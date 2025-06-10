@@ -3,6 +3,7 @@ import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
 import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const SelectedClassesTable = ({
     userBookings,
@@ -12,10 +13,15 @@ const SelectedClassesTable = ({
     userDetails,
 }) => {
     const { resultsPerPage, currentPage } = settings;
+    const [deletingId, setDeletingId] = useState(null);
 
     if (userBookings?.length === 0) {
         return (
-            <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
+            <div
+                className={`flex lg:h-[55vh] ${
+                    search ? "mt-[40%]" : "mt-[80%]"
+                } lg:mt-0 items-center justify-center`}
+            >
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
                     {search
                         ? "No Bookings Found For Your Search"
@@ -60,9 +66,15 @@ const SelectedClassesTable = ({
                         const handleDelete = (
                             studentId,
                             instructorId,
-                            classIndex
+                            classIndex,
+                            bookingId
                         ) => {
-                            deleteClass(studentId, instructorId, classIndex);
+                            setDeletingId(bookingId);
+                            deleteClass(
+                                studentId,
+                                instructorId,
+                                classIndex
+                            ).finally(() => setDeletingId(null));
                         };
 
                         return (
@@ -132,10 +144,12 @@ const SelectedClassesTable = ({
                                             handleDelete(
                                                 classItem.studentId,
                                                 classItem.instructorId,
-                                                classItem.classIndex
+                                                classItem.classIndex,
+                                                classItem._id
                                             )
                                         }
-                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
+                                        disabled={deletingId === classItem._id}
+                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700 disabled:bg-stone-700 disabled:cursor-not-allowed"
                                     >
                                         {isSmallDevice ? (
                                             <>

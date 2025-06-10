@@ -5,7 +5,11 @@ const MyStudentsTable = ({ students, search, settings }) => {
 
     if (!students || students.length === 0) {
         return (
-            <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
+            <div
+                className={`flex lg:h-[55vh] ${
+                    search ? "mt-[40%]" : "mt-[80%]"
+                } lg:mt-0 items-center justify-center`}
+            >
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
                     {search
                         ? "No Students Found For Your Search"
