@@ -50,7 +50,7 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
                                 <td>{remainingCount}</td>
                                 <td>
                                     <Link
-                                        to={`/dashboard/my-class/students/${userDetails._id}/${index}`}
+                                        to={`/dashboard/my-classes/students/${userDetails._id}/${index}`}
                                         className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
                                     >
                                         {isSmallDevice ? (

@@ -105,7 +105,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "payment/:studentId/:itemId",
+                path: "selected-classes/:studentId/:itemId",
                 element: (
                     <RoleRoute allowedRole="Student">
                         <PaymentConfirmation></PaymentConfirmation>
@@ -145,7 +145,7 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path: "my-class/students/:id/:idx",
+                path: "my-classes/students/:id/:idx",
                 element: (
                     <RoleRoute allowedRole="Instructor">
                         <MyStudents></MyStudents>

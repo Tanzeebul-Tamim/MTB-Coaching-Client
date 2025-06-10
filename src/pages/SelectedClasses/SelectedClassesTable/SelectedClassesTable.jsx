@@ -95,7 +95,7 @@ const SelectedClassesTable = ({ userBookings, userDetails, isSmallDevice }) => {
                                             userDetails.address &&
                                             userDetails.contactNo &&
                                             userDetails.gender &&
-                                            `/dashboard/payment/${classItem.studentId}/${classItem._id}`
+                                            `/dashboard/selected-classes/${classItem.studentId}/${classItem._id}`
                                         }
                                         className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
                                     >
