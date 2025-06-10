@@ -10,6 +10,8 @@ import { BsSearch } from "react-icons/bs";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../skeletons/SklClasses";
+import { getUserData } from "../../api/authApi";
+import useAuth from "../../hooks/useAuth";
 
 const titleDescription =
     "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
@@ -19,6 +21,9 @@ const Classes = () => {
     const [loading, setLoading] = useState(false);
     const [visibleCount, setVisibleCount] = useState(5);
     const [search, setSearch] = useState("");
+    const [userDetails, setUserDetails] = useState({});
+    const [userLoading, setUserLoading] = useState(false);
+    const { user, ...rest } = useAuth();
     const searchRef = useRef(null);
     const tableRef = useRef(null);
     const { isSmallDevice } = useScreenSize();
@@ -72,6 +77,21 @@ const Classes = () => {
         }
     };
 
+    useEffect(() => {
+        if (user && user.email) {
+            setUserLoading(true);
+            getUserData(user.email)
+                .then((data) => {
+                    setUserDetails(data);
+                    setUserLoading(false);
+                })
+                .catch((error) => console.error(error))
+                .finally(() => setUserLoading(false));
+        } else if (!user) {
+            setUserDetails({});
+        }
+    }, [user]);
+
     return (
         <div className="lg:pb-24 pb-8">
             <ClassesBanner />
@@ -106,7 +126,10 @@ const Classes = () => {
                 </div>
 
                 {loading ? (
-                    <SklClasses />
+                    <SklClasses
+                        isSmallDevice={isSmallDevice}
+                        role={userDetails.role}
+                    />
                 ) : (
                     <div className="lg:pt-10 pt-5">
                         {classes.length > 0 && (
@@ -119,9 +142,13 @@ const Classes = () => {
                             </div>
                         )}
                         <ClassesTable
-                            tableRef={tableRef}
                             classes={classes}
+                            tableRef={tableRef}
                             isSmallDevice={isSmallDevice}
+                            rest={rest}
+                            user={user}
+                            userDetails={userDetails}
+                            userLoading={userLoading}
                         />
                         {classes.length >= visibleCount && (
                             <div className="flex justify-center">

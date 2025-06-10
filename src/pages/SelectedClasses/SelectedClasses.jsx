@@ -4,12 +4,12 @@ import { getUserData } from "../../api/authApi";
 import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
-import { PropagateLoader } from "react-spinners";
 import useTitle from "../../Helmet/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useScreenSize from "../../hooks/useScreeSize";
+import SklSelectedClasses from "../../skeletons/SklSelectedClasses";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
@@ -84,12 +84,7 @@ const SelectedClasses = () => {
                 <DashboardPageTitle
                     title={`${isSmallDevice ? "" : "My"} Booked Courses`}
                 />
-                <div
-                    style={{ height: "400px" }}
-                    className="flex justify-center items-center"
-                >
-                    <PropagateLoader color="rgb(234 179 8)" />
-                </div>
+                <SklSelectedClasses isSmallDevice={isSmallDevice} />
             </>
         );
     }

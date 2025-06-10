@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useTitle from "../../../../Helmet/useTitle";
 import { getUserData } from "../../../../api/authApi";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import { PropagateLoader } from "react-spinners";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../../hooks/useAuth";
@@ -10,13 +9,14 @@ import useScreenSize from "../../../../hooks/useScreeSize";
 import { BsSearch } from "react-icons/bs";
 import { PiStudentFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
+import SklMyStudents from "../../../../skeletons/SklMyStudents";
 
 const MyStudents = () => {
     const { idx } = useParams();
     const parsedIdx = parseInt(idx);
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({});
-    let [students, setStudents] = useState([]);
+    const [students, setStudents] = useState([]);
     const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
     // const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -92,12 +92,7 @@ const MyStudents = () => {
         return (
             <>
                 <DashboardPageTitle title={"My Students"} />
-                <div
-                    style={{ height: "400px" }}
-                    className="flex justify-center items-center"
-                >
-                    <PropagateLoader color="rgb(234 179 8)" />
-                </div>
+                <SklMyStudents isSmallDevice={isSmallDevice} />
             </>
         );
     }

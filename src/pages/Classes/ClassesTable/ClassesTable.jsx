@@ -3,16 +3,19 @@ import { useState, useEffect } from "react";
 import ClassesTableHead from "./ClassesTableHead";
 import { MdLibraryAdd } from "react-icons/md";
 import { bookClass, getBookedClasses } from "../../../api/bookApi";
-import { getUserData } from "../../../api/authApi";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
 import { BeatLoader } from "react-spinners";
 
-const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
-    const { user, booking, setBooking, loading } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
-    const [userLoading, setUserLoading] = useState(false);
+const ClassesTable = ({
+    classes,
+    tableRef,
+    isSmallDevice,
+    rest,
+    user,
+    userDetails,
+    userLoading,
+}) => {
     const [userBookings, setUserBookings] = useState([]);
     const [bookedClasses, setBookedClasses] = useState([]);
     const [enrolledClasses, setEnrolledClasses] = useState([]);
@@ -23,20 +26,7 @@ const ClassesTable = ({ classes, tableRef, isSmallDevice }) => {
         (booking) => booking.paymentStatus === "paid"
     );
 
-    useEffect(() => {
-        if (user && user.email) {
-            setUserLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setUserLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setUserLoading(false));
-        } else if (!user) {
-            setUserDetails({});
-        }
-    }, [user]);
+    const { booking, setBooking, loading } = rest;
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {

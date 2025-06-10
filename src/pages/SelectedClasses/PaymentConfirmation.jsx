@@ -66,7 +66,6 @@ const PaymentConfirmation = () => {
                         const fallbackLocation =
                             localStorage.getItem("lastLocation") ||
                             "/dashboard/profile";
-                        setLoading2(false);
                         navigate(fallbackLocation, {
                             state: { from: location },
                         });
@@ -179,19 +178,45 @@ const PaymentConfirmation = () => {
                         <div className="mt-7">
                             <div className="z-50 flex items-center">
                                 <strong className="">Course :</strong>{" "}
-                                <div className=" ml-1">
-                                    {classItem?.["class-name"]}
+                                <div
+                                    className={
+                                        loading || loading2
+                                            ? "ml-2 rounded bg-gray-200 w-1/2 h-3 animate-pulse"
+                                            : "ml-1"
+                                    }
+                                >
+                                    {!loading && !loading2
+                                        ? classItem?.["class-name"]
+                                        : ""}
                                 </div>
                             </div>
                             <div className="z-50 flex items-center">
                                 <strong className="">Instructor :</strong>{" "}
-                                <div className=" ml-1">
-                                    {classItem?.instructorName}
+                                <div
+                                    className={
+                                        loading || loading2
+                                            ? "ml-2 rounded bg-gray-200 w-1/3 h-3 animate-pulse"
+                                            : "ml-1"
+                                    }
+                                >
+                                    {!loading && !loading2
+                                        ? classItem?.instructorName
+                                        : ""}
                                 </div>
                             </div>
                             <div className="z-50 flex items-center">
                                 <strong className="">Price :</strong>{" "}
-                                <div className=" ml-1">{`$ ${classItem?.classFee}`}</div>
+                                <div
+                                    className={
+                                        loading || loading2
+                                            ? "ml-2 rounded bg-gray-200 w-1/12 h-3 animate-pulse"
+                                            : "ml-1"
+                                    }
+                                >
+                                    {!loading && !loading2
+                                        ? "$ " + classItem?.classFee
+                                        : ""}
+                                </div>
                             </div>
                         </div>
                     </div>

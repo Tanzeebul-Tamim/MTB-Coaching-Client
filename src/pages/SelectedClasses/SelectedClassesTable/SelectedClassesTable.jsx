@@ -60,7 +60,7 @@ const SelectedClassesTable = ({ userBookings, userDetails, isSmallDevice }) => {
                                 <td>{index + 1}</td>
                                 <td className="flex justify-center">
                                     <img
-                                        className={`w-20 rounded-lg lg:rounded-xl ${
+                                        className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
                                             isSmallDevice && "object-cover"
                                         }`}
                                         src={classItem.classImage}

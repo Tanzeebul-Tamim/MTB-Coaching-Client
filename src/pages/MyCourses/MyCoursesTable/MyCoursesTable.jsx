@@ -28,7 +28,7 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
                                 <td>{index + 1}</td>
                                 <td className="flex justify-center">
                                     <img
-                                        className={`w-16 rounded-lg lg:rounded-xl ${
+                                        className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
                                             isSmallDevice && "object-cover"
                                         }`}
                                         src={course.image}

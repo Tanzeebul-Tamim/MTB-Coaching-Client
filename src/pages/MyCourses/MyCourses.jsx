@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getUserData } from "../../api/authApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import { PropagateLoader } from "react-spinners";
 import useTitle from "../../Helmet/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
+import SklMyCourses from "../../skeletons/SklMyCourses";
 
 const MyCourses = () => {
     const { user } = useAuth();
@@ -56,12 +56,7 @@ const MyCourses = () => {
                 <DashboardPageTitle
                     title={`My ${isSmallDevice ? "" : "Offered"} Courses`}
                 />
-                <div
-                    style={{ height: "400px" }}
-                    className="flex justify-center items-center"
-                >
-                    <PropagateLoader color="rgb(234 179 8)" />
-                </div>
+                <SklMyCourses isSmallDevice={isSmallDevice} />
             </>
         );
     }

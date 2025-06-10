@@ -3,11 +3,11 @@ import useTitle from "../../Helmet/useTitle";
 import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import { PropagateLoader } from "react-spinners";
 import PaymentHistoryTable from "./PaymentHistoryTable/PaymentHistoryTable";
 import useAuth from "../../hooks/useAuth";
 import { BsFillCreditCardFill } from "react-icons/bs";
 import useScreenSize from "../../hooks/useScreeSize";
+import SklPaymentHistory from "../../skeletons/SklPaymentHistory";
 
 const PaymentHistory = () => {
     const { user } = useAuth();
@@ -52,12 +52,7 @@ const PaymentHistory = () => {
                 <DashboardPageTitle
                     title={`${isSmallDevice ? "" : "My"} Payment History`}
                 />
-                <div
-                    style={{ height: "400px" }}
-                    className="flex justify-center items-center"
-                >
-                    <PropagateLoader color="rgb(234 179 8)" />
-                </div>
+                <SklPaymentHistory isSmallDevice={isSmallDevice} />
             </>
         );
     }

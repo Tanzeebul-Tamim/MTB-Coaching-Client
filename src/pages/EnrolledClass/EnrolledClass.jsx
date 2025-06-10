@@ -3,11 +3,11 @@ import useTitle from "../../Helmet/useTitle";
 import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import { PropagateLoader } from "react-spinners";
 import EnrolledClassesTable from "./EnrolledClassesTable/EnrolledClassesTable";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import useScreenSize from "../../hooks/useScreeSize";
+import SklEnrolledClass from "../../skeletons/SklEnrolledClass";
 
 const EnrolledClass = () => {
     const { user } = useAuth();
@@ -52,12 +52,7 @@ const EnrolledClass = () => {
                 <DashboardPageTitle
                     title={`${isSmallDevice ? "" : "My"} Enrolled Courses`}
                 />
-                <div
-                    style={{ height: "400px" }}
-                    className="flex justify-center items-center"
-                >
-                    <PropagateLoader color="rgb(234 179 8)" />
-                </div>
+                <SklEnrolledClass isSmallDevice={isSmallDevice} />
             </>
         );
     }

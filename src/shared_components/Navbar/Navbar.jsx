@@ -277,7 +277,7 @@ const Navbar = () => {
                 {loading ? (
                     <div>
                         <img
-                            className="h-[35px] w-[35px] rounded-full"
+                            className="h-[42.5px] w-[42.5px] rounded-full"
                             src="/user_avatar.png"
                             alt=""
                         />

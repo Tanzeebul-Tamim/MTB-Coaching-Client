@@ -1,66 +1,80 @@
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { GiTeacher } from "react-icons/gi";
+import { MdLibraryAdd } from "react-icons/md";
+import { ClipLoader } from "react-spinners";
 
-const SklClasses = () => {
+const SklClasses = ({ isSmallDevice, role }) => {
     return (
         <div className="lg:pt-10 pt-5 animate-pulse">
-            <div className="flex sm:flex-row gap-2 sm:items-center mb-2">
+            <div className="lg:mb-5 mb-2 flex gap-2 text-white description lg:text-xl">
                 <strong className="flex items-center gap-2">
-                    <div className="lg:w-6 lg:h-6 h-3 w-3 bg-gray-200 rounded-full"></div>
-                    <div className="w-20 sm:w-24 lg:h-6 h-3 bg-gray-200 rounded"></div>
-                </strong>
-                <div className="w-6 lg:h-6 h-3 bg-gray-200 rounded"></div>
+                    <GiTeacher className="lg:text-2xl text-xl" />
+                    <span>Courses Count :</span>
+                    <ClipLoader color="rgb(256 256 256)" />
+                </strong>{" "}
             </div>
             <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
                 <table className="table text-center description text-white whitespace-nowrap lg:whitespace-normal">
                     <thead className="bg-base-200">
-                        <tr>
-                            <th className="">
-                                <div className="lg:w-8 lg:h-6 h-4 w-4 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-16 sm:w-24 h-6 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-20 sm:w-32 h-6 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-20 sm:w-32 h-6 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-20 sm:w-32 h-6 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-16 sm:w-24 h-6 bg-gray-200 rounded"></div>
-                            </th>
-                            <th className="">
-                                <div className="w-24 sm:w-36 h-6 bg-gray-200 rounded"></div>
-                            </th>
+                        <tr className="text-white lg:text-lg text-sm">
+                            <th className="">No</th>
+                            <th className="">Image</th>
+                            <th className="">Course</th>
+                            <th className="">Instructor</th>
+                            <th className="">Available Slots</th>
+                            <th className="">Price</th>
+                            {role !== "Instructor" && (
+                                <th className="">Book Courses</th>
+                            )}
                         </tr>
                     </thead>
                     <tbody>
                         {Array.from({ length: 5 }).map((_, i) => (
                             <tr key={i}>
+                                <td>{i + 1}</td>
                                 <td>
-                                    <div className="lg:h-6 lg:w-6 h-4 w-4 bg-gray-200 rounded"></div>
+                                    <div className="flex justify-center items-center">
+                                        <div className="h-8 sm:h-16 lg:w-20 w-14 sm:w-32 bg-gray-200 rounded-lg"></div>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div className="h-12 sm:h-16 w-20 sm:w-32 bg-gray-200 rounded"></div>
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-14 sm:w-64 lg:h-4 h-3 bg-gray-200 rounded"></div>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div className="w-32 sm:w-64 h-6 bg-gray-200 rounded"></div>
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-14 sm:w-64 lg:h-4 h-3 bg-gray-200 rounded"></div>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div className="w-32 sm:w-64 h-6 bg-gray-200 rounded"></div>
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-20 sm:w-32 lg:h-4 h-3 bg-gray-200 rounded"></div>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div className="w-20 sm:w-32 h-6 bg-gray-200 rounded"></div>
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-14 sm:w-20 lg:h-4 h-3 bg-gray-200 rounded"></div>
+                                    </div>
                                 </td>
-                                <td>
-                                    <div className="w-14 sm:w-20 h-6 bg-gray-200 rounded"></div>
-                                </td>
-                                <td>
-                                    <div className="w-24 sm:w-36 lg:h-10 h-4 bg-gray-200 rounded"></div>
-                                </td>
+                                {role !== "Instructor" && (
+                                    <td>
+                                        <button
+                                            disabled
+                                            className="btn text-white btn-sm lg:rounded-lg rounded-full disabled:bg-stone-800 animate-bounce"
+                                        >
+                                            <MdLibraryAdd />{" "}
+                                            {isSmallDevice ? (
+                                                <span className="text-[12px]">
+                                                    {" "}
+                                                    Book
+                                                </span>
+                                            ) : (
+                                                <span>Book Course</span>
+                                            )}
+                                        </button>
+                                    </td>
+                                )}
                             </tr>
                         ))}
                     </tbody>

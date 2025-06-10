@@ -6,17 +6,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
-import 'swiper/css/navigation';
+import "swiper/css/navigation";
 import "../Home/PopularInstructors/style.css";
 import { FaChalkboardTeacher, FaQuoteLeft } from "react-icons/fa";
 import useTitle from "../../Helmet/useTitle";
 import { useEffect, useState } from "react";
 import useScreenSize from "../../hooks/useScreeSize";
+import { ClipLoader } from "react-spinners";
 
 const SingleInstructorsClasses = () => {
     const instructor = useLoaderData();
     const classes = instructor.classes;
     const nameWords = instructor.name.split(" ");
+    const [loading, setLoading] = useState(false);
     const title1 = nameWords[0];
     const title2 = nameWords.slice(1).join(" ");
     const firstName = instructor?.name?.split(" ")[0];
@@ -31,17 +33,24 @@ const SingleInstructorsClasses = () => {
     }, [isSmallDevice]);
 
     useEffect(() => {
+        setLoading(true);
         fetch(`${import.meta.env.VITE_API_URL}/instructor/total/${id}`)
             .then((res) => res.json())
-            .then((data) => setTotalAttendee(data.totalStudents))
+            .then((data) => {
+                setTotalAttendee(data.totalStudents);
+                setLoading(false);
+            })
             .catch((err) =>
                 console.error("Failed to fetch total attendees:", err)
-            );
+            )
+            .finally(() => setLoading(false));
     }, [id]);
 
     const bannerStyle = {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.400), rgba(0, 0, 0, 0.400)), url('${
-            instructor.cover ? instructor.cover : "/instructor_default_banner.avif"
+            instructor.cover
+                ? instructor.cover
+                : "/instructor_default_banner.avif"
         }')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -84,14 +93,14 @@ const SingleInstructorsClasses = () => {
                             {classes.length}
                             <span>Courses</span>
                             <span className="mx-1">|</span>
-                            {totalAttendee}
+                            {loading ? <ClipLoader color="rgb(256 256 256)" /> : totalAttendee}
                             <span>Attendees</span>
                         </strong>{" "}
                     </div>
                     <Swiper
                         slidesPerView={numberOfSlides}
                         spaceBetween={20}
-                        navigation={true}                        
+                        navigation={true}
                         modules={[Navigation]}
                         className="popularClassSection"
                     >
