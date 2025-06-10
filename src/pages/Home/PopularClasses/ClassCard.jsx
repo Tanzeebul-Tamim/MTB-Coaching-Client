@@ -6,7 +6,7 @@ import ImageWithLoader from "../../../reusable/ImageWithLoader";
 const ClassCard = ({ topClass }) => {
     return (
         <Link
-            to={`/instructor/${topClass.instructorId}`}
+            to={`/instructors/${topClass.instructorId}`}
             className="group card relative h-full description rounded-2xl card-compact w-full lg:ml-3 lg:mr-3 bg-base-200 shadow-xl"
         >
             <div>

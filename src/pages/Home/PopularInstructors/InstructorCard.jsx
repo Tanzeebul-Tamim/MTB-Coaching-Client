@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 
 const InstructorCard = ({ topInstructor }) => {
   return (
-    <Link to={`/instructor/${topInstructor._id}`} className="card h-full group description rounded-2xl card-compact lg:ml-3 lg:mr-3 bg-base-200 shadow-xl">
+        <Link
+            to={`/instructors/${topInstructor._id}`}
+            className="card h-full group description rounded-2xl card-compact lg:ml-3 lg:mr-3 bg-base-200 shadow-xl"
+        >
       <div className="flex justify-center items-center">
         <div className="card-body z-50">
           <h2 className="card-title text-yellow-500">{topInstructor.name}</h2>

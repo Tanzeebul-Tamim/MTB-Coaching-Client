@@ -57,7 +57,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                         <td>{instructor?.classes?.length}</td>
                                         <td>
                                             <Link
-                                                to={`/instructor/${instructor._id}`}
+                                                to={`/instructors/${instructor._id}`}
                                                 className="btn text-white btn-sm lg:rounded-lg rounded-full hover:bg-stone-700 bg-stone-800"
                                             >
                                                 {isSmallDevice ? (
