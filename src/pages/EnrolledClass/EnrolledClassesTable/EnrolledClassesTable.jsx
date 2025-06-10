@@ -1,7 +1,14 @@
 import EnrolledClassesTableHead from "./EnrolledClassesTableHead";
 import moment from "moment/moment";
 
-const EnrolledClassesTable = ({ userBookings, isSmallDevice }) => {
+const EnrolledClassesTable = ({
+    userBookings,
+    isSmallDevice,
+    search,
+    settings,
+}) => {
+    const { resultsPerPage, currentPage } = settings;
+
     const sortedBookings = [...userBookings].sort((a, b) => {
         return moment(b.date).unix() - moment(a.date).unix();
     });
@@ -10,7 +17,9 @@ const EnrolledClassesTable = ({ userBookings, isSmallDevice }) => {
         return (
             <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
-                    You Haven&apos;t Enrolled In Any Courses Yet
+                    {search
+                        ? "No Enrollment Found For Your Search"
+                        : "You Haven't Enrolled In Any Courses Yet"}
                 </h1>
             </div>
         );
@@ -25,7 +34,10 @@ const EnrolledClassesTable = ({ userBookings, isSmallDevice }) => {
                     {sortedBookings.map((classItem, index) => {
                         return (
                             <tr className="" key={classItem._id}>
-                                <td>{index + 1}</td>
+                                <td>
+                                    {resultsPerPage * (currentPage - 1) +
+                                        (index + 1)}
+                                </td>
                                 <td className="flex justify-center">
                                     <img
                                         className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${

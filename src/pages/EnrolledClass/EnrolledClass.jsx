@@ -8,16 +8,19 @@ import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import useScreenSize from "../../hooks/useScreeSize";
 import SklEnrolledClass from "../../skeletons/SklEnrolledClass";
+import usePagination from "../../hooks/usePagination";
+import Searchbar from "../../reusable/Searchbar";
+import Pagination from "../../reusable/Pagination";
 
 const EnrolledClass = () => {
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userBookings, setUserBookings] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { isSmallDevice } = useScreenSize();
     const paidBookings = userBookings.filter(
         (booking) => booking.paymentStatus === "paid"
     );
+    const { isSmallDevice } = useScreenSize();
     useTitle("| Enrolled Courses");
 
     useEffect(() => {
@@ -46,6 +49,17 @@ const EnrolledClass = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userDetails, userBookings]);
 
+    const [search, setSearch] = useState("");
+    const [filteredPaidBookings, setFilteredPaidBookings] = useState(
+        paidBookings || []
+    );
+
+    // Pagination logic
+    const paginationHook = usePagination(paidBookings);
+    const paginatedPaidBookings = paginationHook?.paginatedItems;
+    const { resultsPerPage, currentPage } = paginationHook;
+    const paginationSettings = { resultsPerPage, currentPage };
+
     if (loading) {
         return (
             <>
@@ -58,6 +72,7 @@ const EnrolledClass = () => {
     }
 
     const renderCondition = paidBookings && paidBookings.length > 0;
+    const searchableFields = [{ field: "class-name", split: false }];
 
     return (
         <>
@@ -65,20 +80,36 @@ const EnrolledClass = () => {
                 title={`${isSmallDevice ? "" : "My"} Enrolled Courses`}
             />
             {renderCondition && (
-                <div className="z-10 mt-[35%] lg:mt-0 lg:mb-5 mb-2 flex justify-between lg:gap-2 text-white description lg:text-xl">
-                    <span className="z-[100] flex items-center gap-2">
-                        <GiTeacher className="lg:text-2xl" />
-                        <strong>
-                            {!isSmallDevice && "Enrolled"} Courses Count :{" "}
-                        </strong>
-                        <span>{userBookings?.length}</span>
-                    </span>{" "}
-                </div>
+                <>
+                    <Searchbar
+                        items={paidBookings}
+                        searchableFields={searchableFields}
+                        isSmallDevice={isSmallDevice}
+                        setFilteredItems={setFilteredPaidBookings}
+                        paginatedItems={paginatedPaidBookings}
+                        search={search}
+                        setSearch={setSearch}
+                        placeholder="Search by Course Name"
+                    />
+                    <div className="z-10 lg:mt-0 lg:mb-5 mb-2 flex justify-between lg:gap-2 text-white description lg:text-xl">
+                        <span className="z-[100] flex items-center gap-2">
+                            <GiTeacher className="lg:text-2xl" />
+                            <strong>
+                                {!isSmallDevice && "Enrolled"} Courses Count :{" "}
+                            </strong>
+                            <span>{paidBookings?.length}</span>
+                        </span>{" "}
+                    </div>
+                </>
             )}
             <EnrolledClassesTable
+                search={search}
                 isSmallDevice={isSmallDevice}
-                userBookings={paidBookings}
+                userBookings={filteredPaidBookings}
+                settings={paginationSettings}
             ></EnrolledClassesTable>
+            {/* Pagination Controls at the bottom */}
+            <Pagination search={search} paginationHook={paginationHook} />
         </>
     );
 };

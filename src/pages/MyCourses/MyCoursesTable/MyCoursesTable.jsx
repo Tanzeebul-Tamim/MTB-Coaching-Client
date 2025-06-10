@@ -2,12 +2,22 @@ import { Link } from "react-router-dom";
 import MyCoursesTableHead from "./MyCoursesTableHead";
 import { FaList } from "react-icons/fa";
 
-const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
-    if (!instructorCourses || instructorCourses.length === 0) {
+const MyCoursesTable = ({
+    userDetails,
+    courses,
+    isSmallDevice,
+    search,
+    settings,
+}) => {
+    const { resultsPerPage, currentPage } = settings;
+
+    if (!courses || courses.length === 0) {
         return (
             <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
-                    You Haven&apos;t Created Any Courses Yet
+                    {search
+                        ? "No Courses Found For Your Search"
+                        : "You Haven't Created Any Courses Yet"}
                 </h1>
             </div>
         );
@@ -19,13 +29,16 @@ const MyCoursesTable = ({ userDetails, instructorCourses, isSmallDevice }) => {
                 {/* head */}
                 <MyCoursesTableHead isSmallDevice={isSmallDevice} />
                 <tbody className={"text-sm"}>
-                    {instructorCourses.map((course, index) => {
+                    {courses.map((course, index) => {
                         const remainingCount =
                             course.studentSlot - course.totalStudent;
 
                         return (
                             <tr key={course._id}>
-                                <td>{index + 1}</td>
+                                <td>
+                                    {resultsPerPage * (currentPage - 1) +
+                                        (index + 1)}
+                                </td>
                                 <td className="flex justify-center">
                                     <img
                                         className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${

@@ -10,16 +10,19 @@ import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useScreenSize from "../../hooks/useScreeSize";
 import SklSelectedClasses from "../../skeletons/SklSelectedClasses";
+import usePagination from "../../hooks/usePagination";
+import Searchbar from "../../reusable/Searchbar";
+import Pagination from "../../reusable/Pagination";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({});
     const [userBookings, setUserBookings] = useState([]);
-    const { isSmallDevice } = useScreenSize();
     const [loading, setLoading] = useState(false);
     const unpaidBookings = userBookings.filter(
         (booking) => booking.paymentStatus === "unpaid"
     );
+    const { isSmallDevice } = useScreenSize();
     useTitle("| Booked Courses");
 
     useEffect(() => {
@@ -78,6 +81,17 @@ const SelectedClasses = () => {
         });
     };
 
+    const [search, setSearch] = useState("");
+    const [filteredBookings, setFilteredBookings] = useState(
+        unpaidBookings || []
+    );
+
+    // Pagination logic
+    const paginationHook = usePagination(unpaidBookings);
+    const paginatedBookings = paginationHook?.paginatedItems;
+    const { resultsPerPage, currentPage } = paginationHook;
+    const paginationSettings = { resultsPerPage, currentPage };
+
     if (loading) {
         return (
             <>
@@ -90,6 +104,7 @@ const SelectedClasses = () => {
     }
 
     const renderCondition = unpaidBookings && unpaidBookings.length > 0;
+    const searchableFields = [{ field: "class-name", split: false }];
 
     return (
         <>
@@ -97,27 +112,43 @@ const SelectedClasses = () => {
                 title={`${isSmallDevice ? "" : "My"} Booked Courses`}
             />
             {renderCondition && (
-                <div className="lg:mb-5 mb-2 mt-[35%] lg:mt-0 z-10 flex justify-between gap-2 text-white description lg:text-xl">
-                    <span className="z-[100] flex items-center gap-2">
-                        <GiTeacher className="lg:text-2xl" />
-                        <strong>
-                            {!isSmallDevice && "My Booked"} Courses Count :{" "}
-                        </strong>
-                        <span>{unpaidBookings?.length}</span>
-                    </span>{" "}
-                    <button
-                        onClick={handleClearList}
-                        className="z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
-                    >
-                        <span>Clear List</span>
-                    </button>
-                </div>
+                <>
+                    <Searchbar
+                        items={unpaidBookings}
+                        searchableFields={searchableFields}
+                        isSmallDevice={isSmallDevice}
+                        setFilteredItems={setFilteredBookings}
+                        paginatedItems={paginatedBookings}
+                        search={search}
+                        setSearch={setSearch}
+                        placeholder="Search by Course Name"
+                    />
+                    <div className="lg:mb-5 mb-2 lg:mt-0 z-10 flex justify-between gap-2 text-white description lg:text-xl">
+                        <span className="z-[100] flex items-center gap-2">
+                            <GiTeacher className="lg:text-2xl" />
+                            <strong>
+                                {!isSmallDevice && "My Booked"} Courses Count :{" "}
+                            </strong>
+                            <span>{unpaidBookings?.length}</span>
+                        </span>{" "}
+                        <button
+                            onClick={handleClearList}
+                            className="z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                        >
+                            <span>Clear List</span>
+                        </button>
+                    </div>
+                </>
             )}
             <SelectedClassesTable
-                userDetails={userDetails}
-                userBookings={unpaidBookings}
+                search={search}
                 isSmallDevice={isSmallDevice}
+                userBookings={filteredBookings}
+                settings={paginationSettings}
+                userDetails={userDetails}
             ></SelectedClassesTable>
+            {/* Pagination Controls at the bottom */}
+            <Pagination search={search} paginationHook={paginationHook} />
         </>
     );
 };

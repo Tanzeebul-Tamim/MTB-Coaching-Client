@@ -8,7 +8,7 @@ const MyStudentsTable = ({ students, search, settings }) => {
             <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
                     {search
-                        ? "No students found for your search."
+                        ? "No Students Found For Your Search"
                         : "You Don't Have Any Students Yet"}
                 </h1>
             </div>
