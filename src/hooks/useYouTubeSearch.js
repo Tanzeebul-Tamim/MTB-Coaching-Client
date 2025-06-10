@@ -10,13 +10,17 @@ const useYoutubeSearch = (query, maxResults = 8) => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const res = await fetch(
-                    `${BASE_URL}?part=snippet&q=${encodeURIComponent(
-                        query
-                    )}&type=video&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
-                );
-                const data = await res.json();
-                setVideos(data.items || []);
+                if (query) {
+                    const res = await fetch(
+                        `${BASE_URL}?part=snippet&q=${encodeURIComponent(
+                            query
+                        )}&type=video&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`
+                    );
+                    const data = await res.json();
+                    setVideos(data.items || []);
+                } else {
+                    setVideos([]);
+                }
             } catch (err) {
                 console.error("Failed to fetch YouTube videos:", err);
             } finally {

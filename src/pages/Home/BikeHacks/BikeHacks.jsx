@@ -21,8 +21,9 @@ const BikeHacks = () => {
     const { isSmallDevice } = useScreenSize();
     const { user } = useAuth();
     const [selectBikeType, setSelectBikeType] = useState("Mountain");
+    const [shouldFetch, setShouldFetch] = useState(false);
     const query = `${selectBikeType} Bike Hacks and Tips`;
-    const { videos, loading } = useYoutubeSearch(query);
+    const { videos, loading } = useYoutubeSearch(shouldFetch ? query : null);
 
     useEffect(() => {
         setNumberOfSlides(isSmallDevice ? 1 : 4);
@@ -31,12 +32,16 @@ const BikeHacks = () => {
     const handleSelectBikeType = (event) => {
         const selectedBikeType = event.target.value;
         setSelectBikeType(selectedBikeType);
+        setShouldFetch(true);
     };
 
+    const dropdownCondition = user && videos;
     const fetchCondition = user && videos.length > 0;
     return (
         <div
-            className="lg:pb-20 pb-8 relative lg:pt-20 pt-10 px-5 lg:px-10"
+            className={`lg:pb-20 pb-8 relative ${
+                dropdownCondition ? "lg:pt-20 pt-10" : "lg:pt-40 pt-20"
+            } px-5 lg:px-10`}
             style={{
                 backgroundAttachment: "fixed",
                 backgroundImage:
@@ -46,6 +51,7 @@ const BikeHacks = () => {
                 backgroundRepeat: "no-repeat",
             }}
         >
+            {dropdownCondition && (
                 <div className="mb-4 flex items-center justify-center">
                     <select
                         onChange={handleSelectBikeType}
@@ -61,7 +67,8 @@ const BikeHacks = () => {
                         ))}
                     </select>
                 </div>
-            
+            )}
+
             <Slide>
                 <SectionTitle
                     title1={"bike hacks"}
