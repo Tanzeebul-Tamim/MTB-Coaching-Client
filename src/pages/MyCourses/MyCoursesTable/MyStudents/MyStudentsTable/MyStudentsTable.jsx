@@ -1,7 +1,9 @@
 import MyStudentsTableHead from "./MyStudentsTableHead";
 
-const MyStudentsTable = ({ students, search, filteredStudents }) => {
-    if (!filteredStudents || filteredStudents.length === 0) {
+const MyStudentsTable = ({ students, search, settings }) => {
+    const { resultsPerPage, currentPage } = settings;
+
+    if (!students || students.length === 0) {
         return (
             <div className="flex lg:h-[55vh] mt-[80%] lg:mt-0 items-center justify-center">
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
@@ -22,7 +24,10 @@ const MyStudentsTable = ({ students, search, filteredStudents }) => {
                     {students.map((student, index) => {
                         return (
                             <tr key={student?._id}>
-                                <td>{index + 1}</td>
+                                <td>
+                                    {resultsPerPage * (currentPage - 1) +
+                                        (index + 1)}
+                                </td>
                                 <td className="flex justify-center">
                                     <img
                                         className="rounded-full w-[4.5vh]"
