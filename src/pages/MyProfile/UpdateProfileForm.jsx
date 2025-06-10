@@ -59,39 +59,46 @@ const UpdateProfileForm = ({ userDetails }) => {
         const coverImg = form?.cover?.files[0];
         const formData = new FormData();
 
-        const quoteLength = form?.quote.value.length;
-        const isValid = quoteLength <= quoteMaxLength;
+        let quoteLength;
+        let isValid;
 
-        if (!isValid) {
-            const time = 2000;
+        const userRole = userDetails?.role || "Student";
 
-            if (!isSmallDevice) {
-                setIsValidLength(false);
-                setTimeout(() => {
-                    setIsValidLength(true);
-                }, time);
-            } else {
-                toast.error(
-                    <>
-                        Quote is too long!
-                        <br />
-                        Max {quoteMaxLength} characters
-                    </>,
-                    {
-                        position: "top-right",
-                        autoClose: time,
-                        hideProgressBar: false,
-                        limit: 3,
-                        transition: Flip,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    }
-                );
+        if (userRole === "Instructor") {
+            quoteLength = form?.quote.value.length;
+            isValid = quoteLength <= quoteMaxLength;
+
+            if (!isValid) {
+                const time = 2000;
+
+                if (!isSmallDevice) {
+                    setIsValidLength(false);
+                    setTimeout(() => {
+                        setIsValidLength(true);
+                    }, time);
+                } else {
+                    toast.error(
+                        <>
+                            Quote is too long!
+                            <br />
+                            Max {quoteMaxLength} characters
+                        </>,
+                        {
+                            position: "top-right",
+                            autoClose: time,
+                            hideProgressBar: false,
+                            limit: 3,
+                            transition: Flip,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        }
+                    );
+                }
+                return;
             }
-            return;
         }
 
         const url = `${import.meta.env.VITE_IMGBB_API_URL}?key=${
