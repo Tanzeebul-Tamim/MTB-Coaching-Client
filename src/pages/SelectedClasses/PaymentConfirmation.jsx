@@ -11,6 +11,7 @@ import "./styles/style.css";
 import { getUserData } from "../../api/authApi";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import ImageWithLoader from "../../reusable/ImageWithLoader";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
 
@@ -150,7 +151,7 @@ const PaymentConfirmation = () => {
                                 <div className="pay-card">
                                     <div className="front">
                                         <div className="z-50 flex justify-center items-center">
-                                            <img
+                                            <ImageWithLoader
                                                 src={
                                                     loading || loading2
                                                         ? "/class-loading.gif"

@@ -1,3 +1,4 @@
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
 import InstructorsTableHead from "./InstructorsTableHead";
 import { Link } from "react-router-dom";
 
@@ -23,7 +24,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                         <td>
                                             <div className="avatar">
                                                 <div className="mask lg:mask-squircle mask-circle lg:w-24 lg:h-24">
-                                                    <img
+                                                    <ImageWithLoader
                                                         src={instructor.image}
                                                         alt="Avatar Tailwind CSS Component"
                                                     />

@@ -4,6 +4,7 @@ import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
 
 const SelectedClassesTable = ({
     userBookings,
@@ -84,7 +85,7 @@ const SelectedClassesTable = ({
                                         (index + 1)}
                                 </td>
                                 <td className="flex justify-center">
-                                    <img
+                                    <ImageWithLoader
                                         className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
                                             isSmallDevice && "object-cover"
                                         }`}

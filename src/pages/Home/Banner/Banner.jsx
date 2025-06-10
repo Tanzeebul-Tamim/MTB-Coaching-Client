@@ -2,6 +2,7 @@ import ResponsiveLogin from "./ResponsiveLogin";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -14,7 +15,7 @@ const Banner = () => {
             className="w-full"
         >
             <div id="slide1" className="relative w-full">
-                <img
+                <ImageWithLoader
                     className="w-full lg:pt-16"
                     src="/home_banner_1.avif"
                 />
@@ -49,10 +50,7 @@ const Banner = () => {
             </div>
 
             <div id="slide2" className="relative w-full">
-                <img
-                    className="w-full"
-                    src="/home_banner_2.avif"
-                />
+                <ImageWithLoader className="w-full" src="/home_banner_2.avif" />
 
                 <img
                     src="/logo.png"
@@ -84,10 +82,7 @@ const Banner = () => {
             </div>
 
             <div id="slide3" className="relative w-full">
-                <img
-                    className="w-full"
-                    src="/home_banner_3.avif"
-                />
+                <ImageWithLoader className="w-full" src="/home_banner_3.avif" />
 
                 <img
                     src="/logo.png"
@@ -119,10 +114,7 @@ const Banner = () => {
             </div>
 
             <div id="slide4" className="relative w-full">
-                <img
-                    className="w-full"
-                    src="/home_banner_4.avif"
-                />
+                <ImageWithLoader className="w-full" src="/home_banner_4.avif" />
 
                 <img
                     src="/logo.png"

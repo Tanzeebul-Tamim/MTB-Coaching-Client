@@ -14,8 +14,8 @@ const Legal = () => {
                 backgroundImage: "url('/legal.avif')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: isSmallDevice ? "70% 50%" : "center",
-                backgroundAttachment: "fixed",
+                backgroundPosition: isSmallDevice ? "65% 50%" : "center",
+                backgroundAttachment: isSmallDevice && "fixed",
             }}
         >
             <div className="relative z-20">

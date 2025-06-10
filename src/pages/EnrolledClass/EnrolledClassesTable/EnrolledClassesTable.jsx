@@ -1,3 +1,4 @@
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
 import EnrolledClassesTableHead from "./EnrolledClassesTableHead";
 import moment from "moment/moment";
 
@@ -43,7 +44,7 @@ const EnrolledClassesTable = ({
                                         (index + 1)}
                                 </td>
                                 <td className="flex justify-center">
-                                    <img
+                                    <ImageWithLoader
                                         className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
                                             isSmallDevice && "object-cover"
                                         }`}

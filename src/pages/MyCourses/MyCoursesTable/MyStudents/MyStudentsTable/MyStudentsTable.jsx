@@ -1,3 +1,4 @@
+import ImageWithLoader from "../../../../../reusable/ImageWithLoader";
 import MyStudentsTableHead from "./MyStudentsTableHead";
 
 const MyStudentsTable = ({ students, search, settings }) => {
@@ -33,7 +34,7 @@ const MyStudentsTable = ({ students, search, settings }) => {
                                         (index + 1)}
                                 </td>
                                 <td className="flex justify-center">
-                                    <img
+                                    <ImageWithLoader
                                         className="rounded-full w-[4.5vh]"
                                         src={student?.image}
                                         alt={student?.["class-name"]}

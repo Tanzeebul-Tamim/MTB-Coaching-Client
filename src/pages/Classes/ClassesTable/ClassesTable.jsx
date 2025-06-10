@@ -6,6 +6,7 @@ import { bookClass, getBookedClasses } from "../../../api/bookApi";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
 
 const ClassesTable = ({
     classes,
@@ -135,7 +136,7 @@ const ClassesTable = ({
                                     >
                                         <td>{index + 1}</td>
                                         <td className="lg:flex lg:justify-center">
-                                            <img
+                                            <ImageWithLoader
                                                 className="lg:w-32 lg:rounded-xl rounded-lg lg:h-16"
                                                 src={classItem?.image}
                                                 alt="Avatar Tailwind CSS Component"

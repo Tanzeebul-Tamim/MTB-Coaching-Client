@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function ImageWithLoader({ src, className }) {
+export default function ImageWithLoader({
+    src,
+    className,
+    alt,
+    gif = "/loading.gif",
+}) {
     const [isLoading, setIsLoading] = useState(true);
 
     const handleLoad = () => {
@@ -8,15 +13,16 @@ export default function ImageWithLoader({ src, className }) {
     };
 
     return (
-        <div className="relative w-full h-auto">
+        <>
             <img
-                src={isLoading ? "/class-loading.gif" : src}
+                src={isLoading ? gif : src}
+                alt={alt}
                 onLoad={handleLoad}
                 onError={() => setIsLoading(false)} // hide loader if image fails
                 className={`${className} transition-opacity duration-300 ${
                     isLoading ? "opacity-0" : "opacity-100"
                 }`}
             />
-        </div>
+        </>
     );
 }

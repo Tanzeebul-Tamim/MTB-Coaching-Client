@@ -1,7 +1,9 @@
+import ImageWithLoader from "../../../reusable/ImageWithLoader";
+
 const InstructorsBanner = () => {
     return (
         <div className="relative">
-            <img src="/instructors_banner.png" alt="" />
+            <ImageWithLoader src="/instructors_banner.png" alt="" />
             <div className="z-[10] lg:left-10 left-3 text-center absolute -bottom-3">
                 <h1 className="text-yellow-500 title lg:text-6xl uppercase font-bold">
                     Training

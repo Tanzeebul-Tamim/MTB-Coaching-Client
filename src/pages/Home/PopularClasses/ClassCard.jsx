@@ -25,7 +25,8 @@ const ClassCard = ({ topClass }) => {
                     <IoSchoolSharp className="text-lg" />
                     <strong>Attendees:</strong> {topClass.totalStudent}
                 </div>
-                <img
+                <ImageWithLoader
+                    gif="/user_avatar.png"
                     className="group-hover:scale-110 duration-200 lg:w-[100px] w-[calc(22vw)] lg:h-[100px] h-[calc(22vw)] rounded-full border-zinc-400 border-[2px] lg:border-[4px] absolute bottom-[30%] lg:bottom-[20%] right-[4%]"
                     src={topClass.instructorImg}
                 />
