@@ -3,7 +3,7 @@ import { useState } from "react";
 import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";

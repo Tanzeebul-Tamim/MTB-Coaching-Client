@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { getUserData, saveUser } from "../../api/authApi";
 import { toast, Flip } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
@@ -92,7 +92,7 @@ const AddClass = () => {
                 theme: "dark",
             });
             setTimeout(() => {
-                window.location.replace(`/instructor/${userDoc._id}`);
+                window.location.replace(`/instructors/${userDoc._id}`);
             }, 1200);
         } catch (err) {
             toast.error("Failed to add course. Please try again.");

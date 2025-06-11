@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import "./styles/CheckOutForm.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./styles/style.css";

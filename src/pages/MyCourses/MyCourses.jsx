@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";

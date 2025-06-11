@@ -9,24 +9,29 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import "../Home/PopularInstructors/style.css";
 import { FaChalkboardTeacher, FaQuoteLeft } from "react-icons/fa";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { useEffect, useState } from "react";
 import useScreenSize from "../../hooks/useScreeSize";
 import { ClipLoader } from "react-spinners";
+import useUserData from "../../hooks/useUserData";
 
 const SingleInstructorsClasses = () => {
     const instructor = useLoaderData();
+    const { userDetails } = useUserData();
     const classes = instructor.classes;
-    const nameWords = instructor.name.split(" ");
+    const isMyWall = instructor.email === userDetails.email;
+    const name = isMyWall ? userDetails?.name : instructor?.name;
+    const nameWords = name.split(" ");
     const [loading, setLoading] = useState(false);
     const title1 = nameWords[0];
     const title2 = nameWords.slice(1).join(" ");
-    const firstName = instructor?.name?.split(" ")[0];
+    const firstName = name?.split(" ")[0];
     const { id } = useParams();
     const [totalAttendee, setTotalAttendee] = useState(0);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const { isSmallDevice } = useScreenSize();
-    useTitle(`| ${firstName}'s Wall`);
+    const title = isMyWall ? "| My Wall" : `| ${firstName}'s Wall`;
+    useTitle(title);
 
     useEffect(() => {
         setNumberOfSlides(isSmallDevice ? 1 : 4);
@@ -74,16 +79,28 @@ const SingleInstructorsClasses = () => {
 
     return (
         <div
-            className="lg:pb-20 pb-8 relative pt-24 lg:pt-36 px-5 lg:px-10"
+            className="lg:pb-20 pb-8 relative pt-16 lg:pt-36 px-5 lg:px-10"
             style={bannerStyle}
         >
             <InstructorHeader />
-            <SectionTitle
-                title1={title1}
-                title2={title2}
-                enlarge={true}
-                description={instructor?.quote}
-            />
+            <div
+                className={
+                    isMyWall &&
+                    `flex lg:gap-4 gap-1 ${isSmallDevice && "flex-col-reverse"}`
+                }
+            >
+                <SectionTitle
+                    title1={title1}
+                    title2={title2}
+                    enlarge={true}
+                    description={instructor?.quote}
+                />
+                {isMyWall && (
+                    <span className="lg:text-4xl text-2xl text-stone-300 font-semibold">
+                        (My Wall)
+                    </span>
+                )}
+            </div>
             {classes?.length > 0 ? (
                 <>
                     <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-white description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
@@ -92,7 +109,11 @@ const SingleInstructorsClasses = () => {
                             {classes.length}
                             <span>Courses</span>
                             <span className="mx-1">|</span>
-                            {loading ? <ClipLoader color="rgb(256 256 256)" /> : totalAttendee}
+                            {loading ? (
+                                <ClipLoader color="rgb(256 256 256)" />
+                            ) : (
+                                totalAttendee
+                            )}
                             <span>Attendees</span>
                         </strong>{" "}
                     </div>
@@ -117,7 +138,9 @@ const SingleInstructorsClasses = () => {
             ) : (
                 <div className="flex justify-center text-white">
                     <div className="text-2xl md:text-4xl lg:text-5xl my-5 z-[1] text-center">
-                        {instructor.name} hasn&apos;t added any courses yet
+                        {isMyWall
+                            ? "You haven't added any courses yet"
+                            : `${instructor.name} has't added any courses yet`}
                     </div>
                 </div>
             )}

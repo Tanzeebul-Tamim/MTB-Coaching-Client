@@ -1,4 +1,4 @@
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import Banner from "./Banner/Banner";
 import BikeHacks from "./BikeHacks/BikeHacks";
 import PopularClasses from "./PopularClasses/PopularClasses";

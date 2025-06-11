@@ -1,4 +1,4 @@
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../ScrollToTop/ScrollWithOffset";
 import useScreenSize from "../../hooks/useScreeSize";

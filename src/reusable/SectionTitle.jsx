@@ -10,12 +10,12 @@ const SectionTitle = ({ title1, title2, description, textAlign, enlarge }) => {
                     textAlign && "flex-row-reverse justify-end"
                 } lg:text-5xl  ${
                     enlarge ? "text-3xl" : "text-xl"
-                }  uppercase lg:border-l-[12px] border-l-[5px] lg:pl-4 pl-2 border-yellow-600 z-[1]`}
+                }  uppercase lg:border-l-[12px] border-l-[6px] lg:pl-4 pl-2 border-yellow-600 z-[1]`}
             >
                 <span
                     className={`${
                         textAlign ? "text-yellow-600" : "text-white"
-                    } lg:tracking-widest`}
+                    } lg:tracking-widest tracking-wider`}
                 >
                     <p
                         className={`${
@@ -28,7 +28,7 @@ const SectionTitle = ({ title1, title2, description, textAlign, enlarge }) => {
                 <span
                     className={`${
                         textAlign ? "text-white" : "text-yellow-600"
-                    }  lg:tracking-widest`}
+                    }  lg:tracking-widest tracking-wider`}
                 >
                     <p
                         className={`${
@@ -42,7 +42,7 @@ const SectionTitle = ({ title1, title2, description, textAlign, enlarge }) => {
             <p
                 className={`${
                     textAlign && "transform scale-x-[-1] text-end"
-                } lg:mt-5 mt-2 text-white ${enlarge ? 'text-lg' : 'text-sm'} lg:text-xl lg:w-1/2 description`}
+                } lg:mt-5 mt-2 text-white ${enlarge ? 'text-lg' : 'text-sm'} lg:text-xl lg:w-full description`}
             >
                 {description}
             </p>

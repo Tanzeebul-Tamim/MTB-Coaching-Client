@@ -129,7 +129,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
-                                to={`/instructor/${userDetails._id}`}
+                                to={`/instructors/${userDetails._id}`}
                             >
                                 My Wall
                             </ActiveLink2>

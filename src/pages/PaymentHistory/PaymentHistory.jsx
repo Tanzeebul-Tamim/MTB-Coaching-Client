@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import PaymentHistoryTable from "./PaymentHistoryTable/PaymentHistoryTable";

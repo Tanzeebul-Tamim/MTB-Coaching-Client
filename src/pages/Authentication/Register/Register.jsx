@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEyeSlash, FaEye, FaFacebookF } from "react-icons/fa";
-import useTitle from "../../../Helmet/useTitle";
+import useTitle from "../../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";

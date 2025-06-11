@@ -1,4 +1,4 @@
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import UpdateProfileForm from "./UpdateProfileForm";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import ChangePassword from "./ChangePassword";

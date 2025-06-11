@@ -1,5 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import useScreenSize from "../../hooks/useScreeSize";
 
 const ErrorPage = () => {

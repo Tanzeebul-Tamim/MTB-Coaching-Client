@@ -1,4 +1,4 @@
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import useScreenSize from "../../hooks/useScreeSize";
 
 const AboutUs = () => {

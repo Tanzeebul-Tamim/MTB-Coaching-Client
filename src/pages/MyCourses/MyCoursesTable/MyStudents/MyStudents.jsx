@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useTitle from "../../../../Helmet/useTitle";
+import useTitle from "../../../../hooks/useTitle";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { Link, useParams } from "react-router-dom";

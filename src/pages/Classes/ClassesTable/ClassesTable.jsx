@@ -160,7 +160,7 @@ const ClassesTable = ({
                                         <td>
                                             <div>
                                                 <Link
-                                                    to={`/instructor/${classItem?.instructorId}`}
+                                                    to={`/instructors/${classItem?.instructorId}`}
                                                     className="font-bold"
                                                 >
                                                     {classItem?.instructorName}

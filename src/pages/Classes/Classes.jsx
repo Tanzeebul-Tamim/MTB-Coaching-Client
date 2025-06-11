@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import useTitle from "../../Helmet/useTitle";
+import useTitle from "../../hooks/useTitle";
 import SectionTitle from "../../reusable/SectionTitle";
 import ClassesBanner from "./ClassesBanner/ClassesBanner";
 import ClassesTable from "./ClassesTable/ClassesTable";

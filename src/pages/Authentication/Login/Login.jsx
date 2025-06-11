@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaEyeSlash, FaEye, FaFacebookF } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import useTitle from "../../../Helmet/useTitle";
+import useTitle from "../../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     loadCaptchaEnginge,
