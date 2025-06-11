@@ -5,7 +5,7 @@ import "./index.css";
 import Main from "./layout/Main";
 import Home from "./pages/Home/Home";
 import AboutUs from "./pages/AboutUs/AboutUs";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import ErrorPage from "./shared_components/ErrorPage/ErrorPage";
 import Login from "./pages/Authentication/Login/Login";
 import Register from "./pages/Authentication/Register/Register";
 import Instructors from "./pages/Instructors/Instructors";
