@@ -3,7 +3,7 @@ import useTitle from "../../../../hooks/useTitle";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { Link, useParams } from "react-router-dom";
-import useScreenSize from "../../../../hooks/useScreeSize";
+import useScreenSize from "../../../../hooks/useScreenSize";
 import { PiStudentFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
 import SklMyStudents from "../../../../skeletons/SklMyStudents";

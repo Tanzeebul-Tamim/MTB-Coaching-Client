@@ -5,7 +5,7 @@ import DashboardPageTitle from "../../shared_components/DashboardPageTitle/Dashb
 import PaymentHistoryTable from "./PaymentHistoryTable/PaymentHistoryTable";
 import useAuth from "../../hooks/useAuth";
 import { BsFillCreditCardFill } from "react-icons/bs";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import SklPaymentHistory from "../../skeletons/SklPaymentHistory";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";

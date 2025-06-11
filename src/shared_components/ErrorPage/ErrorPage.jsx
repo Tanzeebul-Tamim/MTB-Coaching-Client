@@ -1,6 +1,6 @@
 import { Link, useRouteError } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const ErrorPage = () => {
     const { error, statusText, status } = useRouteError();

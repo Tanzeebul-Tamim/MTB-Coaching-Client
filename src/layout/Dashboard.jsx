@@ -3,7 +3,7 @@ import { useState } from "react";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import SideNav from "../shared_components/SideNav/SideNav";
 import RouteTracker from "../shared_components/RouteTracker/RouteTracker";
-import useScreenSize from "../hooks/useScreeSize";
+import useScreenSize from "../hooks/useScreenSize";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 import NoInternetPage from "../shared_components/NoInternetPage/NoInternetPage";
 

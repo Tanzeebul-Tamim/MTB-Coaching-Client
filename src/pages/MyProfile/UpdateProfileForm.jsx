@@ -4,7 +4,7 @@ import { getUserData, saveUser } from "../../api/authApi";
 import { toast, Flip } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const UpdateProfileForm = ({ userDetails }) => {
     const [imageButtonText, setImageButtonText] = useState("Upload Image");

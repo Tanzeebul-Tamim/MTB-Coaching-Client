@@ -1,5 +1,5 @@
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import useScreenSize from "../hooks/useScreeSize";
+import useScreenSize from "../hooks/useScreenSize";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 

@@ -9,7 +9,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useRef } from "react";
 import { getUserData } from "../../api/authApi";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import SklInstructors from "../../skeletons/SklInstructors";
 
 const titleDescription =

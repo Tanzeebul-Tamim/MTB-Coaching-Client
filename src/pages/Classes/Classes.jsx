@@ -7,7 +7,7 @@ import { useState } from "react";
 import { getAllClasses, getTotalClasses } from "../../api/api";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../skeletons/SklClasses";
 import useAuth from "../../hooks/useAuth";

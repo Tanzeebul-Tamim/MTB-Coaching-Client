@@ -5,7 +5,7 @@ import DashboardPageTitle from "../../shared_components/DashboardPageTitle/Dashb
 import EnrolledClassesTable from "./EnrolledClassesTable/EnrolledClassesTable";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import SklEnrolledClass from "../../skeletons/SklEnrolledClass";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";

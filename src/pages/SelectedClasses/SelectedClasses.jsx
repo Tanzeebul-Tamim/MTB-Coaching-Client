@@ -7,7 +7,7 @@ import useTitle from "../../hooks/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import SklSelectedClasses from "../../skeletons/SklSelectedClasses";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";

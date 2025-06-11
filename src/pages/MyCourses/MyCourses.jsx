@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import useTitle from "../../hooks/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
 import SklMyCourses from "../../skeletons/SklMyCourses";

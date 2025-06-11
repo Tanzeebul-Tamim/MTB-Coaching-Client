@@ -1,4 +1,4 @@
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const DashboardPageTitle = ({ title }) => {
     const { isSmallDevice } = useScreenSize();

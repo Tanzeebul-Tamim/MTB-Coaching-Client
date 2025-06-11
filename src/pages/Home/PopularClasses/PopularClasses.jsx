@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "../PopularInstructors/style.css";
-import useScreenSize from "../../../hooks/useScreeSize";
+import useScreenSize from "../../../hooks/useScreenSize";
 import SklPopularClasses from "../../../skeletons/SklPopularClasses";
 
 const popularClassesDes =

@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "../PopularInstructors/style.css";
-import useScreenSize from "../../../hooks/useScreeSize";
+import useScreenSize from "../../../hooks/useScreenSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
 import useAuth from "../../../hooks/useAuth";
 import bikeHacksData from "./bikeHack.json";

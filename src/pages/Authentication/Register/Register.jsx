@@ -7,7 +7,7 @@ import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
-import useScreenSize from "../../../hooks/useScreeSize";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const Register = () => {
     const [error, setError] = useState("");

@@ -11,7 +11,7 @@ import "../Home/PopularInstructors/style.css";
 import { FaChalkboardTeacher, FaQuoteLeft } from "react-icons/fa";
 import useTitle from "../../hooks/useTitle";
 import { useEffect, useState } from "react";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import { ClipLoader } from "react-spinners";
 import useUserData from "../../hooks/useUserData";
 

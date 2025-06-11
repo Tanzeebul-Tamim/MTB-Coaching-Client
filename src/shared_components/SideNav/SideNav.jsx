@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ActiveLink2 from "../../activeLink2/ActiveLink2";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
 import SklSideNav from "../../skeletons/SklSideNav";
 import useUserData from "../../hooks/useUserData";

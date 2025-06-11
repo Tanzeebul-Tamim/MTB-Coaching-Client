@@ -4,7 +4,7 @@ import { PropagateLoader } from "react-spinners";
 import { getUserData } from "../api/authApi";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import useScreenSize from "../hooks/useScreeSize";
+import useScreenSize from "../hooks/useScreenSize";
 import SklDashboardTitle from "../skeletons/SklDashboardTitle";
 
 const RoleRoute = ({ allowedRole, children }) => {

@@ -1,7 +1,7 @@
 import useTitle from "../../hooks/useTitle";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../ScrollToTop/ScrollWithOffset";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const Legal = () => {
     useTitle("| Legal");

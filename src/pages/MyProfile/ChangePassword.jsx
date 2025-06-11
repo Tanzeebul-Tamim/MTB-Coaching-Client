@@ -10,7 +10,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import app from "../../firebase/firebase.config";
 import { Slide, toast } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
-import useScreenSize from "../../hooks/useScreeSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const auth = getAuth(app);
 
