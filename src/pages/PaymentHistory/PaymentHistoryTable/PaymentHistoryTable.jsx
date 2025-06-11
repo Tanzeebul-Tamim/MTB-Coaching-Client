@@ -1,8 +1,14 @@
 import PaymentHistoryTableHead from "./PaymentHistoryTableHead";
 import moment from "moment/moment";
 
-const PaymentHistoryTable = ({ userBookings, search, settings }) => {
+const PaymentHistoryTable = ({
+    userBookings,
+    search,
+    settings,
+    isSmallDevice,
+}) => {
     const { resultsPerPage, currentPage } = settings;
+    const length = isSmallDevice ? 5 : 10;
 
     const sortedBookings = [...userBookings].sort((a, b) => {
         return moment(b.date).unix() - moment(a.date).unix();
@@ -25,7 +31,13 @@ const PaymentHistoryTable = ({ userBookings, search, settings }) => {
     }
 
     return (
-        <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+        <div
+            className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
+                sortedBookings.length > length
+                    ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
+                    : ""
+            }`}
+        >
             <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <PaymentHistoryTableHead />

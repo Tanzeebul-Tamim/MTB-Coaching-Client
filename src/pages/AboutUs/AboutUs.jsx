@@ -26,7 +26,7 @@ const AboutUs = () => {
                     >
                         About Us
                     </h1>
-                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-sm text-xs md:text-lg leading-relaxed">
+                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         Welcome to{" "}
                         <strong className="text-yellow-500 italic">
                             Professional Mountain Biking Coaching Network!{" "}
@@ -38,7 +38,7 @@ const AboutUs = () => {
                         providing quality services and instruction to riders of
                         all levels.
                     </p>
-                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-sm text-xs md:text-lg leading-relaxed">
+                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         At the core of our mission is a commitment to
                         excellence. We strive to deliver exceptional experiences
                         and inspire riders to improve their skills, push their
@@ -47,7 +47,7 @@ const AboutUs = () => {
                         ensure that every rider receives personalized attention
                         and guidance tailored to their abilities and goals.
                     </p>
-                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-sm text-xs md:text-lg leading-relaxed">
+                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         We believe in the power of community and the importance
                         of sharing our love for mountain biking. Through our
                         programs, events, and organized rides, we create
@@ -57,7 +57,7 @@ const AboutUs = () => {
                         mountain biking community are invaluable and contribute
                         to the growth and enjoyment of the sport.
                     </p>
-                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-sm text-xs md:text-lg leading-relaxed">
+                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         Safety is paramount in everything we do. We prioritize
                         providing a safe and secure environment for riders to
                         learn and progress. Our instructors are certified and
@@ -67,7 +67,7 @@ const AboutUs = () => {
                         and stewardship to preserve and protect the natural
                         beauty of our riding areas.
                     </p>
-                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-sm text-xs md:text-lg leading-relaxed">
+                    <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         Whether you are a beginner seeking to embark on your
                         first mountain biking adventure or an experienced rider
                         looking to refine your skills, we welcome you to join

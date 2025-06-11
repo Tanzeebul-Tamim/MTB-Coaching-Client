@@ -31,7 +31,13 @@ const EnrolledClassesTable = ({
     }
 
     return (
-        <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+        <div
+            className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
+                sortedBookings.length > 5
+                    ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
+                    : ""
+            }`}
+        >
             <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <EnrolledClassesTableHead />

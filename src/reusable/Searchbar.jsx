@@ -13,9 +13,7 @@ const Searchbar = ({
 }) => {
     // Update filtered items when items or search changes
     useEffect(() => {
-        if (!search) {
-            setFilteredItems(paginatedItems);
-        } else {
+        if (search) {
             const lowerSearch = search.toLowerCase();
             setFilteredItems(
                 items.filter((item) => {
@@ -34,6 +32,8 @@ const Searchbar = ({
                     });
                 })
             );
+        } else {
+            setFilteredItems(paginatedItems);
         }
     }, [items, search, paginatedItems, setFilteredItems, searchableFields]);
 

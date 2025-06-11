@@ -198,7 +198,9 @@ const ClassesTable = ({
                                                             userDetails.role ==
                                                                 "Instructor" ||
                                                             isBooked ||
-                                                            isEnrolled
+                                                            isEnrolled ||
+                                                            loading ||
+                                                            userLoading
                                                         }
                                                         className={`${
                                                             availableSeat == 0

@@ -2,7 +2,6 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { GiTeacher } from "react-icons/gi";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
 
 const InstructorCard = ({ topInstructor }) => {
     return (
@@ -33,15 +32,13 @@ const InstructorCard = ({ topInstructor }) => {
                     </div>
                 </div>
                 <div className="lg:mr-5 hidden lg:block">
-                    <ImageWithLoader
-                        gif="/user_avatar.png"
+                    <img
                         className="group-hover:scale-125 duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-zinc-400 lg:border-[4px] transition-all ease-in-out"
                         src={topInstructor.image}
                     />
                 </div>
                 <div className="lg:hidden absolute right-[2%] mr-2">
-                    <ImageWithLoader
-                        gif="/user_avatar.png"
+                    <img
                         className="group-hover:scale-110 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-zinc-400 border-[2px] transition-all ease-in-out"
                         src={topInstructor.image}
                     />

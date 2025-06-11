@@ -17,7 +17,8 @@ const useUserData = () => {
                 .catch((error) => console.error(error))
                 .finally(() => setLoading(false));
         } else if (!user) {
-            setLoading({});
+            setLoading(false);
+            setUserDetails({});
         }
     }, [user]);
 
