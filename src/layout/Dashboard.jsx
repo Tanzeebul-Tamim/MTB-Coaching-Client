@@ -2,17 +2,24 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useState } from "react";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import SideNav from "../shared_components/SideNav/SideNav";
-import RouteTracker from "../shared_components/RouteTracker";
+import RouteTracker from "../shared_components/RouteTracker/RouteTracker";
 import useScreenSize from "../hooks/useScreeSize";
+import useNetworkStatus from "../hooks/useNetworkStatus";
+import NoInternetPage from "../shared_components/NoInternetPage/NoInternetPage";
 
 const Dashboard = () => {
     const [sideNavOpen, setSideNavOpen] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const { isOnline } = useNetworkStatus();
     const location = useLocation();
     const validLocations = ["/profile", "/payment/", "/add-class"];
     const isValidLocation = validLocations.some((validLocation) =>
         location.pathname.includes(validLocation)
     );
+
+    if (!isOnline) {
+        return <NoInternetPage />;
+    }
 
     return (
         <div className="relative min-h-screen">

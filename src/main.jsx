@@ -28,6 +28,7 @@ import RoleRoute from "./roleRoute/RoleRoute";
 import MyCourses from "./pages/MyCourses/MyCourses";
 import MyStudents from "./pages/MyCourses/MyCoursesTable/MyStudents/MyStudents";
 import ScreenSizeProvider from "./providers/ScreenSizeProvider";
+import NetworkStatusProvider from "./providers/NetworkStatusProvider";
 
 const router = createBrowserRouter([
     {
@@ -160,21 +161,23 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <AuthProvider>
             <ScreenSizeProvider>
-                <RouterProvider router={router} />
-                <ToastContainer
-                    className=""
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    limit={2}
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                />
+                <NetworkStatusProvider>
+                    <RouterProvider router={router} />
+                    <ToastContainer
+                        className=""
+                        position="top-center"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        limit={2}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                    />
+                </NetworkStatusProvider>
             </ScreenSizeProvider>
         </AuthProvider>
     </React.StrictMode>
