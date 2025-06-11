@@ -43,6 +43,18 @@ const ErrorPage = () => {
             {isSmallDevice ? (
                 <div className="flex flex-col items-center justify-center w-full h-full flex-1">
                     <p className="description text-white w-full mb-8 text-lg text-center">
+                        Oops! Looks like you tried to land on a wrong trail.{" "}
+                        {error && error.message && (
+                            <>
+                                <span className="text-red-500 font-extrabold">
+                                    Because, {message}
+                                </span>
+                                <span className="text-yellow-500 font-extrabold">
+                                    {route}
+                                </span>
+                            </>
+                        )}{" "}
+                        Keep pedaling and stay tuned for our triumphant return!
                     </p>
                     <img
                         src="/error_gif.gif"

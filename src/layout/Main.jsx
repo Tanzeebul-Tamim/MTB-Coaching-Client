@@ -5,6 +5,7 @@ import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import RouteTracker from "../shared_components/RouteTracker/RouteTracker";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 import NoInternetPage from "../shared_components/NoInternetPage/NoInternetPage";
+import InstallPWAButton from "../reusable/InstallPWAButton";
 
 const Main = () => {
     const { isOnline } = useNetworkStatus();
@@ -20,6 +21,7 @@ const Main = () => {
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
+            <InstallPWAButton />
         </div>
     );
 };
