@@ -8,10 +8,10 @@ import useTitle from "../../Helmet/useTitle";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./styles/style.css";
-import { getUserData } from "../../api/authApi";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import ImageWithLoader from "../../reusable/ImageWithLoader";
+import useUserData from "../../hooks/useUserData";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
 
@@ -20,7 +20,6 @@ const PaymentConfirmation = () => {
     const [flipped, setFlipped] = useState(false);
     const studentName = classItem?.studentName;
     const [focus, setFocus] = useState(null);
-    const [userDetails, setUserDetails] = useState(null);
     const { studentId, itemId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,15 +29,13 @@ const PaymentConfirmation = () => {
         name: studentName,
         number: "",
     });
-    const { user, loading } = useAuth();
-    const [loading2, setLoading2] = useState(false);
+    const { loading } = useAuth();
+    const {
+        loading: loading2,
+        setLoading: setLoading2,
+        userDetails,
+    } = useUserData();
     useTitle("| Payment");
-
-    useEffect(() => {
-        if (user?.email) {
-            getUserData(user.email).then((data) => setUserDetails(data));
-        }
-    }, [user]);
 
     useEffect(() => {
         if (userDetails?._id && studentId && itemId) {
@@ -74,7 +71,6 @@ const PaymentConfirmation = () => {
                     }
                     const data = await res.json();
                     setClassItem(data);
-                    setLoading2(false);
                 })
                 .catch((error) => {
                     console.error(error);

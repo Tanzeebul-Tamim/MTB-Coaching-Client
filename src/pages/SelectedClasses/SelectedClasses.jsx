@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getUserData } from "../../api/authApi";
 import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
@@ -13,30 +12,17 @@ import SklSelectedClasses from "../../skeletons/SklSelectedClasses";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";
 import Pagination from "../../reusable/Pagination";
+import useUserData from "../../hooks/useUserData";
 
 const SelectedClasses = () => {
     const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
     const [userBookings, setUserBookings] = useState([]);
-    const [loading, setLoading] = useState(false);
     const unpaidBookings = userBookings.filter(
         (booking) => booking.paymentStatus === "unpaid"
     );
     const { isSmallDevice } = useScreenSize();
+    const { loading, userDetails } = useUserData();
     useTitle("| Booked Courses");
-
-    useEffect(() => {
-        if (user && user.email) {
-            setLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
-        }
-    }, [user]);
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {

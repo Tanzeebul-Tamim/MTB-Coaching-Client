@@ -31,7 +31,6 @@ const Instructors = () => {
         getTotalInstructors()
             .then((data) => {
                 setTotalInstructors(data);
-                setLoading(false);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
@@ -42,7 +41,6 @@ const Instructors = () => {
         getAllInstructors(visibleCount, search)
             .then((data) => {
                 setInstructors(data);
-                setLoading(false);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));

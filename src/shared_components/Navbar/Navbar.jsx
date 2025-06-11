@@ -10,14 +10,13 @@ import { LuLayoutDashboard, LuScale } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
 import useAuth from "../../hooks/useAuth";
+import useUserData from "../../hooks/useUserData";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const { user, logOut, loading, booking } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
     const [userBookings, setUserBookings] = useState([]);
     const location = useLocation();
     const checkPrivatePath =
@@ -31,15 +30,7 @@ const Navbar = () => {
         localStorage.setItem("location", location.pathname);
     }
 
-    useEffect(() => {
-        if (user && user.email) {
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                })
-                .catch((error) => console.error(error));
-        }
-    }, [user]);
+    const { userDetails, setUserDetails } = useUserData();
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {
@@ -55,7 +46,7 @@ const Navbar = () => {
             setUserDetails({});
             setUserBookings([]);
         }
-    }, [user, userDetails._id, booking]);
+    }, [user, userDetails._id, booking, setUserDetails]);
 
     const handleLogOut = () => {
         logOut()

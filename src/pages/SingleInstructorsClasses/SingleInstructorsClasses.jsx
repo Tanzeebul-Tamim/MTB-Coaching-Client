@@ -38,7 +38,6 @@ const SingleInstructorsClasses = () => {
             .then((res) => res.json())
             .then((data) => {
                 setTotalAttendee(data.totalStudents);
-                setLoading(false);
             })
             .catch((err) =>
                 console.error("Failed to fetch total attendees:", err)

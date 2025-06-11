@@ -3,17 +3,15 @@ import { useEffect, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { ImPriceTags } from "react-icons/im";
 import { MdLibraryAdd } from "react-icons/md";
-import { getUserData } from "../../api/authApi";
 import { bookClass, getBookedClasses } from "../../api/bookApi";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import ImageWithLoader from "../../reusable/ImageWithLoader";
+import useUserData from "../../hooks/useUserData";
 
 const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
     const availableSeat = classItem.studentSlot - classItem.totalStudent;
     const { user, booking, setBooking, loading } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
-    const [userLoading, setUserLoading] = useState(false);
     const [userBookings, setUserBookings] = useState([]);
     const [bookedClasses, setBookedClasses] = useState([]);
     const [enrolledClasses, setEnrolledClasses] = useState([]);
@@ -23,19 +21,7 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
     const paid = userBookings?.filter(
         (booking) => booking.paymentStatus === "paid"
     );
-
-    useEffect(() => {
-        if (user && user.email) {
-            setUserLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setUserLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setUserLoading(false));
-        }
-    }, [user]);
+    const { loading: userLoading, userDetails } = useUserData();
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {

@@ -30,7 +30,6 @@ const PopularClasses = () => {
         getTopClasses()
             .then((data) => {
                 setTopClasses(data);
-                setLoading(false);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));

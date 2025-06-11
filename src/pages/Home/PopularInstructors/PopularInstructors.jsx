@@ -31,7 +31,6 @@ const PopularInstructors = () => {
         getTopInstructors()
             .then((data) => {
                 setTopInstructors(data.topInstructors);
-                setLoading(false);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));

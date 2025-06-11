@@ -10,8 +10,8 @@ import { BsSearch } from "react-icons/bs";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../skeletons/SklClasses";
-import { getUserData } from "../../api/authApi";
 import useAuth from "../../hooks/useAuth";
+import useUserData from "../../hooks/useUserData";
 
 const titleDescription =
     "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
@@ -21,12 +21,11 @@ const Classes = () => {
     const [loading, setLoading] = useState(false);
     const [visibleCount, setVisibleCount] = useState(5);
     const [search, setSearch] = useState("");
-    const [userDetails, setUserDetails] = useState({});
-    const [userLoading, setUserLoading] = useState(false);
     const { user, ...rest } = useAuth();
     const searchRef = useRef(null);
     const tableRef = useRef(null);
     const { isSmallDevice } = useScreenSize();
+    const { loading: userLoading, userDetails } = useUserData();
     useTitle("| Courses");
 
     const [totalClasses, setTotalClasses] = useState({});
@@ -44,7 +43,6 @@ const Classes = () => {
         getAllClasses(visibleCount, search)
             .then((data) => {
                 setClasses(data);
-                setLoading(false);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
@@ -76,21 +74,6 @@ const Classes = () => {
             });
         }
     };
-
-    useEffect(() => {
-        if (user && user.email) {
-            setUserLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setUserLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setUserLoading(false));
-        } else if (!user) {
-            setUserDetails({});
-        }
-    }, [user]);
 
     return (
         <div className="lg:pb-24 pb-8">

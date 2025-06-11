@@ -1,6 +1,3 @@
-import { getUserData } from "../../api/authApi";
-import { useState } from "react";
-import { useEffect } from "react";
 import useTitle from "../../Helmet/useTitle";
 import UpdateProfileForm from "./UpdateProfileForm";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
@@ -8,25 +5,14 @@ import ChangePassword from "./ChangePassword";
 import useAuth from "../../hooks/useAuth";
 import SklMyProfile from "../../skeletons/SklMyProfile";
 import ImageWithLoader from "../../reusable/ImageWithLoader";
+import useUserData from "../../hooks/useUserData";
 
 const MyProfile = () => {
     const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
-    const [loading, setLoading] = useState(false);
+    const { loading, userDetails } = useUserData();
     const firstName = userDetails?.name?.split(" ")[0];
     const title = firstName ? `${firstName}'s` : "My";
     useTitle(`| ${title} Profile`);
-
-    useEffect(() => {
-        setLoading(true);
-        getUserData(user.email)
-            .then((data) => {
-                setUserDetails(data);
-                setLoading(false);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    }, [user]);
 
     return (
         <>

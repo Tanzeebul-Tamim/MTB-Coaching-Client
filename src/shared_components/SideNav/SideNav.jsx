@@ -4,40 +4,28 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ActiveLink2 from "../../activeLink2/ActiveLink2";
-import { getUserData } from "../../api/authApi";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
 import SklSideNav from "../../skeletons/SklSideNav";
+import useUserData from "../../hooks/useUserData";
 
 const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
-    const { user, loading } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
-    const [userLoading, setUserLoading] = useState(false);
-    const [title, setTitle] = useState('User');
+    const { loading } = useAuth();
+    const [title, setTitle] = useState("User");
     const { isSmallDevice } = useScreenSize();
+    const { loading: userLoading, userDetails } = useUserData();
 
     useEffect(() => {
-        setUserLoading(true);
-        getUserData(user?.email)
-            .then((data) => {
-                setUserDetails(data);
-                setUserLoading(false);
-
-                if (!loading && !userLoading) {
-                    if (userDetails?.role === "Instructor") {
-                        setTitle("Instructor");
-                    } else if (userDetails?.role === "Student") {
-                        setTitle("Student");
-                    }
-                }
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setUserLoading(false));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user?.email, userDetails.role]);
+        if (!loading && !userLoading) {
+            if (userDetails?.role === "Instructor") {
+                setTitle("Instructor");
+            } else if (userDetails?.role === "Student") {
+                setTitle("Student");
+            }
+        }
+    }, [loading, userDetails?.role, userLoading]);
 
     return (
         <div
@@ -159,10 +147,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
                             </ActiveLink2>
                         </>
                     )}
-                {loading ||
-                    (userLoading && (
-                        <SklSideNav/>
-                    ))}
+                {loading || (userLoading && <SklSideNav />)}
             </div>
         </div>
     );

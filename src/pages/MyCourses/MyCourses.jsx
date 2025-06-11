@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { getUserData } from "../../api/authApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import useTitle from "../../Helmet/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
-import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreeSize";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
@@ -11,27 +9,13 @@ import SklMyCourses from "../../skeletons/SklMyCourses";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";
 import Pagination from "../../reusable/Pagination";
+import useUserData from "../../hooks/useUserData";
 
 const MyCourses = () => {
-    const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
     const [totalStudent, setTotalStudent] = useState(0);
-    const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const { loading, userDetails } = useUserData();
     useTitle("| My Courses");
-
-    useEffect(() => {
-        if (user && user.email) {
-            setLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
-        }
-    }, [user]);
 
     useEffect(() => {
         if (userDetails && userDetails._id) {

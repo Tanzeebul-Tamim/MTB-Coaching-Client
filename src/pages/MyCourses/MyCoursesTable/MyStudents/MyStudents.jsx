@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../../../Helmet/useTitle";
-import { getUserData } from "../../../../api/authApi";
 import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { Link, useParams } from "react-router-dom";
-import useAuth from "../../../../hooks/useAuth";
 import useScreenSize from "../../../../hooks/useScreeSize";
 import { PiStudentFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
@@ -12,29 +10,15 @@ import SklMyStudents from "../../../../skeletons/SklMyStudents";
 import Searchbar from "../../../../reusable/Searchbar";
 import usePagination from "../../../../hooks/usePagination";
 import Pagination from "../../../../reusable/Pagination";
+import useUserData from "../../../../hooks/useUserData";
 
 const MyStudents = () => {
     const { idx } = useParams();
     const parsedIdx = parseInt(idx);
-    const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
     const [students, setStudents] = useState([]);
-    const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const { loading, userDetails, setLoading } = useUserData();
     useTitle("| My Students");
-
-    useEffect(() => {
-        if (user && user.email) {
-            setLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
-        }
-    }, [user]);
 
     useEffect(() => {
         setLoading(true);
@@ -47,11 +31,11 @@ const MyStudents = () => {
                 .then(async (res) => await res.json())
                 .then((data) => {
                     setStudents(data.students);
-                    setLoading(false);
                 })
                 .catch((error) => console.error(error))
                 .finally(() => setLoading(false));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [idx, userDetails]);
 
     const [search, setSearch] = useState("");
@@ -130,7 +114,10 @@ const MyStudents = () => {
             {/* Pagination Controls at the bottom */}
             <Pagination search={search} paginationHook={paginationHook} />
             <div className="flex justify-center items-center mt-3">
-                <Link to="/dashboard/my-classes" className="lg:z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700">
+                <Link
+                    to="/dashboard/my-classes"
+                    className="lg:z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                >
                     <span>Go Back</span>
                 </Link>
             </div>

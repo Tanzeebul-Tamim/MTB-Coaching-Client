@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../Helmet/useTitle";
-import { getUserData } from "../../api/authApi";
 import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
 import PaymentHistoryTable from "./PaymentHistoryTable/PaymentHistoryTable";
@@ -11,30 +10,17 @@ import SklPaymentHistory from "../../skeletons/SklPaymentHistory";
 import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../reusable/Searchbar";
 import Pagination from "../../reusable/Pagination";
+import useUserData from "../../hooks/useUserData";
 
 const PaymentHistory = () => {
     const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({});
     const [userBookings, setUserBookings] = useState([]);
-    const [loading, setLoading] = useState(false);
     const paidBookings = userBookings.filter(
         (booking) => booking.paymentStatus === "paid"
     );
     const { isSmallDevice } = useScreenSize();
+    const { loading, userDetails } = useUserData();
     useTitle("| Payment History");
-
-    useEffect(() => {
-        if (user && user.email) {
-            setLoading(true);
-            getUserData(user.email)
-                .then((data) => {
-                    setUserDetails(data);
-                    setLoading(false);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
-        }
-    }, [user]);
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {
