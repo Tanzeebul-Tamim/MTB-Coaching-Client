@@ -29,6 +29,7 @@ import MyCourses from "./pages/MyCourses/MyCourses";
 import MyStudents from "./pages/MyCourses/MyCoursesTable/MyStudents/MyStudents";
 import ScreenSizeProvider from "./providers/ScreenSizeProvider";
 import NetworkStatusProvider from "./providers/NetworkStatusProvider";
+import Faq from "./pages/Faq/Faq";
 
 const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
             {
                 path: "legal",
                 element: <Legal></Legal>,
+            },
+            {
+                path: "support",
+                element: <Faq></Faq>,
             },
         ],
     },

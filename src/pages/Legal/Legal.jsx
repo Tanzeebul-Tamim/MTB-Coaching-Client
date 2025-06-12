@@ -110,9 +110,9 @@ const Legal = () => {
                                 User Data Deletion
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                If you logged into this site using your email,
-                                Google and want your data removed
-                                from Firebase, you can email a request to:
+                                If you logged into this site using your email or
+                                Google and want your data removed from Firebase,
+                                you can email a request to:
                             </p>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 {" "}
@@ -128,8 +128,8 @@ const Legal = () => {
                             </p>
                             <p className="text-sm md:text-base">
                                 Include the Google email you used to sign in.
-                                Your data will be deleted within a few business
-                                days.
+                                Your data will be deleted in most cases within
+                                that day.
                             </p>
                         </section>
 

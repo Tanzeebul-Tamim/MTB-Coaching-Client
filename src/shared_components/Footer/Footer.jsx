@@ -7,30 +7,34 @@ import useScreenSize from "../../hooks/useScreenSize";
 const Footer = () => {
     const location = useLocation();
     const { isSmallDevice } = useScreenSize();
+    const bgLocations =
+        location.pathname == "/instructors" || location.pathname == "/classes";
 
     return (
         <div
             style={{
-                backgroundImage:
-                    location.pathname == "/instructors" ||
-                    location.pathname == "/classes"
-                        ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/footer.avif')"
-                        : "none",
+                backgroundImage: bgLocations
+                    ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/footer.avif')"
+                    : "none",
                 backgroundPosition: isSmallDevice ? "70% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
             }}
             className="relative bg-gradient-to-t from-base-200 to-base-300"
         >
-            <footer className="footer p-10 bg-transparent text-base-content">
+            <footer
+                className={`footer p-10 bg-transparent ${
+                    bgLocations ? "text-white" : "text-base-content"
+                }`}
+            >
                 <div>
-                    <span className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500">
+                    <span className="uppercase text-lg lg:text-xl text-secondary">
                         Our Location
                     </span>
                     <LeafletMap></LeafletMap>
                 </div>
                 <div>
-                    <span className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500">
+                    <span className="uppercase text-lg lg:text-xl text-secondary">
                         Opening Hours
                     </span>
                     <span className="text-sm description">
@@ -44,24 +48,7 @@ const Footer = () => {
                     </span>
                 </div>
                 <div>
-                    <span className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500">
-                        Services
-                    </span>
-                    <a className="text-sm description link link-hover">
-                        Branding
-                    </a>
-                    <a className="text-sm description link link-hover">
-                        Design
-                    </a>
-                    <a className="text-sm description link link-hover">
-                        Marketing
-                    </a>
-                    <a className="text-sm description link link-hover">
-                        Advertisement
-                    </a>
-                </div>
-                <div>
-                    <span className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500">
+                    <span className="uppercase text-lg lg:text-xl text-secondary">
                         Contact Us
                     </span>
                     <span className="text-sm description">
@@ -86,8 +73,48 @@ const Footer = () => {
                 </div>
                 <div>
                     <RouterLink
+                        to="/support"
+                        className="uppercase text-lg lg:text-xl text-secondary"
+                    >
+                        FAQ & Support
+                    </RouterLink>
+                    <HashLink
+                        smooth
+                        to="/support#getting-started"
+                        scroll={scrollWithOffset}
+                        className="text-sm description link link-hover"
+                    >
+                        Getting Started
+                    </HashLink>
+                    <HashLink
+                        smooth
+                        to="/support#troubleshooting"
+                        scroll={scrollWithOffset}
+                        className="text-sm description link link-hover"
+                    >
+                        Troubleshooting
+                    </HashLink>
+                    <HashLink
+                        smooth
+                        to="/support#account-data"
+                        scroll={scrollWithOffset}
+                        className="text-sm description link link-hover"
+                    >
+                        Account & Data
+                    </HashLink>
+                    <HashLink
+                        smooth
+                        to="/support#contact-support"
+                        scroll={scrollWithOffset}
+                        className="text-sm description link link-hover"
+                    >
+                        Contact Support
+                    </HashLink>
+                </div>
+                <div>
+                    <RouterLink
                         to="/legal"
-                        className="uppercase text-lg lg:text-xl text-yellow-500 lg:text-yellow-500"
+                        className="uppercase text-lg lg:text-xl text-secondary"
                     >
                         Legal
                     </RouterLink>
@@ -97,7 +124,7 @@ const Footer = () => {
                         scroll={scrollWithOffset}
                         className="text-sm description link link-hover"
                     >
-                        Privacy policy
+                        Privacy Policy
                     </HashLink>
                     <HashLink
                         smooth
@@ -105,7 +132,7 @@ const Footer = () => {
                         scroll={scrollWithOffset}
                         className="text-sm description link link-hover"
                     >
-                        Terms of service
+                        Terms of Service
                     </HashLink>
                     <HashLink
                         smooth
@@ -113,7 +140,7 @@ const Footer = () => {
                         scroll={scrollWithOffset}
                         className="text-sm description link link-hover"
                     >
-                        User data deletion
+                        User Data Deletion
                     </HashLink>
                     <HashLink
                         smooth
@@ -125,7 +152,18 @@ const Footer = () => {
                     </HashLink>
                 </div>
             </footer>
-            <footer className="footer border-t border-slate-500 px-10 py-6 bg-transparent text-base-content">
+            <div className="flex justify-center">
+                <hr
+                    className={`border-1 ${
+                        bgLocations ? "border-white" : "border-base-content"
+                    } dark:border-opacity-50 border-opacity-50 w-[95%]`}
+                ></hr>
+            </div>
+            <footer
+                className={`footer px-10 py-6 bg-transparent ${
+                    bgLocations ? "text-white" : "text-base-content"
+                }`}
+            >
                 <div className="items-center grid-flow-col">
                     <img style={{ height: "60px" }} src="/logo.png" alt="" />
                     <p className="text-sm description">
@@ -148,7 +186,7 @@ const Footer = () => {
                         Developed by
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
-                            className="uppercase ms-1 font-bold text-yellow-500 underline"
+                            className="uppercase ms-1 font-bold text-secondary underline"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
