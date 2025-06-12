@@ -1,45 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lighttheme" class="dark">
+    <head>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <style>
+            /* Style the input field */
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
 
-<head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  <style>
-    /* Style the input field */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  
-    input[type="number"] {
-      -moz-appearance: textfield; /* Firefox */
-    }
-  </style>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            input[type="number"] {
+                -moz-appearance: textfield; /* Firefox */
+            }
+        </style>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/logo.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Khand&family=Oswald:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <link rel="manifest" href="/manifest.json" />
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Khand&family=Oswald:wght@600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="manifest" href="/manifest.json" />
 
-  <!-- PWA meta tags -->
-  <meta name="theme-color" content="#eab308" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <!-- PWA meta tags -->
+        <meta name="theme-color" content="#eab308" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <title>Professional Mountain Biking Instructors Association</title>
-</head>
+        <title>Professional Mountain Biking Instructors Association</title>
+    </head>
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
 </html>

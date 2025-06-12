@@ -13,6 +13,7 @@ import "./Navbar.css";
 import { getBookedClasses } from "../../api/bookApi";
 import useAuth from "../../hooks/useAuth";
 import useUserData from "../../hooks/useUserData";
+import ThemeToggle from "../../reusable/ThemeToggle";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -55,13 +56,17 @@ const Navbar = () => {
     };
 
     const navRef = useRef(null);
+    const toggleRef = useRef(null);
 
     useEffect(() => {
         function handleClickOutside(event) {
+            // prevents the menu from auto-opening again when you click the close button. The toggle only flips the state once.
             if (
                 open &&
                 navRef.current &&
-                !navRef.current.contains(event.target)
+                toggleRef.current &&
+                !navRef.current.contains(event.target) &&
+                !toggleRef.current.contains(event.target)
             ) {
                 setOpen(false);
             }
@@ -73,17 +78,19 @@ const Navbar = () => {
         };
     }, [open]);
 
-    const customColor = "text-amber-100";
+    const customColor = "dark:text-amber-100 text-orange-700";
 
     return (
         <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
             <div className="navbar-start gap-1 lg:gap-6 flex items-center">
                 <div
                     ref={navRef}
-                    className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
+                    className={`mt-4 flex flex-col bg-opacity-60 absolute duration-300 uppercase ${
                         open ? "top-10 right-5" : "top-10 -right-[150px]"
-                    } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
+                    } lg:hidden z-10 py-2 px-4 bg-base-100 border border-base-content rounded-xl border-opacity-40`}
                 >
+                    <ThemeToggle />
+                    <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
                     <ActiveLink to="/">
                         <span
                             onClick={() => setOpen(!open)}
@@ -140,7 +147,7 @@ const Navbar = () => {
                             Legal
                         </span>
                     </ActiveLink>
-                    <hr className="opacity-60 pb-[3px]" />
+                    <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
                     <ActiveLink customColor={customColor} to="/register">
                         <span
                             onClick={() => setOpen(!open)}
@@ -181,21 +188,31 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-center uppercase lg:block hidden">
-                <div className="flex nav-btn glow-effect py-3 px-6 rounded-full gap-5 tracking-[2px] text-xl">
-                    <ActiveLink className="hover:text-yellow-400" to="/">
+                <div className="flex nav-btn glow-effect py-3 px-6 rounded-full gap-5 tracking-[2px] text-xl items-center">
+                    <ActiveLink
+                        dark={true}
+                        className="hover:text-yellow-400"
+                        to="/"
+                    >
                         <div>Home</div>
                     </ActiveLink>
                     <ActiveLink
+                        dark={true}
                         className="hover:text-yellow-400"
                         to="/instructors"
                     >
                         <div>Instructors</div>
                     </ActiveLink>
-                    <ActiveLink className="hover:text-yellow-400" to="/classes">
+                    <ActiveLink
+                        dark={true}
+                        className="hover:text-yellow-400"
+                        to="/classes"
+                    >
                         <div>Courses</div>
                     </ActiveLink>
                     {user && (
                         <ActiveLink
+                            dark={true}
                             className="hover:text-yellow-400"
                             to="/dashboard/profile"
                         >
@@ -203,11 +220,13 @@ const Navbar = () => {
                         </ActiveLink>
                     )}
                     <ActiveLink
+                        dark={true}
                         className="hover:text-yellow-400"
                         to="/about-us"
                     >
                         <div>About Us</div>
                     </ActiveLink>
+                    <ThemeToggle />
                 </div>
             </div>
             {user ? (
@@ -260,6 +279,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             ) : loading ? (
+                // Login-Logout button skeleton
                 <div className="navbar-end uppercase gap-5 lg:flex hidden animate-pulse">
                     <div className="h-6 bg-gray-200 rounded-md w-1/6"></div>
                     <div className="h-6 bg-gray-200 rounded-md w-1/6"></div>
@@ -320,6 +340,7 @@ const Navbar = () => {
                 )}
                 <div
                     className="relative w-8 h-8 flex items-center justify-center cursor-pointer text-2xl"
+                    ref={toggleRef}
                     onClick={() => setOpen(!open)}
                 >
                     <span
@@ -330,7 +351,7 @@ const Navbar = () => {
                         }`}
                         style={{ transitionProperty: "opacity" }}
                     >
-                        <CgMenuGridO />
+                        <CgMenuGridO className="text-[#f5f3f0]" />
                     </span>
                     <span
                         className={`absolute transition-opacity duration-500 ease-in-out ${
@@ -340,7 +361,7 @@ const Navbar = () => {
                         }`}
                         style={{ transitionProperty: "opacity" }}
                     >
-                        <IoMdClose />
+                        <IoMdClose className="text-[#f5f3f0]" />
                     </span>
                 </div>
             </div>
