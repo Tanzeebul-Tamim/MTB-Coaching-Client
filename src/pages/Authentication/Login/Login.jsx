@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaEyeSlash, FaEye, FaFacebookF } from "react-icons/fa";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import useTitle from "../../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -16,15 +16,7 @@ import { saveUserViaSocial } from "../../../api/authApi";
 import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-    const {
-        signIn,
-        setLoading,
-        loading,
-        googleSignIn,
-        facebookSignIn,
-        logOut,
-        passwordReset,
-    } = useAuth();
+    const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } = useAuth();
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
@@ -56,21 +48,6 @@ const Login = () => {
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, []);
-
-    const handleFacebookSignIn = () => {
-        facebookSignIn()
-            .then((result) => {
-                saveUserViaSocial(result.user);
-            })
-            .then(() => {
-                navigate(from, { replace: true });
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setLoading(false);
-            });
-    };
 
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -312,16 +289,12 @@ const Login = () => {
                             <button
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="hover:scale-110 btn hover:bg-stone-700 bg-stone-800 btn-circle"
+                                className="hover:scale-110 btn btn-circle hover:bg-stone-700 bg-stone-800 z-[10] flex justify-center items-center w-2/3 gap-3"
                             >
-                                <FcGoogle className="text-2xl" />
-                            </button>
-                            <button
-                                formNoValidate
-                                onClick={handleFacebookSignIn}
-                                className="hover:scale-110 btn hover:bg-stone-700 bg-stone-800 btn-circle"
-                            >
-                                <FaFacebookF className="text-2xl text-[#1877F2]" />
+                                <FcGoogle className="text-2xl" />{" "}
+                                <span className="font-thin font-sans tracking-widest text-lg">
+                                    Google
+                                </span>
                             </button>
                         </div>
                         <div className="z-[10] form-control mt-6">

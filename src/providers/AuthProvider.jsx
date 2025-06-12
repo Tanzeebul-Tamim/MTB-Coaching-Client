@@ -1,6 +1,5 @@
 import { useState, createContext } from "react";
 import {
-  FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -24,18 +23,10 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [booking, setBooking] = useState(false);
   const googleProvider = new GoogleAuthProvider();
-  const facebookProvider = new FacebookAuthProvider();
-  facebookProvider.addScope('email');
-  facebookProvider.addScope('public_profile');
 
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
-  };
-
-  const facebookSignIn = () => {
-    setLoading(true);
-    return signInWithPopup(auth, facebookProvider);
   };
 
   const createUser = (email, password) => {
@@ -88,7 +79,6 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     googleSignIn,
-    facebookSignIn,
     updateUser,
     booking,
     setBooking,

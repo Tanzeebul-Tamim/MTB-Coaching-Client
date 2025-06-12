@@ -111,7 +111,7 @@ const Legal = () => {
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 If you logged into this site using your email,
-                                Google or Facebook and want your data removed
+                                Google and want your data removed
                                 from Firebase, you can email a request to:
                             </p>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">

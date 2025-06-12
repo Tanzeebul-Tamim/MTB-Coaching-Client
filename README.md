@@ -165,7 +165,7 @@ MTB-Coaching-Client/
       </p>
 
       - Captcha validation is required for login to enhance security.
-      - Social login options ***(Google and Facebook)*** are also available for quick access.
+      - Social login option ***(Google)*** is also available for quick access.
       - Only users with verified emails can log in.
 
   <br>
@@ -193,19 +193,10 @@ MTB-Coaching-Client/
       
    <br>
 
-   - ***Social Authentication:***
-      - ***Login with Google Account:***
-         <p align="center">
-            <img src="documentation/gmail-authentication.png" width="750" alt="Login1"/>
-         </p>
-
-      - ***Login with Facebook Account:***
-         <p align="center">
-            <img src="documentation/facebook-authentication.png" width="750" alt="Login1"/>
-         </p>
-
-         > **⚠️ Note:** <br>
-         > Facebook login may not return your email or profile picture due to Facebook API limitations, especially because the app is not published since it's a practice project (business verification required). This is a Facebook/Meta restriction, not a bug in this app.
+   - ***Google Authentication:***
+      <p align="center">
+         <img src="documentation/gmail-authentication.png" width="750" alt="Login1"/>
+      </p>
    
    <br>
 

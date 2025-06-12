@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaEyeSlash, FaEye, FaFacebookF } from "react-icons/fa";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useTitle from "../../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
@@ -19,7 +19,6 @@ const InstructorRegister = () => {
         loading,
         logOut,
         googleSignIn,
-        facebookSignIn,
         emailVerification,
     } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
@@ -266,19 +265,6 @@ const InstructorRegister = () => {
 
     const togglePasswordVisibility2 = () => {
         setShowPassword2(!showPassword2);
-    };
-
-    const handleFacebookSignIn = () => {
-        facebookSignIn()
-            .then((result) => {
-                saveInstructorViaSocial(result.user);
-                navigate(from, { replace: true });
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setLoading(false);
-            });
     };
 
     const handleGoogleSignIn = () => {
@@ -579,16 +565,12 @@ const InstructorRegister = () => {
                             <button
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="hover:scale-110 btn hover:bg-stone-700 bg-stone-800 btn-circle"
+                                className="hover:scale-110 btn btn-circle hover:bg-stone-700 bg-stone-800 z-[10] flex justify-center items-center w-2/3 gap-3"
                             >
-                                <FcGoogle className="text-2xl" />
-                            </button>
-                            <button
-                                formNoValidate
-                                onClick={handleFacebookSignIn}
-                                className="hover:scale-110 btn hover:bg-stone-700 bg-stone-800 btn-circle"
-                            >
-                                <FaFacebookF className="text-2xl text-[#1877F2]" />
+                                <FcGoogle className="text-2xl" />{" "}
+                                <span className="font-thin font-sans tracking-widest text-lg">
+                                    Google
+                                </span>
                             </button>
                         </div>
                         <div className="z-[10] mt-6 form-control">
