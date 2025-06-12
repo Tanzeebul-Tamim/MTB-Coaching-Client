@@ -15,17 +15,17 @@ const InstructorCard = ({ topInstructor }) => {
                         {topInstructor.name}
                     </h2>
                     {topInstructor.quote && (
-                        <div className="text-white max-w-[75%] flex gap-2 items-center">
+                        <div className="text-base-content max-w-[75%] flex gap-2 items-center">
                             <FaQuoteLeft className="text-lg" />
                             <strong>&quot;{topInstructor.quote}&quot;</strong>
                         </div>
                     )}
-                    <div className="text-white flex gap-2 items-center">
+                    <div className="text-base-content flex gap-2 items-center">
                         <IoSchoolSharp className="text-lg" />
                         <strong>Total Attendees:</strong>{" "}
                         {topInstructor.totalStudents}
                     </div>
-                    <div className="text-white flex gap-2 items-center">
+                    <div className="text-base-content flex gap-2 items-center">
                         <GiTeacher className="text-lg" />
                         <strong>Courses Taken:</strong>{" "}
                         {topInstructor.classes.length}

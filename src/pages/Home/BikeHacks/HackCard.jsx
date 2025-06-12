@@ -23,7 +23,7 @@ const HackCard = ({ videoId, videoTitle }) => {
           onReady={videoOnReady}
         />
         <div className="group-hover:scale-[0.95] group-hover:left-2 mt-3 duration-100 description text-white w-3/4">
-          <p className="text-white text-sm">{videoTitle}</p>
+          <p className="text-base-content text-sm">{videoTitle}</p>
         </div>
       </div>
     </div>

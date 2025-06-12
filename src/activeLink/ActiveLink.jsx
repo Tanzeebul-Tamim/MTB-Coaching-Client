@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const ActiveLink = ({ to, children, customColor }) => {
+const ActiveLink = ({ to, children, customColor, dark }) => {
     return (
         <NavLink
             to={to}
@@ -9,7 +9,9 @@ const ActiveLink = ({ to, children, customColor }) => {
                     ? "text-amber-300"
                     : customColor
                     ? customColor
-                    : "text-white"
+                    : dark
+                    ? "text-[#f5f3f0]"
+                    : "text-base-content"
             }
         >
             {children}

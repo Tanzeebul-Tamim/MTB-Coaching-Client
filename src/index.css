@@ -46,3 +46,8 @@
     transform: translateY(40) scale(0.8);
   }
 }
+
+/* disable text selection globally */
+* {
+  @apply select-none;
+}

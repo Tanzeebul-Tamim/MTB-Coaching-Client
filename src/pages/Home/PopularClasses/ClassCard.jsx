@@ -17,11 +17,11 @@ const ClassCard = ({ topClass }) => {
             </div>
             <div className="card-body z-50">
                 <h2 className="card-title text-yellow-500">{topClass.name}</h2>
-                <div className="text-white flex gap-2 items-center">
+                <div className="text-base-content flex gap-2 items-center">
                     <FaChalkboardTeacher className="text-lg" />
                     <strong>Instructor:</strong> {topClass.instructorName}
                 </div>
-                <div className="text-white flex gap-2 items-center">
+                <div className="text-base-content flex gap-2 items-center">
                     <IoSchoolSharp className="text-lg" />
                     <strong>Attendees:</strong> {topClass.totalStudent}
                 </div>

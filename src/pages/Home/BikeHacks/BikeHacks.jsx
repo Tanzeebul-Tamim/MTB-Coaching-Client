@@ -56,7 +56,7 @@ const BikeHacks = () => {
                     <select
                         onChange={handleSelectBikeType}
                         name="gender"
-                        className="select font-light text-sm lg:text-base text-gray-100 lg:w-full max-w-xs"
+                        className="select font-light text-sm lg:text-base text-base-content lg:w-full max-w-xs"
                         value={selectBikeType}
                     >
                         <option hidden>What Kind of Bike do you Ride?</option>
@@ -74,6 +74,7 @@ const BikeHacks = () => {
                     title1={"bike hacks"}
                     title2={"and tips"}
                     description={bikeHacksDes}
+                    dark={true}
                 />
             </Slide>
             {numberOfSlides && (
@@ -115,7 +116,7 @@ const BikeHacks = () => {
                           ))}
                 </Swiper>
             )}
-            <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-b from-transparent to-base-300"></div>
+            <div className="dark:block hidden absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-b from-transparent to-base-300"></div>
         </div>
     );
 };

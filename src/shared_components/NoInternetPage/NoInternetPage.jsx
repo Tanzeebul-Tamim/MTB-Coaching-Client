@@ -17,21 +17,21 @@ const NoInternetPage = () => {
             </div>
             {isSmallDevice ? (
                 <div className="flex flex-col items-center justify-center w-full h-full flex-1">
-                    <p className="description base-content w-full mb-8 text-sm text-center">
+                    <p className="description text-base-content w-full mb-8 text-sm text-center">
                         Whoa, looks like you just hit a dead end!{" "}
                         <span className="text-red-500 font-extrabold">
                             Time to check your gear (or Wi-Fi) and get back on
                             track.
                         </span>
                     </p>
-                    <p className="description base-content w-full mb-8 text-lg text-center">
+                    <p className="description text-base-content w-full mb-8 text-lg text-center">
                         Don&apos;t worry, the ride resumes as soon as
                         you&apos;re back online.
                     </p>
                 </div>
             ) : (
                 <>
-                    <p className="description base-content w-3/4 mb-4 mt-5 text-2xl text-center">
+                    <p className="description text-base-content w-3/4 mb-4 mt-5 text-2xl text-center">
                         Whoa, looks like you just hit a dead end!{" "}
                         <span className="text-red-500 font-extrabold">
                             Time to check your gear (or Wi-Fi) and get back on

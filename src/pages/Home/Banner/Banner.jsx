@@ -45,8 +45,8 @@ const Banner = () => {
 
                 <ResponsiveLogin />
 
-                <div className="absolute bottom-0 lg:bottom-[6.5%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute dark:block hidden bottom-0 lg:bottom-[6.5%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide2" className="relative w-full">
@@ -77,8 +77,8 @@ const Banner = () => {
 
                 <ResponsiveLogin alignment="right" />
 
-                <div className="absolute bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide3" className="relative w-full">
@@ -109,8 +109,8 @@ const Banner = () => {
 
                 <ResponsiveLogin />
 
-                <div className="absolute bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide4" className="relative w-full">
@@ -141,8 +141,8 @@ const Banner = () => {
 
                 <ResponsiveLogin alignment="right" />
 
-                <div className="absolute bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
         </AutoplaySlider>
     );
