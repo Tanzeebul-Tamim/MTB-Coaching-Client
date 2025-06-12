@@ -7,7 +7,7 @@ import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { MdOutlineSchool, MdShoppingCart } from "react-icons/md";
 import { LuLayoutDashboard, LuScale } from "react-icons/lu";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { getBookedClasses } from "../../api/bookApi";
@@ -54,12 +54,32 @@ const Navbar = () => {
             .catch((error) => console.error(error));
     };
 
-    const customColor = "text-amber-200";
+    const navRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                open &&
+                navRef.current &&
+                !navRef.current.contains(event.target)
+            ) {
+                setOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open]);
+
+    const customColor = "text-amber-100";
 
     return (
         <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
             <div className="navbar-start gap-1 lg:gap-6 flex items-center">
                 <div
+                    ref={navRef}
                     className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
                         open ? "top-10 right-5" : "top-10 -right-[150px]"
                     } lg:hidden z-10 py-2 px-4 bg-base-100 rounded-md`}
