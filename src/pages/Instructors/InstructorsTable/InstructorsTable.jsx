@@ -13,7 +13,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                 </div>
             ) : (
                 <div ref={tableRef} className="overflow-x-auto">
-                    <table className="table text-center description text-white lg:whitespace-normal whitespace-nowrap">
+                    <table className="table text-center description text-base-content lg:whitespace-normal whitespace-nowrap">
                         {/* head */}
                         <InstructorsTableHead />
                         <tbody className="lg:text-xl text-xs">
@@ -37,7 +37,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                                     {instructor.name}
                                                 </div>
                                             </div>
-                                            <span className="badge badge-ghost badge-md text-white">
+                                            <span className="badge badge-ghost badge-md">
                                                 {instructor.email}
                                             </span>
                                         </td>
@@ -59,7 +59,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                         <td>
                                             <Link
                                                 to={`/instructors/${instructor._id}`}
-                                                className="btn text-white btn-sm lg:rounded-lg rounded-full hover:bg-stone-700 bg-stone-800"
+                                                className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content"
                                             >
                                                 {isSmallDevice ? (
                                                     <span className="text-[12px]">

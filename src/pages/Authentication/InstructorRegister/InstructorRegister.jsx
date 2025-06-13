@@ -313,7 +313,7 @@ const InstructorRegister = () => {
                 className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-20 w-full"
             >
                 <div className="block lg:hidden w-full">
-                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-yellow-500 text-center">
+                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-primary text-center">
                         Become an instructor!
                     </h1>
                     <div className="text-center">
@@ -321,8 +321,8 @@ const InstructorRegister = () => {
                             to="/register"
                             className="description text-sm link link-hover"
                         >
-                            Not an instructor?{" "}
-                            <span className="text-yellow-500 underline">
+                            <span className="text-accent">Not an instructor?{" "}</span>
+                            <span className="text-secondary underline">
                                 Register as a student
                             </span>
                         </Link>
@@ -330,10 +330,10 @@ const InstructorRegister = () => {
                 </div>
 
                 <div className="hidden lg:block z-10 text-left w-full lg:w-1/2">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-yellow-500">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-primary">
                         Become an instructor!
                     </h1>
-                    <p className="py-4 md:py-6 description text-base md:text-lg lg:text-xl text-white">
+                    <p className="py-4 md:py-6 description text-base md:text-lg lg:text-xl text-accent">
                         Join our team of skilled instructors and share your
                         passion for mountain biking with others. Our instructor
                         registration page offers you the opportunity to inspire
@@ -350,7 +350,7 @@ const InstructorRegister = () => {
                             className="description text-sm link link-hover"
                         >
                             Not an instructor?{" "}
-                            <span className="text-yellow-500">
+                            <span className="text-secondary">
                                 Register as a student
                             </span>
                         </Link>
@@ -362,7 +362,7 @@ const InstructorRegister = () => {
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Name
                                     </span>
                                 </label>
@@ -372,14 +372,14 @@ const InstructorRegister = () => {
                                     name="name"
                                     value={formFields.name}
                                     onChange={handleFieldChange}
-                                    placeholder="Enter your username"
-                                    className="input input-bordered w-full"
+                                    placeholder="Enter your full name"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                             </div>
 
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Email
                                     </span>
                                 </label>
@@ -390,7 +390,7 @@ const InstructorRegister = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="input input-bordered w-full"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                             </div>
                         </div>
@@ -398,7 +398,7 @@ const InstructorRegister = () => {
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Contact No
                                     </span>
                                 </label>
@@ -409,13 +409,13 @@ const InstructorRegister = () => {
                                     value={formFields.contact}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your contact no"
-                                    className="input input-bordered w-full"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                             </div>
 
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Address
                                     </span>
                                 </label>
@@ -426,7 +426,7 @@ const InstructorRegister = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="input input-bordered w-full"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                             </div>
                         </div>
@@ -434,7 +434,7 @@ const InstructorRegister = () => {
                         <div className="flex flex-col md:flex-row justify-between gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         User image
                                     </span>
                                 </label>
@@ -447,7 +447,7 @@ const InstructorRegister = () => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800 w-full">
+                                    <div className="btn btn-sm hover:bg-base-300 bg-base-200 border-0 w-full">
                                         {imageButtonText}
                                     </div>
                                 </label>
@@ -455,7 +455,7 @@ const InstructorRegister = () => {
 
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Gender
                                     </span>
                                 </label>
@@ -479,7 +479,7 @@ const InstructorRegister = () => {
                         <div className="flex flex-col md:flex-row relative justify-center gap-3 w-full">
                             <div className="z-[10] form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Password
                                     </span>
                                 </label>
@@ -491,7 +491,7 @@ const InstructorRegister = () => {
                                     value={formFields.password}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your password"
-                                    className="input input-bordered w-full"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                                 <div
                                     style={{
@@ -509,7 +509,7 @@ const InstructorRegister = () => {
 
                             <div className="z-[10] form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="uppercase label-text font-bold tracking-widest text-white">
+                                    <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Confirm Password
                                     </span>
                                 </label>
@@ -521,7 +521,7 @@ const InstructorRegister = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="input input-bordered w-full"
+                                    className="placeholder:text-gray-500 input input-bordered w-full"
                                 />
                                 <div
                                     style={{
@@ -544,7 +544,7 @@ const InstructorRegister = () => {
                                 className="label-text-alt link link-hover"
                             >
                                 Already have an account? Please{" "}
-                                <span className="text-yellow-500">Login</span>
+                                <span className="text-secondary">Login</span>
                             </Link>
                         </label>
                         <p
@@ -558,18 +558,18 @@ const InstructorRegister = () => {
                         >
                             {error ? error : success ? success : "a"}
                         </p>
-                        <div className="divider text-white">
-                            Or continue with
+                        <div className="divider text-base-content description">
+                            Or
                         </div>
                         <div className="z-[10] justify-center gap-10 flex">
                             <button
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="hover:scale-110 btn btn-circle hover:bg-stone-700 bg-stone-800 z-[10] flex justify-center items-center w-2/3 gap-3"
+                                className="hover:scale-110 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
                             >
                                 <FcGoogle className="text-2xl" />{" "}
-                                <span className="font-thin font-sans tracking-widest text-lg">
-                                    Google
+                                <span className="font-bold font-sans description text-sm text-base-content">
+                                    Continue With Google
                                 </span>
                             </button>
                         </div>
@@ -577,7 +577,7 @@ const InstructorRegister = () => {
                             <button
                                 disabled={loading || !isFormValid}
                                 type="submit"
-                                className="btn bg-yellow-500 disabled:bg-yellow-900 disabled:text-stone-500 hover:bg-yellow-600 text-white text-xl"
+                                className="btn bg-amber-500 dark:bg-yellow-500 disabled:bg-amber-900 dark:disabled:bg-yellow-900 disabled:text-stone-500 dark:hover:bg-yellow-600 hover:bg-amber-600 text-accent border-0 text-xl"
                             >
                                 {loading ? (
                                     <TbFidgetSpinner className="text-2xl text-stone-400 animate-spin" />
@@ -589,8 +589,8 @@ const InstructorRegister = () => {
                     </div>
                 </div>
             </form>
-            <div className="absolute lg:hidden -bottom-1 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
-            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
+            <div className="absolute lg:hidden -bottom-1 left-0 w-full dark:h-1/2 h-1/3 bg-gradient-to-b from-transparent to-base-100 pointer-events-none"></div>
+            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-100 pointer-events-none"></div>
         </div>
     );
 };

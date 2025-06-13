@@ -93,6 +93,7 @@ const SingleInstructorsClasses = () => {
                     title1={title1}
                     title2={title2}
                     enlarge={true}
+                    dark={true}
                     description={instructor?.quote}
                 />
                 {isMyWall && (
@@ -103,7 +104,7 @@ const SingleInstructorsClasses = () => {
             </div>
             {classes?.length > 0 ? (
                 <>
-                    <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-white description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
+                    <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-accent description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
                         <strong className="flex items-center gap-2">
                             <GiTeacher className="text-xl md:text-2xl" />
                             {classes.length}
@@ -136,7 +137,7 @@ const SingleInstructorsClasses = () => {
                     </Swiper>
                 </>
             ) : (
-                <div className="flex justify-center text-white">
+                <div className="flex justify-center text-accent">
                     <div className="text-2xl md:text-4xl lg:text-5xl my-5 z-[1] text-center">
                         {isMyWall
                             ? "You haven't added any courses yet"
@@ -147,13 +148,13 @@ const SingleInstructorsClasses = () => {
             <div className="flex justify-center">
                 <Link
                     to="/instructors"
-                    className="z-[10] mt-10 btn btn-md text-lg rounded-full hover:bg-stone-700 bg-stone-800"
+                    className="z-[10] mt-10 btn btn-md text-lg rounded-full hover:bg-base-300 dark:hover:bg-base-300 bg-base-100 dark:bg-base-200 border-0 text-base-content"
                 >
                     <FaChalkboardTeacher />
                     Back To Instructors Page
                 </Link>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-b from-transparent to-base-300"></div>
+            <div className="absolute bottom-0 left-0 w-full dark:h-2/3 h-1/3 bg-gradient-to-b from-transparent to-base-100"></div>
         </div>
     );
 };

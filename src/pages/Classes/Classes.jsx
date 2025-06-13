@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import useTitle from "../../hooks/useTitle";
 import SectionTitle from "../../reusable/SectionTitle";
-import ClassesBanner from "./ClassesBanner/ClassesBanner";
 import ClassesTable from "./ClassesTable/ClassesTable";
 import { useState } from "react";
 import { getAllClasses, getTotalClasses } from "../../api/api";
@@ -12,6 +11,7 @@ import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../skeletons/SklClasses";
 import useAuth from "../../hooks/useAuth";
 import useUserData from "../../hooks/useUserData";
+import PageBanner from "../../reusable/PageBanner";
 
 const titleDescription =
     "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
@@ -75,9 +75,11 @@ const Classes = () => {
         }
     };
 
+    const texts = ["Exciting", "MTB Courses", "And", "Workshops"];
+
     return (
         <div className="lg:pb-24 pb-8">
-            <ClassesBanner />
+            <PageBanner src="courses" texts={texts} side="right" />
             <div className={`lg:px-10 lg:pt-16 px-5 pt-8`}>
                 <SectionTitle
                     title1={
@@ -93,12 +95,12 @@ const Classes = () => {
                         ref={searchRef}
                         type="text"
                         placeholder="Search by Course Name"
-                        className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-white rounded-full lg:w-1/3 w-3/4"
+                        className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4"
                     />
                     <button>
                         <BsSearch
+                            className="text-base-content"
                             style={{
-                                color: "white",
                                 position: "absolute",
                                 top: "30%",
                                 right: isSmallDevice ? "16%" : "35%",
@@ -116,7 +118,7 @@ const Classes = () => {
                 ) : (
                     <div className="lg:pt-10 pt-5">
                         {classes.length > 0 && (
-                            <div className="lg:mb-5 mb-2 flex gap-2 text-white description lg:text-xl">
+                            <div className="lg:mb-5 mb-2 flex gap-2 text-base-content description lg:text-xl">
                                 <strong className="flex items-center gap-2">
                                     <GiTeacher className="lg:text-2xl text-xl" />
                                     <span>Courses Count :</span>
@@ -137,7 +139,7 @@ const Classes = () => {
                             <div className="flex justify-center">
                                 <button
                                     onClick={handleLoadMore}
-                                    className="lg:mt-10 mt-6 btn btn-sm lg:btn-md text-sm lg:text-lg rounded-full hover:bg-stone-700 bg-stone-800"
+                                    className="lg:mt-10 mt-6 btn btn-sm lg:btn-md text-sm lg:text-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content"
                                 >
                                     <BiDotsVerticalRounded />
                                     Load More

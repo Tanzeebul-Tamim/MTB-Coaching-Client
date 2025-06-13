@@ -1,5 +1,4 @@
 import L from "leaflet";
-import "./LeafletMap.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet"; 
 import osm from "./osm-providers";
 import "leaflet/dist/leaflet.css";
@@ -19,7 +18,7 @@ const LeafletMap = () => {
   const mapRef = useRef();
 
   return (
-        <MapContainer className="border border-red-500" scrollWheelZoom={false} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+        <MapContainer scrollWheelZoom={false} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
             <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
             <Marker position={[51.871103804911, 5.3915042682885606]}>
                 <Popup>

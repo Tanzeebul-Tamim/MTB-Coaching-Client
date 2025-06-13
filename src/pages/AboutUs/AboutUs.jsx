@@ -17,18 +17,18 @@ const AboutUs = () => {
             }}
         >
             <div className="relative z-20">
-                <div className="text-lg text-white flex flex-col lg:gap-8 gap-5 text-center description max-w-7xl mx-3 md:mx-auto bg-black bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-yellow-500">
+                <div className="text-lg dark:text-white text-black flex flex-col lg:gap-8 gap-5 text-center description max-w-7xl mx-3 md:mx-auto bg-base-200 dark:bg-base-100 bg-opacity-70 dark:bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-secondary">
                     <h1
                         style={{
-                            letterSpacing: isSmallDevice ? "0.2em" : "1em",
+                            letterSpacing: isSmallDevice ? "0.2em" : "0.7em",
                         }}
-                        className="z-[10] title font-extrabold text-yellow-400 md:text-4xl text-xl md:mb-8 text-center uppercase drop-shadow-lg"
+                        className="z-[10] title font-extrabold text-primary md:text-4xl text-xl md:mb-8 text-center uppercase drop-shadow-lg"
                     >
                         About Us
                     </h1>
                     <p className="z-[10] lg:mb-2 -mb-2 lg:text-base text-xs md:text-lg leading-relaxed">
                         Welcome to{" "}
-                        <strong className="text-yellow-500 italic">
+                        <strong className="text-amber-800 dark:text-yellow-300 italic">
                             Professional Mountain Biking Coaching Network!{" "}
                         </strong>
                         We are a passionate group of riders dedicated to
@@ -79,7 +79,7 @@ const AboutUs = () => {
                     </p>
                 </div>
             </div>
-            <div className="hidden lg:block absolute lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 z-10 pointer-events-none"></div>
+            <div className="hidden lg:block absolute lg:bottom-0 left-0 w-full dark:h-4/6 h-1/3 bg-gradient-to-b from-transparent to-base-100 z-10 pointer-events-none"></div>
         </div>
     );
 };

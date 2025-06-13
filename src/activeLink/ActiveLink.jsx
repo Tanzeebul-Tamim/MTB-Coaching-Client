@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 
-const ActiveLink = ({ to, children, customColor, dark }) => {
+const ActiveLink = ({ to, children, customColor, dark: isDark }) => {
     return (
         <NavLink
             to={to}
             className={({ isActive }) =>
                 isActive
-                    ? "text-amber-300"
+                    ? "text-primary"
                     : customColor
                     ? customColor
-                    : dark
-                    ? "text-[#f5f3f0]"
+                    : isDark
+                    ? "text-accent"
                     : "text-base-content"
             }
         >

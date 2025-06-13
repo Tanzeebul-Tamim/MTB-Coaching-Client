@@ -19,12 +19,12 @@ const Legal = () => {
             }}
         >
             <div className="relative z-20">
-                <div className="text-lg text-white flex flex-col lg:gap-8 gap-5 text-center description max-w-[90%] mx-3 md:mx-auto bg-black bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-yellow-500">
+                <div className="text-lg text-black dark:text-white flex flex-col lg:gap-8 gap-5 text-center description max-w-[90%] mx-3 md:mx-auto bg-base-200 dark:bg-base-100 bg-opacity-70 dark:bg-opacity-60 md:p-10 p-6 rounded-2xl shadow-2xl border border-secondary">
                     <h1
                         style={{
-                            letterSpacing: isSmallDevice ? "0.2em" : "0.9em",
+                            letterSpacing: isSmallDevice ? "0.2em" : "0.7em",
                         }}
-                        className="z-[10] title font-extrabold text-yellow-400 text-xl md:text-4xl md:mb-8 text-center uppercase tracking-widest drop-shadow-lg"
+                        className="z-[10] title font-extrabold text-primary text-xl md:text-4xl md:mb-8 text-center uppercase tracking-widest drop-shadow-lg"
                     >
                         Legal Information
                     </h1>
@@ -34,7 +34,7 @@ const Legal = () => {
                             href="https://github.com/Tanzeebul-Tamim"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-yellow-100 underline hover:text-yellow-300 font-semibold transition-colors duration-300"
+                            className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline font-semibold transition-colors duration-300"
                         >
                             Tanzeebul Tamim
                         </a>{" "}
@@ -45,9 +45,9 @@ const Legal = () => {
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
                             id="privacy-policy"
-                            className="flex-1 bg-black bg-opacity-30 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-yellow-400"
+                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
-                            <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Privacy Policy
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -70,7 +70,7 @@ const Legal = () => {
                                     smooth
                                     to="/legal#data-deletion"
                                     scroll={scrollWithOffset}
-                                    className="text-yellow-100 underline hover:text-yellow-300 font-semibold transition-colors duration-300"
+                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline font-semibold transition-colors duration-300"
                                 >
                                     User Data Deletion
                                 </HashLink>{" "}
@@ -80,9 +80,9 @@ const Legal = () => {
 
                         <section
                             id="terms"
-                            className="flex-1 bg-black bg-opacity-30 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-yellow-400"
+                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
-                            <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Terms of Service
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -104,9 +104,9 @@ const Legal = () => {
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
                             id="data-deletion"
-                            className="flex-1 bg-black bg-opacity-30 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-yellow-400"
+                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
-                            <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 User Data Deletion
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -117,12 +117,12 @@ const Legal = () => {
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 {" "}
                                 <a href="mailto:tamim200091@gmail.com">
-                                    <strong className="text-yellow-100 underline">
+                                    <strong className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline">
                                         tamim200091@gmail.com{" "}
                                     </strong>
                                 </a>
                                 with the subject line{" "}
-                                <em className="text-yellow-100">
+                                <em className="text-yellow-800 dark:text-yellow-200">
                                     &quot;Data Deletion Request&quot;
                                 </em>
                             </p>
@@ -135,9 +135,9 @@ const Legal = () => {
 
                         <section
                             id="cookie"
-                            className="flex-1 bg-black bg-opacity-30 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-yellow-400"
+                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
-                            <h2 className="text-lg md:text-2xl text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
                                 Cookie Notice
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -155,8 +155,7 @@ const Legal = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="hidden lg:block absolute lg:bottom-0 left-0 w-full h-4/6 bg-gradient-to-b from-transparent to-base-300 z-10 pointer-events-none"></div>
+            <div className="hidden lg:block absolute lg:bottom-0 left-0 w-full dark:h-4/6 h-1/3 bg-gradient-to-b from-transparent to-base-100 z-10 pointer-events-none"></div>
         </div>
     );
 };

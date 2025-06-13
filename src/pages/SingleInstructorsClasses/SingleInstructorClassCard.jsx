@@ -88,8 +88,8 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                 />
             </div>
             <div className="card-body z-50">
-                <h2 className="card-title text-yellow-500">{classItem.name}</h2>
-                <div className="text-white flex gap-2 items-center">
+                <h2 className="card-title text-secondary">{classItem.name}</h2>
+                <div className="text-base-content flex gap-2 items-center">
                     <ImPriceTags className="text-lg" />
                     <strong>Price:</strong> $ {classItem.price}
                 </div>
@@ -98,7 +98,7 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                         <p className="text-red-600 font-bold">Fully Booked</p>
                     </div>
                 ) : (
-                    <div className="text-white flex gap-2 items-center">
+                    <div className="text-base-content flex gap-2 items-center">
                         <BsFillPersonPlusFill className="text-lg" />
                         <strong>Available Slots:</strong> {availableSeat}
                     </div>
@@ -116,9 +116,9 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                             }
                             className={`${
                                 availableSeat == 0
-                                    ? "disabled:bg-red-950"
-                                    : "disabled:bg-stone-800"
-                            } btn text-white btn-sm rounded-full hover:bg-stone-700 border-0 bg-base-100`}
+                                    ? "dark:disabled:bg-red-950 dark:disabled:text-red-900 disabled:bg-red-800 disabled:text-red-600"
+                                    : "dark:disabled:bg-[#2e2926] disabled:bg-[#a79d83]"
+                            } btn text-base-content btn-sm rounded-full hover:bg-[#a79d83] dark:hover:bg-[#2e2926] bg-base-300 border-0`}
                         >
                             <span>
                                 {isBooked ? (

@@ -140,7 +140,7 @@ const Footer = () => {
                         scroll={scrollWithOffset}
                         className="text-sm description link link-hover"
                     >
-                        User Data Deletion
+                        User data deletion
                     </HashLink>
                     <HashLink
                         smooth
@@ -182,8 +182,8 @@ const Footer = () => {
                         institutions.
                     </h4>
                     <h4 className="lg:text-md lg:tracking-widest">
-                        © 2023 MTB Club. All rights reserved. Designed &
-                        Developed by
+                        &copy; {new Date().getFullYear()} MTB Coaching Network.
+                        All rights reserved. Designed & Developed by
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
                             className="uppercase ms-1 font-bold text-secondary underline"

@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import useDarkTheme from "../../../hooks/useDarkTheme";
+import { light, dark } from "../../../../colors.json";
 
 const ClassesTable = ({
     classes,
@@ -58,6 +60,8 @@ const ClassesTable = ({
         }
     }, [userBookings, user]);
 
+    const isDarkTheme = useDarkTheme();
+
     return (
         <>
             {classes?.length == 0 ? (
@@ -66,7 +70,7 @@ const ClassesTable = ({
                 </div>
             ) : (
                 <div ref={tableRef} className="overflow-x-auto">
-                    <table className="table text-center description text-white lg:whitespace-normal whitespace-nowrap">
+                    <table className="table text-center description text-base-content lg:whitespace-normal whitespace-nowrap">
                         {/* head */}
                         <ClassesTableHead
                             isSmallDevice={isSmallDevice}
@@ -130,7 +134,8 @@ const ClassesTable = ({
                                 return (
                                     <tr
                                         className={
-                                            availableSeat == 0 && "bg-red-950"
+                                            availableSeat == 0 &&
+                                            "dark:bg-red-950 bg-red-400"
                                         }
                                         key={classItem?._id}
                                     >
@@ -144,7 +149,7 @@ const ClassesTable = ({
                                         </td>
                                         <td>
                                             <div>
-                                                <div className="font-bold">
+                                                <div>
                                                     {isSmallDevice
                                                         ? classItem?.name
                                                               .length > 25
@@ -167,27 +172,37 @@ const ClassesTable = ({
                                                 </Link>
                                             </div>
                                         </td>
-                                        <td>
-                                            {availableSeat == 0
-                                                ? "Fully Booked"
-                                                : availableSeat}
-                                        </td>
                                         <td>$ {classItem?.price}</td>
+                                        <td>
+                                            {availableSeat == 0 ? (
+                                                <div className="dark:text-red-800 text-red-700">
+                                                    Fully Booked
+                                                </div>
+                                            ) : (
+                                                availableSeat
+                                            )}
+                                        </td>
                                         {userDetails.role !== "Instructor" && (
                                             <td>
                                                 {loading || userLoading ? (
                                                     <div className="flex justify-center items-center">
-                                                        <BeatLoader color="rgb(256 256 256)" />
+                                                        <BeatLoader
+                                                            color={
+                                                                isDarkTheme
+                                                                    ? dark.baseContent
+                                                                    : light.baseContent
+                                                            }
+                                                        />
                                                     </div>
                                                 ) : isBooked ? (
-                                                    "Booked"
+                                                    <div>Booked</div>
                                                 ) : isEnrolled ? (
                                                     availableSeat == 0 ? (
-                                                        <div className="text-red-500">
+                                                        <div className="dark:text-red-800 text-red-700">
                                                             Enrolled
                                                         </div>
                                                     ) : (
-                                                        "Enrolled"
+                                                        <div>Enrolled</div>
                                                     )
                                                 ) : (
                                                     <button
@@ -204,9 +219,9 @@ const ClassesTable = ({
                                                         }
                                                         className={`${
                                                             availableSeat == 0
-                                                                ? "disabled:bg-red-900"
-                                                                : "disabled:bg-stone-900"
-                                                        } btn text-white btn-sm lg:rounded-lg rounded-full hover:bg-stone-700 bg-stone-800`}
+                                                                ? "dark:disabled:bg-red-800 disabled:bg-red-600"
+                                                                : "dark:disabled:bg-[#1c1917] disabled:bg-[#a79d83]"
+                                                        } btn text-base-content btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0`}
                                                     >
                                                         <MdLibraryAdd />{" "}
                                                         {isSmallDevice ? (

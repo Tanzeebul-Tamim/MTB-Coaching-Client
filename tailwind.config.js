@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import COLORS from "./colors.json";
+
 export default {
     darkMode: "class", // You already have this
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -6,20 +8,31 @@ export default {
         themes: [
             {
                 lighttheme: {
-                    "base-100": "#e3e0d8",
-                    "base-200": "#f0eee9",
-                    "base-content": "#1f2937",
+                    primary: COLORS?.light.primary,
+                    secondary: COLORS?.light.secondary,
+                    accent: COLORS?.light.accent,
+                    error: COLORS?.light.error,
+                    warning: COLORS?.light.navHover,
+                    "base-100": COLORS?.light?.base100,
+                    "base-200": COLORS?.light?.base200,
+                    "base-300": COLORS?.light?.base300,
+                    "base-content": COLORS?.light?.baseContent,
                 },
             },
             {
                 darktheme: {
-                    "base-100": "#0e0d0d",
-                    "base-200": "#201e1e",
-                    "base-content": "#f5f3f0",
+                    primary: COLORS?.dark.primary,
+                    secondary: COLORS?.dark.secondary,
+                    accent: COLORS?.dark.accent,
+                    error: COLORS?.dark.error,
+                    warning: COLORS?.dark.navHover,
+                    "base-100": COLORS?.dark?.base100,
+                    "base-200": COLORS?.dark?.base200,
+                    "base-300": COLORS?.dark?.base300,
+                    "base-content": COLORS?.dark?.baseContent,
                 },
             },
         ],
     },
     plugins: [require("daisyui")],
 };
-  

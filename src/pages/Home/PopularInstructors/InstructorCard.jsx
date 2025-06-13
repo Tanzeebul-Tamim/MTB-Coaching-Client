@@ -7,11 +7,11 @@ const InstructorCard = ({ topInstructor }) => {
     return (
         <Link
             to={`/instructors/${topInstructor._id}`}
-            className="card h-full group description rounded-2xl card-compact lg:ml-3 lg:mr-3 bg-base-200 shadow-xl"
+            className="card h-full group description rounded-2xl card-compact lg:mx-3 bg-base-200 dark:shadow-xl"
         >
             <div className="flex justify-center items-center">
                 <div className="card-body z-50">
-                    <h2 className="card-title text-yellow-500">
+                    <h2 className="card-title text-secondary">
                         {topInstructor.name}
                     </h2>
                     {topInstructor.quote && (
@@ -33,13 +33,13 @@ const InstructorCard = ({ topInstructor }) => {
                 </div>
                 <div className="lg:mr-5 hidden lg:block">
                     <img
-                        className="group-hover:scale-125 duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-zinc-400 lg:border-[4px] transition-all ease-in-out"
+                        className="group-hover:scale-125 duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-gray-500 dark:border-zinc-400 lg:border-[4px] transition-all ease-in-out"
                         src={topInstructor.image}
                     />
                 </div>
                 <div className="lg:hidden absolute right-[2%] mr-2">
                     <img
-                        className="group-hover:scale-110 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-zinc-400 border-[2px] transition-all ease-in-out"
+                        className="group-hover:scale-125 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-gray-500 dark:border-zinc-400 border-[3px] transition-all ease-in-out"
                         src={topInstructor.image}
                     />
                 </div>

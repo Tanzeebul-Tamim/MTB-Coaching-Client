@@ -16,7 +16,8 @@ import { saveUserViaSocial } from "../../../api/authApi";
 import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
-    const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } = useAuth();
+    const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
+        useAuth();
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
@@ -168,16 +169,16 @@ const Login = () => {
                 className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-20 w-full"
             >
                 <div className="block lg:hidden w-full">
-                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-yellow-500 text-center">
+                    <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-primary text-center">
                         Login now!
                     </h1>
                 </div>
 
                 <div className="hidden lg:block z-10 text-left w-full lg:w-1/2">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-yellow-500">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold title uppercase text-primary">
                         Login now!
                     </h1>
-                    <p className="py-4 md:py-6 description text-base md:text-lg lg:text-xl text-white">
+                    <p className="py-4 md:py-6 description text-base md:text-lg lg:text-xl text-accent">
                         Gear up and get ready to embark on an exciting journey
                         into the world of mountain biking. Join our vibrant
                         community of riders, where you can connect, learn, and
@@ -194,7 +195,7 @@ const Login = () => {
                     <div className="card-body p-4 md:p-6 lg:p-8">
                         <div className="form-control">
                             <label className="label">
-                                <span className="uppercase label-text font-bold tracking-widest text-white">
+                                <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     Email
                                 </span>
                             </label>
@@ -204,12 +205,12 @@ const Login = () => {
                                 name="email"
                                 required
                                 placeholder="Enter your email"
-                                className="input input-bordered"
+                                className="placeholder:text-gray-500 input input-bordered"
                             />
                         </div>
                         <div className="z-[10] relative form-control">
                             <label className="label">
-                                <span className="uppercase label-text font-bold tracking-widest text-white">
+                                <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     Password
                                 </span>
                             </label>
@@ -219,7 +220,7 @@ const Login = () => {
                                 name="password"
                                 required
                                 placeholder="Enter your password"
-                                className="input input-bordered"
+                                className="placeholder:text-gray-500 input input-bordered"
                             />
                             <div
                                 style={{
@@ -239,7 +240,7 @@ const Login = () => {
                                     className="label-text-alt link link-hover"
                                 >
                                     Forgot password? Please enter your email and{" "}
-                                    <span className="text-yellow-500">
+                                    <span className="text-secondary">
                                         Click here
                                     </span>
                                 </button>
@@ -247,7 +248,7 @@ const Login = () => {
                         </div>
                         <div className="z-[10] form-control">
                             <label className="label">
-                                <span className="uppercase label-text font-bold tracking-widest text-white">
+                                <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     <p className="mb-1">Enter captcha code</p>
                                     <p className="font-light">
                                         <LoadCanvasTemplateNoReload />
@@ -261,7 +262,7 @@ const Login = () => {
                                 ref={captchaRef}
                                 name="captcha"
                                 placeholder="Enter the above text"
-                                className="input input-bordered"
+                                className="placeholder:text-gray-500 input input-bordered"
                             />
                             <label className="label">
                                 <Link
@@ -269,7 +270,7 @@ const Login = () => {
                                     className="label-text-alt link link-hover"
                                 >
                                     Don&apos; have an account? Please{" "}
-                                    <span className="text-yellow-500">
+                                    <span className="text-secondary">
                                         Register
                                     </span>
                                 </Link>
@@ -282,18 +283,18 @@ const Login = () => {
                                 {error ? error : "a"}
                             </p>
                         </div>
-                        <div className="divider text-white">
-                            Or continue with
+                        <div className="divider text-base-content description">
+                            Or
                         </div>
                         <div className="z-[10] justify-center gap-10 flex">
                             <button
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="hover:scale-110 btn btn-circle hover:bg-stone-700 bg-stone-800 z-[10] flex justify-center items-center w-2/3 gap-3"
+                                className="hover:scale-110 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-3/4 w-4/5"
                             >
                                 <FcGoogle className="text-2xl" />{" "}
-                                <span className="font-thin font-sans tracking-widest text-lg">
-                                    Google
+                                <span className="font-bold font-sans description text-sm text-base-content">
+                                    Continue With Google
                                 </span>
                             </button>
                         </div>
@@ -301,7 +302,7 @@ const Login = () => {
                             <button
                                 disabled={disabled || (loading && true)}
                                 type="submit"
-                                className="btn bg-yellow-500 disabled:bg-yellow-900 disabled:text-stone-500 hover:bg-yellow-600 text-white text-lg md:text-xl"
+                                className="btn bg-amber-500 dark:bg-yellow-500 disabled:bg-amber-900 dark:disabled:bg-yellow-900 disabled:text-stone-500 dark:hover:bg-yellow-600 hover:bg-amber-600 text-accent border-0 text-lg md:text-xl"
                             >
                                 {loading ? (
                                     <TbFidgetSpinner className="text-2xl text-stone-400 animate-spin" />
@@ -313,8 +314,8 @@ const Login = () => {
                     </div>
                 </div>
             </form>
-            <div className="absolute lg:hidden -bottom-1 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
-            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
+            <div className="absolute lg:hidden -bottom-1 left-0 w-full dark:h-1/2 h-1/3 bg-gradient-to-b from-transparent to-base-100 pointer-events-none"></div>
+            <div className="absolute hidden lg:block lg:bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-base-100 pointer-events-none"></div>
         </div>
     );
 };

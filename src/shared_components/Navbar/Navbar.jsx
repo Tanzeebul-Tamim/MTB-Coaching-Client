@@ -5,17 +5,19 @@ import { SlNote } from "react-icons/sl";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import { MdOutlineSchool, MdShoppingCart } from "react-icons/md";
+import { MdOutlineHelp, MdOutlineSchool, MdShoppingCart } from "react-icons/md";
 import { LuLayoutDashboard, LuScale } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./Navbar.css";
 import { getBookedClasses } from "../../api/bookApi";
 import useAuth from "../../hooks/useAuth";
 import useUserData from "../../hooks/useUserData";
 import ThemeToggle from "../../reusable/ThemeToggle";
+import useDarkTheme from "../../hooks/useDarkTheme";
 
 const Navbar = () => {
+    const isDarkTheme = useDarkTheme();
+
     const [open, setOpen] = useState(false);
     const { user, logOut, loading, booking } = useAuth();
     const [userBookings, setUserBookings] = useState([]);
@@ -56,17 +58,13 @@ const Navbar = () => {
     };
 
     const navRef = useRef(null);
-    const toggleRef = useRef(null);
 
     useEffect(() => {
         function handleClickOutside(event) {
-            // prevents the menu from auto-opening again when you click the close button. The toggle only flips the state once.
             if (
                 open &&
                 navRef.current &&
-                toggleRef.current &&
-                !navRef.current.contains(event.target) &&
-                !toggleRef.current.contains(event.target)
+                !navRef.current.contains(event.target)
             ) {
                 setOpen(false);
             }
@@ -78,14 +76,15 @@ const Navbar = () => {
         };
     }, [open]);
 
-    const customColor = "dark:text-amber-100 text-orange-700";
+    const customColor = "text-secondary";
 
     return (
         <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
             <div className="navbar-start gap-1 lg:gap-6 flex items-center">
                 <div
+                    style={{ transition: "right 0.3s ease-in-out" }}
                     ref={navRef}
-                    className={`mt-4 flex flex-col bg-opacity-60 absolute duration-300 uppercase ${
+                    className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
                         open ? "top-10 right-5" : "top-10 -right-[150px]"
                     } lg:hidden z-10 py-2 px-4 bg-base-100 border border-base-content rounded-xl border-opacity-40`}
                 >
@@ -147,6 +146,15 @@ const Navbar = () => {
                             Legal
                         </span>
                     </ActiveLink>
+                    <ActiveLink to="/support">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
+                            <MdOutlineHelp className="text-xs" />
+                            FAQ & Support
+                        </span>
+                    </ActiveLink>
                     <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
                     <ActiveLink customColor={customColor} to="/register">
                         <span
@@ -181,7 +189,9 @@ const Navbar = () => {
                 <Link to="/">
                     <img
                         className="lg:w-[400px] hover:scale-110 duration-200"
-                        src="/MTB_Coaching.png"
+                        src={`/MTB_Coaching_${
+                            isDarkTheme ? "Dark" : "Light"
+                        }.png`}
                         alt="Logo"
                     />
                 </Link>
@@ -189,43 +199,23 @@ const Navbar = () => {
 
             <div className="navbar-center uppercase lg:block hidden">
                 <div className="flex nav-btn glow-effect py-3 px-6 rounded-full gap-5 tracking-[2px] text-xl items-center">
-                    <ActiveLink
-                        dark={true}
-                        className="hover:text-yellow-400"
-                        to="/"
-                    >
+                    <ActiveLink dark={true} to="/">
                         <div>Home</div>
                     </ActiveLink>
-                    <ActiveLink
-                        dark={true}
-                        className="hover:text-yellow-400"
-                        to="/instructors"
-                    >
+                    <ActiveLink dark={true} to="/instructors">
                         <div>Instructors</div>
                     </ActiveLink>
-                    <ActiveLink
-                        dark={true}
-                        className="hover:text-yellow-400"
-                        to="/classes"
-                    >
+                    <ActiveLink dark={true} to="/classes">
                         <div>Courses</div>
                     </ActiveLink>
+                    <ActiveLink dark={true} to="/about-us">
+                        <div>About Us</div>
+                    </ActiveLink>
                     {user && (
-                        <ActiveLink
-                            dark={true}
-                            className="hover:text-yellow-400"
-                            to="/dashboard/profile"
-                        >
+                        <ActiveLink dark={true} to="/dashboard/profile">
                             <div>Dashboard</div>
                         </ActiveLink>
                     )}
-                    <ActiveLink
-                        dark={true}
-                        className="hover:text-yellow-400"
-                        to="/about-us"
-                    >
-                        <div>About Us</div>
-                    </ActiveLink>
                     <ThemeToggle />
                 </div>
             </div>
@@ -233,7 +223,7 @@ const Navbar = () => {
                 <div className="navbar-end uppercase gap-7 lg:flex hidden">
                     <button
                         onClick={handleLogOut}
-                        className="hover:scale-110 duration-200 text-yellow-400 font-light text-xl"
+                        className="hover:scale-110 duration-200 text-secondary font-light text-xl"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogOut />
@@ -243,10 +233,10 @@ const Navbar = () => {
                     <Link
                         to="/dashboard/profile"
                         data-tip={user?.displayName}
-                        className="tooltip tooltip-bottom tooltip-warning"
+                        className="tooltip tooltip-bottom tooltip-primary"
                     >
                         {userDetails?.image || user?.photoURL ? (
-                            <div className="hover:scale-110 duration-200 flex flex-col items-center">
+                            <div className="hover:scale-110 duration-1000 flex flex-col items-center">
                                 <div className="indicator">
                                     <img
                                         className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
@@ -255,13 +245,13 @@ const Navbar = () => {
                                         }
                                     />
                                     {userBookings.length >= 1 && (
-                                        <span className="badge flex gap-1 badge-md badge-warning title indicator-item">
+                                        <span className="badge flex gap-1 badge-md badge-secondary title indicator-item dark:text-gray-800 text-yellow-50">
                                             <MdShoppingCart className="text-lg" />
                                             <span>{userBookings?.length}</span>
                                         </span>
                                     )}
                                 </div>
-                                <h1 className="text-yellow-400 text-sm">
+                                <h1 className="dark:text-secondary text-primary text-sm">
                                     My Profile
                                 </h1>
                             </div>
@@ -271,7 +261,7 @@ const Navbar = () => {
                                     className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
                                     src="/user_avatar.png"
                                 />
-                                <h1 className="text-yellow-400 text-sm">
+                                <h1 className="dark:text-secondary text-primary text-sm">
                                     My Profile
                                 </h1>
                             </div>
@@ -288,7 +278,7 @@ const Navbar = () => {
                 <div className="navbar-end uppercase gap-5 lg:flex hidden">
                     <Link
                         to="/login"
-                        className="hover:scale-110 duration-200 font-light text-yellow-400 text-xl"
+                        className="hover:scale-110 duration-200 font-light text-secondary text-xl"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogIn />
@@ -297,7 +287,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         to="/register"
-                        className="hover:scale-110 duration-200 text-white font-light text-xl"
+                        className="hover:scale-110 duration-200 text-accent font-light text-xl"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <SlNote />
@@ -322,7 +312,7 @@ const Navbar = () => {
                         className="tooltip tooltip-bottom tooltip-warning"
                     >
                         {userBookings.length >= 1 && (
-                            <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[2px] badge-md badge-warning title indicator-item">
+                            <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[2px] badge-md badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
                                 <MdShoppingCart />
                                 <span className="text-[0.65rem]">
                                     {userBookings?.length}
@@ -338,12 +328,9 @@ const Navbar = () => {
                 ) : (
                     ""
                 )}
-                <div
-                    className="relative w-8 h-8 flex items-center justify-center cursor-pointer text-2xl"
-                    ref={toggleRef}
-                    onClick={() => setOpen(!open)}
-                >
+                <div className="relative w-8 h-8 flex items-center justify-center cursor-pointer text-2xl">
                     <span
+                        onClick={() => setOpen(!open)}
                         className={`absolute transition-opacity duration-500 ease-in-out ${
                             open
                                 ? "opacity-0 pointer-events-none"

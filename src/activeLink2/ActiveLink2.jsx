@@ -10,8 +10,8 @@ const ActiveLink2 = ({ to, children, setSideNavOpen }) => {
             to={to}
             className={({ isActive }) =>
                 isActive
-                    ? "text-yellow-500 font-bold description tracking-widest description lg:text-lg text-base"
-                    : "text-white font-bold description tracking-widest description lg:text-lg text-base"
+                    ? "text-primary font-bold description tracking-widest description lg:text-lg text-base"
+                    : "text-accent font-bold description tracking-widest description lg:text-lg text-base"
             }
         >
             {children}

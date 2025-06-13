@@ -39,12 +39,12 @@ const ThemeToggle = () => {
         return (
             <span onClick={toggleDarkMode}>
                 {isDark ? (
-                    <span className="text-amber-500 flex items-center gap-1">
+                    <span className="text-yellow-100 flex items-center gap-1">
                         <MdLightMode className="text-sm" />
                         Light
                     </span>
                 ) : (
-                    <span className="text-blue-600 white flex items-center gap-1">
+                    <span className="text-blue-700 flex items-center gap-1">
                         <MdDarkMode className="text-sm" />
                         Dark
                     </span>
@@ -55,9 +55,7 @@ const ThemeToggle = () => {
         return (
             <button
                 onClick={toggleDarkMode}
-                className={`rounded-full glow-effect h-7 w-7 cursor-pointer
-        ${isDark ? "bg-yellow-300 text-white" : "bg-gray-800 text-yellow-300"} 
-        bg-opacity-50 flex items-center justify-center outline-none
+                className={`rounded-full glow-effect h-7 w-7 cursor-pointer bg-primary text-accent bg-opacity-50 flex items-center justify-center outline-none
         transition-all duration-700 ease-in-out`}
                 aria-label="Toggle dark mode"
             >

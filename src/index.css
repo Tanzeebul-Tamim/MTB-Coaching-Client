@@ -3,51 +3,116 @@
 @tailwind utilities;
 
 #root {
-  font-family: 'Khand', sans-serif;
+    font-family: "Khand", sans-serif;
 }
 
-@media (min-width: 1024px) {
-  .title {
-    font-family: "Oswald", sans-serif;
-    letter-spacing: 3px;
+@layer base {
+  * {
+    transition: background-color 1.5s ease, color 1.5s ease, border-color 1.5s ease;
   }
+}
+
+
+@media (min-width: 1024px) {
+    .title {
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 3px;
+    }
 }
 
 .title-res {
-  font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 .title-sm {
-  font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif;
 }
 
 .description {
-  font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 @keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes slideOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0px) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(40) scale(0.8);
-  }
+    from {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(40) scale(0.8);
+    }
 }
 
 /* disable text selection globally */
 * {
-  @apply select-none;
+    @apply select-none;
+}
+
+.glow-effect {
+    box-shadow: 0 0 25px rgba(236, 131, 11, 0.808);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 40px rgba(244, 130, 36, 0.753);
+}
+
+.dark .glow-effect {
+    box-shadow: 0 0 15px rgba(255, 238, 0, 0.808);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.dark .glow-effect:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.753);
+}
+
+.nav-btn a {
+    transition: color 0.3s ease-in-out;
+}
+
+.dark .nav-btn a {
+    transition: color 0.3s ease-in-out;
+}
+
+.dark .nav-btn a:hover {
+    color: rgb(242, 255, 65);
+}
+
+.nav-btn a:hover {
+    color: rgb(253, 202, 113);
+}
+
+/* Minimap Styles */
+
+.leaflet-container {
+    width: 250px;
+    height: 250px;
+    border: 4px solid #d97706;
+    border-radius: 5%;
+}
+
+.dark .leaflet-container {
+    border-color: #eab308;
+}
+
+@media only screen and (max-width: 576px) {
+    .leaflet-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .dark .leaflet-container {
+        border-color: #eab308;
+    }
 }

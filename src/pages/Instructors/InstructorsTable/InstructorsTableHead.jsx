@@ -1,7 +1,7 @@
 const InstructorsTableHead = () => {
   return (
     <thead className="bg-base-200">
-      <tr className="text-white lg:text-lg text-sm">
+      <tr className="text-base-content lg:text-lg text-sm">
         <th className="">No</th>
         <th className="">Image</th>
         <th className="">Name - Email</th>

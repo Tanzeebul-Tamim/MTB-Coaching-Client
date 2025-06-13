@@ -116,7 +116,7 @@ const BikeHacks = () => {
                           ))}
                 </Swiper>
             )}
-            <div className="dark:block hidden absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-b from-transparent to-base-300"></div>
+            <div className="absolute bottom-0 left-0 w-full dark:h-2/3 h-1/3 bg-gradient-to-b from-transparent to-base-100"></div>
         </div>
     );
 };

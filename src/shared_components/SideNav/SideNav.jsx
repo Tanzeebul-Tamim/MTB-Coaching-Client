@@ -10,12 +10,14 @@ import useScreenSize from "../../hooks/useScreenSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
 import SklSideNav from "../../skeletons/SklSideNav";
 import useUserData from "../../hooks/useUserData";
+import useDarkTheme from "../../hooks/useDarkTheme";
 
 const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
     const { loading } = useAuth();
     const [title, setTitle] = useState("User");
     const { isSmallDevice } = useScreenSize();
     const { loading: userLoading, userDetails } = useUserData();
+    const isDarkTheme = useDarkTheme();
 
     useEffect(() => {
         if (!loading && !userLoading) {
@@ -36,10 +38,10 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
             }}
-            className="h-screen fixed p-7 bg-base-200"
+            className="h-screen fixed p-7 bg-base-200 text-accent"
         >
             <button
-                className={`lg:hidden fixed top-[10%] -right-[17.5%] z-30 text-yellow-500 bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
+                className={`lg:hidden fixed top-[10%] -right-[17.5%] z-30 text-primary bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
                     sideNavOpen ? "rotate-180" : "rotate-0"
                 }`}
                 onClick={() => setSideNavOpen((open) => !open)}
@@ -53,7 +55,10 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
                 />
             </button>
             <div className="flex justify-center items-center">
-                <img className="w-[300px]" src="/MTB_Coaching.png" />
+                <img
+                    className="w-[300px]"
+                    src={`/MTB_Coaching_${isDarkTheme ? "Dark" : "Light"}.png`}
+                />
             </div>
             <div className="divider"></div>
             <h1 className="title mb-10 uppercase text-center text-2xl">
@@ -62,25 +67,25 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
             <div className="flex flex-col lg:gap-5 gap-3">
                 <Link
                     to="/"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
+                    className="font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
                 >
                     <AiFillHome className="text-xl" /> Home
                 </Link>
                 <Link
                     to="/instructors"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
+                    className="font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
                 >
                     <FaChalkboardTeacher className="text-xl" /> Instructors
                 </Link>
                 <Link
                     to="/classes"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
+                    className="font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
                 >
                     <IoSchoolSharp className="text-xl" /> Courses
                 </Link>
                 <Link
                     to="/about-us"
-                    className="font-bold flex gap-3 items-center tracking-widest text-white description lg:text-lg text-base"
+                    className="font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
                 >
                     <BsFillInfoCircleFill className="text-xl" /> About Us
                 </Link>

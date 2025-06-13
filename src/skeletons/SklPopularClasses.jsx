@@ -11,14 +11,14 @@ const SklPopularClasses = () => {
                 />
             </div>
             <div className="card-body z-50">
-                <div className="h-6 bg-gray-200 rounded w-1/2 mt-2"></div>
-                <div className="text-white flex gap-2 items-center mt-2">
+                <div className="h-6 bg-base-content rounded w-1/2 mt-2"></div>
+                <div className="text-base-content flex gap-2 items-center mt-2">
                     <FaChalkboardTeacher className="text-lg" />
-                    <div className="ml-2 h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div className="ml-2 h-4 bg-base-content rounded w-1/2"></div>
                 </div>
-                <div className="text-white flex gap-2 items-center mt-2">
+                <div className="text-base-content flex gap-2 items-center mt-2">
                     <IoSchoolSharp className="text-lg" />
-                    <div className="ml-2 h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div className="ml-2 h-4 bg-base-content rounded w-1/2"></div>
                 </div>
                 <img
                     className="group-hover:scale-110 duration-200 lg:w-[100px] w-[calc(22vw)] lg:h-[100px] h-[calc(22vw)] rounded-full border-zinc-400 border-[2px] lg:border-[4px] absolute bottom-[30%] lg:bottom-[20%] right-[4%]"

@@ -7,18 +7,18 @@ const SklPopularInstructors = () => {
         <div className="card h-full group description rounded-2xl animate-pulse lg:ml-3 lg:mr-3 bg-base-200 shadow-xl">
             <div className="flex justify-center items-center">
                 <div className="card-body z-50">
-                    <div className="h-5 bg-gray-200 rounded w-3/4"></div>
-                    <div className="text-white max-w-[75%] flex gap-2 items-center mt-2">
+                    <div className="h-5 bg-base-content rounded w-3/4"></div>
+                    <div className="text-base-content max-w-[75%] flex gap-2 items-center mt-2">
                         <FaQuoteLeft className="text-lg" />
-                        <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                        <div className="h-3 bg-base-content rounded w-3/4"></div>
                     </div>
-                    <div className="text-white flex gap-2 items-center mt-2">
+                    <div className="text-base-content flex gap-2 items-center mt-2">
                         <IoSchoolSharp className="text-lg" />
-                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                        <div className="h-3 bg-base-content rounded w-1/2"></div>
                     </div>
-                    <div className="text-white flex gap-2 items-center mt-2">
+                    <div className="text-base-content flex gap-2 items-center mt-2">
                         <GiTeacher className="text-lg" />
-                        <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                        <div className="h-3 bg-base-content rounded w-1/2"></div>
                     </div>
                 </div>
                 <div className="absolute right-[2%] mr-2">

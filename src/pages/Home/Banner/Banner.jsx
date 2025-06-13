@@ -30,23 +30,29 @@ const Banner = () => {
                     className="uppercase lg:flex flex-col gap-4 absolute z-10 font-extrabold lg:top-[40%] top-[30%] left-[7%] lg:text-7xl text-lg"
                 >
                     <div>
-                        <span className="text-yellow-400">Unlock</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            Unlock
+                        </span>{" "}
                         <span className="text-white">Your Potential</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">with</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            with
+                        </span>{" "}
                         <span className="text-white">comprehensive</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">mountain</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            mountain
+                        </span>{" "}
                         <span className="text-white">bike courses</span>
                     </div>
                 </div>
 
                 <ResponsiveLogin />
 
-                <div className="absolute dark:block hidden bottom-0 lg:bottom-[6.5%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute  bottom-0 lg:bottom-[6.5%] left-0 w-full dark:h-[65%] h-[30%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full dark:h-[65%] h-[40%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide2" className="relative w-full">
@@ -63,22 +69,28 @@ const Banner = () => {
                 >
                     <div>
                         <span className="text-white">Elevate</span>{" "}
-                        <span className="text-yellow-400">Your Skills</span>
+                        <span className="dark:text-primary text-primary">
+                            Your Skills
+                        </span>
                     </div>
                     <div>
                         <span className="text-white">With</span>{" "}
-                        <span className="text-yellow-400">Professional</span>
+                        <span className="dark:text-primary text-primary">
+                            Professional
+                        </span>
                     </div>
                     <div>
                         <span className="text-white">Mountain</span>{" "}
-                        <span className="text-yellow-400">Bike Training</span>
+                        <span className="dark:text-primary text-primary">
+                            Bike Training
+                        </span>
                     </div>
                 </div>
 
                 <ResponsiveLogin alignment="right" />
 
-                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute  bottom-0 lg:bottom-[4%] left-0 w-full dark:h-[65%] h-[30%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full dark:h-[65%] h-[40%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide3" className="relative w-full">
@@ -94,23 +106,29 @@ const Banner = () => {
                     className="uppercase bottom-0 lg:flex flex-col gap-4 absolute z-10 font-extrabold lg:top-[40%] top-[30%] left-[7%] lg:text-7xl text-lg"
                 >
                     <div>
-                        <span className="text-yellow-400">Master</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            Master
+                        </span>{" "}
                         <span className="text-white">The trails</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">with</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            with
+                        </span>{" "}
                         <span className="text-white">expert</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">Mountain</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            Mountain
+                        </span>{" "}
                         <span className="text-white">Bike instructors</span>
                     </div>
                 </div>
 
                 <ResponsiveLogin />
 
-                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute  bottom-0 lg:bottom-[4%] left-0 w-full dark:h-[65%] h-[30%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full dark:h-[65%] h-[40%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
 
             <div id="slide4" className="relative w-full">
@@ -126,23 +144,29 @@ const Banner = () => {
                     className="uppercase lg:flex flex-col gap-4 absolute z-10 font-extrabold lg:top-[40%] top-[30%] text-end right-[7%] lg:text-7xl text-lg"
                 >
                     <div>
-                        <span className="text-yellow-400">Improve</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            Improve
+                        </span>{" "}
                         <span className="text-white">Your Riding</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">enrich</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            enrich
+                        </span>{" "}
                         <span className="text-white">Your knowledge</span>
                     </div>
                     <div>
-                        <span className="text-yellow-400">Share</span>{" "}
+                        <span className="dark:text-primary text-primary">
+                            Share
+                        </span>{" "}
                         <span className="text-white">Your passion</span>
                     </div>
                 </div>
 
                 <ResponsiveLogin alignment="right" />
 
-                <div className="absolute dark:block hidden bottom-0 lg:bottom-[4%] left-0 w-full h-[65%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
-                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full h-[65%] bg-gradient-to-b from-transparent to-base-100"></div>
+                <div className="absolute  bottom-0 lg:bottom-[4%] left-0 w-full dark:h-[65%] h-[30%] bg-gradient-to-b from-transparent lg:to-base-100 to-gray-800"></div>
+                <div className="absolute dark:lg:hidden dark:block lg:hidden -bottom-5 left-0 w-full dark:h-[65%] h-[40%] bg-gradient-to-b from-transparent to-base-100"></div>
             </div>
         </AutoplaySlider>
     );
