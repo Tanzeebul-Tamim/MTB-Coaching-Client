@@ -1,7 +1,7 @@
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 
 const ClassCard = ({ topClass }) => {
     return (

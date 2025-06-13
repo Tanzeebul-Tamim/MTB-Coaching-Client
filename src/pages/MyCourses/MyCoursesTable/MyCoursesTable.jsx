@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import MyCoursesTableHead from "./MyCoursesTableHead";
 import { FaList } from "react-icons/fa";
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 
 const MyCoursesTable = ({
     userDetails,

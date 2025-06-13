@@ -1,10 +1,10 @@
 import useTitle from "../../hooks/useTitle";
 import UpdateProfileForm from "./UpdateProfileForm";
-import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import ChangePassword from "./ChangePassword";
 import useAuth from "../../hooks/useAuth";
-import SklMyProfile from "../../skeletons/SklMyProfile";
-import ImageWithLoader from "../../reusable/ImageWithLoader";
+import SklMyProfile from "../../components/skeletons/SklMyProfile";
+import ImageWithLoader from "../../components/ui/ImageWithLoader";
 import useUserData from "../../hooks/useUserData";
 
 const MyProfile = () => {

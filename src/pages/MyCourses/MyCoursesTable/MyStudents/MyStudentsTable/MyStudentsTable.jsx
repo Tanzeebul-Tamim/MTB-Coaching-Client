@@ -1,4 +1,4 @@
-import ImageWithLoader from "../../../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../../../components/ui/ImageWithLoader";
 import MyStudentsTableHead from "./MyStudentsTableHead";
 
 const MyStudentsTable = ({ students, search, settings }) => {

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../../../hooks/useTitle";
-import DashboardPageTitle from "../../../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../../../components/ui/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
 import { Link, useParams } from "react-router-dom";
 import useScreenSize from "../../../../hooks/useScreenSize";
 import { PiStudentFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
-import SklMyStudents from "../../../../skeletons/SklMyStudents";
-import Searchbar from "../../../../reusable/Searchbar";
+import SklMyStudents from "../../../../components/skeletons/SklMyStudents";
+import Searchbar from "../../../../components/ui/Searchbar";
 import usePagination from "../../../../hooks/usePagination";
-import Pagination from "../../../../reusable/Pagination";
+import Pagination from "../../../../components/ui/Pagination";
 import useUserData from "../../../../hooks/useUserData";
 
 const MyStudents = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
-import SectionTitle from "../../reusable/SectionTitle";
+import SectionTitle from "../../components/ui/SectionTitle";
 import InstructorsTable from "./InstructorsTable/InstructorsTable";
 import { getAllInstructors, getTotalInstructors } from "../../api/api";
 import { BsSearch } from "react-icons/bs";
@@ -9,8 +9,8 @@ import { useRef } from "react";
 import { getUserData } from "../../api/authApi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import useScreenSize from "../../hooks/useScreenSize";
-import SklInstructors from "../../skeletons/SklInstructors";
-import PageBanner from "../../reusable/PageBanner";
+import SklInstructors from "../../components/skeletons/SklInstructors";
+import PageBanner from "../../components/ui/PageBanner";
 
 const titleDescription =
     "Get to know our team of experienced and passionate mountain bike instructors. Our instructors are dedicated to sharing their expertise and guiding riders of all levels on exhilarating mountain biking adventures. Join us and learn from the best in the field as we navigate the thrilling world of mountain biking together.";

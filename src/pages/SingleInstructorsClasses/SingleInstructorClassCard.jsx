@@ -6,7 +6,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import { bookClass, getBookedClasses } from "../../api/bookApi";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import ImageWithLoader from "../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../components/ui/ImageWithLoader";
 import useUserData from "../../hooks/useUserData";
 
 const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {

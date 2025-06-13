@@ -1,4 +1,4 @@
-import SectionTitle from "../../../reusable/SectionTitle";
+import SectionTitle from "../../../components/ui/SectionTitle";
 import InstructorCard from "./InstructorCard";
 import { Slide } from "react-awesome-reveal";
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import "./style.css";
 import useScreenSize from "../../../hooks/useScreenSize";
-import SklPopularInstructors from "../../../skeletons/SklPopularInstructors";
+import SklPopularInstructors from "../../../components/skeletons/SklPopularInstructors";
 
 const popularInstructorsDes =
     "Get to know some of our highly skilled and experienced instructors who'll lead your way throughout this journey. Each of our instructor brings a unique teaching style and a wealth of practical experience, ensuring that our students receive the best instruction possible.";

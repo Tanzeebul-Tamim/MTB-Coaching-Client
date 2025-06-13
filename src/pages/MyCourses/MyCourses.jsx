@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import useTitle from "../../hooks/useTitle";
 import MyCoursesTable from "./MyCoursesTable/MyCoursesTable";
 import useScreenSize from "../../hooks/useScreenSize";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
-import SklMyCourses from "../../skeletons/SklMyCourses";
+import SklMyCourses from "../../components/skeletons/SklMyCourses";
 import usePagination from "../../hooks/usePagination";
-import Searchbar from "../../reusable/Searchbar";
-import Pagination from "../../reusable/Pagination";
+import Searchbar from "../../components/ui/Searchbar";
+import Pagination from "../../components/ui/Pagination";
 import useUserData from "../../hooks/useUserData";
 
 const MyCourses = () => {

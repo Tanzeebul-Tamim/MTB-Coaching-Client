@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../shared_components/Navbar/Navbar";
-import Footer from "../shared_components/Footer/Footer";
-import ScrollToTop from "../ScrollToTop/ScrollToTop";
-import RouteTracker from "../shared_components/RouteTracker/RouteTracker";
+import ScrollToTop from "../routes/ScrollToTop/ScrollToTop";
+import RouteTracker from "../routes/RouteTracker/RouteTracker";
+import Navbar from "../components/layout/Navbar/Navbar";
+import Footer from "../components/layout/Footer/Footer";
 import useNetworkStatus from "../hooks/useNetworkStatus";
-import NoInternetPage from "../shared_components/NoInternetPage/NoInternetPage";
-import InstallPWAButton from "../reusable/InstallPWAButton";
+import NoInternetPage from "../components/pages/NoInternetPage/NoInternetPage";
+import InstallPWAButton from "../components/ui/InstallPWAButton";
 
 const Main = () => {
     const { isOnline } = useNetworkStatus();

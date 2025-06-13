@@ -1,4 +1,4 @@
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import EnrolledClassesTableHead from "./EnrolledClassesTableHead";
 import moment from "moment/moment";
 

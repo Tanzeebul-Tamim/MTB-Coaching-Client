@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
 import { getBookedClasses } from "../../api/bookApi";
-import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import EnrolledClassesTable from "./EnrolledClassesTable/EnrolledClassesTable";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import useScreenSize from "../../hooks/useScreenSize";
-import SklEnrolledClass from "../../skeletons/SklEnrolledClass";
+import SklEnrolledClass from "../../components/skeletons/SklEnrolledClass";
 import usePagination from "../../hooks/usePagination";
-import Searchbar from "../../reusable/Searchbar";
-import Pagination from "../../reusable/Pagination";
+import Searchbar from "../../components/ui/Searchbar";
+import Pagination from "../../components/ui/Pagination";
 import useUserData from "../../hooks/useUserData";
 
 const EnrolledClass = () => {

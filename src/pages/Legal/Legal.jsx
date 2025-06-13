@@ -1,6 +1,6 @@
 import useTitle from "../../hooks/useTitle";
 import { HashLink } from "react-router-hash-link";
-import scrollWithOffset from "../../ScrollToTop/ScrollWithOffset";
+import scrollWithOffset from "../../routes/ScrollToTop/ScrollWithOffset";
 import useScreenSize from "../../hooks/useScreenSize";
 
 const Legal = () => {
@@ -11,7 +11,7 @@ const Legal = () => {
         <div
             className="lg:pt-40 pt-20 lg:pb-24 pb-12 lg:px-10 relative min-h-screen"
             style={{
-                backgroundImage: "url('/legal.avif')",
+                backgroundImage: "url('/assets/legal.avif')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: isSmallDevice ? "65% 50%" : "center",

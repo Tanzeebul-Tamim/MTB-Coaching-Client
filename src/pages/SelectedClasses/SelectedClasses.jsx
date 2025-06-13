@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
-import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
 import useTitle from "../../hooks/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
 import useScreenSize from "../../hooks/useScreenSize";
-import SklSelectedClasses from "../../skeletons/SklSelectedClasses";
+import SklSelectedClasses from "../../components/skeletons/SklSelectedClasses";
 import usePagination from "../../hooks/usePagination";
-import Searchbar from "../../reusable/Searchbar";
-import Pagination from "../../reusable/Pagination";
+import Searchbar from "../../components/ui/Searchbar";
+import Pagination from "../../components/ui/Pagination";
 import useUserData from "../../hooks/useUserData";
 
 const SelectedClasses = () => {

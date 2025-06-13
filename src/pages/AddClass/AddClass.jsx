@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DashboardPageTitle from "../../shared_components/DashboardPageTitle/DashboardPageTitle";
+import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import useTitle from "../../hooks/useTitle";
 import { getUserData, saveUser } from "../../api/authApi";
 import { toast, Flip } from "react-toastify";

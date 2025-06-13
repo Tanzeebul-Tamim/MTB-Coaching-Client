@@ -2,7 +2,7 @@ import ResponsiveLogin from "./ResponsiveLogin";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -17,11 +17,11 @@ const Banner = () => {
             <div id="slide1" className="relative w-full">
                 <ImageWithLoader
                     className="w-full lg:pt-16"
-                    src="/home_banner_1.avif"
+                    src="/assets/home_banner_1.avif"
                 />
 
                 <img
-                    src="/logo.png"
+                    src="/favicon.png"
                     className="absolute z-10 lg:w-auto w-1/6 lg:bottom-[27%] bottom-5 lg:right-10 right-2"
                 />
 
@@ -56,10 +56,10 @@ const Banner = () => {
             </div>
 
             <div id="slide2" className="relative w-full">
-                <ImageWithLoader className="w-full" src="/home_banner_2.avif" />
+                <ImageWithLoader className="w-full" src="/assets/home_banner_2.avif" />
 
                 <img
-                    src="/logo.png"
+                    src="/favicon.png"
                     className="absolute z-10 lg:w-auto w-1/6 lg:bottom-[25%] bottom-5 lg:left-10 left-2"
                 />
 
@@ -94,10 +94,10 @@ const Banner = () => {
             </div>
 
             <div id="slide3" className="relative w-full">
-                <ImageWithLoader className="w-full" src="/home_banner_3.avif" />
+                <ImageWithLoader className="w-full" src="/assets/home_banner_3.avif" />
 
                 <img
-                    src="/logo.png"
+                    src="/favicon.png"
                     className="absolute z-10 lg:w-auto w-1/6 lg:bottom-[25%] bottom-5 lg:right-10 right-2"
                 />
 
@@ -132,10 +132,10 @@ const Banner = () => {
             </div>
 
             <div id="slide4" className="relative w-full">
-                <ImageWithLoader className="w-full" src="/home_banner_4.avif" />
+                <ImageWithLoader className="w-full" src="/assets/home_banner_4.avif" />
 
                 <img
-                    src="/logo.png"
+                    src="/favicon.png"
                     className="absolute z-10 lg:w-auto w-1/6 lg:bottom-[25%] bottom-5 lg:left-10 left-2"
                 />
 

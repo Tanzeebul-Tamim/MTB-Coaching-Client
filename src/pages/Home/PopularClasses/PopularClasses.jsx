@@ -1,4 +1,4 @@
-import SectionTitle from "../../../reusable/SectionTitle";
+import SectionTitle from "../../../components/ui/SectionTitle";
 import ClassCard from "./ClassCard";
 import { Slide } from "react-awesome-reveal";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "../PopularInstructors/style.css";
 import useScreenSize from "../../../hooks/useScreenSize";
-import SklPopularClasses from "../../../skeletons/SklPopularClasses";
+import SklPopularClasses from "../../../components/skeletons/SklPopularClasses";
 
 const popularClassesDes =
     "We offer a curated collection of the most sought-after courses which are highly recommended for mountain bike enthusiasts. Discover a range of exciting and educational courses designed to enhance your MTB skills and knowledge.";

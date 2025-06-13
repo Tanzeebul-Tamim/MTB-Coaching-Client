@@ -1,6 +1,6 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { GiTeacher } from "react-icons/gi";
-import SectionTitle from "../../reusable/SectionTitle";
+import SectionTitle from "../../components/ui/SectionTitle";
 import SingleInstructorClassCard from "./SingleInstructorClassCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -54,7 +54,7 @@ const SingleInstructorsClasses = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.400), rgba(0, 0, 0, 0.400)), url('${
             instructor.cover
                 ? instructor.cover
-                : "/instructor_default_banner.avif"
+                : "/assets/instructor_default_banner.avif"
         }')`,
         backgroundPosition: "center",
         backgroundSize: "cover",

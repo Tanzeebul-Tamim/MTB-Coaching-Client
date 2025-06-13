@@ -1,11 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useState } from "react";
-import ScrollToTop from "../ScrollToTop/ScrollToTop";
-import SideNav from "../shared_components/SideNav/SideNav";
-import RouteTracker from "../shared_components/RouteTracker/RouteTracker";
+import ScrollToTop from "../routes/ScrollToTop/ScrollToTop";
+import SideNav from "../components/layout/SideNav/SideNav";
+import RouteTracker from "../routes/RouteTracker/RouteTracker";
 import useScreenSize from "../hooks/useScreenSize";
 import useNetworkStatus from "../hooks/useNetworkStatus";
-import NoInternetPage from "../shared_components/NoInternetPage/NoInternetPage";
+import NoInternetPage from "../components/pages/NoInternetPage/NoInternetPage";
 
 const Dashboard = () => {
     const [sideNavOpen, setSideNavOpen] = useState(false);
@@ -50,7 +50,7 @@ const Dashboard = () => {
                         isSmallDevice
                             ? {
                                   backgroundImage:
-                                      "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('/dashboard_banner_res.jpg')",
+                                      "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('/assets/dashboard_banner_res.jpg')",
                                   backgroundPosition: "center",
                                   backgroundSize: "cover",
                                   backgroundRepeat: "no-repeat",
@@ -69,7 +69,7 @@ const Dashboard = () => {
                         <div
                             style={{
                                 backgroundImage:
-                                    "url('/dashboard_banner.avif')",
+                                    "url('/assets/dashboard_banner.avif')",
                                 backgroundPosition: "center",
                                 backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
@@ -77,7 +77,7 @@ const Dashboard = () => {
                             className="bg-base-200 relative m-2 md:m-6 lg:m-10 p-2 md:p-4 lg:p-5 rounded-2xl min-h-[60vh]"
                         >
                             <Outlet />
-                            <div className="absolute lg:bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-base-300 pointer-events-none"></div>
+                            <div className="absolute lg:bottom-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-base-100 pointer-events-none"></div>
                         </div>
                     )}
                 </div>

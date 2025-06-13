@@ -4,7 +4,7 @@ import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 
 const SelectedClassesTable = ({
     userBookings,

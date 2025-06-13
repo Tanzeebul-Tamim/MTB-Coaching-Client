@@ -1,4 +1,4 @@
-import ImageWithLoader from "../../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import InstructorsTableHead from "./InstructorsTableHead";
 import { Link } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SectionTitle from "../../../reusable/SectionTitle";
+import SectionTitle from "../../../components/ui/SectionTitle";
 import HackCard from "./HackCard";
 import { Slide } from "react-awesome-reveal";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,7 +11,7 @@ import useScreenSize from "../../../hooks/useScreenSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
 import useAuth from "../../../hooks/useAuth";
 import bikeHacksData from "./bikeHack.json";
-import SklBikeHacks from "../../../skeletons/SklBikeHacks";
+import SklBikeHacks from "../../../components/skeletons/SklBikeHacks";
 
 const bikeHacksDes =
     "Discover innovative ways to maintain and optimize your bike, improve your riding skills, and overcome common challenges on the road or trail. Here we're to provide you with helpful knowledge and shortcuts that can make your biking adventures more enjoyable and rewarding.";
@@ -45,7 +45,7 @@ const BikeHacks = () => {
             style={{
                 backgroundAttachment: "fixed",
                 backgroundImage:
-                    "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.300)), url('/bike_hack_banner.avif')",
+                    "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.300)), url('/assets/bike_hack_banner.avif')",
                 backgroundPosition: isSmallDevice ? "55% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

@@ -23,7 +23,7 @@ const PaymentHistoryTable = ({
             >
                 <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
                     {search
-                        ? "No Payment History Found For Your Search"
+                        ? "No History Found For Your Search"
                         : "You Haven't Made Any Payment Yet"}
                 </h1>
             </div>

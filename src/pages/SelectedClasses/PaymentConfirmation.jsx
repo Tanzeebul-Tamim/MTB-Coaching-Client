@@ -10,7 +10,7 @@ import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./styles/style.css";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import ImageWithLoader from "../../reusable/ImageWithLoader";
+import ImageWithLoader from "../../components/ui/ImageWithLoader";
 import useUserData from "../../hooks/useUserData";
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`);
@@ -150,7 +150,7 @@ const PaymentConfirmation = () => {
                                             <ImageWithLoader
                                                 src={
                                                     loading || loading2
-                                                        ? "/class-loading.gif"
+                                                        ? "/assets/class-loading.gif"
                                                         : classItem?.classImage
                                                 }
                                                 className={`w-full max-w-[340px] h-[52vw] max-h-[200px] min-h-[120px] rounded-2xl`}

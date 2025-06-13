@@ -33,23 +33,24 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 - **React Router HashLink**: For smooth anchor navigation to sections within pages
 - **Tailwind CSS**: Utility-first CSS framework
 - **DaisyUI**: Tailwind CSS components
-- **Axios**: For making HTTP requests
 - **Firebase**: For authentication
-- **Tanstack Query (React Query)**: For data fetching and state management
-- **JWT**: For authentication
 - **Environment Variables**: For configuration
 - **Stripe**: For payment processing
 - **SweetAlert2**: For beautiful alerts
-- **React Hook Form**: For handling form validation
-- **Emotion**: For styling components
 - **Moment**: For date manipulation
-- **Swiper**: For creating sliders
+- **React Awesome Slider & Swiper**: For creating sliders
 - **React Toastify**: For toast notifications
 - **React Icons**: For icons
 - **React Leaflet**: For interactive maps
 - **React Simple Typewriter**: For typewriter effects
 - **React Awesome Reveal**: For awesome animations
 - **Vercel**: For seamless and fast deployment of the client-side application
+- **YouTube Data API v3**: For fetching and displaying YouTube video data dynamically
+- **React YouTube**: For embedding and controlling YouTube videos in React components
+- **React Credit Cards**: For displaying interactive credit card forms and previews
+- **React Simple Captcha**: For adding simple captcha validation to forms
+- **React Spinners**: For loading spinner components and indicators
+- **vite-plugin-pwa**: For enabling Progressive Web App (PWA) features and installability
 
 <br>
 
@@ -61,7 +62,6 @@ MTB-Coaching-Client/
 │   ├── activeLink/            # Custom active link navigation components
 │   ├── api/                   # API utility functions for axios, auth and booking
 │   ├── firebase/              # Firebase configuration
-│   ├── Helmet/                # Custom React hooks for document title
 │   ├── hooks/                 # Custom React hooks for reusable logic and state management
 │   ├── layout/                # Main layout and dashboard layout components
 │   ├── pages/                 # All main page components (Home, Auth, Classes, etc.)

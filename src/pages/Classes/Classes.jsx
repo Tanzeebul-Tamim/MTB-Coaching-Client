@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import useTitle from "../../hooks/useTitle";
-import SectionTitle from "../../reusable/SectionTitle";
+import SectionTitle from "../../components/ui/SectionTitle";
 import ClassesTable from "./ClassesTable/ClassesTable";
 import { useState } from "react";
 import { getAllClasses, getTotalClasses } from "../../api/api";
@@ -8,10 +8,10 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import useScreenSize from "../../hooks/useScreenSize";
 import { GiTeacher } from "react-icons/gi";
-import SklClasses from "../../skeletons/SklClasses";
+import SklClasses from "../../components/skeletons/SklClasses";
 import useAuth from "../../hooks/useAuth";
 import useUserData from "../../hooks/useUserData";
-import PageBanner from "../../reusable/PageBanner";
+import PageBanner from "../../components/ui/PageBanner";
 
 const titleDescription =
     "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
