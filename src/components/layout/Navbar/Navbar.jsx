@@ -34,7 +34,7 @@ const Navbar = () => {
         localStorage.setItem("location", location.pathname);
     }
 
-    const { userDetails, setUserDetails } = useUserData();
+    const { userDetails, setUserDetails, loading: userLoading } = useUserData();
     const myWallRoute = `/instructors/${userDetails._id}`;
 
     useEffect(() => {
@@ -120,31 +120,29 @@ const Navbar = () => {
                         </span>
                     </ActiveLink>
                     {user && (
-                        <>
-                            <ActiveLink dark={true} to="/dashboard/profile">
-                                <span
-                                    onClick={() => setOpen(!open)}
-                                    className="flex items-center gap-1"
-                                >
-                                    <LuLayoutDashboard className="text-xs" />
-                                    Dashboard
-                                </span>
-                            </ActiveLink>
-                            {userDetails.role === "Instructor" && (
-                                <ActiveLink dark={true} to={myWallRoute}>
-                                    <span
-                                        onClick={() => setOpen(!open)}
-                                        className={`flex items-center gap-1 ${
-                                            location.pathname === myWallRoute &&
-                                            "text-primary"
-                                        }`}
-                                    >
-                                        <CgProfile className="text-xs" />
-                                        My Wall
-                                    </span>
-                                </ActiveLink>
-                            )}
-                        </>
+                        <ActiveLink dark={true} to="/dashboard/profile">
+                            <span
+                                onClick={() => setOpen(!open)}
+                                className="flex items-center gap-1"
+                            >
+                                <LuLayoutDashboard className="text-xs" />
+                                Dashboard
+                            </span>
+                        </ActiveLink>
+                    )}
+                    {userDetails?.role === "Instructor" && (
+                        <ActiveLink dark={true} to={myWallRoute}>
+                            <span
+                                onClick={() => setOpen(!open)}
+                                className={`flex items-center gap-1 ${
+                                    location.pathname === myWallRoute &&
+                                    "text-primary"
+                                }`}
+                            >
+                                <CgProfile className="text-xs" />
+                                My Wall
+                            </span>
+                        </ActiveLink>
                     )}
                     <ActiveLink to="/about-us">
                         <span
@@ -230,23 +228,21 @@ const Navbar = () => {
                         <div>About Us</div>
                     </ActiveLink>
                     {user && (
-                        <>
-                            <ActiveLink dark={true} to="/dashboard/profile">
-                                <div>Dashboard</div>
-                            </ActiveLink>
-                            {userDetails.role === "Instructor" && (
-                                <ActiveLink dark={true} to={myWallRoute}>
-                                    <div
-                                        className={
-                                            location.pathname === myWallRoute &&
-                                            "text-primary"
-                                        }
-                                    >
-                                        My Wall
-                                    </div>
-                                </ActiveLink>
-                            )}
-                        </>
+                        <ActiveLink dark={true} to="/dashboard/profile">
+                            <div>Dashboard</div>
+                        </ActiveLink>
+                    )}
+                    {userDetails?.role === "Instructor" && (
+                        <ActiveLink dark={true} to={myWallRoute}>
+                            <div
+                                className={
+                                    location.pathname === myWallRoute &&
+                                    "text-primary"
+                                }
+                            >
+                                My Wall
+                            </div>
+                        </ActiveLink>
                     )}
                     <ThemeToggle />
                 </div>
@@ -267,37 +263,33 @@ const Navbar = () => {
                         data-tip={user?.displayName}
                         className="tooltip tooltip-bottom tooltip-primary hover:scale-110 duration-500 transition-transform"
                     >
-                        {userDetails?.image || user?.photoURL ? (
-                            <div className="flex flex-col items-center">
-                                <div className="indicator">
-                                    <img
-                                        className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
-                                        src={
-                                            userDetails?.image || user.photoURL
-                                        }
-                                    />
-                                    {userBookings.length >= 1 && (
-                                        <span className="badge flex gap-1 badge-md badge-secondary title indicator-item dark:text-gray-800 text-yellow-50">
-                                            <MdShoppingCart className="text-lg" />
-                                            <span>{userBookings?.length}</span>
-                                        </span>
-                                    )}
-                                </div>
-                                <h1 className="dark:text-secondary text-primary text-sm">
-                                    My Profile
-                                </h1>
-                            </div>
-                        ) : (
-                            <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-center">
+                            <div className="indicator">
                                 <img
-                                    className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
-                                    src="/assets/user_avatar.png"
+                                    className={`rounded-full glow-effect cursor-pointer w-[55px] h-[55px] ${
+                                        userLoading && "animate-pulse"
+                                    }`}
+                                    src={
+                                        userLoading
+                                            ? "/assets/user_avatar.png"
+                                            : userDetails?.image ||
+                                              user?.photoURL
+                                            ? userDetails?.image ||
+                                              user?.photoURL
+                                            : "/assets/user_avatar.png"
+                                    }
                                 />
-                                <h1 className="dark:text-secondary text-primary text-sm">
-                                    My Profile
-                                </h1>
+                                {userBookings.length >= 1 && (
+                                    <span className="badge flex gap-1 badge-md badge-secondary title indicator-item dark:text-gray-800 text-yellow-50">
+                                        <MdShoppingCart className="text-lg" />
+                                        <span>{userBookings?.length}</span>
+                                    </span>
+                                )}
                             </div>
-                        )}
+                            <h1 className="dark:text-secondary text-primary text-sm">
+                                My Profile
+                            </h1>
+                        </div>
                     </Link>
                 </div>
             ) : loading ? (
@@ -329,15 +321,7 @@ const Navbar = () => {
                 </div>
             )}
             <div className="navbar-end flex gap-2 lg:hidden">
-                {loading ? (
-                    <div>
-                        <img
-                            className="h-[42.5px] w-[42.5px] rounded-full"
-                            src="/assets/user_avatar.png"
-                            alt=""
-                        />
-                    </div>
-                ) : !loading && user ? (
+                {user ? (
                     <Link
                         to="/dashboard/profile"
                         data-tip={user?.displayName}
@@ -352,15 +336,27 @@ const Navbar = () => {
                             </span>
                         )}
                         <img
-                            className="h-[42.5px] w-[42.5px] rounded-full"
+                            className={`h-[42.5px] w-[42.5px] rounded-full ${
+                                userLoading && "animate-pulse"
+                            }`}
                             src={
-                                userDetails?.image || user?.photoURL
+                                userLoading
+                                    ? "/assets/user_avatar.png"
+                                    : userDetails?.image || user?.photoURL
                                     ? userDetails?.image || user?.photoURL
                                     : "/assets/user_avatar.png"
                             }
                             alt=""
                         />
                     </Link>
+                ) : loading ? (
+                    <div>
+                        <img
+                            className="h-[42.5px] w-[42.5px] rounded-full animate-pulse"
+                            src="/assets/user_avatar.png"
+                            alt=""
+                        />
+                    </div>
                 ) : (
                     ""
                 )}
