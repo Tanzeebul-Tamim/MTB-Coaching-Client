@@ -14,6 +14,7 @@ import useUserData from "../../../hooks/useUserData";
 import ThemeToggle from "../../ui/ThemeToggle";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import ActiveLink from "../../ui/ActiveLink";
+import "../../../styles/navbar.css";
 
 const Navbar = () => {
     const isDarkTheme = useDarkTheme();

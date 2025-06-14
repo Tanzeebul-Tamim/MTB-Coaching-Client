@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
-import "../PopularInstructors/style.css";
 import useScreenSize from "../../../hooks/useScreenSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
 import useAuth from "../../../hooks/useAuth";
@@ -69,7 +68,7 @@ const BikeHacks = () => {
                 </div>
             )}
 
-            <Slide>
+            <Slide duration={1300}>
                 <SectionTitle
                     title1={"bike hacks"}
                     title2={"and tips"}
@@ -83,7 +82,7 @@ const BikeHacks = () => {
                     spaceBetween={30}
                     navigation={true}
                     modules={[Navigation]}
-                    className="popularClassSection cursor-pointer"
+                    className="popular cursor-pointer"
                 >
                     {loading
                         ? Array.from({ length: isSmallDevice ? 1 : 4 }).map(

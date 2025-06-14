@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useDarkTheme from "../../../hooks/useDarkTheme";
-import { light, dark } from "../../../colors.json";
+import { light, dark } from "../../../styles/colors.json";
 
 const ClassesTable = ({
     classes,
@@ -100,7 +100,6 @@ const ClassesTable = ({
                                                 pauseOnHover: true,
                                                 draggable: true,
                                                 progress: undefined,
-                                                theme: "dark",
                                             }
                                         );
                                         setTimeout(function () {
@@ -125,7 +124,6 @@ const ClassesTable = ({
                                                 pauseOnHover: true,
                                                 draggable: true,
                                                 progress: undefined,
-                                                theme: "dark",
                                             }
                                         );
                                     }

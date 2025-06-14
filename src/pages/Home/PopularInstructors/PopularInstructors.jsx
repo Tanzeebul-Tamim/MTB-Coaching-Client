@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import "./style.css";
 import useScreenSize from "../../../hooks/useScreenSize";
 import SklPopularInstructors from "../../../components/skeletons/SklPopularInstructors";
 
@@ -38,7 +37,7 @@ const PopularInstructors = () => {
 
     return (
         <div className="px-5 lg:px-10 lg:mb-32 mb-12 pt-11 relative">
-            <Slide>
+            <Slide duration={1300}>
                 <SectionTitle
                     title1={"popular"}
                     title2={"instructors"}
@@ -49,7 +48,7 @@ const PopularInstructors = () => {
                 slidesPerView={numberOfSlides}
                 navigation={true}
                 modules={[Navigation]}
-                className="popularClassSection cursor-pointer"
+                className="popular cursor-pointer"
             >
                 {loading
                     ? Array.from({ length: isSmallDevice ? 1 : 3 }).map(

@@ -1,0 +1,15 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: white !important;
+    transition-property: opacity, visibility;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popular:hover .swiper-button-prev,
+.popular:hover .swiper-button-next {
+    opacity: 1;
+    visibility: visible;
+}

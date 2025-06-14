@@ -89,7 +89,6 @@ const AddClass = () => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
             });
             setTimeout(() => {
                 window.location.replace(`/instructors/${userDoc._id}`);

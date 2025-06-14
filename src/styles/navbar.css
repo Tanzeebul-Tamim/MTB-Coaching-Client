@@ -1,0 +1,16 @@
+/* Hover effects */
+.nav-btn a {
+    transition: color 0.3s ease-in-out;
+}
+
+.dark .nav-btn a {
+    transition: color 0.3s ease-in-out;
+}
+
+.dark .nav-btn a:hover {
+    color: rgb(242, 255, 65);
+}
+
+.nav-btn a:hover {
+    color: rgb(253, 202, 113);
+}

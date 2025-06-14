@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import useTitle from "../../../hooks/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
+import { saveInstructor, saveInstructorViaSocial } from "../../api/authApi";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const InstructorRegister = () => {
     const [error, setError] = useState("");
@@ -321,7 +321,9 @@ const InstructorRegister = () => {
                             to="/register"
                             className="description text-sm link link-hover"
                         >
-                            <span className="text-accent">Not an instructor?{" "}</span>
+                            <span className="text-accent">
+                                Not an instructor?{" "}
+                            </span>
                             <span className="text-secondary underline">
                                 Register as a student
                             </span>
@@ -373,7 +375,7 @@ const InstructorRegister = () => {
                                     value={formFields.name}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your full name"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
 
@@ -390,7 +392,7 @@ const InstructorRegister = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
                         </div>
@@ -409,7 +411,7 @@ const InstructorRegister = () => {
                                     value={formFields.contact}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your contact no"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
 
@@ -426,7 +428,7 @@ const InstructorRegister = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
                         </div>
@@ -447,7 +449,7 @@ const InstructorRegister = () => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm hover:bg-base-300 bg-base-200 border-0 w-full">
+                                    <div className="btn btn-sm bg-stone-400 dark:bg-stone-700 hover:bg-stone-500 dark:hover:bg-stone-600 border-0 w-full">
                                         {imageButtonText}
                                     </div>
                                 </label>
@@ -463,7 +465,7 @@ const InstructorRegister = () => {
                                     <select
                                         onChange={handleSelectGender}
                                         name="gender"
-                                        className="input input-bordered select font-light text-base text-gray-400 w-full max-w-xs"
+                                        className="input input-bordered select font-light text-gray-600 dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0  w-full max-w-xs text-sm"
                                         value={selectedGender}
                                     >
                                         <option hidden>
@@ -491,7 +493,7 @@ const InstructorRegister = () => {
                                     value={formFields.password}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your password"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                                 <div
                                     style={{
@@ -521,7 +523,7 @@ const InstructorRegister = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="placeholder:text-gray-500 input input-bordered w-full"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                                 <div
                                     style={{

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../../styles/pwa.css";
 
 const InstallPWAButton = () => {
     const [deferredPrompt, setDeferredPrompt] = useState(null);

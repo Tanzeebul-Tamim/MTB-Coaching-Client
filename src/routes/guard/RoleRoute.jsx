@@ -80,7 +80,6 @@ const RoleRoute = ({ allowedRole, children }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "dark",
     });
 
     // Use lastLocation set by RouteTracker

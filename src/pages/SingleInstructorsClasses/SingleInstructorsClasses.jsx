@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "swiper/css/navigation";
-import "../Home/PopularInstructors/style.css";
 import { FaChalkboardTeacher, FaQuoteLeft } from "react-icons/fa";
 import useTitle from "../../hooks/useTitle";
 import { useEffect, useState } from "react";
@@ -123,7 +122,7 @@ const SingleInstructorsClasses = () => {
                         spaceBetween={20}
                         navigation={true}
                         modules={[Navigation]}
-                        className="popularClassSection"
+                        className="popular"
                     >
                         {classes.map((classItem, index) => (
                             <SwiperSlide key={index}>

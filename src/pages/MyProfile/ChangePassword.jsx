@@ -103,7 +103,6 @@ const ChangePassword = () => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "dark",
                         });
                         setError("");
                         setLoading(false);

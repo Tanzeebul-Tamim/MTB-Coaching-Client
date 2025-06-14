@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Primary font */
+#root {
+    font-family: "Khand", sans-serif;
+}
+
+/* Component specific fonts */
+.title-res {
+    font-family: "Oswald", sans-serif;
+}
+
+.title-sm {
+    font-family: "Oswald", sans-serif;
+}
+
+.description {
+    font-family: "Quicksand", sans-serif;
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-family: "Oswald", sans-serif;
+        letter-spacing: 3px;
+    }
+}
+
+/* Disable text selection globally */
+* {
+    @apply select-none;
+}
+
+/* Global Transition for toggling light/dark theme */
+@layer base {
+    * {
+        transition: background-color 1.5s ease, color 1.5s ease,
+            border-color 1.5s ease, right 0.3s ease-in-out;
+    }
+}
+
+/* Glow effects */
+.glow-effect {
+    box-shadow: 0 0 25px rgba(236, 131, 11, 0.808);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 40px rgba(244, 130, 36, 0.753);
+}
+
+.dark .glow-effect {
+    box-shadow: 0 0 15px rgba(255, 238, 0, 0.808);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.dark .glow-effect:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.753);
+}

@@ -117,7 +117,6 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "dark",
             });
             navigate("/dashboard/enrolled-classes");
           }

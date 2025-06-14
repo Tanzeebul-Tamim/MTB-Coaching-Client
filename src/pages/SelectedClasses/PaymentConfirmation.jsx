@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
-import "./styles/CheckOutForm.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import "./styles/style.css";
+import "../../styles/creditCard.css";
+import "../../styles/checkoutForm.css";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import ImageWithLoader from "../../components/ui/ImageWithLoader";
@@ -57,7 +57,6 @@ const PaymentConfirmation = () => {
                                 pauseOnHover: true,
                                 draggable: true,
                                 progress: undefined,
-                                theme: "dark",
                             }
                         );
 

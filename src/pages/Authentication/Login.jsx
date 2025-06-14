@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import useTitle from "../../../hooks/useTitle";
+import useTitle from "../../hooks/useTitle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     loadCaptchaEnginge,
     LoadCanvasTemplateNoReload,
     validateCaptcha,
 } from "react-simple-captcha";
-import "./Login.css";
 import { useRef } from "react";
 import { toast, Zoom } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
-import { saveUserViaSocial } from "../../../api/authApi";
-import useAuth from "../../../hooks/useAuth";
+import { saveUserViaSocial } from "../../api/authApi";
+import "../../styles/captcha.css";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
@@ -26,6 +26,7 @@ const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     const emailRef = useRef();
+    const customId = "unauthorized";
     useTitle("| Login");
 
     useEffect(() => {
@@ -39,8 +40,8 @@ const Login = () => {
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
+                    toastId: customId,
                     progress: undefined,
-                    theme: "dark",
                 }
             );
         }
@@ -131,7 +132,6 @@ const Login = () => {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "dark",
                     }
                 );
                 event.target.newPassword.value = "";
@@ -205,7 +205,7 @@ const Login = () => {
                                 name="email"
                                 required
                                 placeholder="Enter your email"
-                                className="placeholder:text-gray-500 input input-bordered"
+                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                         </div>
                         <div className="z-[10] relative form-control">
@@ -220,7 +220,7 @@ const Login = () => {
                                 name="password"
                                 required
                                 placeholder="Enter your password"
-                                className="placeholder:text-gray-500 input input-bordered"
+                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <div
                                 style={{
@@ -262,7 +262,7 @@ const Login = () => {
                                 ref={captchaRef}
                                 name="captcha"
                                 placeholder="Enter the above text"
-                                className="placeholder:text-gray-500 input input-bordered"
+                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <label className="label">
                                 <Link

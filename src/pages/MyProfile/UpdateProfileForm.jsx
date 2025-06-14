@@ -93,7 +93,6 @@ const UpdateProfileForm = ({ userDetails }) => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "dark",
                         }
                     );
                 }
@@ -187,7 +186,6 @@ const UpdateProfileForm = ({ userDetails }) => {
                                                             pauseOnHover: true,
                                                             draggable: true,
                                                             progress: undefined,
-                                                            theme: "dark",
                                                         }
                                                     );
                                                     setLoading(false);
@@ -222,7 +220,6 @@ const UpdateProfileForm = ({ userDetails }) => {
                                                 pauseOnHover: true,
                                                 draggable: true,
                                                 progress: undefined,
-                                                theme: "dark",
                                             });
                                             setLoading(false);
                                             setLoading2(false);
@@ -278,7 +275,6 @@ const UpdateProfileForm = ({ userDetails }) => {
                                     pauseOnHover: true,
                                     draggable: true,
                                     progress: undefined,
-                                    theme: "dark",
                                 });
                                 setLoading(false);
                                 setLoading2(false);
@@ -304,7 +300,6 @@ const UpdateProfileForm = ({ userDetails }) => {
                             pauseOnHover: true,
                             draggable: true,
                             progress: undefined,
-                            theme: "dark",
                         });
                         setLoading(false);
                         setLoading2(false);

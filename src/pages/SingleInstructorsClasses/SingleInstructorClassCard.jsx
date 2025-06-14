@@ -74,7 +74,6 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "dark",
             });
         }
     };
