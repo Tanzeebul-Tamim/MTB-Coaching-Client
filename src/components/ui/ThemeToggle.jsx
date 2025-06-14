@@ -42,7 +42,7 @@ const ThemeToggle = () => {
         return (
             <div
                 onClick={toggleDarkMode}
-                className="transition-transform duration-300 ease-in-out font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
+                className="transition-all duration-300 ease-in-out font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
             >
                 {isDark ? (
                     <>
@@ -61,30 +61,59 @@ const ThemeToggle = () => {
 
     if (isSmallDevice) {
         return (
-            <span onClick={toggleDarkMode}>
-                {isDark ? (
-                    <span className="text-yellow-100 flex items-center gap-1">
-                        <MdLightMode className="text-sm" />
-                        Light Mode
-                    </span>
-                ) : (
-                    <span className="text-blue-700 flex items-center gap-1">
-                        <MdDarkMode className="text-sm" />
-                        Dark Mode
-                    </span>
-                )}
-            </span>
+            <div className="flex justify-between gap-2">
+                <span>
+                    {isDark ? (
+                        <span className="text-yellow-100 flex items-center gap-1">
+                            <MdLightMode className="text-sm" />
+                            <span>Light</span>
+                        </span>
+                    ) : (
+                        <span className="text-blue-700 flex items-center gap-1">
+                            <MdDarkMode className="text-sm" />
+                            <span>Dark</span>
+                        </span>
+                    )}
+                </span>
+                <label className="flex cursor-pointer select-none items-center transition">
+                    <div className="relative">
+                        <input
+                            type="checkbox"
+                            checked={isDark}
+                            onChange={toggleDarkMode}
+                            className="sr-only"
+                        />
+                        <div
+                            className={`box block h-[16px] w-[28px] rounded-full ${
+                                isDark ? "bg-yellow-500" : "bg-amber-400"
+                            }`}
+                        ></div>
+                        {isDark ? (
+                            <div
+                                className="absolute left-[2px] top-[2px] flex h-[12px] w-[12px] items-center justify-center rounded-full bg-white border-1 border-black transition translate-x-full 
+                            "
+                            >
+                            </div>
+                        ) : (
+                            <div
+                                className="absolute left-[2px] top-[2px] flex h-[12px] w-[12px] items-center justify-center rounded-full bg-white border-1 border-black transition
+                            "
+                            >
+                            </div>
+                        )}
+                    </div>
+                </label>
+            </div>
         );
     } else {
         return (
             <button
                 onClick={toggleDarkMode}
                 data-tip={`Enable ${isDark ? "Light" : "Dark"} Mode`}
-                className="rounded-full glow-effect h-7 w-7 cursor-pointer bg-primary text-accent bg-opacity-50 flex items-center justify-center outline-none
-        transition-all duration-700 ease-in-out tooltip tooltip-right tooltip-secondary tool"
+                className="rounded-full glow-effect h-7 w-7 cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-right tooltip-secondary tool"
                 aria-label="Toggle dark mode"
             >
-                <div className="transition-transform duration-700 ease-in-out hover:scale-100">
+                <div className="hover:scale-125 transition-transform duration-700 ease-in-out">
                     {isDark ? (
                         <MdLightMode className="text-xl" />
                     ) : (
