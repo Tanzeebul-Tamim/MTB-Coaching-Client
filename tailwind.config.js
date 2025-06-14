@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import COLORS from "./src/colors.json";
+import COLORS from "./src/styles/colors.json";
 
 export default {
     darkMode: "class", // You already have this

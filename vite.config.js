@@ -8,7 +8,7 @@ export default defineConfig({
         react(),
         VitePWA({
             registerType: "autoUpdate",
-            manifest: "/pwa/manifest.json",
+            manifest: "/manifest.json",
         }),
     ],
 });

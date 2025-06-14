@@ -567,7 +567,7 @@ const InstructorRegister = () => {
                             <button
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="hover:scale-110 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
+                                className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
                             >
                                 <FcGoogle className="text-2xl" />{" "}
                                 <span className="font-bold font-sans description text-sm text-base-content">

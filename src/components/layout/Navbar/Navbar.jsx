@@ -1,4 +1,4 @@
-import { CgMenuGridO } from "react-icons/cg";
+import { CgMenuGridO, CgProfile } from "react-icons/cg";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { SlNote } from "react-icons/sl";
 import { IoMdClose } from "react-icons/io";
@@ -35,6 +35,7 @@ const Navbar = () => {
     }
 
     const { userDetails, setUserDetails } = useUserData();
+    const myWallRoute = `/instructors/${userDetails._id}`;
 
     useEffect(() => {
         if (user && user.email && userDetails._id) {
@@ -119,15 +120,31 @@ const Navbar = () => {
                         </span>
                     </ActiveLink>
                     {user && (
-                        <ActiveLink to="/dashboard/profile">
-                            <span
-                                onClick={() => setOpen(!open)}
-                                className="flex items-center gap-1"
-                            >
-                                <LuLayoutDashboard className="text-xs" />
-                                Dashboard
-                            </span>
-                        </ActiveLink>
+                        <>
+                            <ActiveLink dark={true} to="/dashboard/profile">
+                                <span
+                                    onClick={() => setOpen(!open)}
+                                    className="flex items-center gap-1"
+                                >
+                                    <LuLayoutDashboard className="text-xs" />
+                                    Dashboard
+                                </span>
+                            </ActiveLink>
+                            {userDetails.role === "Instructor" && (
+                                <ActiveLink dark={true} to={myWallRoute}>
+                                    <span
+                                        onClick={() => setOpen(!open)}
+                                        className={`flex items-center gap-1 ${
+                                            location.pathname === myWallRoute &&
+                                            "text-primary"
+                                        }`}
+                                    >
+                                        <CgProfile className="text-xs" />
+                                        My Wall
+                                    </span>
+                                </ActiveLink>
+                            )}
+                        </>
                     )}
                     <ActiveLink to="/about-us">
                         <span
@@ -213,9 +230,23 @@ const Navbar = () => {
                         <div>About Us</div>
                     </ActiveLink>
                     {user && (
-                        <ActiveLink dark={true} to="/dashboard/profile">
-                            <div>Dashboard</div>
-                        </ActiveLink>
+                        <>
+                            <ActiveLink dark={true} to="/dashboard/profile">
+                                <div>Dashboard</div>
+                            </ActiveLink>
+                            {userDetails.role === "Instructor" && (
+                                <ActiveLink dark={true} to={myWallRoute}>
+                                    <div
+                                        className={
+                                            location.pathname === myWallRoute &&
+                                            "text-primary"
+                                        }
+                                    >
+                                        My Wall
+                                    </div>
+                                </ActiveLink>
+                            )}
+                        </>
                     )}
                     <ThemeToggle />
                 </div>

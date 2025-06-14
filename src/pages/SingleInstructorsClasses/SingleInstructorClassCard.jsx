@@ -82,6 +82,10 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
         <div className="group card relative h-full description rounded-2xl card-compact w-full bg-base-200 shadow-xl">
             <div>
                 <ImageWithLoader
+                    style={{
+                        "object-position": "left",
+                        "object-fit": "cover",
+                    }}
                     src={classItem.image}
                     className="rounded-t-2xl h-[240px] z-0 w-full"
                 />

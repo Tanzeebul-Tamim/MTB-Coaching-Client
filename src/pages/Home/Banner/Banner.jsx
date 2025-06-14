@@ -8,7 +8,8 @@ import { Fade } from "react-awesome-reveal";
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Banner = () => {
-    const [interval, delay, damping] = [2000, 500, 0.3];
+    const [duration, delay, damping] = [2000, 500, 0.3];
+    const interval  = duration + 800;
 
     return (
         <AutoplaySlider
@@ -35,7 +36,7 @@ const Banner = () => {
                         delay={delay}
                         cascade
                         damping={damping}                        
-                        duration={interval}
+                        duration={duration}
                     >
                         <div>
                             <span className="dark:text-primary text-primary">
@@ -82,7 +83,7 @@ const Banner = () => {
                         delay={delay}
                         cascade
                         damping={damping}                        
-                        duration={interval}
+                        duration={duration}
                     >
                         <div>
                             <span className="text-white">Elevate</span>{" "}
@@ -129,7 +130,7 @@ const Banner = () => {
                         delay={delay}
                         cascade
                         damping={damping}                        
-                        duration={interval}
+                        duration={duration}
                     >
                         <div>
                             <span className="dark:text-primary text-primary">
@@ -176,7 +177,7 @@ const Banner = () => {
                         delay={delay}
                         cascade
                         damping={damping}                        
-                        duration={interval}
+                        duration={duration}
                     >
                         <div>
                             <span className="dark:text-primary text-primary">

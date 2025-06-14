@@ -14,7 +14,6 @@ const Toast = () => {
             closeOnClick
             limit={2}
             rtl={false}
-            pauseOnFocusLoss
             draggable
             pauseOnHover
             theme={isDarkTheme ? "dark" : "light"}

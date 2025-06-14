@@ -17,10 +17,10 @@ const Main = () => {
     return (
         <div className="overflow-x-hidden">
             <RouteTracker />
-            <ScrollToTop></ScrollToTop>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <ScrollToTop />
+            <Navbar />
+            <Outlet />
+            <Footer />
             <InstallPWAButton />
         </div>
     );

@@ -94,17 +94,18 @@ const SingleInstructorsClasses = () => {
                     enlarge={true}
                     dark={true}
                     description={instructor?.quote}
+                    fullWidth={true}
                 />
                 {isMyWall && (
-                    <span className="lg:text-4xl text-2xl text-stone-300 font-semibold">
+                    <span className="lg:text-4xl text-2xl text-accent font-semibold">
                         (My Wall)
                     </span>
                 )}
             </div>
             {classes?.length > 0 ? (
                 <>
-                    <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-accent description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
-                        <strong className="flex items-center gap-2">
+                    <div className="lg:mb-5 mb-2 flex flex-col md:flex-row gap-2 md:gap-6 text-white description text-lg md:text-xl lg:text-2xl items-center lg:justify-normal justify-center">
+                        <strong className="flex items-center gap-2 z-10">
                             <GiTeacher className="text-xl md:text-2xl" />
                             {classes.length}
                             <span>Courses</span>

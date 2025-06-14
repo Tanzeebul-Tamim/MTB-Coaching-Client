@@ -5,6 +5,7 @@ const SectionTitle = ({
     textAlign,
     enlarge,
     dark,
+    fullWidth,
 }) => {
     return (
         <div
@@ -38,9 +39,7 @@ const SectionTitle = ({
                 </span>{" "}
                 <span
                     className={`${
-                        textAlign
-                            ? "text-base-content"
-                            : "text-secondary"
+                        textAlign ? "text-base-content" : "text-secondary"
                     }  lg:tracking-widest tracking-wider`}
                 >
                     <p
@@ -55,11 +54,9 @@ const SectionTitle = ({
             <p
                 className={`${
                     textAlign && "transform scale-x-[-1] text-end"
-                } lg:mt-5 mt-2 ${
-                    dark ? "text-accent" : "text-base-content"
-                } ${
+                } lg:mt-5 mt-2 ${dark ? "text-accent" : "text-base-content"} ${
                     enlarge ? "text-lg" : "text-sm"
-                } lg:text-xl lg:w-1/2 description`}
+                } lg:text-xl ${!fullWidth && "lg:w-1/2"} description`}
             >
                 {description}
             </p>

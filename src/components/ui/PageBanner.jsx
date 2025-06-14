@@ -14,7 +14,7 @@ const PageBanner = ({ src, texts, side }) => {
                         key={i}
                         className={`${
                             i % 2 === 0
-                                ? "text-secondary title lg:text-6xl font-bold"
+                                ? "text-secondary title title-res lg:text-6xl font-bold"
                                 : "text-base-content lg:text-4xl text-sm lg:tracking-[7px] lg:mt-1"
                         } uppercase`}
                     >

@@ -6,17 +6,16 @@ import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import Title from "./Title/Title";
 import "../../styles/swiper-buttons.css";
 
-
 const Home = () => {
     useTitle(null, location.pathname);
 
     return (
         <div>
-            <Banner></Banner>
-            <Title></Title>
-            <PopularInstructors></PopularInstructors>
-            <PopularClasses></PopularClasses>
-            <BikeHacks></BikeHacks>
+            <Banner />
+            <Title />
+            <PopularInstructors />
+            <PopularClasses />
+            <BikeHacks />
         </div>
     );
 };

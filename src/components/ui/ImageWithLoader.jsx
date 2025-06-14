@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function ImageWithLoader({
     src,
     className,
+    style,
     alt,
     gif = "/assets/loading.gif",
 }) {
@@ -15,6 +16,7 @@ export default function ImageWithLoader({
     return (
         <>
             <img
+                style={style}
                 src={isLoading ? gif : src}
                 alt={alt}
                 onLoad={handleLoad}
