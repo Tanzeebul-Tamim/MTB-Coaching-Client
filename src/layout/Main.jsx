@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import ScrollToTop from "../routes/ScrollToTop/ScrollToTop";
-import RouteTracker from "../routes/RouteTracker/RouteTracker";
+import ScrollToTop from "../routes/utils/Scroll/ScrollToTop";
+import RouteTracker from "../routes/utils/RouteTracker/RouteTracker";
 import Navbar from "../components/layout/Navbar/Navbar";
 import Footer from "../components/layout/Footer/Footer";
 import useNetworkStatus from "../hooks/useNetworkStatus";

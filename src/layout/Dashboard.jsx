@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useState } from "react";
-import ScrollToTop from "../routes/ScrollToTop/ScrollToTop";
+import ScrollToTop from "../routes/utils/Scroll/ScrollToTop";
 import SideNav from "../components/layout/SideNav/SideNav";
-import RouteTracker from "../routes/RouteTracker/RouteTracker";
+import RouteTracker from "../routes/utils/RouteTracker/RouteTracker";
 import useScreenSize from "../hooks/useScreenSize";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 import NoInternetPage from "../components/pages/NoInternetPage/NoInternetPage";

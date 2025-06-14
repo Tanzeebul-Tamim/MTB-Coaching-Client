@@ -1,7 +1,7 @@
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import LeafletMap from "./LeafletMap/LeafletMap";
-import scrollWithOffset from "../../../routes/ScrollToTop/ScrollWithOffset";
+import scrollWithOffset from "../../../routes/utils/Scroll/ScrollWithOffset";
 import useScreenSize from "../../../hooks/useScreenSize";
 
 const Footer = () => {
