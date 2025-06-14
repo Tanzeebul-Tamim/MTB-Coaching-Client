@@ -7,7 +7,9 @@ const PageBanner = ({ src, texts, side }) => {
                 <ImageWithLoader src={`/assets/${src}_banner.png`} alt="" />
             </div>
             <div
-                className={`z-[10] lg:${side}-10 ${side}-3 text-center absolute -bottom-3`}
+                className={`z-[10] pl-3 lg:pl-0 lg:${side === "left" ? "left" : "right"}-10 ${
+                    side === "left" ? "pl" : "right"
+                }-3 text-center absolute -bottom-3`}
             >
                 {texts.map((text, i) => (
                     <h1

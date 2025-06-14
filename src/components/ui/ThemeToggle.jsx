@@ -89,17 +89,12 @@ const ThemeToggle = () => {
                             }`}
                         ></div>
                         {isDark ? (
-                            <div
-                                className="absolute left-[2px] top-[2px] flex h-[12px] w-[12px] items-center justify-center rounded-full bg-white border-1 border-black transition translate-x-full 
-                            "
-                            >
-                            </div>
+                            <div className="absolute left-[2px] top-[2px] flex h-[12px] w-[12px] items-center justify-center rounded-full bg-white border-1 border-black transition"></div>
                         ) : (
                             <div
                                 className="absolute left-[2px] top-[2px] flex h-[12px] w-[12px] items-center justify-center rounded-full bg-white border-1 border-black transition
-                            "
-                            >
-                            </div>
+                            translate-x-full"
+                            ></div>
                         )}
                     </div>
                 </label>
