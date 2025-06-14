@@ -1,80 +1,26 @@
-import { useEffect, useState } from "react";
-import useTitle from "../../hooks/useTitle";
 import SectionTitle from "../../components/ui/SectionTitle";
 import InstructorsTable from "./InstructorsTable/InstructorsTable";
-import { getAllInstructors, getTotalInstructors } from "../../api/api";
 import { BsSearch } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useRef } from "react";
-import { getUserData } from "../../api/authApi";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import useScreenSize from "../../hooks/useScreenSize";
 import SklInstructors from "../../components/skeletons/SklInstructors";
 import PageBanner from "../../components/ui/PageBanner";
-
-const titleDescription =
-    "Get to know our team of experienced and passionate mountain bike instructors. Our instructors are dedicated to sharing their expertise and guiding riders of all levels on exhilarating mountain biking adventures. Join us and learn from the best in the field as we navigate the thrilling world of mountain biking together.";
+import useInstructors from "./useInstructors";
 
 const Instructors = () => {
-    const [instructors, setInstructors] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [visibleCount, setVisibleCount] = useState(5);
-    const [search, setSearch] = useState("");
-    const [totalInstructors, setTotalInstructors] = useState({});
-    const searchRef = useRef(null);
-    const tableRef = useRef(null);
-    const { isSmallDevice } = useScreenSize();
-    useTitle("| Instructors");
-
-    useEffect(() => {
-        setLoading(true);
-        getTotalInstructors()
-            .then((data) => {
-                setTotalInstructors(data);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    }, []);
-
-    useEffect(() => {
-        setLoading(true);
-        getAllInstructors(visibleCount, search)
-            .then((data) => {
-                setInstructors(data);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    }, [visibleCount, search]);
-
-    useEffect(() => {
-        if (instructors.length > 5) {
-            scrollToBottom();
-        }
-    }, [instructors]);
-
-    const handleSearch = () => {
-        setSearch(searchRef.current.value);
-    };
-
-    getUserData();
-    const handleLoadMore = () => {
-        if (visibleCount % 5 == 0) {
-            setVisibleCount((prevCount) => prevCount + 5);
-        } else {
-            setVisibleCount((prevCount) => prevCount + (visibleCount % 5));
-        }
-    };
-
-    const scrollToBottom = () => {
-        if (tableRef.current) {
-            tableRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-            });
-        }
-    };
-
-    const texts = ["Training", "Instructions", "& Guides", "WorldWide"];
+    const {
+        titleDescription,
+        loading,
+        totalInstructors,
+        isSmallDevice,
+        handleSearch,
+        handleLoadMore,
+        texts,
+        searchRef,
+        instructors,
+        tableRef,
+        visibleCount,
+    } = useInstructors();
 
     return (
         <div className="lg:pb-24 pb-8">

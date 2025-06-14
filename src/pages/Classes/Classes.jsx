@@ -1,81 +1,30 @@
-import { useEffect, useRef } from "react";
-import useTitle from "../../hooks/useTitle";
 import SectionTitle from "../../components/ui/SectionTitle";
 import ClassesTable from "./ClassesTable/ClassesTable";
-import { useState } from "react";
-import { getAllClasses, getTotalClasses } from "../../api/api";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import useScreenSize from "../../hooks/useScreenSize";
 import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../components/skeletons/SklClasses";
-import useAuth from "../../hooks/useAuth";
-import useUserData from "../../hooks/useUserData";
 import PageBanner from "../../components/ui/PageBanner";
-
-const titleDescription =
-    "Discover a wide range of mountain biking courses designed to help you level up your riding game. From mastering aerial skills to conquering challenging terrains, our courses offer expert instruction tailored to riders of all levels. Join us for an unforgettable learning experience!";
+import useClasses from "./useClasses";
 
 const Classes = () => {
-    const [classes, setClasses] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [visibleCount, setVisibleCount] = useState(5);
-    const [search, setSearch] = useState("");
-    const { user, ...rest } = useAuth();
-    const searchRef = useRef(null);
-    const tableRef = useRef(null);
-    const { isSmallDevice } = useScreenSize();
-    const { loading: userLoading, userDetails } = useUserData();
-    useTitle("| Courses");
-
-    const [totalClasses, setTotalClasses] = useState({});
-
-    useEffect(() => {
-        getTotalClasses()
-            .then((data) => {
-                setTotalClasses(data);
-            })
-            .catch((error) => console.error(error));
-    }, []);
-
-    useEffect(() => {
-        setLoading(true);
-        getAllClasses(visibleCount, search)
-            .then((data) => {
-                setClasses(data);
-            })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
-    }, [visibleCount, search]);
-
-    useEffect(() => {
-        if (classes.length > 5) {
-            scrollToBottom();
-        }
-    }, [classes]);
-
-    const handleSearch = () => {
-        setSearch(searchRef.current.value);
-    };
-
-    const handleLoadMore = () => {
-        if (visibleCount % 5 == 0) {
-            setVisibleCount((prevCount) => prevCount + 5);
-        } else {
-            setVisibleCount((prevCount) => prevCount + (visibleCount % 5));
-        }
-    };
-
-    const scrollToBottom = () => {
-        if (tableRef.current) {
-            tableRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-            });
-        }
-    };
-
-    const texts = ["Exciting", "MTB Courses", "And", "Workshops"];
+    const {
+        titleDescription,
+        loading,
+        user,
+        rest,
+        isSmallDevice,
+        userLoading,
+        userDetails,
+        totalClasses,
+        handleSearch,
+        handleLoadMore,
+        texts,
+        searchRef,
+        classes,
+        tableRef,
+        visibleCount,
+    } = useClasses();
 
     return (
         <div className="lg:pb-24 pb-8">

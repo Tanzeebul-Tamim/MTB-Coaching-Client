@@ -11,14 +11,16 @@ const ClassCard = ({ topClass }) => {
         >
             <div>
                 <ImageWithLoader
+                    style={{
+                        "object-position": "left",
+                        "object-fit": "cover",
+                    }}
                     src={topClass.image}
                     className="rounded-t-2xl h-[240px] z-0 w-full"
                 />
             </div>
             <div className="card-body z-50">
-                <h2 className="card-title text-secondary">
-                    {topClass.name}
-                </h2>
+                <h2 className="card-title text-secondary">{topClass.name}</h2>
                 <div className="text-base-content flex gap-2 items-center">
                     <FaChalkboardTeacher className="text-lg" />
                     <strong>Instructor:</strong> {topClass.instructorName}

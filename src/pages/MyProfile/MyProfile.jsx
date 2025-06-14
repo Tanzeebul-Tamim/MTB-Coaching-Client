@@ -1,11 +1,11 @@
 import useTitle from "../../hooks/useTitle";
-import UpdateProfileForm from "./UpdateProfileForm";
+import UpdateProfileForm from "./UpdateProfileForm/UpdateProfileForm";
 import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
-import ChangePassword from "./ChangePassword";
 import useAuth from "../../hooks/useAuth";
 import SklMyProfile from "../../components/skeletons/SklMyProfile";
 import ImageWithLoader from "../../components/ui/ImageWithLoader";
 import useUserData from "../../hooks/useUserData";
+import ChangePassword from "./ChangePassword/ChangePassword";
 
 const MyProfile = () => {
     const { user } = useAuth();
@@ -87,8 +87,8 @@ const MyProfile = () => {
                     </div>
                 </>
             )}
-            <UpdateProfileForm userDetails={userDetails}></UpdateProfileForm>
-            <ChangePassword></ChangePassword>
+            <UpdateProfileForm userDetails={userDetails} />
+            <ChangePassword />
         </>
     );
 };

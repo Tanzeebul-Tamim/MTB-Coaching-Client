@@ -1,82 +1,28 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import SelectedClassesTable from "./SelectedClassesTable/SelectedClassesTable";
-import useTitle from "../../hooks/useTitle";
-import useAuth from "../../hooks/useAuth";
 import { GiTeacher } from "react-icons/gi";
-import Swal from "sweetalert2";
-import useScreenSize from "../../hooks/useScreenSize";
 import SklSelectedClasses from "../../components/skeletons/SklSelectedClasses";
-import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../components/ui/Searchbar";
 import Pagination from "../../components/ui/Pagination";
-import useUserData from "../../hooks/useUserData";
+import useSelectedClasses from "./useSelectedClasses";
 
 const SelectedClasses = () => {
-    const { user } = useAuth();
-    const [userBookings, setUserBookings] = useState([]);
-    const unpaidBookings = userBookings.filter(
-        (booking) => booking.paymentStatus === "unpaid"
-    );
-    const { isSmallDevice } = useScreenSize();
-    const { loading, userDetails } = useUserData();
-    useTitle("| Booked Courses");
-
-    useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
-                .then((data) => {
-                    setUserBookings(data);
-                })
-                .catch((error) => console.error(error));
-        } else if (!user) {
-            setUserBookings([]);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, userBookings]);
-
-    const handleClearList = () => {
-        Swal.fire({
-            title: "Are you sure you want to clear your booking list?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            color: "white",
-            iconColor: "rgb(234 179 8)",
-            showCancelButton: true,
-            confirmButtonColor: "rgb(234 179 8)",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, clear list!",
-            background: "#201e1e",
-            backdrop: "#00000",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Booking List has been Cleared!",
-                    icon: "success",
-                    color: "white",
-                    iconColor: "lightgreen",
-                    confirmButtonColor: "lightgreen",
-                    confirmButtonText: "OK",
-                    background: "#201e1e",
-                    backdrop: "#00000",
-                });
-                deleteAllClass(userDetails._id);
-            }
-        });
-    };
-
-    const [search, setSearch] = useState("");
-    const [filteredBookings, setFilteredBookings] = useState(
-        unpaidBookings || []
-    );
-
-    // Pagination logic
-    const paginationHook = usePagination(unpaidBookings);
-    const paginatedBookings = paginationHook?.paginatedItems;
-    const { resultsPerPage, currentPage } = paginationHook;
-    const paginationSettings = { resultsPerPage, currentPage };
+    const {
+        isSmallDevice,
+        loading,
+        handleClearList,
+        search,
+        setSearch,
+        filteredBookings,
+        setFilteredBookings,
+        renderCondition,
+        searchableFields,
+        paginatedBookings,
+        paginationSettings,
+        unpaidBookings,
+        userDetails,
+        paginationHook,
+    } = useSelectedClasses();
 
     if (loading) {
         return (
@@ -88,9 +34,6 @@ const SelectedClasses = () => {
             </>
         );
     }
-
-    const renderCondition = unpaidBookings && unpaidBookings.length > 0;
-    const searchableFields = [{ field: "class-name", split: false }];
 
     return (
         <>

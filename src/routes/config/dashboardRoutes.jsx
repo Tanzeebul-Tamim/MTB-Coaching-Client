@@ -4,7 +4,7 @@ import MyCourses from "../../pages/MyCourses/MyCourses";
 import MyStudents from "../../pages/MyCourses/MyCoursesTable/MyStudents/MyStudents";
 import MyProfile from "../../pages/MyProfile/MyProfile";
 import PaymentHistory from "../../pages/PaymentHistory/PaymentHistory";
-import PaymentConfirmation from "../../pages/SelectedClasses/PaymentConfirmation";
+import PaymentConfirmation from "../../pages/SelectedClasses/PaymentConfirmation/PaymentConfirmation";
 import SelectedClasses from "../../pages/SelectedClasses/SelectedClasses";
 import RoleRoute from "../guard/RoleRoute";
 

@@ -2,9 +2,8 @@ import SelectedClassesTableHead from "./SelectedClassesTableHead";
 import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
 import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useState } from "react";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
+import useSelectedClassesTable from "./useSelectedClassesTable";
 
 const SelectedClassesTable = ({
     userBookings,
@@ -13,48 +12,13 @@ const SelectedClassesTable = ({
     settings,
     userDetails,
 }) => {
-    const { resultsPerPage, currentPage } = settings;
-    const [deletingId, setDeletingId] = useState(null);
-
-    if (userBookings?.length === 0) {
-        return (
-            <div
-                className={`flex lg:h-[55vh] ${
-                    search ? "mt-[40%]" : "mt-[80%]"
-                } lg:mt-0 items-center justify-center`}
-            >
-                <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
-                    {search
-                        ? "No Bookings Found For Your Search"
-                        : "You Haven't Booked Any Courses Yet"}
-                </h1>
-            </div>
-        );
-    }
-
-    const updateProfile = () => {
-        if (
-            typeof userDetails.address === "undefined" ||
-            typeof userDetails.contactNo === "undefined" ||
-            userDetails.gender === "undefined"
-        ) {
-            toast.warning(
-                "To purchase classes, you have to update your profile first!",
-                {
-                    position: "top-center",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                }
-            );
-            setTimeout(function () {
-                window.location.replace("/dashboard/profile");
-            }, 2400);
-        }
-    };
+    const {
+        resultsPerPage,
+        currentPage,
+        deletingId,
+        setDeletingId,
+        updateProfile,
+    } = useSelectedClassesTable(settings, userBookings, search, userDetails);
 
     return (
         <div

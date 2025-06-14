@@ -1,64 +1,29 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GiTeacher } from "react-icons/gi";
 import SectionTitle from "../../components/ui/SectionTitle";
-import SingleInstructorClassCard from "./SingleInstructorClassCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import { FaChalkboardTeacher, FaQuoteLeft } from "react-icons/fa";
-import useTitle from "../../hooks/useTitle";
-import { useEffect, useState } from "react";
-import useScreenSize from "../../hooks/useScreenSize";
 import { ClipLoader } from "react-spinners";
-import useUserData from "../../hooks/useUserData";
+import useSingleInstructorsClasses from "./useSingleInstructorsClasses";
+import SingleInstructorClassCard from "./SingleInstructorClassCard/SingleInstructorClassCard";
 
 const SingleInstructorsClasses = () => {
-    const instructor = useLoaderData();
-    const { userDetails } = useUserData();
-    const classes = instructor.classes;
-    const isMyWall = instructor.email === userDetails.email;
-    const name = isMyWall ? userDetails?.name : instructor?.name;
-    const nameWords = name.split(" ");
-    const [loading, setLoading] = useState(false);
-    const title1 = nameWords[0];
-    const title2 = nameWords.slice(1).join(" ");
-    const firstName = name?.split(" ")[0];
-    const { id } = useParams();
-    const [totalAttendee, setTotalAttendee] = useState(0);
-    const [numberOfSlides, setNumberOfSlides] = useState(null);
-    const { isSmallDevice } = useScreenSize();
-    const title = isMyWall ? "| My Wall" : `| ${firstName}'s Wall`;
-    useTitle(title);
-
-    useEffect(() => {
-        setNumberOfSlides(isSmallDevice ? 1 : 4);
-    }, [isSmallDevice]);
-
-    useEffect(() => {
-        setLoading(true);
-        fetch(`${import.meta.env.VITE_API_URL}/instructor/total/${id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setTotalAttendee(data.totalStudents);
-            })
-            .catch((err) =>
-                console.error("Failed to fetch total attendees:", err)
-            )
-            .finally(() => setLoading(false));
-    }, [id]);
-
-    const bannerStyle = {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.400), rgba(0, 0, 0, 0.400)), url('${
-            instructor.cover
-                ? instructor.cover
-                : "/assets/instructor_default_banner.avif"
-        }')`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-    };
+    const {
+        classes,
+        loading,
+        title1,
+        title2,
+        totalAttendee,
+        numberOfSlides,
+        bannerStyle,
+        instructor,
+        isMyWall,
+        isSmallDevice,
+    } = useSingleInstructorsClasses();
 
     const InstructorHeader = () => (
         <div className="lg:mb-10 mb-5 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-0">

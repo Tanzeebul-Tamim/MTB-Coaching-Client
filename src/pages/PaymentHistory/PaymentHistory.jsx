@@ -1,49 +1,26 @@
-import { useEffect, useState } from "react";
-import useTitle from "../../hooks/useTitle";
-import { getBookedClasses } from "../../api/bookApi";
 import DashboardPageTitle from "../../components/ui/DashboardPageTitle";
 import PaymentHistoryTable from "./PaymentHistoryTable/PaymentHistoryTable";
-import useAuth from "../../hooks/useAuth";
 import { BsFillCreditCardFill } from "react-icons/bs";
-import useScreenSize from "../../hooks/useScreenSize";
 import SklPaymentHistory from "../../components/skeletons/SklPaymentHistory";
-import usePagination from "../../hooks/usePagination";
 import Searchbar from "../../components/ui/Searchbar";
 import Pagination from "../../components/ui/Pagination";
-import useUserData from "../../hooks/useUserData";
+import usePaymentHistory from "./usePaymentHistory";
 
 const PaymentHistory = () => {
-    const { user } = useAuth();
-    const [userBookings, setUserBookings] = useState([]);
-    const paidBookings = userBookings.filter(
-        (booking) => booking.paymentStatus === "paid"
-    );
-    const { isSmallDevice } = useScreenSize();
-    const { loading, userDetails } = useUserData();
-    useTitle("| Payment History");
-
-    useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
-                .then((data) => {
-                    setUserBookings(data);
-                })
-                .catch((error) => console.error(error));
-        } else if (!user) {
-            setUserBookings([]);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, userBookings]);
-
-    const [search, setSearch] = useState("");
-    const [filteredHistory, setFilteredHistory] = useState(paidBookings || []);
-    const resultsPerPage = isSmallDevice ? 5 : 10;
-
-    // Pagination logic
-    const paginationHook = usePagination(paidBookings, resultsPerPage);
-    const paginatedHistory = paginationHook?.paginatedItems;
-    const { currentPage } = paginationHook;
-    const paginationSettings = { resultsPerPage, currentPage };
+    const {
+        loading,
+        search,
+        setSearch,
+        filteredHistory,
+        setFilteredHistory,
+        renderCondition,
+        searchableFields,
+        paginatedHistory,
+        paginationSettings,
+        isSmallDevice,
+        paidBookings,
+        paginationHook,
+    } = usePaymentHistory();
 
     if (loading) {
         return (
@@ -55,9 +32,6 @@ const PaymentHistory = () => {
             </>
         );
     }
-
-    const renderCondition = paidBookings && paidBookings.length > 0;
-    const searchableFields = [{ field: "class-name", split: false }];
 
     return (
         <>
