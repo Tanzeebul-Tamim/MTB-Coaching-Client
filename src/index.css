@@ -5,13 +5,12 @@
 #root {
     font-family: "Khand", sans-serif;
 }
-
+/* Global Transition for toggling light/dark theme */
 @layer base {
   * {
-    transition: background-color 1.5s ease, color 1.5s ease, border-color 1.5s ease;
+    transition: background-color 1.5s ease, color 1.5s ease, border-color 1.5s ease, right 0.3s ease-in-out;
   }
 }
-
 
 @media (min-width: 1024px) {
     .title {
@@ -20,6 +19,7 @@
     }
 }
 
+/* component specific fonts */
 .title-res {
     font-family: "Oswald", sans-serif;
 }
@@ -32,6 +32,7 @@
     font-family: "Quicksand", sans-serif;
 }
 
+/* PWA button fade-in/out transitions */
 @keyframes slideInUp {
     from {
         opacity: 0;
@@ -54,11 +55,12 @@
     }
 }
 
-/* disable text selection globally */
+/* Disable text selection globally */
 * {
     @apply select-none;
 }
 
+/* Nav bar glow effects */
 .glow-effect {
     box-shadow: 0 0 25px rgba(236, 131, 11, 0.808);
     transition: box-shadow 0.3s ease-in-out;

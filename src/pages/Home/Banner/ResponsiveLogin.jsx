@@ -22,7 +22,7 @@ const ResponsiveLogin = ({ alignment }) => {
                 >
                     <div
                         onClick={handleLogOut}
-                        className="btn btn-ghost font-light text-secondary"
+                        className="btn btn-ghost font-light text-primary"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogOut className="text-xl" />
@@ -38,17 +38,17 @@ const ResponsiveLogin = ({ alignment }) => {
                 >
                     <Link
                         to="/login"
-                        className="btn btn-ghost font-light text-secondary"
+                        className="btn btn-ghost font-light text-primary"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogIn className="text-xl" />
                             <span className="text-md">Login</span>
                         </div>
                     </Link>
-                    <Link to="/register" className="btn btn-ghost font-light">
+                    <Link to="/register" className="btn btn-ghost font-light text-base-content">
                         <div className="flex tracking-[2px] items-center gap-2">
-                            <SlNote className="text-md text-accent" />
-                            <span className="text-md text-accent">
+                            <SlNote className="text-md" />
+                            <span className="text-md">
                                 Register
                             </span>
                         </div>

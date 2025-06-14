@@ -47,12 +47,12 @@ const ThemeToggle = () => {
                 {isDark ? (
                     <>
                         <MdLightMode className="text-xl" />
-                        Light Theme
+                        Light Mode
                     </>
                 ) : (
                     <>
                         <MdDarkMode className="text-xl" />
-                        Dark Theme
+                        Dark Mode
                     </>
                 )}
             </div>
@@ -65,12 +65,12 @@ const ThemeToggle = () => {
                 {isDark ? (
                     <span className="text-yellow-100 flex items-center gap-1">
                         <MdLightMode className="text-sm" />
-                        Light
+                        Light Mode
                     </span>
                 ) : (
                     <span className="text-blue-700 flex items-center gap-1">
                         <MdDarkMode className="text-sm" />
-                        Dark
+                        Dark Mode
                     </span>
                 )}
             </span>
@@ -79,11 +79,12 @@ const ThemeToggle = () => {
         return (
             <button
                 onClick={toggleDarkMode}
-                className={`rounded-full glow-effect h-7 w-7 cursor-pointer bg-primary text-accent bg-opacity-50 flex items-center justify-center outline-none
-        transition-all duration-700 ease-in-out`}
+                data-tip={`Enable ${isDark ? "Light" : "Dark"} Mode`}
+                className="rounded-full glow-effect h-7 w-7 cursor-pointer bg-primary text-accent bg-opacity-50 flex items-center justify-center outline-none
+        transition-all duration-700 ease-in-out tooltip tooltip-right tooltip-secondary tool"
                 aria-label="Toggle dark mode"
             >
-                <div className="transition-transform duration-300 ease-in-out">
+                <div className="transition-transform duration-700 ease-in-out hover:scale-100">
                     {isDark ? (
                         <MdLightMode className="text-xl" />
                     ) : (

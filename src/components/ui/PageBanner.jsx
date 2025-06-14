@@ -25,7 +25,7 @@ const PageBanner = ({ src, texts, side }) => {
                     Since 2006
                 </h1>
             </div>
-            <div className="absolute lg:bottom-0 -bottom-1 left-0 w-full dark:h-1/2 h-1/3 bg-gradient-to-b from-transparent to-base-100"></div>
+            <div className="absolute lg:bottom-0 -bottom-1 left-0 w-full dark:lg:h-1/2 dark:h-1/2 lg:h-1/3 h-1/2 bg-gradient-to-b from-transparent to-base-100"></div>
         </div>
     );
 };

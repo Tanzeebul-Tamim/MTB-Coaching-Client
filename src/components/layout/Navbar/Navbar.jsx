@@ -223,7 +223,7 @@ const Navbar = () => {
                 <div className="navbar-end uppercase gap-7 lg:flex hidden">
                     <button
                         onClick={handleLogOut}
-                        className="hover:scale-110 duration-200 text-secondary font-light text-xl"
+                        className="hover:scale-110 duration-200 transition-transform text-primary font-light text-xl"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogOut />
@@ -233,10 +233,10 @@ const Navbar = () => {
                     <Link
                         to="/dashboard/profile"
                         data-tip={user?.displayName}
-                        className="tooltip tooltip-bottom tooltip-primary"
+                        className="tooltip tooltip-bottom tooltip-primary hover:scale-110 duration-500 transition-transform"
                     >
                         {userDetails?.image || user?.photoURL ? (
-                            <div className="hover:scale-110 duration-1000 flex flex-col items-center">
+                            <div className="flex flex-col items-center">
                                 <div className="indicator">
                                     <img
                                         className="rounded-full glow-effect cursor-pointer w-[55px] h-[55px]"
@@ -278,7 +278,7 @@ const Navbar = () => {
                 <div className="navbar-end uppercase gap-5 lg:flex hidden">
                     <Link
                         to="/login"
-                        className="hover:scale-110 duration-200 font-light text-secondary text-xl"
+                        className="font-light text-primary text-xl hover:scale-110 duration-200 transition-transform"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogIn />
@@ -287,7 +287,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         to="/register"
-                        className="hover:scale-110 duration-200 text-accent font-light text-xl"
+                        className="text-accent font-light text-xl hover:scale-110 duration-200 transition-transform"
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <SlNote />
@@ -309,7 +309,7 @@ const Navbar = () => {
                     <Link
                         to="/dashboard/profile"
                         data-tip={user?.displayName}
-                        className="tooltip tooltip-bottom tooltip-warning"
+                        className="tooltip tooltip-bottom tooltip-primary"
                     >
                         {userBookings.length >= 1 && (
                             <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[2px] badge-md badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">

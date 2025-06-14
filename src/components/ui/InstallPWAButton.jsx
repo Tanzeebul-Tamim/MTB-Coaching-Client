@@ -19,7 +19,10 @@ const InstallPWAButton = () => {
 
         window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
         return () => {
-            window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+            window.removeEventListener(
+                "beforeinstallprompt",
+                onBeforeInstallPrompt
+            );
         };
     }, []);
 
@@ -65,7 +68,7 @@ const InstallPWAButton = () => {
     return (
         <button
             onClick={handleInstall}
-            className="z-[1000] fixed lg:bottom-5 bottom-3 lg:right-5 right-3 lg:text-base text-sm bg-primary bg-opacity-70 hover:bg-opacity-80 hover:bg-secondary text-accent hover:text-accent lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg transition-all duration-500 ease-in-out glow-effect tracking-wider lg:tracking-widest"
+            className="z-[1000] glow-effect fixed lg:bottom-5 bottom-3 lg:right-5 right-3 lg:text-base text-sm bg-primary dark:bg-opacity-70 bg-opacity-75 hover:bg-opacity-80 text-accent transition-all duration-500 ease-in-out lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg tracking-wider lg:tracking-widest"
             style={{ animation }}
         >
             🚴‍♂️ Install the App

@@ -156,6 +156,7 @@ const Legal = () => {
                 </div>
             </div>
             <div className="hidden lg:block absolute lg:bottom-0 left-0 w-full dark:h-4/6 h-1/3 bg-gradient-to-b from-transparent to-base-100 z-10 pointer-events-none"></div>
+            <div className="lg:hidden absolute -bottom-1 left-0 w-full dark:h-4/6 h-1/3 bg-gradient-to-b from-transparent to-base-100 z-10 pointer-events-none"></div>
         </div>
     );
 };
