@@ -1,57 +1,30 @@
-import { useEffect, useState } from "react";
-import useTitle from "../../../../hooks/useTitle";
 import DashboardPageTitle from "../../../../components/ui/DashboardPageTitle";
 import MyStudentsTable from "./MyStudentsTable/MyStudentsTable";
-import { Link, useParams } from "react-router-dom";
-import useScreenSize from "../../../../hooks/useScreenSize";
+import { Link } from "react-router-dom";
 import { PiStudentFill } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
 import SklMyStudents from "../../../../components/skeletons/SklMyStudents";
 import Searchbar from "../../../../components/ui/Searchbar";
-import usePagination from "../../../../hooks/usePagination";
 import Pagination from "../../../../components/ui/Pagination";
-import useUserData from "../../../../hooks/useUserData";
+import useMyStudents from "./useMyStudents";
 
 const MyStudents = () => {
-    const { idx } = useParams();
-    const parsedIdx = parseInt(idx);
-    const [students, setStudents] = useState([]);
-    const { isSmallDevice } = useScreenSize();
-    const { loading, userDetails, setLoading } = useUserData();
-    useTitle("| My Students");
-
-    useEffect(() => {
-        setLoading(true);
-        if (userDetails && userDetails._id) {
-            fetch(
-                `${import.meta.env.VITE_API_URL}/instructor/students/${
-                    userDetails._id
-                }/${idx}`
-            )
-                .then(async (res) => await res.json())
-                .then((data) => {
-                    setStudents(data.students);
-                })
-                .catch((error) => console.error(error))
-                .finally(() => setLoading(false));
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [idx, userDetails]);
-
-    const [search, setSearch] = useState("");
-    const [filteredStudents, setFilteredStudents] = useState(students || []);
-
-    // Pagination logic
-    const paginationHook = usePagination(students);
-    const paginatedStudents = paginationHook?.paginatedItems;
-    const { resultsPerPage, currentPage } = paginationHook;
-    const paginationSettings = { resultsPerPage, currentPage };
-
-    let courseName;
-
-    if (userDetails && userDetails?.classes) {
-        courseName = userDetails?.classes[parsedIdx]?.name;
-    }
+    const {
+        loading,
+        search,
+        setSearch,
+        filteredStudents,
+        setFilteredStudents,
+        paginatedStudents,
+        paginationSettings,
+        wrapCondition,
+        renderCondition,
+        searchableFields,
+        students,
+        isSmallDevice,
+        courseName,
+        paginationHook,
+    } = useMyStudents();
 
     if (loading) {
         return (
@@ -61,14 +34,6 @@ const MyStudents = () => {
             </>
         );
     }
-
-    const wrapCondition = isSmallDevice && courseName?.length > 15;
-    const renderCondition = students && students.length > 0;
-
-    const searchableFields = [
-        { field: "name", split: true },
-        { field: "email", split: false },
-    ];
 
     return (
         <>
@@ -90,15 +55,15 @@ const MyStudents = () => {
                     wrapCondition
                         ? "flex lg:flex-row lg:justify-between flex-col items-center"
                         : "flex justify-between"
-                } lg:gap-2 text-white description lg:text-xl`}
+                } lg:gap-2 text-base-content description lg:text-xl`}
             >
-                <span className="z-[100] flex items-center gap-2">
+                <span className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                     <FaBookOpen className="lg:text-2xl" />
                     <strong>Course {!isSmallDevice && "Name"} : </strong>
                     <span>{courseName}</span>
                 </span>
                 {renderCondition && (
-                    <span className="z-[100] flex items-center gap-2">
+                    <span className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                         <PiStudentFill className="lg:text-2xl" />
                         <strong>Total Students : </strong>
                         <span>{students.length}</span>
@@ -116,7 +81,7 @@ const MyStudents = () => {
             <div className="flex justify-center items-center mt-3">
                 <Link
                     to="/dashboard/my-classes"
-                    className="lg:z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                    className="lg:z-[100] btn text-accent btn-xs border-0 rounded-lg hover:bg-base-300 bg-base-200 dark:bg-base-300 dark:hover:bg-base-200"
                 >
                     <span>Go Back</span>
                 </Link>

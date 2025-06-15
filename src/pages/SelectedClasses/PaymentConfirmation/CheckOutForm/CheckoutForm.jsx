@@ -13,6 +13,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
                     setFlipped(true);
                     setFocus("number");
                 }}
+                className="stripe-bg"
                 onBlur={() => setFlipped(false)}
                 options={{
                     style: {
@@ -20,7 +21,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
                             fontSize: "16px",
                             color: "#aab7c4",
                             "::placeholder": {
-                                color: "#aab7c4",
+                                color: "#6b7280",
                             },
                         },
                         invalid: {
@@ -38,7 +39,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
             </p>
             <div className="flex justify-center mt-4 gap-5">
                 <button
-                    className="btn text-md btn-sm text-white border-0 rounded-lg hover:bg-stone-800 bg-stone-700 disabled:bg-stone-950"
+                    className="btn text-md btn-sm rounded-lg hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 dark:disabled:bg-stone-900 disabled:bg-stone-400"
                     type="submit"
                     disabled={
                         !stripe ||
@@ -50,7 +51,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
                     <BsFillCreditCardFill /> Pay $ {classItem?.classFee}
                 </button>
                 <Link to="/dashboard/selected-classes">
-                    <button className="btn text-md btn-sm text-white border-0 rounded-lg hover:bg-stone-800 bg-stone-700">
+                    <button className="btn text-md btn-sm rounded-lg hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0">
                         Go Back
                     </button>
                 </Link>

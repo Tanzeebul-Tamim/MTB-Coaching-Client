@@ -10,7 +10,7 @@ const Pagination = ({ search, paginationHook }) => {
                 <div className="flex justify-center mt-4 gap-2">
                     {/* Prev Button */}
                     <button
-                        className="lg:z-[100] btn btn-xs rounded bg-stone-700 text-white px-3 disabled:bg-stone-800"
+                        className="lg:z-[100] btn btn-xs rounded-lg text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-800 dark:bg-base-300 border-0 disabled:bg-base-200 dark:disabled:bg-base-200"
                         onClick={() =>
                             setCurrentPage((p) => Math.max(1, p - 1))
                         }
@@ -37,10 +37,10 @@ const Pagination = ({ search, paginationHook }) => {
                             pageButtons.push(
                                 <button
                                     key={1}
-                                    className={`lg:z-[100] btn btn-xs rounded px-3 ${
+                                    className={`lg:z-[100] border-0 btn btn-xs rounded-lg px-3 text-base-content ${
                                         currentPage === 1
-                                            ? "bg-yellow-500 text-black"
-                                            : "bg-stone-700 text-white"
+                                            ? "bg-primary"
+                                            : "hover:bg-base-200 bg-base-100 dark:hover:bg-stone-800 dark:bg-base-300"
                                     }`}
                                     onClick={() => setCurrentPage(1)}
                                 >
@@ -52,7 +52,7 @@ const Pagination = ({ search, paginationHook }) => {
                                 pageButtons.push(
                                     <span
                                         key="start-ellipsis"
-                                        className="lg:z-[100] btn btn-xs px-2 cursor-default"
+                                        className="lg:z-[100] border-0 dark:bg-base-300 bg-base-100 hover:bg-base-100 rounded-lg btn btn-xs px-2 cursor-default"
                                     >
                                         <HiDotsHorizontal />
                                     </span>
@@ -65,10 +65,10 @@ const Pagination = ({ search, paginationHook }) => {
                             pageButtons.push(
                                 <button
                                     key={i}
-                                    className={`lg:z-[100] btn btn-xs rounded px-3 ${
+                                    className={`lg:z-[100] border-0 btn btn-xs rounded-lg px-3 text-base-content ${
                                         currentPage === i
-                                            ? "bg-yellow-500 text-black"
-                                            : "bg-stone-700 text-white"
+                                            ? "bg-primary hover:bg-secondary text-base-100"
+                                            : "hover:bg-base-200 bg-base-100 dark:hover:bg-stone-800 dark:bg-base-300"
                                     }`}
                                     onClick={() => setCurrentPage(i)}
                                 >
@@ -83,7 +83,7 @@ const Pagination = ({ search, paginationHook }) => {
                                 pageButtons.push(
                                     <span
                                         key="end-ellipsis"
-                                        className="lg:z-[100] btn btn-xs px-2 cursor-default"
+                                        className="lg:z-[100] border-0 dark:bg-base-300 bg-base-100 btn btn-xs rounded-lg px-2 cursor-default hover:bg-base-100"
                                     >
                                         <HiDotsHorizontal />
                                     </span>
@@ -93,10 +93,10 @@ const Pagination = ({ search, paginationHook }) => {
                             pageButtons.push(
                                 <button
                                     key={totalPages}
-                                    className={`lg:z-[100] btn btn-xs rounded px-3 ${
+                                    className={`lg:z-[100] border-0 text-base-content btn btn-xs rounded-lg px-3 ${
                                         currentPage === totalPages
-                                            ? "bg-yellow-500 text-black"
-                                            : "bg-stone-700 text-white"
+                                            ? "bg-primary hover:bg-secondary text-base-100"
+                                            : "hover:bg-base-200 bg-base-100 dark:hover:bg-stone-800 dark:bg-base-300"
                                     }`}
                                     onClick={() => setCurrentPage(totalPages)}
                                 >
@@ -110,7 +110,7 @@ const Pagination = ({ search, paginationHook }) => {
 
                     {/* Next Button */}
                     <button
-                        className="lg:z-[100] btn btn-xs rounded bg-stone-700 text-white px-3 disabled:bg-stone-800"
+                        className="lg:z-[100] btn btn-xs rounded-lg text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-800 dark:bg-base-300 border-0 disabled:bg-base-200 dark:disabled:bg-base-200"
                         onClick={() =>
                             setCurrentPage((p) => Math.min(totalPages, p + 1))
                         }

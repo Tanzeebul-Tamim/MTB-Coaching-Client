@@ -144,15 +144,18 @@ const ClassesTable = ({
                                         {userDetails.role !== "Instructor" && (
                                             <td>
                                                 {loading || userLoading ? (
-                                                    <div className="flex justify-center items-center">
+                                                    <button
+                                                        disabled
+                                                        className="btn w-3/4 text-base-content btn-sm lg:rounded-lg rounded-full disabled:bg-base-300"
+                                                    >
                                                         <BeatLoader
                                                             color={
                                                                 isDarkTheme
-                                                                    ? dark.baseContent
-                                                                    : light.baseContent
+                                                                    ? dark.accent
+                                                                    : light.accent
                                                             }
                                                         />
-                                                    </div>
+                                                    </button>
                                                 ) : isBooked ? (
                                                     <div>Booked</div>
                                                 ) : isEnrolled ? (

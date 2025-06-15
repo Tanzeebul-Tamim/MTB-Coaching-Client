@@ -44,7 +44,7 @@ const Classes = () => {
                         ref={searchRef}
                         type="text"
                         placeholder="Search by Course Name"
-                        className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4"
+                        className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4 bg-opacity-60"
                     />
                     <button>
                         <BsSearch

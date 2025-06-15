@@ -10,38 +10,38 @@ const SklMyProfile = () => {
                 <div className="description gap-2 md:gap-3 text-base md:text-xl flex justify-center flex-col text-left mb-4">
                     <p className="z-[10] flex items-center">
                         <strong>Name :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/4 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/4 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] flex items-center">
                         <strong>Email :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/3 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/3 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] flex items-center">
                         <strong>Gender :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/12 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/12 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] flex items-center">
                         <strong>Address :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/2 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/2 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] flex items-center">
                         <strong>Contact no :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/3 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/3 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] flex items-center">
                         <strong>Account Type :</strong>
-                        <div className="ml-1 bg-gray-200 w-1/5 h-3 rounded animate-pulse"></div>
+                        <div className="ml-1 bg-base-content w-1/5 h-3 rounded animate-pulse"></div>
                     </p>
                     <p className="z-[10] mt-3 flex flex-col sm:flex-row gap-2 w-full">
                         <button
                             disabled
-                            className="animate-bounce disabled:bg-stone-800 btn btn-sm rounded-xl bg-stone-700 w-full sm:w-auto"
+                            className="btn btn-sm rounded-xl disabled:bg-base-300  disabled:text-base-200 dark:disabled:bg-stone-500 dark:disabled:text-stone-300 border-0 w-full sm:w-auto animate-bounce"
                         >
                             Update Profile Info
                         </button>
                         <button
                             disabled
-                            className="animate-bounce disabled:bg-stone-800 btn btn-sm rounded-xl bg-stone-700 w-full sm:w-auto"
+                            className="btn btn-sm rounded-xl disabled:bg-base-300  disabled:text-base-200 dark:disabled:bg-stone-500 dark:disabled:text-stone-300 border-0 w-full sm:w-auto animate-bounce"
                         >
                             Change Password
                         </button>

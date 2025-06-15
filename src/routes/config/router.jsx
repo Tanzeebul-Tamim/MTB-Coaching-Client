@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
-import ErrorPage from "../../components/pages/ErrorPage/ErrorPage";
 import mainRoutes from "./mainRoutes";
 import PrivateRoute from "../guard/PrivateRoute";
 import Dashboard from "../../layout/Dashboard";
 import dashboardRoutes from "./dashboardRoutes";
+import ErrorPage from "../../components/pages/ErrorPage";
 
 const router = createBrowserRouter([
     {

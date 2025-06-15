@@ -9,16 +9,14 @@ import useAuth from "../../../hooks/useAuth";
 import useScreenSize from "../../../hooks/useScreenSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
 import useUserData from "../../../hooks/useUserData";
-import useDarkTheme from "../../../hooks/useDarkTheme";
 import SklSideNav from "../../skeletons/SklSideNav";
-import ThemeToggle from "../../ui/ThemeToggle";
+import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
 
-const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
+const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
     const { loading } = useAuth();
     const [title, setTitle] = useState("User");
     const { isSmallDevice } = useScreenSize();
-    const { loading: userLoading, userDetails } = useUserData();
-    const isDarkTheme = useDarkTheme();
+    const { loading: userLoading, userDetails } = useUserData();    
 
     useEffect(() => {
         if (!loading && !userLoading) {
@@ -30,16 +28,24 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
         }
     }, [loading, userDetails?.role, userLoading]);
 
+    const url = "url('/assets/sidenav_banner.jpg')";
+    const lightBg =
+        "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " +
+        url;
+    const darkBg =
+        "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), " + url;
+    const bg = isDarkTheme ? darkBg : lightBg;
+
     return (
         <div
             style={{
-                backgroundImage:
-                    "linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.500)), url('/assets/sidenav_banner.jpg')",
+                backgroundImage: bg,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
+                textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
             }}
-            className="h-screen fixed p-7 bg-base-200 text-accent"
+            className="h-screen fixed p-7 bg-base-200 dark:text-white text-yellow-50"
         >
             <button
                 className={`lg:hidden fixed top-[10%] -right-[17.5%] z-30 text-primary bg-black bg-opacity-60 rounded-full h-10 w-10 shadow-md flex items-center justify-center transition-transform duration-700 ${
@@ -58,11 +64,13 @@ const SideNav = ({ sideNavOpen, setSideNavOpen }) => {
             <div className="flex justify-center items-center">
                 <img
                     className="w-[300px]"
-                    src={`/assets/MTB_Coaching_${isDarkTheme ? "Dark" : "Light"}.png`}
+                    src={`/assets/MTB_Coaching_${
+                        isDarkTheme ? "Dark" : "Light"
+                    }.png`}
                 />
             </div>
             <div className="divider"></div>
-            <h1 className="title mb-10 uppercase text-center text-2xl">
+            <h1 className="title mb-10 uppercase text-center text-2xl text-accent">
                 {title} Dashboard
             </h1>
             <div className="flex flex-col lg:gap-5 gap-3">

@@ -50,7 +50,7 @@ const PaymentHistory = () => {
                         setSearch={setSearch}
                         placeholder="Search by Course Name"
                     />
-                    <div className="lg:mt-0 lg:mb-5 mb-2 z-10 flex justify-between lg:gap-2 text-white description lg:text-xl">
+                    <div className="lg:mt-0 lg:mb-5 mb-2 z-10 flex justify-between lg:gap-2 text-base-content description lg:text-xl">
                         <span className="z-[100] flex items-center gap-2">
                             <BsFillCreditCardFill className="lg:text-2xl" />
                             <strong>Transactions Count :</strong>

@@ -5,13 +5,20 @@ import { Flip, toast } from "react-toastify";
 import { getUserData, saveUser } from "../../../api/authApi";
 
 const useUpdateProfileForm = (userDetails) => {
+    const { isSmallDevice } = useScreenSize();
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
     const [coverImageButtonText, setCoverImageButtonText] =
         useState("Upload Cover Image");
+
+    useEffect(() => {
+        setCoverImageButtonText(
+            isSmallDevice ? "Upload Image" : "Upload Cover Image"
+        );
+    }, [isSmallDevice]);
+
     const [selectedGender, setSelectedGender] = useState(
         userDetails.gender || ""
     );
-    const { isSmallDevice } = useScreenSize();
     const { updateUser, user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
     const [, setCoverImage] = useState(null);
@@ -347,6 +354,12 @@ const useUpdateProfileForm = (userDetails) => {
         return true; // disable if nothing changed
     };
 
+    useEffect(() => {
+        if (userDetails?.gender) {
+            setSelectedGender(userDetails.gender);
+        }
+    }, [selectedGender, userDetails]);
+
     return {
         imageButtonText,
         coverImageButtonText,
@@ -362,6 +375,8 @@ const useUpdateProfileForm = (userDetails) => {
         isSmallDevice,
         quoteMaxLength,
         user,
+        setSelectedGender,
+        selectedGender,
     };
 };
 

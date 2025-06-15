@@ -19,7 +19,7 @@ const MyCoursesTable = ({
                     search ? "mt-[40%]" : "mt-[80%]"
                 } lg:mt-0 items-center justify-center`}
             >
-                <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
+                <h1 className="z-[10] text-accent lg:text-base-content description lg:text-5xl text-2xl text-center">
                     {search
                         ? "No Courses Found For Your Search"
                         : "You Haven't Created Any Courses Yet"}
@@ -36,7 +36,7 @@ const MyCoursesTable = ({
                     : ""
             }`}
         >
-            <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+            <table className="z-[100] table text-center description dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <MyCoursesTableHead isSmallDevice={isSmallDevice} />
                 <tbody className={"text-sm"}>
@@ -75,7 +75,7 @@ const MyCoursesTable = ({
                                 <td>
                                     <Link
                                         to={`/dashboard/my-classes/students/${userDetails._id}/${index}`}
-                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
+                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
                                         {isSmallDevice ? (
                                             <>

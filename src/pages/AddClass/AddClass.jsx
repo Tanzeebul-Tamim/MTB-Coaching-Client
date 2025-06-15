@@ -18,7 +18,7 @@ const AddClass = () => {
             <div className="flex mt-[35%] lg:mt-0 flex-col md:flex-row mb-10 px-2 md:px-5 gap-6 md:gap-10 items-center justify-center w-full">
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col bg-base-100 lg:py-5 py-3 px-3 lg:px-0 rounded-2xl lg:bg-opacity-50 bg-opacity-60 description w-full max-w-xl"
+                    className="flex flex-col bg-base-100 lg:py-5 py-3 px-3 lg:px-0 rounded-2xl lg:bg-opacity-50 bg-opacity-60 description w-full max-w-xl text-base-content"
                 >
                     <div className="card-body p-0 md:p-6">
                         <div className="flex flex-col md:flex-row justify-between gap-2">
@@ -34,7 +34,7 @@ const AddClass = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder="Enter course name"
-                                    className="input input-bordered"
+                                    className="input placeholder:text-gray-500"
                                     required
                                 />
                             </div>
@@ -50,7 +50,7 @@ const AddClass = () => {
                                     value={formData.price}
                                     onChange={handleChange}
                                     placeholder="Enter price"
-                                    className="input input-bordered"
+                                    className="input placeholder:text-gray-500"
                                     min="0"
                                     required
                                 />
@@ -68,12 +68,12 @@ const AddClass = () => {
                                         onChange={handleChange}
                                         type="file"
                                         name="image"
-                                        className="input input-bordered hidden"
+                                        className="input hidden"
                                         hidden
                                         accept="image/*"
                                         required
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-700 bg-stone-800 w-full md:w-auto">
+                                    <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
                                         {imageButtonText}
                                     </div>
                                 </label>
@@ -90,7 +90,7 @@ const AddClass = () => {
                                     value={formData.studentSlot}
                                     onChange={handleChange}
                                     placeholder="Enter number of slots"
-                                    className="input input-bordered"
+                                    className="input placeholder:text-gray-500"
                                     min="1"
                                     required
                                 />
@@ -99,7 +99,7 @@ const AddClass = () => {
                         <div className="form-control mt-6 z-[10]">
                             <button
                                 type="submit"
-                                className="btn btn-md text-md rounded-md bg-base-200 hover:bg-stone-800 disabled:bg-stone-900 w-full md:w-auto"
+                                className="btn btn-md text-md rounded-md border-0 dark:disabled:bg-stone-900 disabled:bg-stone-400 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300  disabled:border-stone-600 w-full md:w-auto"
                                 disabled={!isFormValid || loading2}
                             >
                                 {loading2 ? (

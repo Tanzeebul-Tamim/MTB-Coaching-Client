@@ -17,12 +17,14 @@ const UpdateProfileForm = ({ userDetails }) => {
         isSmallDevice,
         quoteMaxLength,
         user,
-    } = useUpdateProfileForm(userDetails);
+        setSelectedGender,
+        selectedGender
+    } = useUpdateProfileForm(userDetails);    
 
     return (
         <dialog
             id="my_modal_3"
-            className="modal text-white description"
+            className="modal text-base-content description"
             onClick={(e) => {
                 // Only close if clicking the backdrop (not the form) and on mobile
                 if (e.target === e.currentTarget && isSmallDevice) {
@@ -34,15 +36,15 @@ const UpdateProfileForm = ({ userDetails }) => {
                 onSubmit={handleSubmit}
                 onChange={(event) => setBtnStatus(monitorChange(event))}
                 method="dialog"
-                className="modal-box bg-opacity-80 border border-gray-500"
+                className="modal-box bg-opacity-80 lg:border-0 border border-gray-500"
                 onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the form
             >
-                <h1 className="z-[10] text-white lg:text-2xl text-lg lg:tracking-[9px] tracking-[5px] text-center uppercase font-extrabold">
+                <h1 className="z-[10] text-base-content lg:text-2xl text-lg lg:tracking-[9px] tracking-[5px] text-center uppercase font-extrabold">
                     Update Profile
                 </h1>
                 <p
                     className={`z-[10] mt-1 ${
-                        isValidLength ? "text-white" : "text-red-500"
+                        isValidLength ? "text-base-content" : "text-red-500"
                     } text-center`}
                 >
                     {isValidLength
@@ -60,7 +62,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                             name="name"
                             defaultValue={user?.displayName}
                             placeholder="Enter your name"
-                            className="input input-bordered"
+                            className="input placeholder:text-gray-500"
                         />
                     </div>
 
@@ -74,7 +76,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="address"
                                 defaultValue={userDetails?.address}
                                 placeholder="Enter your address"
-                                className="input input-bordered"
+                                className="input placeholder:text-gray-500"
                             />
                         </div>
 
@@ -89,14 +91,14 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="contact"
                                 defaultValue={userDetails?.contactNo}
                                 placeholder="Enter your contact no"
-                                className="input input-bordered"
+                                className="input placeholder:text-gray-500"
                             />
                         </div>
                     </div>
 
                     {userDetails.role === "Instructor" ? (
                         <>
-                            <div className="flex flex-col md:flex-row justify-between gap-2">
+                            <div className="flex md:flex-row items-center justify-between gap-2">
                                 <div className="form-control w-full md:w-1/2">
                                     <label className="label">
                                         <strong className="label-text">
@@ -112,11 +114,11 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             }
                                             type="file"
                                             name="image"
-                                            className="input input-bordered hidden"
+                                            className="input hidden"
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
+                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
                                             {imageButtonText}
                                         </div>
                                     </label>
@@ -136,11 +138,11 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             }
                                             type="file"
                                             name="cover"
-                                            className="input input-bordered hidden"
+                                            className="input hidden"
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
+                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
                                             {coverImageButtonText}
                                         </div>
                                     </label>
@@ -159,7 +161,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         name="quote"
                                         defaultValue={userDetails?.quote}
                                         placeholder="Enter your quote"
-                                        className="input input-bordered"
+                                        className="input placeholder:text-gray-500"
                                     />
                                 </div>
                                 <div className="form-control w-full md:w-1/2">
@@ -170,12 +172,14 @@ const UpdateProfileForm = ({ userDetails }) => {
                                     </label>
                                     <label>
                                         <select
-                                            onChange={handleSelectGender}
                                             name="gender"
-                                            defaultValue={userDetails.gender}
-                                            className="input input-bordered select font-light text-base text-gray-400 w-full max-w-xs"
+                                            onChange={handleSelectGender}
+                                            defaultValue={
+                                                userDetails?.gender ?? ""
+                                            }
+                                            className="input select font-light text-base text-gray-500 w-full max-w-xs"
                                         >
-                                            <option hidden>
+                                            <option value="" disabled hidden>
                                                 Enter your gender
                                             </option>
                                             <option value="Male">Male</option>
@@ -191,9 +195,9 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <div className="flex flex-col md:flex-row justify-between gap-2">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">
+                                    <strong className="label-text">
                                         User image
-                                    </span>
+                                    </strong>
                                 </label>
                                 <label>
                                     <input
@@ -204,27 +208,32 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         }
                                         type="file"
                                         name="image"
-                                        className="input input-bordered hidden"
+                                        className="input hidden"
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm hover:bg-stone-800 bg-stone-700 w-full md:w-auto">
+                                    <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
                                         {imageButtonText}
                                     </div>
                                 </label>
                             </div>
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
-                                    <span className="label-text">Gender</span>
+                                    <strong className="label-text">
+                                        Gender
+                                    </strong>
                                 </label>
                                 <label>
                                     <select
-                                        onChange={handleSelectGender}
                                         name="gender"
-                                        defaultValue={userDetails.gender}
-                                        className="input input-bordered select font-light text-base text-gray-400 w-full max-w-xs"
+                                        value={selectedGender}
+                                        onChange={(e) => {
+                                            setSelectedGender(e.target.value);
+                                            handleSelectGender(e); 
+                                        }}
+                                        className="input select font-light text-base text-gray-500 w-full max-w-xs border-0"
                                     >
-                                        <option hidden>
+                                        <option value="" disabled hidden>
                                             Enter your gender
                                         </option>
                                         <option value="Male">Male</option>
@@ -239,7 +248,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <button
                             disabled={btnStatus || loading2}
                             type="submit"
-                            className="btn btn-md disabled:bg-stone-900 text-md rounded-md bg-stone-700 hover:bg-stone-800 w-full md:w-auto border disabled:border-stone-600"
+                            className="btn btn-md text-md rounded-md lg:border-0 w-full md:w-auto border dark:disabled:bg-stone-900 disabled:bg-stone-400 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300  disabled:border-stone-600"
                         >
                             {loading2 ? (
                                 <TbFidgetSpinner className="text-2xl animate-spin" />

@@ -7,7 +7,7 @@ import Pagination from "../../components/ui/Pagination";
 import useEnrolledClass from "./useEnrolledClass";
 
 const EnrolledClass = () => {
-    const {
+const {
         isSmallDevice,
         loading,
         search,
@@ -50,7 +50,7 @@ const EnrolledClass = () => {
                         setSearch={setSearch}
                         placeholder="Search by Course Name"
                     />
-                    <div className="z-10 lg:mt-0 lg:mb-5 mb-2 flex justify-between lg:gap-2 text-white description lg:text-xl">
+                    <div className="z-10 lg:mt-0 lg:mb-5 mb-2 flex justify-between lg:gap-2 lg:text-base-content text-accent description lg:text-xl">
                         <span className="z-[100] flex items-center gap-2">
                             <GiTeacher className="lg:text-2xl" />
                             <strong>

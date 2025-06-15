@@ -3,10 +3,11 @@ import { GiTeacher } from "react-icons/gi";
 import { MdLibraryAdd } from "react-icons/md";
 import { ClipLoader } from "react-spinners";
 import useDarkTheme from "../../hooks/useDarkTheme";
+import { light, dark } from "../../styles/colors.json";
 
 const SklClasses = ({ isSmallDevice, role }) => {
     const isDarkTheme = useDarkTheme();
-    const color = isDarkTheme ? "#ffffff" : "#000000"
+    const color = isDarkTheme ? dark.baseContent : light.baseContent;
 
     return (
         <div className="lg:pt-10 pt-5 animate-pulse">

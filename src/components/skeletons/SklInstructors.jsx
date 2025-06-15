@@ -3,11 +3,12 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 import useScreenSize from "../../hooks/useScreenSize";
 import useDarkTheme from "../../hooks/useDarkTheme";
+import { light, dark } from "../../styles/colors.json";
 
 const SklInstructors = () => {
     const { isSmallDevice } = useScreenSize();
     const isDarkTheme = useDarkTheme();
-    const color = isDarkTheme ? "#ffffff" : "#000000";
+    const color = isDarkTheme ? dark.baseContent : light.baseContent;
 
     return (
         <div className="lg:pt-10 pt-5 animate-pulse">

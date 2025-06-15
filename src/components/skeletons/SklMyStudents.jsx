@@ -1,8 +1,19 @@
 import { FaBookOpen } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import { ClipLoader } from "react-spinners";
+import { light, dark } from "../../styles/colors.json";
+import useDarkTheme from "../../hooks/useDarkTheme";
 
 const SklMyStudents = ({ isSmallDevice }) => {
+    const isDarkTheme = useDarkTheme();
+    const color = isSmallDevice
+        ? isDarkTheme
+            ? dark.accent
+            : light.accent
+        : isDarkTheme
+        ? dark.baseContent
+        : light.baseContent;
+
     return (
         <div className="animate-pulse">
             <div
@@ -12,25 +23,25 @@ const SklMyStudents = ({ isSmallDevice }) => {
                         : "flex justify-between"
                 } lg:gap-2 text-white description lg:text-xl`}
             >
-                <span className="z-[100] flex items-center gap-2">
+                <span className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                     <FaBookOpen className="lg:text-2xl" />
                     <strong>
                         {!isSmallDevice && "Offered"} Courses Name :{" "}
                     </strong>
-                    <ClipLoader color="rgb(256 256 256)" />
+                    <ClipLoader color={color} />
                 </span>
 
-                <span className="z-[100] flex items-center gap-2">
+                <span className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                     <PiStudentFill className="lg:text-2xl" />
                     <strong>Total Students : </strong>
-                    <ClipLoader color="rgb(256 256 256)" />
+                    <ClipLoader color={color} />
                 </span>
             </div>
             <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
-                <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+                <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 bg-opacity-50">
-                        <tr className="text-white text-xs">
+                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-xs">
                             <th>No</th>
                             <th>Photo</th>
                             <th>Name</th>
@@ -53,27 +64,27 @@ const SklMyStudents = ({ isSmallDevice }) => {
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                 </tr>

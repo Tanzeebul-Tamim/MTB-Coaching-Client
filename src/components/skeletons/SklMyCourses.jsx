@@ -2,8 +2,19 @@ import { FaList } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudentFill } from "react-icons/pi";
 import { ClipLoader } from "react-spinners";
+import useDarkTheme from "../../hooks/useDarkTheme";
+import { light, dark } from "../../styles/colors.json";
 
 const SklMyCourses = ({ isSmallDevice }) => {
+    const isDarkTheme = useDarkTheme();
+    const color = isSmallDevice
+        ? isDarkTheme
+            ? dark.accent
+            : light.accent
+        : isDarkTheme
+        ? dark.baseContent
+        : light.baseContent;
+
     return (
         <div className="animate-pulse">
             <div
@@ -11,27 +22,27 @@ const SklMyCourses = ({ isSmallDevice }) => {
                     isSmallDevice
                         ? "flex lg:flex-row lg:justify-between flex-col items-center"
                         : "flex justify-between"
-                } lg:gap-2 text-white description lg:text-xl`}
+                } lg:gap-2 text-base-content description lg:text-xl`}
             >
-                <span className="z-[100] flex items-center gap-2">
+                <span className="z-[100] flex items-center gap-2 lg:text-base-content text-accent">
                     <GiTeacher className="lg:text-2xl" />
                     <strong>
                         {!isSmallDevice && "Offered"} Courses Count :{" "}
                     </strong>
-                    <ClipLoader color="rgb(256 256 256)" />
+                    <ClipLoader color={color} />
                 </span>
 
-                <span className="z-[100] flex items-center gap-2">
+                <span className="z-[100] flex items-center gap-2 lg:text-base-content text-accent">
                     <PiStudentFill className="lg:text-2xl" />
                     <strong>Total Students : </strong>
-                    <ClipLoader color="rgb(256 256 256)" />
+                    <ClipLoader color={color} />
                 </span>
             </div>
             <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
-                <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+                <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
-                    <thead className="bg-base-200 bg-opacity-50">
-                        <tr className="text-white text-xs">
+                    <thead className="bg-base-200 dark:lg:bg-opacity-50 dark:bg-opacity-50 lg:bg-opacity-50 bg-opacity-70">
+                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-xs">
                             <th>No</th>
                             <th>Image</th>
                             <th>Course Name</th>
@@ -55,35 +66,35 @@ const SklMyCourses = ({ isSmallDevice }) => {
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     {!isSmallDevice && (
                                         <td>
                                             <div className="flex items-center justify-center">
-                                                <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                                <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                             </div>
                                         </td>
                                     )}
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <button
                                             disabled
-                                            className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full disabled:bg-stone-700 animate-bounce"
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content dark:bg-stone-500  border-0 disabled:bg-base-200 dark:disabled:bg-base-200"
                                         >
                                             {isSmallDevice ? (
                                                 <>

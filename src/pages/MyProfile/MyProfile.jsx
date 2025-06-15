@@ -23,17 +23,17 @@ const MyProfile = () => {
                 <>
                     <div className="flex mt-[35%] lg:mt-0 flex-col md:flex-row mb-10 px-2 md:px-5 gap-6 md:gap-10 items-center justify-center w-full">
                         <ImageWithLoader
-                            className="z-[10] w-32 h-32 md:w-[200px] md:h-[200px] border-zinc-400 border-[3px] lg:border-[4px] shadow-2xl rounded-full object-cover"
+                            className="z-[10] w-32 h-32 md:w-[200px] md:h-[200px] dark:border-zinc-400 border-zinc-300 border-[3px] lg:border-[4px] shadow-2xl rounded-full object-cover"
                             src={userDetails?.image || user?.photoURL}
                             alt=""
                         />
                         <div className="bg-base-100 bg-opacity-70 w-full p-3 md:p-4 rounded-2xl">
-                            <div className="description gap-2 md:gap-3 text-base md:text-xl flex justify-center flex-col text-left mb-4">
+                            <div className="description gap-2 md:gap-3 text-base text-base-content md:text-xl flex justify-center flex-col text-left mb-4">
                                 <p className="z-[10]">
-                                    <strong>Name :</strong> {user?.displayName}
+                                    <strong>Name :</strong> {userDetails?.name}
                                 </p>
                                 <p className="z-[10]">
-                                    <strong>Email :</strong> {user?.email}
+                                    <strong>Email :</strong> {userDetails?.email}
                                 </p>
                                 {userDetails.gender && (
                                     <p className="z-[10]">
@@ -69,7 +69,7 @@ const MyProfile = () => {
                                         onClick={() =>
                                             window.my_modal_3.showModal()
                                         }
-                                        className="btn btn-sm rounded-xl bg-stone-700 hover:bg-stone-800 w-full sm:w-auto"
+                                        className="btn btn-sm rounded-xl hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full sm:w-auto"
                                     >
                                         Update Profile Info
                                     </button>
@@ -77,7 +77,7 @@ const MyProfile = () => {
                                         onClick={() =>
                                             window.my_modal_1.showModal()
                                         }
-                                        className="btn btn-sm rounded-xl bg-stone-700 hover:bg-stone-800 w-full sm:w-auto"
+                                        className="btn btn-sm rounded-xl hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full sm:w-auto"
                                     >
                                         Change Password
                                     </button>

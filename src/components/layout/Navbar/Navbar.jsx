@@ -11,10 +11,10 @@ import { Link, useLocation } from "react-router-dom";
 import { getBookedClasses } from "../../../api/bookApi";
 import useAuth from "../../../hooks/useAuth";
 import useUserData from "../../../hooks/useUserData";
-import ThemeToggle from "../../ui/ThemeToggle";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import ActiveLink from "../../ui/ActiveLink";
 import "../../../styles/navbar.css";
+import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
     const isDarkTheme = useDarkTheme();
@@ -120,7 +120,7 @@ const Navbar = () => {
                         </span>
                     </ActiveLink>
                     {user && (
-                        <ActiveLink dark={true} to="/dashboard/profile">
+                        <ActiveLink to="/dashboard/profile">
                             <span
                                 onClick={() => setOpen(!open)}
                                 className="flex items-center gap-1"
@@ -260,7 +260,7 @@ const Navbar = () => {
                     </button>
                     <Link
                         to="/dashboard/profile"
-                        data-tip={user?.displayName}
+                        data-tip={userDetails.name}
                         className="tooltip tooltip-bottom tooltip-primary hover:scale-110 duration-500 transition-transform"
                     >
                         <div className="flex flex-col items-center">

@@ -9,8 +9,8 @@ const SklBikeHacks = () => {
                     />
                 </div>
                 <div className="flex flex-col gap-1 mt-3 description text-white ">
-                    <div className="rounded-lg h-3 bg-gray-500 w-4/5"></div>
-                    <div className="rounded-lg h-3 bg-gray-500 w-1/3"></div>
+                    <div className="rounded-lg h-3 bg-base-content w-4/5"></div>
+                    <div className="rounded-lg h-3 bg-base-content w-1/3"></div>
                 </div>
             </div>
         </div>

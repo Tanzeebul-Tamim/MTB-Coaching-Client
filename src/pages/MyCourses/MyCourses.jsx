@@ -58,7 +58,7 @@ const MyCourses = () => {
                             isSmallDevice
                                 ? "flex lg:flex-row lg:justify-between flex-col items-center"
                                 : "flex justify-between"
-                        } lg:gap-2 text-white description lg:text-xl`}
+                        } lg:gap-2 lg:text-base-content text-accent description lg:text-xl`}
                     >
                         <span className="z-[100] flex items-center gap-2">
                             <GiTeacher className="lg:text-2xl" />

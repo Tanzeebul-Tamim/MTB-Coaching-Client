@@ -11,7 +11,7 @@ const MyStudentsTable = ({ students, search, settings }) => {
                     search ? "mt-[40%]" : "mt-[80%]"
                 } lg:mt-0 items-center justify-center`}
             >
-                <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
+                <h1 className="z-[10] text-accent lg:text-base-content description lg:text-5xl text-2xl text-center">
                     {search
                         ? "No Students Found For Your Search"
                         : "You Don't Have Any Students Yet"}
@@ -23,10 +23,12 @@ const MyStudentsTable = ({ students, search, settings }) => {
     return (
         <div
             className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
-                students.length > 5 ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto" : ""
+                students.length > 5
+                    ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
+                    : ""
             }`}
         >
-            <table className="z-[100] table text-center description text-white lg:whitespace-normal whitespace-nowrap">
+            <table className="z-[100] table text-center description dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <MyStudentsTableHead />
                 <tbody className="text-sm">
@@ -41,7 +43,10 @@ const MyStudentsTable = ({ students, search, settings }) => {
                                     <ImageWithLoader
                                         className="rounded-full w-[4.5vh]"
                                         gif="/assets/user_avatar.png"
-                                        src={student?.image || '/assets/user_avatar.png'}
+                                        src={
+                                            student?.image ||
+                                            "/assets/user_avatar.png"
+                                        }
                                         alt={student?.["class-name"]}
                                     />
                                 </td>

@@ -1,5 +1,5 @@
-import useTitle from "../../../hooks/useTitle";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useTitle from "../../hooks/useTitle";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const NoInternetPage = () => {
     useTitle("| No Internet");

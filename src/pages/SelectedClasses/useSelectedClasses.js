@@ -9,10 +9,7 @@ import useTitle from "../../hooks/useTitle";
 
 const useSelectedClasses = () => {
     const { user } = useAuth();
-    const [userBookings, setUserBookings] = useState([]);
-    const unpaidBookings = userBookings.filter(
-        (booking) => booking.paymentStatus === "unpaid"
-    );
+    const [unpaidBookings, setUnpaidBookings] = useState([]);
     const { isSmallDevice } = useScreenSize();
     const { loading, userDetails } = useUserData();
     useTitle("| Booked Courses");
@@ -21,14 +18,18 @@ const useSelectedClasses = () => {
         if (user && user.email && userDetails._id) {
             getBookedClasses(userDetails._id)
                 .then((data) => {
-                    setUserBookings(data);
+                    setUnpaidBookings(
+                        data.filter(
+                            (booking) => booking.paymentStatus === "unpaid"
+                        )
+                    );
                 })
                 .catch((error) => console.error(error));
         } else if (!user) {
-            setUserBookings([]);
+            setUnpaidBookings([]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, userBookings]);
+    }, [userDetails]);
 
     const handleClearList = () => {
         Swal.fire({

@@ -4,6 +4,7 @@ import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useSelectedClassesTable from "./useSelectedClassesTable";
+import { useState } from "react";
 
 const SelectedClassesTable = ({
     userBookings,
@@ -12,13 +13,26 @@ const SelectedClassesTable = ({
     settings,
     userDetails,
 }) => {
-    const {
-        resultsPerPage,
-        currentPage,
-        deletingId,
-        setDeletingId,
-        updateProfile,
-    } = useSelectedClassesTable(settings, userBookings, search, userDetails);
+    const { updateProfile } = useSelectedClassesTable(userDetails);
+
+    const { resultsPerPage, currentPage } = settings;
+    const [deletingId, setDeletingId] = useState(null);
+
+    if (userBookings?.length === 0) {
+        return (
+            <div
+                className={`flex lg:h-[55vh] ${
+                    search ? "mt-[40%]" : "mt-[80%]"
+                } lg:mt-0 items-center justify-center`}
+            >
+                <h1 className="z-[10] text-accent lg:text-base-content description lg:text-5xl text-2xl text-center">
+                    {search
+                        ? "No Bookings Found For Your Search"
+                        : "You Haven't Booked Any Courses Yet"}
+                </h1>
+            </div>
+        );
+    }
 
     return (
         <div
@@ -28,7 +42,7 @@ const SelectedClassesTable = ({
                     : ""
             }`}
         >
-            <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+            <table className="z-[100] table text-center description dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
@@ -92,7 +106,7 @@ const SelectedClassesTable = ({
                                             userDetails.gender &&
                                             `/dashboard/selected-classes/${classItem.studentId}/${classItem._id}`
                                         }
-                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700"
+                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
                                         {isSmallDevice ? (
                                             <>
@@ -119,7 +133,7 @@ const SelectedClassesTable = ({
                                             )
                                         }
                                         disabled={deletingId === classItem._id}
-                                        className="btn text-white btn-xs text-xs border-0 lg:rounded-lg rounded-full hover:bg-stone-800 bg-stone-700 disabled:bg-stone-700 disabled:cursor-not-allowed"
+                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
                                         {isSmallDevice ? (
                                             <>

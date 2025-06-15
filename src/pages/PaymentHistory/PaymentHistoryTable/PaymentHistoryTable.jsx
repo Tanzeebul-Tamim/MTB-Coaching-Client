@@ -21,7 +21,7 @@ const PaymentHistoryTable = ({
                     search ? "mt-[40%]" : "mt-[80%]"
                 } lg:mt-0 items-center justify-center`}
             >
-                <h1 className="z-[10] description lg:text-5xl text-2xl text-center">
+                <h1 className="z-[10] text-accent lg:text-base-content description lg:text-5xl text-2xl text-center">
                     {search
                         ? "No History Found For Your Search"
                         : "You Haven't Made Any Payment Yet"}
@@ -38,7 +38,7 @@ const PaymentHistoryTable = ({
                     : ""
             }`}
         >
-            <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+            <table className="z-[100] table text-center description dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <PaymentHistoryTableHead />
                 <tbody className="text-sm">

@@ -1,30 +1,41 @@
 import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
 import { GiTeacher } from "react-icons/gi";
 import { ClipLoader } from "react-spinners";
+import useDarkTheme from "../../hooks/useDarkTheme";
+import { light, dark } from "../../styles/colors.json";
 
 const SklSelectedClasses = ({ isSmallDevice }) => {
+    const isDarkTheme = useDarkTheme();
+    const color = isSmallDevice
+        ? isDarkTheme
+            ? dark.accent
+            : light.accent
+        : isDarkTheme
+        ? dark.baseContent
+        : light.baseContent;
+
     return (
         <div className="animate-pulse">
-            <div className="lg:mb-5 mb-2 mt-[35%] lg:mt-0 z-10 flex justify-between gap-2 text-white description lg:text-xl">
-                <div className="z-[100] flex items-center gap-2">
+            <div className="lg:mb-5 mb-2 mt-[35%] lg:mt-0 z-10 flex justify-between gap-2 text-base-content description lg:text-xl">
+                <div className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                     <GiTeacher className="lg:text-2xl" />
                     <strong>
                         {!isSmallDevice && "My Booked"} Courses Count :{" "}
                     </strong>
-                    <ClipLoader color="rgb(256 256 256)" />
+                    <ClipLoader color={color} />
                 </div>{" "}
                 <button
                     disabled
-                    className="z-[100] btn text-white btn-xs text-sx border-0 rounded-lg disabled:bg-stone-700 animate-bounce"
+                    className="z-[100] btn white btn-xs text-sx border-0 rounded-lg disabled:bg-base-200 animate-bounce"
                 >
                     <span>Clear List</span>
                 </button>
             </div>
             <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
-                <table className="z-[100] table text-center description text-white whitespace-nowrap lg:whitespace-normal">
+                <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 bg-opacity-50">
-                        <tr className="text-white text-xs">
+                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-xs">
                             <th className="">No</th>
                             <th className="">Image</th>
                             <th className="">Course</th>
@@ -47,23 +58,23 @@ const SklSelectedClasses = ({ isSmallDevice }) => {
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-4 bg-gray-200 rounded"></div>
+                                            <div className="w-16 sm:w-24 h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
                                     <td>
                                         <button
                                             disabled
-                                            className="btn btn-xs text-xs border-0 lg:rounded-lg rounded-full animate-bounce disabled:bg-stone-700"
+                                            className="btn btn-xs text-xs border-0 lg:rounded-lg rounded-full animate-bounce disabled:bg-base-200"
                                         >
                                             {isSmallDevice ? (
                                                 <>
@@ -82,7 +93,7 @@ const SklSelectedClasses = ({ isSmallDevice }) => {
                                     <td>
                                         <button
                                             disabled
-                                            className="btn btn-xs text-xs border-0 lg:rounded-lg rounded-full animate-bounce disabled:bg-stone-700"
+                                            className="btn btn-xs text-xs border-0 lg:rounded-lg rounded-full animate-bounce disabled:bg-base-200"
                                         >
                                             {isSmallDevice ? (
                                                 <>

@@ -52,8 +52,8 @@ const SelectedClasses = () => {
                         setSearch={setSearch}
                         placeholder="Search by Course Name"
                     />
-                    <div className="lg:mb-5 mb-2 lg:mt-0 z-10 flex justify-between gap-2 text-white description lg:text-xl">
-                        <span className="z-[100] flex items-center gap-2">
+                    <div className="lg:mb-5 mb-2 lg:mt-0 z-10 flex justify-between gap-2 text-base-content description lg:text-xl">
+                        <span className="z-[100] flex items-center gap-2 dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200">
                             <GiTeacher className="lg:text-2xl" />
                             <strong>
                                 {!isSmallDevice && "My Booked"} Courses Count :{" "}
@@ -62,7 +62,7 @@ const SelectedClasses = () => {
                         </span>{" "}
                         <button
                             onClick={handleClearList}
-                            className="z-[100] btn text-white btn-xs text-sx border-0 rounded-lg hover:bg-stone-800 bg-stone-700"
+                            className="z-[100] btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                         >
                             <span>Clear List</span>
                         </button>

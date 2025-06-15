@@ -46,13 +46,12 @@ const Searchbar = ({
                 value={search}
                 type="text"
                 placeholder={placeholder}
-                className="z-10 mt-[35%] mb-6 lg:mb-0 lg:mt-0 lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-white rounded-full lg:w-1/3 w-3/4"
+                className="z-10 mt-[35%] mb-6 lg:mb-0 lg:mt-0 lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4 bg-opacity-80"
             />
             <button>
                 <BsSearch
-                    className="z-50"
+                    className="z-50 text-base-content"
                     style={{
-                        color: "white",
                         position: "absolute",
                         top: isSmallDevice ? "73.5%" : "30%",
                         right: isSmallDevice ? "16%" : "35%",

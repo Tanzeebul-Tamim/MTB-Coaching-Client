@@ -4,8 +4,8 @@ import RouteTracker from "../routes/utils/RouteTracker/RouteTracker";
 import Navbar from "../components/layout/Navbar/Navbar";
 import Footer from "../components/layout/Footer/Footer";
 import useNetworkStatus from "../hooks/useNetworkStatus";
-import NoInternetPage from "../components/pages/NoInternetPage/NoInternetPage";
 import InstallPWAButton from "../components/ui/InstallPWAButton";
+import NoInternetPage from "../components/pages/NoInternetPage";
 
 const Main = () => {
     const { isOnline } = useNetworkStatus();
