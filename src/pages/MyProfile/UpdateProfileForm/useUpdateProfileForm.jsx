@@ -374,7 +374,6 @@ const useUpdateProfileForm = (userDetails) => {
         monitorChange,
         isSmallDevice,
         quoteMaxLength,
-        user,
         setSelectedGender,
         selectedGender,
     };

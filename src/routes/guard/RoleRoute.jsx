@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreenSize";
 import SklDashboardTitle from "../../components/skeletons/SklDashboardTitle";
+import { light, dark } from "../../styles/colors.json";
+import useDarkTheme from "../../hooks/useDarkTheme";
 
 const RoleRoute = ({ allowedRole, children }) => {
     const { loading, user } = useAuth();
@@ -13,6 +15,11 @@ const RoleRoute = ({ allowedRole, children }) => {
     const { isSmallDevice } = useScreenSize();
     const [userDetails, setUserDetails] = useState(null);
     const [detailsLoading, setDetailsLoading] = useState(true);
+
+    const isDarkTheme = useDarkTheme();
+    const lightSecondary = light.secondary;
+    const darkSecondary = dark.secondary;
+    const color = isDarkTheme ? darkSecondary : lightSecondary;
 
     useEffect(() => {
         let isMounted = true;
@@ -58,7 +65,7 @@ const RoleRoute = ({ allowedRole, children }) => {
                 >
                     <PropagateLoader
                         style={{ zIndex: 10 }}
-                        color="rgb(234 198 8)"
+                        color={color}
                     />
                 </div>
             </div>

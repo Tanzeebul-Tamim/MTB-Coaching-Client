@@ -69,6 +69,13 @@ const useClasses = () => {
 
     const texts = ["Exciting", "MTB Courses", "And", "Workshops"];
 
+    const searchStyle = {
+        position: "absolute",
+        top: "30%",
+        right: isSmallDevice ? "16%" : "35%",
+        fontSize: isSmallDevice ? "15px" : "20px",
+    };
+
     return {
         titleDescription,
         loading,
@@ -85,6 +92,9 @@ const useClasses = () => {
         classes,
         tableRef,
         visibleCount,
+        search,
+        setSearch,
+        searchStyle,
     };
 };
 

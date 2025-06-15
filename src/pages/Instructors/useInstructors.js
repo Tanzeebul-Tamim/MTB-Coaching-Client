@@ -68,6 +68,13 @@ const useInstructors = () => {
 
     const texts = ["Training", "Instructions", "& Guides", "WorldWide"];
 
+    const searchStyle = {
+        position: "absolute",
+        top: "30%",
+        right: isSmallDevice ? "16%" : "35%",
+        fontSize: isSmallDevice ? "15px" : "20px",
+    };
+
     return {
         titleDescription,
         loading,
@@ -79,7 +86,10 @@ const useInstructors = () => {
         searchRef,
         instructors,
         tableRef,
-        visibleCount
+        visibleCount,
+        search,
+        setSearch,
+        searchStyle,
     };
 };
 

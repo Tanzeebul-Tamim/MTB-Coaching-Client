@@ -7,7 +7,22 @@ import {
 import app from "../../../firebase/firebase.config";
 import { useEffect, useRef, useState } from "react";
 import useScreenSize from "../../../hooks/useScreenSize";
-import { Slide, toast } from "react-toastify";
+import { Flip, Slide, toast } from "react-toastify";
+
+const fireToast = (message) => {
+    const time = 2000;
+    toast.error(message, {
+        position: "top-right",
+        autoClose: time,
+        hideProgressBar: false,
+        limit: 3,
+        transition: Flip,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+};
 
 const useChangePassword = () => {
     const auth = getAuth(app);
@@ -53,23 +68,28 @@ const useChangePassword = () => {
             currentPassInput
         );
         setLoading(true);
+        let message;
         reauthenticateWithCredential(auth.currentUser, credential)
             .then(() => {
                 if (newPassInput === confirmPassInput) {
                     if (newPassInput.length < 6) {
-                        setError(
-                            "Password must be at least 6 characters long!"
-                        );
+                        message =
+                            "Password must be at least 6 characters long!";
+                        setError(message);
+                        fireToast(message);
                         setLoading(false);
                         return;
                     } else if (!/(?=.*[A-Z])/.test(newPassInput)) {
-                        setError(
-                            "Password must contain at least one uppercase letter"
-                        );
+                        message =
+                            "Password must contain at least one uppercase letter";
+                        setError(message);
+                        fireToast(message);
                         setLoading(false);
                         return;
                     } else if (!/(?=.*\d)/.test(newPassInput)) {
-                        setError("Password must contain at least one digit");
+                        message = "Password must contain at least one digit";
+                        setError(message);
+                        fireToast(message);
                         setLoading(false);
                         return;
                     } else if (
@@ -77,14 +97,17 @@ const useChangePassword = () => {
                             newPassInput
                         )
                     ) {
-                        setError(
-                            "Password must contain at least one special character"
-                        );
+                        message =
+                            "Password must contain at least one special character";
+                        setError(message);
+                        fireToast(message);
                         setLoading(false);
                         return;
                     }
                 } else {
-                    setError("Passwords do not match");
+                    message = "Passwords do not match";
+                    setError(message);
+                    fireToast(message);
                     setLoading(false);
                     return;
                 }
@@ -109,13 +132,15 @@ const useChangePassword = () => {
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/wrong-password") {
-                    setError("Current password is incorrect");
+                    message = "Current password is incorrect";
+                    setError(message);
+                    fireToast(message);
                     setLoading(false);
                     return;
                 } else if (error.code === "auth/too-many-requests") {
-                    setError(
-                        "Too many unsuccessful attempts! Try again later."
-                    );
+                    message = "Too many unsuccessful attempts! Try again later";
+                    setError(message);
+                    fireToast(message);
                     setLoading(false);
                     return;
                 }

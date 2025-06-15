@@ -12,9 +12,9 @@ const PrivateRoute = ({ children }) => {
     const isDarkTheme = useDarkTheme();
     const navigate = useNavigate();
 
-    const lightPrimary = light.primary;
-    const darkPrimary = dark.primary;
-    const color = isDarkTheme ? darkPrimary : lightPrimary;
+    const lightSecondary = light.secondary;
+    const darkSecondary = dark.secondary;
+    const color = isDarkTheme ? darkSecondary : lightSecondary;
 
     useEffect(() => {
         if (!loading && !user) {
@@ -33,13 +33,13 @@ const PrivateRoute = ({ children }) => {
                     style={{ height: "700px" }}
                     className="flex justify-center items-center"
                 >
-                    <PropagateLoader color={color} />
+                    <PropagateLoader style={{ zIndex: 10 }} color={color} />
                 </div>
             </div>
         );
     }
 
-     if (!user) return null; // Wait for redirect
+    if (!user) return null; // Wait for redirect
 
     return children;
 };

@@ -6,6 +6,7 @@ import { GiTeacher } from "react-icons/gi";
 import SklClasses from "../../components/skeletons/SklClasses";
 import PageBanner from "../../components/ui/PageBanner";
 import useClasses from "./useClasses";
+import { RxCross2 } from "react-icons/rx";
 
 const Classes = () => {
     const {
@@ -24,6 +25,9 @@ const Classes = () => {
         classes,
         tableRef,
         visibleCount,
+        search,
+        setSearch,
+        searchStyle,
     } = useClasses();
 
     return (
@@ -46,16 +50,26 @@ const Classes = () => {
                         placeholder="Search by Course Name"
                         className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4 bg-opacity-60"
                     />
-                    <button>
-                        <BsSearch
-                            className="text-base-content"
-                            style={{
-                                position: "absolute",
-                                top: "30%",
-                                right: isSmallDevice ? "16%" : "35%",
-                                fontSize: isSmallDevice ? "15px" : "20px",
-                            }}
-                        ></BsSearch>
+                    <button
+                        onClick={
+                            search &&
+                            (() => {
+                                setSearch("");
+                                searchRef.current.value = "";
+                            })
+                        }
+                    >
+                        {search ? (
+                            <RxCross2
+                                className="text-base-content"
+                                style={searchStyle}
+                            ></RxCross2>
+                        ) : (
+                            <BsSearch
+                                className="text-base-content"
+                                style={searchStyle}
+                            ></BsSearch>
+                        )}
                     </button>
                 </div>
 

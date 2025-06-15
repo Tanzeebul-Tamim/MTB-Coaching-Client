@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BsSearch } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
 
 const Searchbar = ({
     items,
@@ -11,6 +12,13 @@ const Searchbar = ({
     setSearch,
     placeholder,
 }) => {
+    const style = {
+        position: "absolute",
+        top: isSmallDevice ? "73.5%" : "30%",
+        right: isSmallDevice ? "16%" : "35%",
+        fontSize: isSmallDevice ? "15px" : "20px",
+    };
+
     // Update filtered items when items or search changes
     useEffect(() => {
         if (search) {
@@ -48,16 +56,18 @@ const Searchbar = ({
                 placeholder={placeholder}
                 className="z-10 mt-[35%] mb-6 lg:mb-0 lg:mt-0 lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4 bg-opacity-80"
             />
-            <button>
-                <BsSearch
-                    className="z-50 text-base-content"
-                    style={{
-                        position: "absolute",
-                        top: isSmallDevice ? "73.5%" : "30%",
-                        right: isSmallDevice ? "16%" : "35%",
-                        fontSize: isSmallDevice ? "15px" : "20px",
-                    }}
-                ></BsSearch>
+            <button onClick={search && (() => setSearch(""))}>
+                {search ? (
+                    <RxCross2
+                        className="z-50 text-base-content"
+                        style={style}
+                    />
+                ) : (
+                    <BsSearch
+                        className="z-50 text-base-content"
+                        style={style}
+                    ></BsSearch>
+                )}
             </button>
         </div>
     );

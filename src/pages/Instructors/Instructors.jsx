@@ -6,6 +6,7 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import SklInstructors from "../../components/skeletons/SklInstructors";
 import PageBanner from "../../components/ui/PageBanner";
 import useInstructors from "./useInstructors";
+import { RxCross2 } from "react-icons/rx";
 
 const Instructors = () => {
     const {
@@ -20,6 +21,9 @@ const Instructors = () => {
         instructors,
         tableRef,
         visibleCount,
+        search,
+        setSearch,
+        searchStyle,
     } = useInstructors();
 
     return (
@@ -39,16 +43,26 @@ const Instructors = () => {
                         placeholder="Search by Instructor's Name"
                         className="lg:py-3 lg:px-5 py-1 px-3 outline-none bg-base-200 description lg:placeholder:text-sm placeholder:text-xs placeholder-base-content rounded-full lg:w-1/3 w-3/4 bg-opacity-60"
                     />
-                    <button>
-                        <BsSearch
-                            className="text-base-content"
-                            style={{
-                                position: "absolute",
-                                top: "30%",
-                                right: isSmallDevice ? "16%" : "35%",
-                                fontSize: isSmallDevice ? "15px" : "20px",
-                            }}
-                        ></BsSearch>
+                    <button
+                        onClick={
+                            search &&
+                            (() => {
+                                setSearch("");
+                                searchRef.current.value = "";
+                            })
+                        }
+                    >
+                        {search ? (
+                            <RxCross2
+                                className="text-base-content"
+                                style={searchStyle}
+                            ></RxCross2>
+                        ) : (
+                            <BsSearch
+                                className="text-base-content"
+                                style={searchStyle}
+                            ></BsSearch>
+                        )}
                     </button>
                 </div>
 

@@ -38,11 +38,11 @@
 
 /* Global button focus ring removal */
 @layer base {
-  button:focus,
-  button:focus-visible,
-  button:focus-within {
-    @apply outline-none ring-0;
-  }
+    button:focus,
+    button:focus-visible,
+    button:focus-within {
+        @apply outline-none ring-0;
+    }
 }
 
 /* Global Transition for toggling light/dark theme */

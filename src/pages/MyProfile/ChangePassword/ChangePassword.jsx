@@ -52,7 +52,7 @@ const ChangePassword = () => {
                         error ? "text-red-500" : "text-base-content"
                     } text-center`}
                 >
-                    {error ? error : "Press esc to cancel"}
+                    {!isSmallDevice && (error ? error : "Press esc to cancel")}
                 </p>
 
                 <div className="lg:card-body">

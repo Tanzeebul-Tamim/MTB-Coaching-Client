@@ -16,10 +16,9 @@ const UpdateProfileForm = ({ userDetails }) => {
         monitorChange,
         isSmallDevice,
         quoteMaxLength,
-        user,
         setSelectedGender,
-        selectedGender
-    } = useUpdateProfileForm(userDetails);    
+        selectedGender,
+    } = useUpdateProfileForm(userDetails);
 
     return (
         <dialog
@@ -47,9 +46,10 @@ const UpdateProfileForm = ({ userDetails }) => {
                         isValidLength ? "text-base-content" : "text-red-500"
                     } text-center`}
                 >
-                    {isValidLength
-                        ? "Press esc to cancel"
-                        : `Quote is too long! Max ${quoteMaxLength} characters`}
+                    {!isSmallDevice &&
+                        (isValidLength
+                            ? "Press esc to cancel"
+                            : `Quote is too long! Max ${quoteMaxLength} characters`)}
                 </p>
 
                 <div className="card-body p-0 md:p-6">
@@ -60,7 +60,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <input
                             type="text"
                             name="name"
-                            defaultValue={user?.displayName}
+                            defaultValue={userDetails.name}
                             placeholder="Enter your name"
                             className="input placeholder:text-gray-500"
                         />
@@ -229,7 +229,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         value={selectedGender}
                                         onChange={(e) => {
                                             setSelectedGender(e.target.value);
-                                            handleSelectGender(e); 
+                                            handleSelectGender(e);
                                         }}
                                         className="input select font-light text-base text-gray-500 w-full max-w-xs border-0"
                                     >
