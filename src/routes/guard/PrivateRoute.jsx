@@ -1,18 +1,30 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { PropagateLoader } from "react-spinners";
 import useAuth from "../../hooks/useAuth";
 import useDarkTheme from "../../hooks/useDarkTheme";
 import { light, dark } from "../../styles/colors.json";
+import { useEffect } from "react";
 
 const PrivateRoute = ({ children }) => {
     const { loading, user } = useAuth();
     const location = useLocation();
     const isDarkTheme = useDarkTheme();
+    const navigate = useNavigate();
 
     const lightPrimary = light.primary;
     const darkPrimary = dark.primary;
     const color = isDarkTheme ? darkPrimary : lightPrimary;
+
+    useEffect(() => {
+        if (!loading && !user) {
+            // Replace the current entry in history with login
+            navigate("/login", {
+                replace: true,
+                state: { from: location, showToast: true },
+            });
+        }
+    }, [loading, user, navigate, location]);
 
     if (loading) {
         return (
@@ -27,14 +39,7 @@ const PrivateRoute = ({ children }) => {
         );
     }
 
-    if (!user) {
-        return (
-            <Navigate
-                state={{ from: location, showToast: true }}
-                to="/login"
-            ></Navigate>
-        );
-    }
+     if (!user) return null; // Wait for redirect
 
     return children;
 };
