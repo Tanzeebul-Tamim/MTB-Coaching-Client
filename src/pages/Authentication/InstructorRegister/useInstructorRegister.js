@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
@@ -6,6 +6,7 @@ import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 
 const useInstructorRegister = () => {
+    const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
@@ -30,6 +31,16 @@ const useInstructorRegister = () => {
         confirmPassword: "",
         image: null,
     });
+
+    useEffect(() => {
+        if (!isValid) {
+            setFormFields((prev) => ({
+                ...prev,
+                confirmPassword: "",
+            }));
+        }
+    }, [isValid]);
+
     const navigate = useNavigate();
     const location = useLocation();
     const getPrevLocation = localStorage.getItem("location");
@@ -49,7 +60,8 @@ const useInstructorRegister = () => {
         formFields.password &&
         formFields.confirmPassword &&
         selectedGender &&
-        formFields.image;
+        formFields.image &&
+        isValid;
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -69,33 +81,8 @@ const useInstructorRegister = () => {
 
         if (image) {
             if (selectedGender === "Male" || selectedGender === "Female") {
+                if (!isValid) return;
                 if (password === confirmPassword) {
-                    setError("");
-
-                    if (password.length < 6) {
-                        setError(
-                            "Password must be at least 6 characters long!"
-                        );
-                        return;
-                    } else if (!/(?=.*[A-Z])/.test(password)) {
-                        setError(
-                            "Password must contain at least one uppercase letter"
-                        );
-                        return;
-                    } else if (!/(?=.*\d)/.test(password)) {
-                        setError("Password must contain at least one digit");
-                        return;
-                    } else if (
-                        !/(?=.*[!@#$%^&*()_\-+={}[\]\\|:;"'<>,.?/~])/.test(
-                            password
-                        )
-                    ) {
-                        setError(
-                            "Password must contain at least one special character"
-                        );
-                        return;
-                    }
-
                     // Create an HTMLImageElement to load the image
                     const imgElement = document.createElement("img");
                     imgElement.onload = () => {
@@ -295,8 +282,10 @@ const useInstructorRegister = () => {
     };
 
     return {
-        error,
         success,
+        setSuccess,
+        error,
+        setError,
         loading,
         imageButtonText,
         handleSelectGender,
@@ -310,6 +299,8 @@ const useInstructorRegister = () => {
         selectedGender,
         showPassword,
         showPassword2,
+        isValid,
+        setIsValid,
     };
 };
 

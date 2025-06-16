@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
 import useInstructorRegister from "./useInstructorRegister";
+import { useState } from "react";
+import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 
 const InstructorRegister = () => {
     const {
-        error,
         success,
+        setSuccess,
+        error,
+        setError,
         loading,
         imageButtonText,
         handleSelectGender,
@@ -21,7 +25,12 @@ const InstructorRegister = () => {
         selectedGender,
         showPassword,
         showPassword2,
+        isValid,
+        setIsValid,
     } = useInstructorRegister();
+
+    const [status, setStatus] = useState("");
+    const [colorCode, setColorCode] = useState("");
 
     return (
         <div
@@ -217,7 +226,18 @@ const InstructorRegister = () => {
                                     autoComplete="off"
                                     name="password"
                                     value={formFields.password}
-                                    onChange={handleFieldChange}
+                                    onChange={(e) => {
+                                        handleFieldChange(e);
+                                        const { strength, color, valid } =
+                                            passwordStrengthChecker(
+                                                e,
+                                                setSuccess,
+                                                setError
+                                            );
+                                        setStatus(strength);
+                                        setColorCode(color);
+                                        setIsValid(valid);
+                                    }}
                                     placeholder="Enter your password"
                                     className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
@@ -244,12 +264,13 @@ const InstructorRegister = () => {
                                 <input
                                     type={showPassword2 ? "text" : "password"}
                                     required
+                                    disabled={!isValid}
                                     autoComplete="off"
                                     name="confirmPassword"
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     style={{
@@ -261,7 +282,20 @@ const InstructorRegister = () => {
                                     }}
                                     onClick={togglePasswordVisibility2}
                                 >
-                                    {showPassword2 ? <FaEyeSlash /> : <FaEye />}
+                                    {isValid ? (
+                                        showPassword2 ? (
+                                            <FaEyeSlash />
+                                        ) : (
+                                            <FaEye />
+                                        )
+                                    ) : (
+                                        <FaEye
+                                            className={
+                                                !isValid &&
+                                                "text-gray-500 cursor-not-allowed"
+                                            }
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -276,15 +310,21 @@ const InstructorRegister = () => {
                             </Link>
                         </label>
                         <p
-                            className={`${
+                            className={`flex justify-between ${
                                 error
                                     ? "text-red-600"
                                     : success
                                     ? "text-green-500"
                                     : ""
-                            } ${error || success ? "visible" : "invisible"}`}
+                            } ${status ? "visible" : "invisible"}`}
                         >
-                            {error ? error : success ? success : "a"}
+                            <span className="text-base-content">
+                                Strength:{" "}
+                                <span className={colorCode}>{status}</span>
+                            </span>
+                            <span>
+                                {error ? error : success ? success : ""}
+                            </span>
                         </p>
                         <div className="divider text-base-content description">
                             Or

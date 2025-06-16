@@ -93,8 +93,12 @@ const useLogin = () => {
 
     const handleValidateCaptcha = () => {
         const captchaValue = captchaRef.current.value;
-        if (validateCaptcha(captchaValue)) {
-            setDisabled(false);
+        if (captchaValue.length === 6) {
+            if (validateCaptcha(captchaValue)) {
+                setDisabled(false);
+            } else {
+                setDisabled(true);
+            }
         } else {
             setDisabled(true);
         }

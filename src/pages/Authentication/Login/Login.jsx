@@ -124,7 +124,7 @@ const Login = () => {
                                 </span>
                             </label>
                             <input
-                                onBlur={handleValidateCaptcha}
+                                onChange={handleValidateCaptcha}
                                 type="text"
                                 required
                                 ref={captchaRef}

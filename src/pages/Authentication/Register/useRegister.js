@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useScreenSize from "../../../hooks/useScreenSize";
@@ -7,6 +7,7 @@ import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 
 const useRegister = () => {
+    const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
@@ -31,6 +32,16 @@ const useRegister = () => {
         confirmPassword: "",
         image: null,
     });
+
+    useEffect(() => {
+        if (!isValid) {
+            setFormFields((prev) => ({
+                ...prev,
+                confirmPassword: "",
+            }));
+        }
+    }, [isValid]);
+
     const navigate = useNavigate();
     const location = useLocation();
     const { isSmallDevice } = useScreenSize();
@@ -51,7 +62,8 @@ const useRegister = () => {
         formFields.password &&
         formFields.confirmPassword &&
         selectedGender &&
-        formFields.image;
+        formFields.image &&
+        isValid;
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -65,40 +77,14 @@ const useRegister = () => {
 
         const image = formFields.image;
         const formData = new FormData();
-        formData.append("image", image);
         const url = `${import.meta.env.VITE_IMGBB_API_URL}?key=${
             import.meta.env.VITE_IMGBB_KEY
         }`;
 
         if (image) {
             if (selectedGender === "Male" || selectedGender === "Female") {
+                if (!isValid) return;
                 if (password === confirmPassword) {
-                    setError("");
-
-                    if (password.length < 6) {
-                        setError(
-                            "Password must be at least 6 characters long!"
-                        );
-                        return;
-                    } else if (!/(?=.*[A-Z])/.test(password)) {
-                        setError(
-                            "Password must contain at least one uppercase letter"
-                        );
-                        return;
-                    } else if (!/(?=.*\d)/.test(password)) {
-                        setError("Password must contain at least one digit");
-                        return;
-                    } else if (
-                        !/(?=.*[!@#$%^&*()_\-+={}[\]\\|:;"'<>,.?/~])/.test(
-                            password
-                        )
-                    ) {
-                        setError(
-                            "Password must contain at least one special character"
-                        );
-                        return;
-                    }
-
                     // Create an HTMLImageElement to load the image
                     const imgElement = document.createElement("img");
                     imgElement.onload = () => {
@@ -300,8 +286,10 @@ const useRegister = () => {
     };
 
     return {
-        error,
         success,
+        setSuccess,
+        error,
+        setError,
         loading,
         imageButtonText,
         isSmallDevice,
@@ -316,6 +304,8 @@ const useRegister = () => {
         selectedGender,
         showPassword,
         showPassword2,
+        isValid,
+        setIsValid,
     };
 };
 

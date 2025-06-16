@@ -204,7 +204,7 @@ const Navbar = () => {
                 </div>
                 <Link to="/">
                     <img
-                        className="lg:w-[400px] hover:scale-110 duration-200"
+                        className="lg:w-[400px] hover:scale-110 duration-200 transition-transform"
                         src={`/assets/MTB_Coaching_${
                             isDarkTheme ? "Dark" : "Light"
                         }.png`}
