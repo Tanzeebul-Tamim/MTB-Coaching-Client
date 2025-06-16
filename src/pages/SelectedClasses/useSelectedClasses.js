@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreenSize";
 import useUserData from "../../hooks/useUserData";
-import { deleteAllClass, getBookedClasses } from "../../api/bookApi";
+import {
+    deleteAllClass,
+    deleteClass,
+    getBookedClasses,
+} from "../../api/bookApi";
 import Swal from "sweetalert2";
 import usePagination from "../../hooks/usePagination";
 import useTitle from "../../hooks/useTitle";
@@ -57,8 +61,23 @@ const useSelectedClasses = () => {
                     backdrop: "#00000",
                 });
                 deleteAllClass(userDetails._id);
+                setUnpaidBookings([]);
+                setFilteredBookings([]);
+                paginatedBookings = [];
             }
         });
+    };
+
+    const handleDelete = (studentId, instructorId, classIndex, bookingId) => {
+        deleteClass(studentId, instructorId, classIndex);
+        const updatedBookings = filteredBookings.filter(
+            (booking) => booking._id !== bookingId
+        );
+
+        setFilteredBookings(updatedBookings);
+        setUnpaidBookings((prev) =>
+            prev.filter((booking) => booking._id !== bookingId)
+        );
     };
 
     const [search, setSearch] = useState("");
@@ -71,7 +90,7 @@ const useSelectedClasses = () => {
 
     // Pagination logic
     const paginationHook = usePagination(unpaidBookings);
-    const paginatedBookings = paginationHook?.paginatedItems;
+    let paginatedBookings = paginationHook?.paginatedItems;
     const { resultsPerPage, currentPage } = paginationHook;
     const paginationSettings = { resultsPerPage, currentPage };
 
@@ -79,6 +98,7 @@ const useSelectedClasses = () => {
         isSmallDevice,
         loading,
         handleClearList,
+        handleDelete,
         search,
         setSearch,
         filteredBookings,

@@ -11,6 +11,7 @@ const SelectedClasses = () => {
         isSmallDevice,
         loading,
         handleClearList,
+        handleDelete,
         search,
         setSearch,
         filteredBookings,
@@ -71,6 +72,7 @@ const SelectedClasses = () => {
             )}
             <SelectedClassesTable
                 search={search}
+                handleDelete={handleDelete}
                 isSmallDevice={isSmallDevice}
                 userBookings={filteredBookings}
                 settings={paginationSettings}

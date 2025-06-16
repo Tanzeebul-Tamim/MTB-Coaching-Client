@@ -1,13 +1,12 @@
 import SelectedClassesTableHead from "./SelectedClassesTableHead";
 import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
-import { deleteClass } from "../../../api/bookApi";
 import { Link } from "react-router-dom";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useSelectedClassesTable from "./useSelectedClassesTable";
-import { useState } from "react";
 
 const SelectedClassesTable = ({
     userBookings,
+    handleDelete,
     isSmallDevice,
     search,
     settings,
@@ -16,7 +15,6 @@ const SelectedClassesTable = ({
     const { updateProfile } = useSelectedClassesTable(userDetails);
 
     const { resultsPerPage, currentPage } = settings;
-    const [deletingId, setDeletingId] = useState(null);
 
     if (userBookings?.length === 0) {
         return (
@@ -47,20 +45,6 @@ const SelectedClassesTable = ({
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
                     {userBookings.map((classItem, index) => {
-                        const handleDelete = (
-                            studentId,
-                            instructorId,
-                            classIndex,
-                            bookingId
-                        ) => {
-                            setDeletingId(bookingId);
-                            deleteClass(
-                                studentId,
-                                instructorId,
-                                classIndex
-                            ).finally(() => setDeletingId(null));
-                        };
-
                         return (
                             <tr className="" key={classItem._id}>
                                 <td>
@@ -132,7 +116,6 @@ const SelectedClassesTable = ({
                                                 classItem._id
                                             )
                                         }
-                                        disabled={deletingId === classItem._id}
                                         className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
                                         {isSmallDevice ? (
