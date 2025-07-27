@@ -52,10 +52,10 @@ const EnrolledClassesTable = ({
                         );
                         const statusColor =
                             status === "Ongoing"
-                                ? "text-green-600"
+                                ? "text-green-500"
                                 : status === "Upcoming"
-                                ? "text-blue-600"
-                                : "text-red-600";
+                                ? "text-blue-500"
+                                : "text-red-500";
 
                         return (
                             <tr className="" key={classItem._id}>

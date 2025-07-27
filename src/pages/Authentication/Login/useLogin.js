@@ -60,7 +60,7 @@ const useLogin = () => {
                 getUserData(result.user?.email).then((userDetails) => {
                     let { name } = userDetails;
                     name = name?.split(" ")[0];
-                    const message = `Welcome Back ${name}! You're logged-in as ${
+                    const message = `Welcome ${name}! You're logged-in as ${
                         userDetails?.role === "Instructor"
                             ? "an instructor"
                             : "a student"

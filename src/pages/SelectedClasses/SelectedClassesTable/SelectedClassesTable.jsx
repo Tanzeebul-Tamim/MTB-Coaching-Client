@@ -130,10 +130,10 @@ const SelectedClassesTable = ({
                                                     </span>
                                                 </>
                                             ) : (
-                                                <>
+                                                <span className="custom-cursor-pointer flex items-center gap-2">
                                                     <BsFillCreditCardFill />
                                                     <span>Pay</span>
-                                                </>
+                                                </span>
                                             )}
                                         </Link>
                                     </td>
