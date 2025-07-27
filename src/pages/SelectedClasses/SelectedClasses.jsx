@@ -5,6 +5,7 @@ import SklSelectedClasses from "../../components/skeletons/SklSelectedClasses";
 import Searchbar from "../../components/ui/Searchbar";
 import Pagination from "../../components/ui/Pagination";
 import useSelectedClasses from "./useSelectedClasses";
+import { MdOutlinePlaylistRemove } from "react-icons/md";
 
 const SelectedClasses = () => {
     const {
@@ -61,12 +62,17 @@ const SelectedClasses = () => {
                             </strong>
                             <span>{unpaidBookings?.length}</span>
                         </span>{" "}
-                        <button
-                            onClick={handleClearList}
-                            className="z-[100] btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
-                        >
-                            <span>Clear List</span>
-                        </button>
+                        {!search && (
+                            <button
+                                onClick={handleClearList}
+                                className="z-[100] btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                            >
+                                {!isSmallDevice && (
+                                    <MdOutlinePlaylistRemove className="text-lg" />
+                                )}
+                                <span>Clear List</span>
+                            </button>
+                        )}
                     </div>
                 </>
             )}
