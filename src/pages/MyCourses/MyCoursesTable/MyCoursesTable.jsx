@@ -3,6 +3,8 @@ import MyCoursesTableHead from "./MyCoursesTableHead";
 import { FaList } from "react-icons/fa";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import getStatus from "../../../hooks/getStatus";
+import { BsInfoCircleFill } from "react-icons/bs";
+import ClassDetail from "../../../components/ui/ClassDetail";
 
 const MyCoursesTable = ({
     userDetails,
@@ -42,71 +44,112 @@ const MyCoursesTable = ({
                 <MyCoursesTableHead isSmallDevice={isSmallDevice} />
                 <tbody className={"text-sm"}>
                     {courses.map((course, index) => {
-                        const remainingCount =
-                            course.studentSlot - course.totalStudent;
-
-                        const { startDate, endDate } = course;
+                        const {
+                            name,
+                            price,
+                            image,
+                            startDate,
+                            endDate,
+                            totalStudent,
+                            studentSlot
+                        } = course;
+                        const modalId = `class_modal_${index}`;
                         const status = getStatus(startDate, endDate);
 
                         return (
-                            <tr key={course._id}>
-                                <td>
-                                    {resultsPerPage * (currentPage - 1) +
-                                        (index + 1)}
-                                </td>
-                                <td className="flex justify-center">
-                                    <ImageWithLoader
-                                        className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
-                                            isSmallDevice && "object-cover"
+                            <>
+                                <tr key={course._id}>
+                                    <td>
+                                        {resultsPerPage * (currentPage - 1) +
+                                            (index + 1)}
+                                    </td>
+                                    <td className="flex justify-center">
+                                        <ImageWithLoader
+                                            className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
+                                                isSmallDevice && "object-cover"
+                                            }`}
+                                            src={course.image}
+                                            alt={course["class-name"]}
+                                        />
+                                    </td>
+                                    <td>
+                                        {isSmallDevice
+                                            ? course?.name.length > 15
+                                                ? course.name.slice(0, 15) +
+                                                  "..."
+                                                : course.name
+                                            : course?.name}
+                                    </td>
+                                    <td>$ {course.price}</td>
+                                    {!isSmallDevice && (
+                                        <td>{course.studentSlot}</td>
+                                    )}
+                                    <td>{course.totalStudent}</td>
+                                    <td
+                                        className={`text-base-content font-bold ${
+                                            status === "Ongoing"
+                                                ? "text-green-600"
+                                                : status === "Upcoming"
+                                                ? "text-blue-600"
+                                                : "text-red-500"
                                         }`}
-                                        src={course.image}
-                                        alt={course["class-name"]}
-                                    />
-                                </td>
-                                <td>
-                                    {isSmallDevice
-                                        ? course?.name.length > 15
-                                            ? course.name.slice(0, 15) + "..."
-                                            : course.name
-                                        : course?.name}
-                                </td>
-                                <td>$ {course.price}</td>
-                                {!isSmallDevice && (
-                                    <td>{course.studentSlot}</td>
-                                )}
-                                <td>{course.totalStudent}</td>
-                                <td>{remainingCount}</td>
-                                <td
-                                    className={`text-base-content font-bold ${
-                                        status === "Ongoing"
-                                            ? "text-green-600"
-                                            : status === "Upcoming"
-                                            ? "text-blue-600"
-                                            : "text-red-500"
-                                    }`}
-                                >
-                                    {status}
-                                </td>
-                                <td>
-                                    <Link
-                                        to={`/dashboard/my-classes/students/${userDetails?._id}/${index}`}
-                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
-                                        {isSmallDevice ? (
-                                            <>
-                                                <span className="text-[12px]">
-                                                    View
-                                                </span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <FaList />
-                                                <span>View</span>
-                                            </>
-                                        )}
-                                    </Link>
-                                </td>
-                            </tr>
+                                        {status}
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                window[modalId].showModal()
+                                            }
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        View
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsInfoCircleFill />
+                                                    <span>View</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            to={`/dashboard/my-classes/students/${userDetails?._id}/${index}`}
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        View
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaList />
+                                                    <span>View</span>
+                                                </>
+                                            )}
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <ClassDetail
+                                    i={index}
+                                    detail={{
+                                        name,
+                                        price,
+                                        image,
+                                        startDate,
+                                        endDate,
+                                        totalStudent,
+                                        studentSlot
+                                    }}
+                                />
+                            </>
                         );
                     })}
                 </tbody>

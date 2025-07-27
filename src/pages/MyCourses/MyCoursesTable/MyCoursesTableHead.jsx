@@ -8,8 +8,8 @@ const MyCoursesTableHead = ({ isSmallDevice }) => {
                 <th>Price</th>
                 {!isSmallDevice && <th>Seats</th>}
                 <th>Enrolled</th>
-                <th>Remaining</th>
                 <th>Status</th>
+                <th>Details</th>
                 <th>Student List</th>
             </tr>
         </thead>
