@@ -1,4 +1,3 @@
-import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
@@ -8,10 +7,6 @@ import useAuth from "../../../hooks/useAuth";
 import useScreenSize from "../../../hooks/useScreenSize";
 
 const usePaymentConfirmation = () => {
-    const stripePromise = loadStripe(
-        `${import.meta.env.VITE_PAYMENT_GATEWAY_PK}`
-    );
-
     const { isSmallDevice } = useScreenSize();
     const [classItem, setClassItem] = useState(null);
     const [flipped, setFlipped] = useState(false);
@@ -74,7 +69,7 @@ const usePaymentConfirmation = () => {
                 .finally(() => setLoading2(false));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, studentId, itemId]);
+    }, [userDetails, studentId, itemId]);    
 
     const handleNumberChange = (event) => {
         let { value } = event.target;
@@ -122,7 +117,6 @@ const usePaymentConfirmation = () => {
     };
 
     return {
-        stripePromise,
         flipped,
         setFlipped,
         focus,
@@ -135,7 +129,7 @@ const usePaymentConfirmation = () => {
         classItem,
         studentName,
         setFocus,
-        isSmallDevice
+        isSmallDevice,
     };
 };
 

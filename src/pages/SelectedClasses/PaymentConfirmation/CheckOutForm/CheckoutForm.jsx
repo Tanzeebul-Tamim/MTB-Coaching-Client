@@ -2,9 +2,18 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { BsFillCreditCardFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import useCheckoutForm from "./useCheckoutForm";
+import { BeatLoader } from "react-spinners";
+import useDarkTheme from "../../../../hooks/useDarkTheme";
+import { light, dark } from "../../../../styles/colors.json";
 
 const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
-    const { handleSubmit, cardError, stripe } = useCheckoutForm(classItem);
+    const { handleSubmit, cardError, stripe, disabled } =
+        useCheckoutForm(classItem);
+
+    const isDarkTheme = useDarkTheme();
+    const { baseContent: lightBase } = light;
+    const { baseContent: darkBase } = dark;
+    const color = isDarkTheme ? darkBase : lightBase;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -43,12 +52,19 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
                     type="submit"
                     disabled={
                         !stripe ||
+                        disabled ||
                         cardDetails.number.length !== 16 ||
                         cardDetails.expiry.length !== 4 ||
                         cardDetails.cvc.length !== 3
                     }
                 >
-                    <BsFillCreditCardFill /> Pay $ {classItem?.classFee}
+                    {disabled ? (
+                        <BeatLoader color={color} />
+                    ) : (
+                        <>
+                            <BsFillCreditCardFill /> Pay ${classItem?.classFee}
+                        </>
+                    )}
                 </button>
                 <Link to="/dashboard/selected-classes">
                     <button className="btn text-md btn-sm rounded-lg hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0">

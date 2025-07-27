@@ -36,6 +36,8 @@ export const purchaseClass = (
     studentEmail,
     studentName,
     classIndex,
+    startDate,
+    endDate,
     paymentInfo
 ) => {
     fetch(`${import.meta.env.VITE_API_URL}/book-class`, {
@@ -52,6 +54,8 @@ export const purchaseClass = (
             paymentStatus: "paid",
             transactionId: paymentInfo.transactionId,
             date: paymentInfo.date,
+            startDate,
+            endDate
         }),
     })
         .then((res) => res.json())

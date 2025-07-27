@@ -13,6 +13,7 @@ const useCheckoutForm = (classItem) => {
     const [cardError, setCardError] = useState("");
     const [clientSecret, setClientSecret] = useState("");
     const navigate = useNavigate();
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         if (classItem?.classFee) {
@@ -34,6 +35,7 @@ const useCheckoutForm = (classItem) => {
     const handleSubmit = async (event) => {
         // Block native form submission.
         event.preventDefault();
+        setDisabled(true);
 
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
@@ -77,6 +79,7 @@ const useCheckoutForm = (classItem) => {
         if (confirmError) {
             console.log("[error]", confirmError);
             setCardError(confirmError.message);
+            setDisabled(false);
         } else {
             Swal.fire({
                 title: `Are you sure you want to proceed with the payment and enroll in "${classItem["class-name"]}" course?`,
@@ -104,6 +107,8 @@ const useCheckoutForm = (classItem) => {
                             user.email,
                             user.displayName,
                             classItem.classIndex,
+                            classItem.startDate,
+                            classItem.endDate,
                             paymentInfo
                         );
                         updateStudentCount(
@@ -125,6 +130,8 @@ const useCheckoutForm = (classItem) => {
                         navigate("/dashboard/enrolled-classes");
                     }
                 }
+
+                setDisabled(false);
             });
         }
     };
@@ -132,7 +139,8 @@ const useCheckoutForm = (classItem) => {
     return {
         handleSubmit,
         cardError,
-        stripe
+        stripe,
+        disabled,
     };
 };
 
