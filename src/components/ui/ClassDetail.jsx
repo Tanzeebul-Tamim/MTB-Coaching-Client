@@ -3,6 +3,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import moment from "moment";
 import { Link, useLocation } from "react-router-dom";
 import ImageWithLoader from "./ImageWithLoader";
+import getStatus from "../../hooks/getStatus";
 
 const ClassDetail = ({ i, detail }) => {
     const { isSmallDevice } = useScreenSize();
@@ -22,13 +23,8 @@ const ClassDetail = ({ i, detail }) => {
 
     const availableSeat = studentSlot - totalStudent;
 
-    const today = new Date();
-    const status =
-        today < new Date(startDate)
-            ? "Upcoming"
-            : today > new Date(endDate)
-            ? "Ended"
-            : "Ongoing";
+    const status = getStatus(startDate, endDate);
+    
     const duration = Math.ceil(
         (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)
     );

@@ -4,6 +4,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useSingleInstructorClassCard from "./useSingleInstructorClassCard";
 import ClassDetail from "../../../components/ui/ClassDetail";
+import getStatus from "../../../hooks/getStatus";
 
 const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
     const {
@@ -16,16 +17,9 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
         isBooked,
     } = useSingleInstructorClassCard(classItem, instructorId, index);
     const { startDate, endDate } = classItem;
-    const today = new Date();
+    const status = getStatus(startDate, endDate);
 
     const modalId = `class_modal_${index}`;
-
-    const status =
-        today < new Date(startDate)
-            ? "Upcoming"
-            : today > new Date(endDate)
-            ? "Ended"
-            : "Ongoing";
 
     return (
         <>

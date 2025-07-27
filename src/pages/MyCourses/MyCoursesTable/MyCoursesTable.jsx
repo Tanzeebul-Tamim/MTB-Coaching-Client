@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import MyCoursesTableHead from "./MyCoursesTableHead";
 import { FaList } from "react-icons/fa";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
+import getStatus from "../../../hooks/getStatus";
 
 const MyCoursesTable = ({
     userDetails,
@@ -45,13 +46,7 @@ const MyCoursesTable = ({
                             course.studentSlot - course.totalStudent;
 
                         const { startDate, endDate } = course;
-                        const today = new Date();
-                        const status =
-                            today < new Date(startDate)
-                                ? "Upcoming"
-                                : today > new Date(endDate)
-                                ? "Ended"
-                                : "Ongoing";
+                        const status = getStatus(startDate, endDate);
 
                         return (
                             <tr key={course._id}>

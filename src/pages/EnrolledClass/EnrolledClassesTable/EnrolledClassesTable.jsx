@@ -1,4 +1,5 @@
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
+import getStatus from "../../../hooks/getStatus";
 import EnrolledClassesTableHead from "./EnrolledClassesTableHead";
 import moment from "moment/moment";
 
@@ -44,13 +45,7 @@ const EnrolledClassesTable = ({
                 <tbody className="text-sm">
                     {sortedBookings.map((classItem, index) => {
                         const { startDate, endDate } = classItem;
-                        const today = new Date();
-                        const status =
-                            today < new Date(startDate)
-                                ? "Upcoming"
-                                : today > new Date(endDate)
-                                ? "Ended"
-                                : "Ongoing";
+                        const status = getStatus(startDate, endDate);
                         const duration = Math.ceil(
                             (new Date(endDate) - new Date(startDate)) /
                                 (1000 * 60 * 60 * 24)
