@@ -5,7 +5,7 @@ const ClassesTableHead = ({ userDetails }) => {
                 <th className="">No</th>
                 <th className="">Image</th>
                 <th className="">Course</th>
-                <th className="">Instructor</th>
+                <th className="">Status</th>
                 <th className="">Price</th>
                 <th className="">Available Slots</th>
                 <th className="">View Details</th>

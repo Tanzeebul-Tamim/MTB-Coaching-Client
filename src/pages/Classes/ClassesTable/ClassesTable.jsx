@@ -6,6 +6,7 @@ import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import { light, dark } from "../../../styles/colors.json";
 import useClassesTable from "./useClassesTable";
 import ClassDetail from "../../../components/ui/ClassDetail";
+import getStatus from "../../../hooks/getStatus";
 
 const ClassesTable = ({
     classes,
@@ -49,6 +50,18 @@ const ClassesTable = ({
                                     enrolledClasses &&
                                     enrolledClasses.includes(classItem?.name);
 
+                                const status = getStatus(
+                                    classItem?.startDate,
+                                    classItem?.endDate
+                                );
+                                const colorCondition =
+                                    status === "Ended"
+                                        ? "red"
+                                        : status === "Ongoing"
+                                        ? "green"
+                                        : "blue";
+                                const color = `text-${colorCondition}-600`;
+
                                 const modalId = `class_modal_${index}`;
 
                                 return (
@@ -91,11 +104,11 @@ const ClassesTable = ({
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{classItem?.instructorName}</td>
+                                            <td className={color}>{status}</td>
                                             <td>$ {classItem?.price}</td>
                                             <td>
                                                 {availableSeat == 0 ? (
-                                                    <div className="dark:text-red-800 text-red-700">
+                                                    <div className="text-red-700">
                                                         Fully Booked
                                                     </div>
                                                 ) : (
@@ -163,7 +176,7 @@ const ClassesTable = ({
                                                         <div>Booked</div>
                                                     ) : isEnrolled ? (
                                                         availableSeat == 0 ? (
-                                                            <div className="dark:text-red-800 text-red-700">
+                                                            <div className="text-red-700">
                                                                 Enrolled
                                                             </div>
                                                         ) : (

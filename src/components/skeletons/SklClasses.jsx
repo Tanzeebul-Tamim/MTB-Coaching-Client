@@ -26,6 +26,7 @@ const SklClasses = ({ isSmallDevice, role }) => {
                             <th className="">No</th>
                             <th className="">Image</th>
                             <th className="">Course</th>
+                            <th className="">Status</th>
                             <th className="">Price</th>
                             <th className="">Available Slots</th>
                             <th className="">View Details</th>
@@ -46,6 +47,11 @@ const SklClasses = ({ isSmallDevice, role }) => {
                                 <td>
                                     <div className="flex justify-center items-center">
                                         <div className="w-14 sm:w-64 lg:h-4 h-3 bg-gray-500 rounded"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="flex justify-center items-center">
+                                        <div className="w-14 sm:w-20 lg:h-4 h-3 bg-gray-500 rounded"></div>
                                     </div>
                                 </td>
                                 <td>
