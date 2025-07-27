@@ -8,9 +8,10 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import useScreenSize from "../../../hooks/useScreenSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
-import useAuth from "../../../hooks/useAuth";
-import bikeHacksData from "./bikeHack.json";
+// import useAuth from "../../../hooks/useAuth";
 import SklBikeHacks from "../../../components/skeletons/SklBikeHacks";
+import Dropdown from "./Dropdown";
+import bikeHacksData from "./bikeHack.json";
 
 const bikeHacksDes =
     "Discover innovative ways to maintain and optimize your bike, improve your riding skills, and overcome common challenges on the road or trail. Here we're to provide you with helpful knowledge and shortcuts that can make your biking adventures more enjoyable and rewarding.";
@@ -18,28 +19,26 @@ const bikeHacksDes =
 const BikeHacks = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const { isSmallDevice } = useScreenSize();
-    const { user } = useAuth();
-    const [selectBikeType, setSelectBikeType] = useState("Mountain");
+    // const { user } = useAuth();
+    const [selectBikeType, setSelectBikeType] = useState("");
     const [shouldFetch, setShouldFetch] = useState(false);
-    const query = `${selectBikeType} Bike Hacks and Tips`;
+    const query = `${selectBikeType} Bike Hacks`;
     const { videos, loading } = useYoutubeSearch(shouldFetch ? query : null);
 
     useEffect(() => {
         setNumberOfSlides(isSmallDevice ? 1 : 4);
     }, [isSmallDevice]);
 
-    const handleSelectBikeType = (event) => {
-        const selectedBikeType = event.target.value;
-        setSelectBikeType(selectedBikeType);
-        setShouldFetch(true);
-    };
-
-    const dropdownCondition = user && videos;
-    const fetchCondition = user && videos.length > 0;
+    // const dropdownCondition = user && videos;
+    // const fetchCondition = user && videos.length > 0;
+    
+    const dropdownCondition = true;
+    const fetchCondition = videos.length > 0;
+    
     return (
         <div
             className={`lg:pb-20 pb-8 relative ${
-                dropdownCondition ? "lg:pt-20 pt-10" : "lg:pt-40 pt-20"
+                dropdownCondition ? "pt-10" : "lg:pt-40 pt-20"
             } px-5 lg:px-10`}
             style={{
                 backgroundAttachment: "fixed",
@@ -51,21 +50,12 @@ const BikeHacks = () => {
             }}
         >
             {dropdownCondition && (
-                <div className="mb-4 flex items-center justify-center">
-                    <select
-                        onChange={handleSelectBikeType}
-                        name="gender"
-                        className="select font-light text-sm lg:text-base text-base-content lg:w-full max-w-xs"
-                        value={selectBikeType}
-                    >
-                        <option hidden>What Kind of Bike do you Ride?</option>
-                        {bikeHacksData.bikeTypes.map((bikeType, idx) => (
-                            <option key={idx} value={bikeType}>
-                                {bikeType}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <Dropdown
+                    selectBikeType={selectBikeType}
+                    setSelectBikeType={setSelectBikeType}
+                    bikeHacksData={bikeHacksData}
+                    setShouldFetch={setShouldFetch}
+                />
             )}
 
             <Slide duration={1300}>
@@ -82,7 +72,7 @@ const BikeHacks = () => {
                     spaceBetween={30}
                     navigation={true}
                     modules={[Navigation]}
-                    className="popular cursor-pointer"
+                    className="popular custom-cursor-pointer"
                 >
                     {loading
                         ? Array.from({ length: isSmallDevice ? 1 : 4 }).map(

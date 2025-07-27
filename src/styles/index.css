@@ -27,10 +27,6 @@
     }
 }
 
-.test {
-    color: rgba(159, 141, 95, 0.489);
-}
-
 /* Disable text selection globally */
 * {
     @apply select-none;
@@ -38,10 +34,9 @@
 
 /* Global button focus ring removal */
 @layer base {
-    button:focus,
-    button:focus-visible,
-    button:focus-within {
-        @apply outline-none ring-0;
+    * {
+        transition: background-color 0.5s ease, color 0.5s ease,
+            border-color 0.5s ease, right 0.5s ease-in-out;
     }
 }
 
@@ -124,4 +119,35 @@
     .resize-br {
         cursor: url('/cursors/resize-dia-2.cur'), se-resize;
     }
+}
+
+/* Scrollbar for WebKit-based browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background-color: #facc15;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f48224c0;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background-color: #b48700;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #cd6c1cc0;
 }
