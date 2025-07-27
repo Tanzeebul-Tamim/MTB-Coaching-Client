@@ -4,6 +4,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import { ClipLoader } from "react-spinners";
 import useDarkTheme from "../../hooks/useDarkTheme";
 import { light, dark } from "../../styles/colors.json";
+import { BsInfoCircleFill } from "react-icons/bs";
 
 const SklClasses = ({ isSmallDevice, role }) => {
     const isDarkTheme = useDarkTheme();
@@ -25,9 +26,9 @@ const SklClasses = ({ isSmallDevice, role }) => {
                             <th className="">No</th>
                             <th className="">Image</th>
                             <th className="">Course</th>
-                            <th className="">Instructor</th>
-                            <th className="">Available Slots</th>
                             <th className="">Price</th>
+                            <th className="">Available Slots</th>
+                            <th className="">View Details</th>
                             {role !== "Instructor" && (
                                 <th className="">Book Courses</th>
                             )}
@@ -49,18 +50,29 @@ const SklClasses = ({ isSmallDevice, role }) => {
                                 </td>
                                 <td>
                                     <div className="flex justify-center items-center">
-                                        <div className="w-14 sm:w-64 lg:h-4 h-3 bg-gray-500 rounded"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="flex justify-center items-center">
-                                        <div className="w-20 sm:w-32 lg:h-4 h-3 bg-gray-500 rounded"></div>
+                                        <div className="w-14 sm:w-20 lg:h-4 h-3 bg-gray-500 rounded"></div>
                                     </div>
                                 </td>
                                 <td>
                                     <div className="flex justify-center items-center">
                                         <div className="w-14 sm:w-20 lg:h-4 h-3 bg-gray-500 rounded"></div>
                                     </div>
+                                </td>
+                                <td>
+                                    <button
+                                        disabled
+                                        className="btn text-base-content btn-sm lg:rounded-lg rounded-full disabled:bg-base-300 animate-bounce"
+                                    >
+                                        <BsInfoCircleFill />{" "}
+                                        {isSmallDevice ? (
+                                            <span className="text-[12px]">
+                                                {" "}
+                                                View
+                                            </span>
+                                        ) : (
+                                            <span>View Detail</span>
+                                        )}
+                                    </button>
                                 </td>
                                 {role !== "Instructor" && (
                                     <td>

@@ -7,6 +7,7 @@ const SelectedClassesTableHead = () => {
                 <th className="">Course</th>
                 <th className="">Instructor</th>
                 <th className="">Price</th>
+                <th className="">Details</th>
                 <th className="">Enroll</th>
                 <th className="">Delete</th>
             </tr>

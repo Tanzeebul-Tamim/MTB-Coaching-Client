@@ -60,6 +60,26 @@ const SklEnrolledClass = ({ isSmallDevice }) => {
                                             <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
+                                    <td>
+                                        <div className="flex items-center justify-center">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center justify-center">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center justify-center">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center justify-center">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
                                 </tr>
                             );
                         })}

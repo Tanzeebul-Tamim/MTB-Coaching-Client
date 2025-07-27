@@ -1,4 +1,4 @@
-import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
+import { BsFillCreditCardFill, BsFillTrash3Fill, BsInfoCircleFill } from "react-icons/bs";
 import { GiTeacher } from "react-icons/gi";
 import { ClipLoader } from "react-spinners";
 import useDarkTheme from "../../hooks/useDarkTheme";
@@ -41,6 +41,7 @@ const SklSelectedClasses = ({ isSmallDevice }) => {
                             <th className="">Course</th>
                             <th className="">Instructor</th>
                             <th className="">Price</th>
+                            <th className="">Details</th>
                             <th className="">Enroll</th>
                             <th className="">Delete</th>
                         </tr>
@@ -70,6 +71,25 @@ const SklSelectedClasses = ({ isSmallDevice }) => {
                                         <div className="flex items-center justify-center">
                                             <div className="w-16 sm:w-24 h-4 bg-gray-500 rounded"></div>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <button
+                                            disabled
+                                            className="btn btn-xs text-xs border-0 lg:rounded-lg rounded-full animate-bounce disabled:bg-base-200"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        View
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsInfoCircleFill />
+                                                    <span>View</span>
+                                                </>
+                                            )}
+                                        </button>
                                     </td>
                                     <td>
                                         <button

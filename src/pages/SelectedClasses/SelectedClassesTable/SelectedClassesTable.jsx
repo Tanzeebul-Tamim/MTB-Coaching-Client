@@ -1,8 +1,13 @@
 import SelectedClassesTableHead from "./SelectedClassesTableHead";
-import { BsFillCreditCardFill, BsFillTrash3Fill } from "react-icons/bs";
+import {
+    BsFillCreditCardFill,
+    BsFillTrash3Fill,
+    BsInfoCircleFill,
+} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useSelectedClassesTable from "./useSelectedClassesTable";
+import ClassDetail from "../../../components/ui/ClassDetail";
 
 const SelectedClassesTable = ({
     userBookings,
@@ -45,94 +50,134 @@ const SelectedClassesTable = ({
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
                     {userBookings.map((classItem, index) => {
+                        const modalId = `class_modal_${index}`;
+
                         return (
-                            <tr className="" key={classItem._id}>
-                                <td>
-                                    {resultsPerPage * (currentPage - 1) +
-                                        (index + 1)}
-                                </td>
-                                <td className="flex justify-center">
-                                    <ImageWithLoader
-                                        className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
-                                            isSmallDevice && "object-cover"
-                                        }`}
-                                        src={classItem.classImage}
-                                    />
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {isSmallDevice
-                                                ? classItem?.["class-name"]
-                                                      .length > 15
-                                                    ? classItem[
-                                                          "class-name"
-                                                      ].slice(0, 15) + "..."
-                                                    : classItem["class-name"]
-                                                : classItem?.["class-name"]}
+                            <>
+                                <tr className="" key={classItem._id}>
+                                    <td>
+                                        {resultsPerPage * (currentPage - 1) +
+                                            (index + 1)}
+                                    </td>
+                                    <td className="flex justify-center">
+                                        <ImageWithLoader
+                                            className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
+                                                isSmallDevice && "object-cover"
+                                            }`}
+                                            src={classItem.classImage}
+                                        />
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div className="font-bold">
+                                                {isSmallDevice
+                                                    ? classItem?.["class-name"]
+                                                          .length > 15
+                                                        ? classItem[
+                                                              "class-name"
+                                                          ].slice(0, 15) + "..."
+                                                        : classItem[
+                                                              "class-name"
+                                                          ]
+                                                    : classItem?.["class-name"]}
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {classItem.instructorName}
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div className="font-bold">
+                                                {classItem.instructorName}
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>$ {classItem.classFee}</td>
-                                <td>
-                                    <Link
-                                        onClick={updateProfile}
-                                        to={
+                                    </td>
+                                    <td>$ {classItem.classFee}</td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                window[modalId].showModal()
+                                            }
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        View
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsInfoCircleFill />
+                                                    <span>View</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            onClick={updateProfile}
+                                            to={
                                                 userDetails?.address &&
                                                 userDetails?.contactNo &&
                                                 userDetails?.gender &&
-                                            `/dashboard/selected-classes/${classItem.studentId}/${classItem._id}`
-                                        }
-                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
-                                    >
-                                        {isSmallDevice ? (
-                                            <>
-                                                <span className="text-[12px]">
-                                                    Pay
-                                                </span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <BsFillCreditCardFill />
-                                                <span>Pay</span>
-                                            </>
-                                        )}
-                                    </Link>
-                                </td>
-                                <td>
-                                    <button
-                                        onClick={() =>
-                                            handleDelete(
-                                                classItem.studentId,
-                                                classItem.instructorId,
-                                                classItem.classIndex,
-                                                classItem._id
-                                            )
-                                        }
-                                        className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
-                                    >
-                                        {isSmallDevice ? (
-                                            <>
-                                                <span className="text-[12px]">
-                                                    Delete
-                                                </span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <BsFillTrash3Fill />
-                                                <span>Delete</span>
-                                            </>
-                                        )}
-                                    </button>
-                                </td>
-                            </tr>
+                                                `/dashboard/selected-classes/${classItem.studentId}/${classItem._id}`
+                                            }
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        Pay
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsFillCreditCardFill />
+                                                    <span>Pay</span>
+                                                </>
+                                            )}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(
+                                                    classItem.studentId,
+                                                    classItem.instructorId,
+                                                    classItem.classIndex,
+                                                    classItem._id
+                                                )
+                                            }
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        Delete
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsFillTrash3Fill />
+                                                    <span>Delete</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </td>
+                                </tr>
+                                <ClassDetail
+                                    i={index}
+                                    detail={{
+                                        name: classItem["class-name"],
+                                        instructorId: classItem.instructorId,
+                                        instructorName:
+                                            classItem.instructorName,
+                                        image: classItem.classImage,
+                                        price: classItem.classFee,
+                                        startDate: classItem.startDate,
+                                        endDate: classItem.endDate,
+                                    }}
+                                />
+                            </>
                         );
                     })}
                 </tbody>

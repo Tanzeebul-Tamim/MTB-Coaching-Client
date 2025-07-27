@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { getBookedClasses } from "../../../api/bookApi";
+import { bookClass, getBookedClasses } from "../../../api/bookApi";
 import useDarkTheme from "../../../hooks/useDarkTheme";
+import { toast } from "react-toastify";
 
-const useClassesTable = ( userDetails, user ) => {
+const useClassesTable = (userDetails, user) => {
     const [userBookings, setUserBookings] = useState([]);
     const [bookedClasses, setBookedClasses] = useState([]);
     const [enrolledClasses, setEnrolledClasses] = useState([]);
@@ -13,6 +14,51 @@ const useClassesTable = ( userDetails, user ) => {
     const paid = userBookings?.filter(
         (booking) => booking.paymentStatus === "paid"
     );
+
+    const handleBook = (isBooked, classItem, booking, setBooking) => {
+        const {
+            instructorId,
+            classIndex,
+            startDate,
+            endDate,
+            name,
+        } = classItem;
+
+        if (!user) {
+            toast.warning("To book courses, you have to login first", {
+                position: "top-center",
+                autoClose: 1100,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(function () {
+                window.location.replace("/login");
+            }, 2000);
+        } else if (user && !isBooked) {
+            bookClass(
+                userDetails?._id,
+                instructorId,
+                user.email,
+                user.displayName,
+                classIndex,
+                startDate,
+                endDate
+            );
+            setBooking(!booking);
+            toast.success(`"${name}" has been booked`, {
+                position: "top-center",
+                autoClose: 1100,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
 
     useEffect(() => {
         if (user && user.email && userDetails?._id) {
@@ -45,7 +91,7 @@ const useClassesTable = ( userDetails, user ) => {
 
     const isDarkTheme = useDarkTheme();
 
-    return { bookedClasses, enrolledClasses, isDarkTheme };
+    return { bookedClasses, enrolledClasses, isDarkTheme, handleBook };
 };
 
 export default useClassesTable;
