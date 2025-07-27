@@ -49,7 +49,7 @@ const PopularClasses = () => {
                 spaceBetween={30}
                 navigation={true}
                 modules={[Navigation]}
-                className="popular cursor-pointer"
+                className="popular custom-cursor-pointer"
             >
                 {loading
                     ? Array.from({ length: isSmallDevice ? 1 : 3 }).map(

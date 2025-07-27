@@ -266,7 +266,7 @@ const Navbar = () => {
                         <div className="flex flex-col items-center">
                             <div className="indicator">
                                 <img
-                                    className={`rounded-full glow-effect cursor-pointer w-[55px] h-[55px] ${
+                                    className={`rounded-full glow-effect custom-cursor-pointer w-[55px] h-[55px] ${
                                         userLoading && "animate-pulse"
                                     }`}
                                     src={
@@ -360,7 +360,7 @@ const Navbar = () => {
                 ) : (
                     ""
                 )}
-                <div className="relative w-8 h-8 flex items-center justify-center cursor-pointer text-2xl">
+                <div className="relative w-8 h-8 flex items-center justify-center custom-cursor-pointer text-2xl">
                     <span
                         onClick={() => setOpen(!open)}
                         className={`absolute transition-opacity duration-500 ease-in-out ${

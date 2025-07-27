@@ -4,7 +4,7 @@ const DashboardButton = ({ toggleDarkMode, isDark }) => {
     return (
         <div
             onClick={toggleDarkMode}
-            className="transition-all duration-300 ease-in-out font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
+            className="transition-all duration-300 ease-in-out font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base custom-cursor-pointer"
         >
             {isDark ? (
                 <>

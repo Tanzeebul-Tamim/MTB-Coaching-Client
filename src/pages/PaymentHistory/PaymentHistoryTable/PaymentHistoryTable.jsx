@@ -32,7 +32,7 @@ const PaymentHistoryTable = ({
 
     return (
         <div
-            className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
+            className={`overflow-x-auto custom-scrollbar z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
                 sortedBookings.length > length
                     ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
                     : ""

@@ -16,7 +16,7 @@ const MobileToggle = ({ isDark, toggleDarkMode }) => {
                     </span>
                 )}
             </span>
-            <label className="flex cursor-pointer select-none items-center transition">
+            <label className="flex custom-cursor-pointer select-none items-center transition">
                 <div className="relative">
                     <input
                         type="checkbox"
