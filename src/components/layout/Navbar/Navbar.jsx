@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { MdOutlineHelp, MdOutlineSchool, MdShoppingCart } from "react-icons/md";
+import { GiTeacher } from "react-icons/gi";
 import { LuLayoutDashboard, LuScale } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -172,6 +173,15 @@ const Navbar = () => {
                         </span>
                     </ActiveLink>
                     <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
+                    <ActiveLink customColor={customColor} to="/login">
+                        <span
+                            onClick={() => setOpen(!open)}
+                            className="flex items-center gap-1"
+                        >
+                            <FiLogIn className="text-xs" />
+                            Login
+                        </span>
+                    </ActiveLink>
                     <ActiveLink customColor={customColor} to="/register">
                         <span
                             onClick={() => setOpen(!open)}
@@ -181,13 +191,16 @@ const Navbar = () => {
                             Register
                         </span>
                     </ActiveLink>
-                    <ActiveLink customColor={customColor} to="/login">
+                    <ActiveLink
+                        customColor={customColor}
+                        to="/instructor-register"
+                    >
                         <span
                             onClick={() => setOpen(!open)}
                             className="flex items-center gap-1"
                         >
-                            <FiLogIn className="text-xs" />
-                            Login
+                            <GiTeacher className="text-xs" />
+                            Apply Now
                         </span>
                     </ActiveLink>
                     {user && (
@@ -300,24 +313,44 @@ const Navbar = () => {
                 </div>
             ) : (
                 <div className="navbar-end uppercase gap-5 lg:flex hidden">
-                    <Link
-                        to="/login"
-                        className="font-light text-primary text-xl hover:scale-110 duration-200 transition-transform"
-                    >
-                        <div className="flex tracking-[2px] items-center gap-2">
-                            <FiLogIn />
-                            <span className="text-xl">Login</span>
-                        </div>
-                    </Link>
-                    <Link
-                        to="/register"
-                        className="text-accent font-light text-xl hover:scale-110 duration-200 transition-transform"
-                    >
-                        <div className="flex tracking-[2px] items-center gap-2">
-                            <SlNote />
-                            <span className="text-xl">Register</span>
-                        </div>
-                    </Link>
+                    {location.pathname !== "/login" && (
+                        <Link
+                            to="/login"
+                            className="font-light text-primary text-xl hover:scale-110 duration-200 transition-transform"
+                        >
+                            <div className="flex tracking-[2px] items-center gap-2">
+                                <FiLogIn />
+                                <span className="text-xl">Login</span>
+                            </div>
+                        </Link>
+                    )}
+                    {location.pathname !== "/register" && (
+                        <Link
+                            to="/register"
+                            className={`${
+                                location.pathname === "/login"
+                                    ? "text-primary"
+                                    : "text-accent"
+                            } font-light text-xl hover:scale-110 duration-200 transition-transform`}
+                        >
+                            <div className="flex tracking-[2px] items-center gap-2">
+                                <SlNote />
+                                <span className="text-xl">Register</span>
+                            </div>
+                        </Link>
+                    )}
+                    {(location.pathname === "/register" ||
+                        location.pathname === "/login") && (
+                        <Link
+                            to="/instructor-register"
+                            className="text-accent font-light text-xl hover:scale-110 duration-200 transition-transform"
+                        >
+                            <div className="flex tracking-[2px] items-center gap-2">
+                                <GiTeacher />
+                                <span className="text-xl">Apply Now</span>
+                            </div>
+                        </Link>
+                    )}
                 </div>
             )}
             <div className="navbar-end flex gap-2 lg:hidden">

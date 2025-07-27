@@ -8,7 +8,7 @@ const InstallPWAButton = () => {
 
     const duration = 30; // seconds the button stays fully visible
     const reappearEvery = 90; // seconds between reappearances
-    const fadeDuration = 2; // seconds for fade-out
+    const fadeDuration = 1; // seconds for fade-out
 
     useEffect(() => {
         const onBeforeInstallPrompt = (e) => {

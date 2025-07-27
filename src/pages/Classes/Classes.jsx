@@ -73,7 +73,7 @@ const Classes = () => {
                     </button>
                 </div>
 
-                {loading ? (
+                {loading || (classes.length == 0 && !search) ? (
                     <SklClasses
                         isSmallDevice={isSmallDevice}
                         role={userDetails?.role}

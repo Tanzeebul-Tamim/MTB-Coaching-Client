@@ -30,38 +30,40 @@ const MyProfile = () => {
                         <div className="bg-base-100 bg-opacity-70 w-full p-3 md:p-4 rounded-2xl">
                             <div className="description gap-2 md:gap-3 text-base text-base-content md:text-xl flex justify-center flex-col text-left mb-4">
                                 <p className="z-[10]">
-                                    <strong>Name :</strong> {userDetails?.name}
+                                    <strong className="text-secondary">Name :</strong>{" "}
+                                    {userDetails?.name || user?.displayName}
                                 </p>
                                 <p className="z-[10]">
-                                    <strong>Email :</strong> {userDetails?.email}
+                                    <strong className="text-secondary">Email :</strong>{" "}
+                                    {userDetails?.email || user?.email}
                                 </p>
-                                {userDetails.gender && (
+                                {userDetails?.gender && (
                                     <p className="z-[10]">
-                                        <strong>Gender :</strong>{" "}
+                                        <strong className="text-secondary">Gender :</strong>{" "}
                                         {userDetails?.gender}
                                     </p>
                                 )}
-                                {userDetails.address && (
+                                {userDetails?.address && (
                                     <p className="z-[10]">
-                                        <strong>Address :</strong>{" "}
+                                        <strong className="text-secondary">Address :</strong>{" "}
                                         {userDetails?.address}
                                     </p>
                                 )}
-                                {userDetails.contactNo && (
+                                {userDetails?.contactNo && (
                                     <p className="z-[10]">
-                                        <strong>Contact no :</strong>{" "}
+                                        <strong className="text-secondary">Contact no :</strong>{" "}
                                         {userDetails?.contactNo}
                                     </p>
                                 )}
-                                {userDetails.role == "Instructor" &&
-                                    userDetails.quote && (
+                                {userDetails?.role == "Instructor" &&
+                                    userDetails?.quote && (
                                         <p className="z-[10]">
-                                            <strong>Quote :</strong>{" "}
+                                            <strong className="text-secondary">Quote :</strong>{" "}
                                             {userDetails?.quote}
                                         </p>
                                     )}
                                 <p className="z-[10]">
-                                    <strong>Account Type :</strong>{" "}
+                                    <strong className="text-secondary">Account Type :</strong>{" "}
                                     {userDetails?.role || "Student"}
                                 </p>
                                 <div className="z-[10] mt-3 flex flex-col sm:flex-row gap-2 w-full">

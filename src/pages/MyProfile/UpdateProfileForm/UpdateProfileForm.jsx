@@ -62,7 +62,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                             name="name"
                             defaultValue={userDetails?.name}
                             placeholder="Enter your name"
-                            className="input placeholder:text-gray-500"
+                            className="input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0"
                         />
                     </div>
 
@@ -76,7 +76,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="address"
                                 defaultValue={userDetails?.address}
                                 placeholder="Enter your address"
-                                className="input placeholder:text-gray-500"
+                                className="input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0"
                             />
                         </div>
 
@@ -91,7 +91,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 name="contact"
                                 defaultValue={userDetails?.contactNo}
                                 placeholder="Enter your contact no"
-                                className="input placeholder:text-gray-500"
+                                className="input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0"
                             />
                         </div>
                     </div>
@@ -118,7 +118,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
+                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full">
                                             {imageButtonText}
                                         </div>
                                     </label>
@@ -142,7 +142,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             hidden
                                             accept="image/*"
                                         />
-                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full md:w-auto">
+                                        <div className="btn btn-sm hover:bg-base-300 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 border-0 w-full">
                                             {coverImageButtonText}
                                         </div>
                                     </label>
@@ -161,7 +161,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         name="quote"
                                         defaultValue={userDetails?.quote}
                                         placeholder="Enter your quote"
-                                        className="input placeholder:text-gray-500"
+                                        className="input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0"
                                     />
                                 </div>
                                 <div className="form-control w-full md:w-1/2">
@@ -177,9 +177,14 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             defaultValue={
                                                 userDetails?.gender ?? ""
                                             }
-                                            className="input select font-light text-base text-gray-500 w-full max-w-xs"
+                                            className="input select font-light text-base w-full max-w-xs border-gray-500 border-opacity-50 lg:border-0"
                                         >
-                                            <option value="" disabled hidden>
+                                            <option
+                                                className="text-gray-500"
+                                                value=""
+                                                disabled
+                                                hidden
+                                            >
                                                 Enter your gender
                                             </option>
                                             <option value="Male">Male</option>
@@ -248,7 +253,10 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <button
                             disabled={btnStatus || loading2}
                             type="submit"
-                            className="btn btn-md text-md rounded-md lg:border-0 w-full md:w-auto border dark:disabled:bg-stone-900 disabled:bg-stone-400 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300  disabled:border-stone-600"
+                            className={`btn btn-md text-md rounded-md lg:border-0 w-full md:w-auto dark:disabled:bg-stone-900 disabled:bg-stone-400 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 ${
+                                loading2 &&
+                                "dark:disabled:text-stone-400 disabled:text-stone-600"
+                            }`}
                         >
                             {loading2 ? (
                                 <TbFidgetSpinner className="text-2xl animate-spin" />

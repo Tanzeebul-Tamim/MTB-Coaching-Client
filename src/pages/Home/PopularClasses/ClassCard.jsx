@@ -12,8 +12,8 @@ const ClassCard = ({ topClass }) => {
             <div>
                 <ImageWithLoader
                     style={{
-                        "object-position": "left",
-                        "object-fit": "cover",
+                        "objectPosition": "left",
+                        "objectFit": "cover",
                     }}
                     src={topClass.image}
                     className="rounded-t-2xl h-[240px] z-0 w-full"

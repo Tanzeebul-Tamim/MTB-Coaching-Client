@@ -66,7 +66,7 @@ const Instructors = () => {
                     </button>
                 </div>
 
-                {loading ? (
+                {loading || (instructors.length == 0 && !search) ? (
                     <SklInstructors />
                 ) : (
                     <div className="lg:pt-10 pt-5">

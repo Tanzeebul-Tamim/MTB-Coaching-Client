@@ -16,7 +16,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
     const { loading } = useAuth();
     const [title, setTitle] = useState("User");
     const { isSmallDevice } = useScreenSize();
-    const { loading: userLoading, userDetails } = useUserData();    
+    const { loading: userLoading, userDetails } = useUserData();
 
     useEffect(() => {
         if (!loading && !userLoading) {
@@ -30,8 +30,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
 
     const url = "url('/assets/sidenav_banner.jpg')";
     const lightBg =
-        "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " +
-        url;
+        "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " + url;
     const darkBg =
         "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), " + url;
     const bg = isDarkTheme ? darkBg : lightBg;
@@ -43,7 +42,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
             }}
             className="h-screen fixed p-7 bg-base-200 dark:text-white text-yellow-50"
         >

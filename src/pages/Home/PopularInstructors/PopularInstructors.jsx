@@ -58,9 +58,9 @@ const PopularInstructors = () => {
                               </SwiperSlide>
                           )
                       )
-                    : topInstructors.map((topInstructor) => {
+                    : topInstructors.map((topInstructor, i) => {
                           return (
-                              <SwiperSlide key={topInstructor.id}>
+                              <SwiperSlide key={i}>
                                   <InstructorCard
                                       topInstructor={topInstructor}
                                   ></InstructorCard>

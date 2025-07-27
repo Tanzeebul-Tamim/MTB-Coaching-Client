@@ -14,7 +14,9 @@ const ActiveLink2 = ({ to, children, setSideNavOpen }) => {
                     : "text-accent font-bold description tracking-widest description lg:text-lg text-base"
             }
         >
-            {children}
+            <span className="hover:translate-x-5 transition-transform">
+                {children}
+            </span>
         </NavLink>
     );
 };

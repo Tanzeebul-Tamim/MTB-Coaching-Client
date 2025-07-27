@@ -7,7 +7,7 @@ import Pagination from "../../components/ui/Pagination";
 import useEnrolledClass from "./useEnrolledClass";
 
 const EnrolledClass = () => {
-const {
+    const {
         isSmallDevice,
         loading,
         search,
