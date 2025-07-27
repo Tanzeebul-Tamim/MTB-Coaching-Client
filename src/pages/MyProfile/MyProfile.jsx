@@ -88,7 +88,7 @@ const MyProfile = () => {
                 </>
             )}
             <UpdateProfileForm userDetails={userDetails} />
-            <ChangePassword />
+            <ChangePassword email={userDetails?.email} />
         </>
     );
 };

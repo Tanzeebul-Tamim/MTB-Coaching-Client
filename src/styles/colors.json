@@ -24,5 +24,12 @@
         "nav": "#ffee00ce",
         "navHover": "#ffff00c0",
         "btnDisabled": "#1c1917"
+    },
+    "passStrength": {
+        "Too Weak": "#dc2626",
+        "Weak": "#f97316",
+        "Fair": "#bef264",
+        "Strong": "#84cc16",
+        "Very Strong": "#22c55e"
     }
 }

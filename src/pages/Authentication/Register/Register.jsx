@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import useRegister from "./useRegister";
 import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
+import { passStrength } from "../../../styles/colors.json";
 
 const Register = () => {
     const {
@@ -55,7 +56,7 @@ const Register = () => {
                     <div className="text-center">
                         <Link
                             to="/instructor-register"
-                            className="description text-sm link link-hover"
+                            className="description text-sm"
                         >
                             <span className="text-accent">Not a student? </span>
                             <span className="text-primary underline">
@@ -96,7 +97,7 @@ const Register = () => {
                         {/* Responsive input fields: stack vertically on mobile, horizontally on larger screens */}
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Name
                                     </span>
@@ -113,7 +114,7 @@ const Register = () => {
                             </div>
 
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Email
                                     </span>
@@ -132,7 +133,7 @@ const Register = () => {
 
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Contact No
                                     </span>
@@ -149,7 +150,7 @@ const Register = () => {
                             </div>
 
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Address
                                     </span>
@@ -168,12 +169,12 @@ const Register = () => {
 
                         <div className="flex flex-col md:flex-row justify-between gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         User image
                                     </span>
                                 </label>
-                                <label>
+                                <label className="custom-cursor-default">
                                     <input
                                         onChange={handleFieldChange}
                                         type="file"
@@ -182,14 +183,14 @@ const Register = () => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm bg-stone-400 dark:bg-stone-700 hover:bg-stone-500 dark:hover:bg-stone-600 border-0 w-full">
+                                    <div className="btn btn-sm bg-stone-400 dark:bg-stone-700 hover:bg-stone-500 dark:hover:bg-stone-600 border-0 w-full custom-cursor-pointer">
                                         {imageButtonText}
                                     </div>
                                 </label>
                             </div>
 
                             <div className="form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Gender
                                     </span>
@@ -213,7 +214,7 @@ const Register = () => {
 
                         <div className="flex flex-col md:flex-row relative justify-center gap-3 w-full">
                             <div className="z-[10] form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Password
                                     </span>
@@ -226,25 +227,25 @@ const Register = () => {
                                     value={formFields.password}
                                     onChange={(e) => {
                                         handleFieldChange(e);
-                                        const { strength, color, valid } =
+                                        const { strength, valid } =
                                             passwordStrengthChecker(
                                                 e,
                                                 setSuccess,
                                                 setError
                                             );
                                         setStatus(strength);
-                                        setColorCode(color);
+                                        setColorCode(passStrength[strength]);
                                         setIsValid(valid);
                                     }}
                                     placeholder="Enter your password"
                                     className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                                 <div
+                                    className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
                                         top: isSmallDevice ? "28%" : "60%",
                                         left: isSmallDevice ? "90%" : "175px",
-                                        cursor: "pointer",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility}
@@ -254,7 +255,7 @@ const Register = () => {
                             </div>
 
                             <div className="z-[10] form-control w-full md:w-1/2">
-                                <label className="label">
+                                <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Confirm Password
                                     </span>
@@ -271,11 +272,11 @@ const Register = () => {
                                     className="placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
+                                    className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
                                         top: isSmallDevice ? "82%" : "60%",
                                         left: isSmallDevice ? "90%" : "395px",
-                                        cursor: "pointer",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility2}
@@ -298,17 +299,19 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <label className="label z-[10]">
+                        <label className="label custom-cursor-default z-[10]">
                             <Link
                                 to="/login"
-                                className="label-text-alt link link-hover"
+                                className="label-text-alt custom-cursor-default"
                             >
-                                Already have an account? Please{" "}
-                                <span className="text-secondary">Login</span>
+                                Already have an account? {" "}
+                                <span className="text-primary hover:underline custom-cursor-pointer">
+                                    Login now
+                                </span>
                             </Link>
                         </label>
                         <p
-                            className={`flex flex-col lg:flex-row justify-between ${
+                            className={`flex flex-col lg:flex-row justify-between z-10 ${
                                 error
                                     ? "text-red-600"
                                     : success
@@ -318,7 +321,9 @@ const Register = () => {
                         >
                             <span className="text-base-content">
                                 <strong>Strength:</strong>{" "}
-                                <span className={colorCode}>{status}</span>
+                                <span style={{ color: colorCode }}>
+                                    {status}
+                                </span>
                             </span>
                             <span>
                                 {error ? error : success ? success : ""}

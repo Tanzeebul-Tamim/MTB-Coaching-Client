@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import useInstructorRegister from "./useInstructorRegister";
 import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
+import { passStrength } from "../../../styles/colors.json";
 
 const InstructorRegister = () => {
     const {
@@ -228,25 +229,25 @@ const InstructorRegister = () => {
                                     value={formFields.password}
                                     onChange={(e) => {
                                         handleFieldChange(e);
-                                        const { strength, color, valid } =
+                                        const { strength, valid } =
                                             passwordStrengthChecker(
                                                 e,
                                                 setSuccess,
                                                 setError
                                             );
                                         setStatus(strength);
-                                        setColorCode(color);
+                                        setColorCode(passStrength[strength]);
                                         setIsValid(valid);
                                     }}
                                     placeholder="Enter your password"
                                     className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                                 <div
+                                    className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
                                         top: "60%",
                                         left: "175px",
-                                        cursor: "pointer",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility}
@@ -273,11 +274,11 @@ const InstructorRegister = () => {
                                     className="placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
+                                    className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
                                         top: "60%",
                                         right: "15px",
-                                        cursor: "pointer",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility2}
@@ -300,17 +301,20 @@ const InstructorRegister = () => {
                             </div>
                         </div>
 
-                        <label className="label z-[10]">
+                        <label className="label custom-cursor-default z-[10]">
                             <Link
                                 to="/login"
-                                className="label-text-alt link link-hover"
+                                className="label-text-alt custom-cursor-default"
                             >
-                                Already have an account? Please{" "}
-                                <span className="text-secondary">Login</span>
+                                Already have an account? {" "}
+                                <span className="text-primary hover:underline custom-cursor-pointer">
+                                    Login now
+                                </span>
                             </Link>
                         </label>
+                        
                         <p
-                            className={`flex justify-between ${
+                            className={`flex flex-col lg:flex-row justify-between z-10 ${
                                 error
                                     ? "text-red-600"
                                     : success
@@ -319,8 +323,10 @@ const InstructorRegister = () => {
                             } ${status ? "visible" : "invisible"}`}
                         >
                             <span className="text-base-content">
-                                Strength:{" "}
-                                <span className={colorCode}>{status}</span>
+                                <strong>Strength:</strong>{" "}
+                                <span style={{ color: colorCode }}>
+                                    {status}
+                                </span>
                             </span>
                             <span>
                                 {error ? error : success ? success : ""}

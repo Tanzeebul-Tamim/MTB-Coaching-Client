@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
-import { toast, Zoom } from "react-toastify";
+import { Flip, toast, Zoom } from "react-toastify";
 import { loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
-import { saveUserViaSocial } from "../../../api/authApi";
+import { getUserData, saveUserViaSocial } from "../../../api/authApi";
 
 const useLogin = () => {
     const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
@@ -19,6 +19,17 @@ const useLogin = () => {
     const emailRef = useRef();
     const customId = "unauthorized";
     useTitle("| Login");
+
+    const config = {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        transition: Flip,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    };
 
     useEffect(() => {
         if (location.state && location.state.showToast) {
@@ -46,15 +57,25 @@ const useLogin = () => {
         googleSignIn()
             .then((result) => {
                 saveUserViaSocial(result.user);
-            })
-            .then(() => {
+                getUserData(result.user?.email).then((userDetails) => {
+                    let { name } = userDetails;
+                    name = name?.split(" ")[0];
+                    const message = `Welcome Back ${name}! You're logged-in as ${
+                        userDetails?.role === "Instructor"
+                            ? "an instructor"
+                            : "a student"
+                    }`;
+                    toast.success(message, config);
+                });
                 navigate(from, { replace: true });
-                setLoading(false);
             })
             .catch((error) => {
                 console.error(error);
-                setLoading(false);
-            });
+                if (error.code === "auth/user-disabled") {
+                    setError("Your account has been suspended!");
+                }
+            })
+            .finally(() => setLoading(false));
     };
 
     const handleLogin = (event) => {
@@ -72,23 +93,31 @@ const useLogin = () => {
                     );
                     return;
                 }
-                navigate(from, { replace: true });
+                navigate(from, { replace: true }).then(
+                    toast.success("Logged-in successfully!", {
+                        position: "top-center",
+                        autoClose: 1100,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        transition: Flip,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                );
             })
             .catch((error) => {
                 console.error(error);
-                if (error.code === "auth/wrong-password") {
+                if (error.code === "auth/wrong-password")
                     setError("Incorrect password!");
-                    setLoading(false);
-                } else if (error.code === "auth/user-not-found") {
+                else if (error.code === "auth/user-not-found")
                     setError("User not found! Enter a verified email.");
-                    setLoading(false);
-                } else if (error.code === "auth/too-many-requests") {
+                else if (error.code === "auth/too-many-requests")
                     setError(
                         "Too many unsuccessful attempts! Try again later."
                     );
-                    setLoading(false);
-                }
-            });
+            })
+            .finally(() => setLoading(false));
     };
 
     const handleValidateCaptcha = () => {
@@ -117,7 +146,7 @@ const useLogin = () => {
         passwordReset(email)
             .then(() => {
                 toast.success(
-                    `A password reset email has been sent to ${email}`,
+                    `A password reset link has been sent to ${email}`,
                     {
                         position: "top-left",
                         autoClose: 1500,
@@ -133,19 +162,16 @@ const useLogin = () => {
             })
             .catch((error) => {
                 console.error(error);
-                if (error.code === "auth/missing-email") {
+                if (error.code === "auth/missing-email")
                     setError("Please enter your verified email first");
-                    setLoading(false);
-                } else if (error.code === "auth/user-not-found") {
+                else if (error.code === "auth/user-not-found")
                     setError("User not found! Enter a verified email.");
-                    setLoading(false);
-                } else if (error.code === "auth/too-many-requests") {
+                else if (error.code === "auth/too-many-requests")
                     setError(
                         "Too many unsuccessful attempts! Try again later."
                     );
-                    setLoading(false);
-                }
-            });
+            })
+            .finally(() => setLoading(false));
     };
 
     return {

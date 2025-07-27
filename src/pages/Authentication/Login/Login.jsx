@@ -5,6 +5,7 @@ import { LoadCanvasTemplateNoReload } from "react-simple-captcha";
 import { TbFidgetSpinner } from "react-icons/tb";
 import "../../../styles/captcha.css";
 import useLogin from "./useLogin";
+import { useState } from "react";
 
 const Login = () => {
     const {
@@ -21,9 +22,11 @@ const Login = () => {
         captchaRef,
     } = useLogin();
 
+    const [clicked, setClicked] = useState(false);
+
     return (
         <div
-            className="min-h-screen lg:pt-24 pt-16 lg:pb-16 pb-20 px-3 sm:px-6 md:px-10 lg:px-10 relative flex flex-col justify-center"
+            className="min-h-screen lg:pt-24 pt-16 lg:pb-16 pb-20 px-3 sm:px-6 md:px-10 lg:px-10 relative flex flex-col justify-center "
             style={{
                 backgroundImage:
                     "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/assets/login_banner.avif')",
@@ -62,7 +65,7 @@ const Login = () => {
                 <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body p-4 md:p-6 lg:p-8">
                         <div className="form-control">
-                            <label className="label">
+                            <label className="label custom-cursor-default">
                                 <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     Email
                                 </span>
@@ -77,7 +80,7 @@ const Login = () => {
                             />
                         </div>
                         <div className="z-[10] relative form-control">
-                            <label className="label">
+                            <label className="label custom-cursor-default">
                                 <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     Password
                                 </span>
@@ -91,31 +94,45 @@ const Login = () => {
                                 className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <div
+                                className="custom-cursor-pointer"
                                 style={{
                                     position: "absolute",
                                     top: "43%",
                                     right: "10px",
-                                    cursor: "pointer",
                                     fontSize: "20px",
                                 }}
                                 onClick={togglePasswordVisibility}
                             >
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </div>
-                            <label className="label">
-                                <button
-                                    onClick={handlePasswordReset}
-                                    className="label-text-alt link link-hover"
-                                >
-                                    Forgot password? Please enter your email and{" "}
-                                    <span className="text-secondary">
+                            <label className="label custom-cursor-default z-[10]">
+                                <div className="label-text-alt custom-cursor-default">
+                                    <span
+                                        className={
+                                            clicked && "text-transparent"
+                                        }
+                                    >
+                                        Forgot password? Please enter your email
+                                        and
+                                    </span>{" "}
+                                    <span
+                                        onClick={(e) => {
+                                            handlePasswordReset(e);
+
+                                            if (emailRef.current.value)
+                                                setClicked(true);
+                                        }}
+                                        className={`text-primary hover:underline custom-cursor-pointer ${
+                                            clicked && "text-transparent"
+                                        }`}
+                                    >
                                         Click here
                                     </span>
-                                </button>
+                                </div>
                             </label>
                         </div>
                         <div className="z-[10] form-control">
-                            <label className="label">
+                            <label className="label custom-cursor-default">
                                 <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     <p className="mb-1">Enter captcha code</p>
                                     <p className="font-light">
@@ -132,19 +149,19 @@ const Login = () => {
                                 placeholder="Enter the above text"
                                 className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
-                            <label className="label">
+                            <label className="label custom-cursor-default z-[10]">
                                 <Link
                                     to="/register"
-                                    className="label-text-alt link link-hover"
+                                    className="label-text-alt custom-cursor-default"
                                 >
-                                    Don&apos; have an account? Please{" "}
-                                    <span className="text-secondary">
-                                        Register
+                                    Don&apos; have an account?{" "}
+                                    <span className="text-primary hover:underline custom-cursor-pointer">
+                                        Register now
                                     </span>
                                 </Link>
                             </label>
                             <p
-                                className={`text-red-600 ${
+                                className={`text-red-600 z-10 ${
                                     error ? "visible" : "invisible"
                                 }`}
                             >

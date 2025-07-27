@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
+import { Flip, toast } from "react-toastify";
 
 const useInstructorRegister = () => {
     const [isValid, setIsValid] = useState(false);
@@ -191,7 +192,7 @@ const useInstructorRegister = () => {
                                                     )
                                                 ) {
                                                     setError(
-                                                        "This email is already in use. Please use a different email."
+                                                        "This email is already in use"
                                                     );
                                                     setSuccess("");
                                                 }
@@ -254,14 +255,31 @@ const useInstructorRegister = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
-                saveInstructorViaSocial(result.user);
-                navigate(from, { replace: true });
-                setLoading(false);
+                saveInstructorViaSocial(result.user)
+                    .then(() => navigate(from, { replace: true }))
+                    .catch((error) => {
+                        logOut().then(() => {
+                            toast.warning(error.message, {
+                                position: "top-center",
+                                autoClose: 1500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                transition: Flip,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                            navigate("/login");
+                        });
+                    });
             })
             .catch((error) => {
                 console.error(error);
-                setLoading(false);
-            });
+                if (error.code === "auth/user-disabled") {
+                    setError("Your account has been suspended!");
+                }
+            })
+            .finally(() => setLoading(false));
     };
 
     // Update field values on change
