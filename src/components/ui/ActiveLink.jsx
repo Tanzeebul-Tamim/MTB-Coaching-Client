@@ -3,7 +3,7 @@ import useUserData from "../../hooks/useUserData";
 
 const ActiveLink = ({ to, children, customColor, dark: isDark }) => {
     const { userDetails } = useUserData();
-    const myWallRoute = `/instructors/${userDetails._id}`;
+    const myWallRoute = `/instructors/${userDetails?._id}`;
     const location = useLocation();
     const primary =
         location.pathname === myWallRoute ? "text-accent" : "text-primary";

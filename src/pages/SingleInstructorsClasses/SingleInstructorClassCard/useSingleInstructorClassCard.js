@@ -20,8 +20,8 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
     const { loading: userLoading, userDetails } = useUserData();
 
     useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
+        if (user && user.email && userDetails?._id) {
+            getBookedClasses(userDetails?._id)
                 .then((data) => {
                     setUserBookings(data);
                 })
@@ -55,7 +55,7 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
     const handleBook = () => {
         if (user && !isBooked) {
             bookClass(
-                userDetails._id,
+                userDetails?._id,
                 instructorId,
                 user.email,
                 user.displayName,

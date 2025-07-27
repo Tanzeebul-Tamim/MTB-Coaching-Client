@@ -101,8 +101,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                 <ThemeToggle />
 
                 <div className="divider"></div>
-                {(userDetails.role == "Student" ||
-                    typeof userDetails.role === "undefined") &&
+                {(userDetails?.role == "Student" ||
+                    typeof userDetails?.role === "undefined") &&
                     !loading &&
                     !userLoading && (
                         <>
@@ -132,7 +132,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                             </ActiveLink2>
                         </>
                     )}
-                {userDetails.role == "Instructor" &&
+                {userDetails?.role == "Instructor" &&
                     !loading &&
                     !userLoading && (
                         <>
@@ -144,7 +144,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
-                                to={`/instructors/${userDetails._id}`}
+                                to={`/instructors/${userDetails?._id}`}
                             >
                                 My Wall
                             </ActiveLink2>

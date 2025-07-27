@@ -17,7 +17,7 @@ const useUpdateProfileForm = (userDetails) => {
     }, [isSmallDevice]);
 
     const [selectedGender, setSelectedGender] = useState(
-        userDetails.gender || ""
+        userDetails?.gender || ""
     );
     const { updateUser, user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
@@ -356,7 +356,7 @@ const useUpdateProfileForm = (userDetails) => {
 
     useEffect(() => {
         if (userDetails?.gender) {
-            setSelectedGender(userDetails.gender);
+            setSelectedGender(userDetails?.gender);
         }
     }, [selectedGender, userDetails]);
 

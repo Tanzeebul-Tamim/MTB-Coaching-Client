@@ -35,11 +35,11 @@ const Navbar = () => {
     }
 
     const { userDetails, setUserDetails, loading: userLoading } = useUserData();
-    const myWallRoute = `/instructors/${userDetails._id}`;
+    const myWallRoute = `/instructors/${userDetails?._id}`;
 
     useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
+        if (user && user.email && userDetails?._id) {
+            getBookedClasses(userDetails?._id)
                 .then((data) => {
                     const filteredBookings = data.filter(
                         (booking) => booking.paymentStatus === "unpaid"
@@ -51,7 +51,7 @@ const Navbar = () => {
             setUserDetails({});
             setUserBookings([]);
         }
-    }, [user, userDetails._id, booking, setUserDetails]);
+    }, [user, userDetails?._id, booking, setUserDetails]);
 
     const handleLogOut = () => {
         logOut()
@@ -260,7 +260,7 @@ const Navbar = () => {
                     </button>
                     <Link
                         to="/dashboard/profile"
-                        data-tip={userDetails.name}
+                        data-tip={userDetails?.name || user?.displayName}
                         className="tooltip tooltip-bottom tooltip-primary hover:scale-110 duration-500 transition-transform"
                     >
                         <div className="flex flex-col items-center">
@@ -324,7 +324,7 @@ const Navbar = () => {
                 {user ? (
                     <Link
                         to="/dashboard/profile"
-                        data-tip={user?.displayName}
+                        data-tip={userDetails?.name || user?.displayName}
                         className="tooltip tooltip-bottom tooltip-primary"
                     >
                         {userBookings.length >= 1 && (

@@ -76,7 +76,7 @@ const Classes = () => {
                 {loading ? (
                     <SklClasses
                         isSmallDevice={isSmallDevice}
-                        role={userDetails.role}
+                        role={userDetails?.role}
                     />
                 ) : (
                     <div className="lg:pt-10 pt-5">

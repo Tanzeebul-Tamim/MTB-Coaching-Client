@@ -7,7 +7,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
 
     return (
         <>
-            {instructors.length == 0 ? (
+            {instructors?.length == 0 ? (
                 <div className="lg:text-5xl text-2xl text-center flex justify-center py-28">
                     <h1>No results found for your search</h1>
                 </div>

@@ -8,7 +8,7 @@ const useSingleInstructorsClasses = () => {
     const instructor = useLoaderData();
     const { userDetails } = useUserData();
     const classes = instructor.classes;
-    const isMyWall = instructor.email === userDetails.email;
+    const isMyWall = instructor.email === userDetails?.email;
     const name = isMyWall ? userDetails?.name : instructor?.name;
     const nameWords = name.split(" ");
     const [loading, setLoading] = useState(false);

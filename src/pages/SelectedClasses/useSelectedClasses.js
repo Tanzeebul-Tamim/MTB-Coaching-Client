@@ -19,8 +19,8 @@ const useSelectedClasses = () => {
     useTitle("| Booked Courses");
 
     useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
+        if (user && user.email && userDetails?._id) {
+            getBookedClasses(userDetails?._id)
                 .then((data) => {
                     setUnpaidBookings(
                         data.filter(
@@ -60,7 +60,7 @@ const useSelectedClasses = () => {
                     background: "#201e1e",
                     backdrop: "#00000",
                 });
-                deleteAllClass(userDetails._id);
+                deleteAllClass(userDetails?._id);
                 setUnpaidBookings([]);
                 setFilteredBookings([]);
                 paginatedBookings = [];

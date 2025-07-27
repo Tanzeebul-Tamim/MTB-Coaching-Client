@@ -5,9 +5,9 @@ const useSelectedClassesTable = (
 ) => {
      const updateProfile = () => {
         if (
-            typeof userDetails.address === "undefined" ||
-            typeof userDetails.contactNo === "undefined" ||
-            userDetails.gender === "undefined"
+            typeof userDetails?.address === "undefined" ||
+            typeof userDetails?.contactNo === "undefined" ||
+            userDetails?.gender === "undefined"
         ) {
             toast.warning(
                 "To purchase classes, you have to update your profile first!",

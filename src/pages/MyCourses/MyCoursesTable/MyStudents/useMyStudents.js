@@ -15,10 +15,10 @@ const useMyStudents = () => {
 
     useEffect(() => {
         setLoading(true);
-        if (userDetails && userDetails._id) {
+        if (userDetails && userDetails?._id) {
             fetch(
                 `${import.meta.env.VITE_API_URL}/instructor/students/${
-                    userDetails._id
+                    userDetails?._id
                 }/${idx}`
             )
                 .then(async (res) => await res.json())

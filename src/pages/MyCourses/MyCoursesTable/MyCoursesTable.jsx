@@ -94,7 +94,7 @@ const MyCoursesTable = ({
                                 </td>
                                 <td>
                                     <Link
-                                        to={`/dashboard/my-classes/students/${userDetails._id}/${index}`}
+                                        to={`/dashboard/my-classes/students/${userDetails?._id}/${index}`}
                                         className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                     >
                                         {isSmallDevice ? (

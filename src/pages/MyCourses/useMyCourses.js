@@ -11,10 +11,10 @@ const useMyCourses = () => {
     useTitle("| My Courses");
 
     useEffect(() => {
-        if (userDetails && userDetails._id) {
+        if (userDetails && userDetails?._id) {
             fetch(
                 `${import.meta.env.VITE_API_URL}/instructor/total/${
-                    userDetails._id
+                    userDetails?._id
                 }`
             )
                 .then(async (res) => await res.json())

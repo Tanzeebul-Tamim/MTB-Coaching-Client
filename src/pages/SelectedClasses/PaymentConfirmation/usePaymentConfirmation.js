@@ -39,7 +39,7 @@ const usePaymentConfirmation = () => {
             setLoading2(true);
             fetch(
                 `${import.meta.env.VITE_API_URL}/book-class/${
-                    userDetails._id
+                    userDetails?._id
                 }/${studentId}/${itemId}`
             )
                 .then(async (res) => {

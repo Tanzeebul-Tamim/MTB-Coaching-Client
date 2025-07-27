@@ -17,8 +17,8 @@ const useEnrolledClass = () => {
     useTitle("| Enrolled Courses");
 
     useEffect(() => {
-        if (user && user.email && userDetails._id) {
-            getBookedClasses(userDetails._id)
+        if (user && user.email && userDetails?._id) {
+            getBookedClasses(userDetails?._id)
                 .then((data) => {
                     setUserBookings(data);
                 })

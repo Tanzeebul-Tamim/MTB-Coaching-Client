@@ -60,7 +60,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <input
                             type="text"
                             name="name"
-                            defaultValue={userDetails.name}
+                            defaultValue={userDetails?.name}
                             placeholder="Enter your name"
                             className="input placeholder:text-gray-500"
                         />
@@ -96,7 +96,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                         </div>
                     </div>
 
-                    {userDetails.role === "Instructor" ? (
+                    {userDetails?.role === "Instructor" ? (
                         <>
                             <div className="flex md:flex-row items-center justify-between gap-2">
                                 <div className="form-control w-full md:w-1/2">
