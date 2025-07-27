@@ -59,7 +59,9 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
                 instructorId,
                 user.email,
                 user.displayName,
-                index
+                index,
+                classItem.startDate,
+                classItem.endDate
             );
             setBooking(!booking);
             toast.success(`"${classItem.name}" has been booked`, {

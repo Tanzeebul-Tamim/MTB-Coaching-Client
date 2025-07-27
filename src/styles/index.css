@@ -67,6 +67,26 @@
     box-shadow: 0 0 25px rgba(255, 255, 0, 0.753);
 }
 
+/* Hide default calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    display: none;
+}
+
+/* Gray placeholder color before selecting date */
+.date-placeholder::-webkit-datetime-edit {
+    color: #6b7280; /* Tailwind's gray-500 */
+}
+
+/* White text after date is picked */
+.date-picked::-webkit-datetime-edit {
+    color: #1f2937;
+}
+
+.dark .date-picked::-webkit-datetime-edit {
+    color: #f5f3f0;
+}
+
 /* Custom cursor */
 @layer base {
     html, .custom-cursor-default {

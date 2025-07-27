@@ -30,7 +30,7 @@ const MyCoursesTable = ({
 
     return (
         <div
-            className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
+            className={`overflow-x-auto custom-scrollbar z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
                 courses.length > 5
                     ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
                     : ""
@@ -43,6 +43,15 @@ const MyCoursesTable = ({
                     {courses.map((course, index) => {
                         const remainingCount =
                             course.studentSlot - course.totalStudent;
+
+                        const { startDate, endDate } = course;
+                        const today = new Date();
+                        const status =
+                            today < new Date(startDate)
+                                ? "Upcoming"
+                                : today > new Date(endDate)
+                                ? "Ended"
+                                : "Ongoing";
 
                         return (
                             <tr key={course._id}>
@@ -72,6 +81,17 @@ const MyCoursesTable = ({
                                 )}
                                 <td>{course.totalStudent}</td>
                                 <td>{remainingCount}</td>
+                                <td
+                                    className={`text-base-content font-bold ${
+                                        status === "Ongoing"
+                                            ? "text-green-600"
+                                            : status === "Upcoming"
+                                            ? "text-blue-600"
+                                            : "text-red-500"
+                                    }`}
+                                >
+                                    {status}
+                                </td>
                                 <td>
                                     <Link
                                         to={`/dashboard/my-classes/students/${userDetails._id}/${index}`}

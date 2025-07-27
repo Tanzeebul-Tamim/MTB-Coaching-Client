@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { getUserData, saveUser } from "../../api/authApi";
 import { Flip, toast } from "react-toastify";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const useAddClass = () => {
     const [imageButtonText, setImageButtonText] = useState("Upload Thumbnail");
+    const [error, setError] = useState("");
     const [helmet, setHelmet] = useState("Add a Course");
+    const { isSmallDevice } = useScreenSize();
     useTitle(`| ${helmet}`);
+
     const [formData, setFormData] = useState({
         name: "",
         price: "",
         studentSlot: "",
+        startDate: "",
+        endDate: "",
         image: null,
     });
+
     const { user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
+
+    useEffect(() => {
+        if (formData.startDate && formData.endDate) {
+            dateValidation(formData.startDate, formData.endDate);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formData.startDate, formData.endDate]);
 
     const handleImageButtonText = (image) => {
         const imageName = image.name;
@@ -32,8 +46,36 @@ const useAddClass = () => {
             setFormData((prev) => ({ ...prev, image: files[0] }));
             handleImageButtonText(files[0]);
         } else {
-            setFormData((prev) => ({ ...prev, [name]: value }));
+            const updatedFormData = { ...formData, [name]: value };
+            setFormData(updatedFormData);
+
             if (name === "name") setHelmet(value || "Add a Course");
+        }
+    };
+
+    const dateValidation = () => {
+        const startDate = new Date(formData.startDate);
+        const endDate = new Date(formData.endDate);
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // remove time part
+
+        const diffInMs =
+            new Date(formData.endDate) - new Date(formData.startDate);
+        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+        if (startDate > endDate) {
+            setError("Start date cannot be after end date");
+        } else if (endDate < today) {
+            setError("End date cannot be in the past");
+        } else if (startDate <= today) {
+            setError("Start date must be later than today");
+        } else if (diffInDays < 3) {
+            setError("Course duration must be at least 3 days");
+        } else if (diffInDays > 30) {
+            setError("Course duration cannot exceed 30 days");
+        } else {
+            setError("");
         }
     };
 
@@ -65,6 +107,8 @@ const useAddClass = () => {
                 image: imageUrl,
                 price: Number(formData.price),
                 studentSlot: Number(formData.studentSlot),
+                startDate: formData.startDate,
+                endDate: formData.endDate,
                 totalStudent: 0,
             };
 
@@ -106,7 +150,10 @@ const useAddClass = () => {
         formData.price !== "" &&
         formData.studentSlot !== "" &&
         formData.studentSlot != 0 &&
-        formData.image !== null;
+        formData.startDate != "" &&
+        formData.endDate != "" &&
+        formData.image !== null &&
+        error === "";
 
     return {
         imageButtonText,
@@ -114,7 +161,9 @@ const useAddClass = () => {
         handleChange,
         handleSubmit,
         isFormValid,
-        formData
+        formData,
+        isSmallDevice,
+        error,
     };
 };
 

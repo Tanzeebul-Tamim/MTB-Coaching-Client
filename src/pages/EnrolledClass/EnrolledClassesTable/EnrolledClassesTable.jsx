@@ -32,7 +32,7 @@ const EnrolledClassesTable = ({
 
     return (
         <div
-            className={`overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
+            className={`overflow-x-auto custom-scrollbar z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
                 sortedBookings.length > 5
                     ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
                     : ""
@@ -43,6 +43,25 @@ const EnrolledClassesTable = ({
                 <EnrolledClassesTableHead />
                 <tbody className="text-sm">
                     {sortedBookings.map((classItem, index) => {
+                        const { startDate, endDate } = classItem;
+                        const today = new Date();
+                        const status =
+                            today < new Date(startDate)
+                                ? "Upcoming"
+                                : today > new Date(endDate)
+                                ? "Ended"
+                                : "Ongoing";
+                        const duration = Math.ceil(
+                            (new Date(endDate) - new Date(startDate)) /
+                                (1000 * 60 * 60 * 24)
+                        );
+                        const statusColor =
+                            status === "Ongoing"
+                                ? "text-green-600"
+                                : status === "Upcoming"
+                                ? "text-blue-600"
+                                : "text-red-600";
+
                         return (
                             <tr className="" key={classItem._id}>
                                 <td>
@@ -68,6 +87,40 @@ const EnrolledClassesTable = ({
                                     <div>
                                         <div className="font-bold">
                                             {classItem.instructorName}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div className="font-bold">
+                                            {moment(startDate).format(
+                                                "Do MMM, YYYY"
+                                            )}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div className="font-bold">
+                                            {moment(endDate).format(
+                                                "Do MMM, YYYY"
+                                            )}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div className="font-bold">
+                                            {duration} Days
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <div
+                                            className={`font-bold ${statusColor}`}
+                                        >
+                                            {status}
                                         </div>
                                     </div>
                                 </td>
