@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import useScreenSize from "../../../hooks/useScreenSize";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
-// import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import SklBikeHacks from "../../../components/skeletons/SklBikeHacks";
 import Dropdown from "./Dropdown";
 import bikeHacksData from "./bikeHack.json";
@@ -19,7 +19,7 @@ const bikeHacksDes =
 const BikeHacks = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const { isSmallDevice } = useScreenSize();
-    // const { user } = useAuth();
+    const { user } = useAuth();
     const [selectBikeType, setSelectBikeType] = useState("");
     const [shouldFetch, setShouldFetch] = useState(false);
     const query = `${selectBikeType} Bike Hacks`;
@@ -29,12 +29,9 @@ const BikeHacks = () => {
         setNumberOfSlides(isSmallDevice ? 1 : 4);
     }, [isSmallDevice]);
 
-    // const dropdownCondition = user && videos;
-    // const fetchCondition = user && videos.length > 0;
-    
     const dropdownCondition = true;
-    const fetchCondition = videos.length > 0;
-    
+    const fetchCondition = user && videos.length > 0;
+
     return (
         <div
             className={`lg:pb-20 pb-8 relative ${
@@ -55,6 +52,7 @@ const BikeHacks = () => {
                     setSelectBikeType={setSelectBikeType}
                     bikeHacksData={bikeHacksData}
                     setShouldFetch={setShouldFetch}
+                    isLoggedIn={Boolean(user)}
                 />
             )}
 

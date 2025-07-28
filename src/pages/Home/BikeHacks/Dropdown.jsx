@@ -1,15 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import "../../../styles/bikeHacks.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Dropdown = ({
     selectBikeType,
     setSelectBikeType,
     bikeHacksData,
     setShouldFetch,
+    isLoggedIn,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
     const dropdownContainerRef = useRef(null);
+    const navigate = useNavigate();
+    const location = useLocation();
     const placeholder = "Select the Type of Bike You Ride";
+    const customId = "unauthorized";
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -28,6 +34,14 @@ const Dropdown = ({
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isFocused]);
+
+    // Close dropdown when user logs out
+    useEffect(() => {
+        if (!isLoggedIn) {
+            setSelectBikeType("");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoggedIn]);
 
     return (
         <div className="relative mb-4 flex items-center justify-center z-50">
@@ -49,7 +63,28 @@ const Dropdown = ({
             <div
                 ref={dropdownContainerRef}
                 className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full dark:bg-opacity-80 bg-base-100 text-base-content"
-                onClick={() => setIsFocused((prev) => !prev)}
+                onClick={() => {
+                    if (!isLoggedIn) {
+                        toast.warning(
+                            "To use this feature, you have to login first",
+                            {
+                                position: "top-center",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: false,
+                                draggable: true,
+                                toastId: customId,
+                                progress: undefined,
+                            }
+                        );
+                        navigate("/login", {
+                            state: { from: location },
+                        });
+                        return;
+                    }
+                    setIsFocused((prev) => !prev);
+                }}
             >
                 <div className={`px-4 py-2 ${!selectBikeType && "invisible"}`}>
                     {selectBikeType || <span>{placeholder}</span>}
