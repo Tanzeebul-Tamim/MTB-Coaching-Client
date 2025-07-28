@@ -5,6 +5,7 @@ import useTitle from "../../../hooks/useTitle";
 import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 import { Flip, toast } from "react-toastify";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const useInstructorRegister = () => {
     const [isValid, setIsValid] = useState(false);
@@ -44,6 +45,7 @@ const useInstructorRegister = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const { isSmallDevice } = useScreenSize();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
     useTitle("| Instructor-Registration");
@@ -306,6 +308,7 @@ const useInstructorRegister = () => {
         setError,
         loading,
         imageButtonText,
+        isSmallDevice,
         handleSelectGender,
         isFormValid,
         handleRegister,

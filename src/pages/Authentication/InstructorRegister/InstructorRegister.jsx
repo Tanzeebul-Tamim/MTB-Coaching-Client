@@ -15,6 +15,7 @@ const InstructorRegister = () => {
         setError,
         loading,
         imageButtonText,
+        isSmallDevice,
         handleSelectGender,
         isFormValid,
         handleRegister,
@@ -246,8 +247,8 @@ const InstructorRegister = () => {
                                     className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
-                                        top: "60%",
-                                        left: "175px",
+                                        top: isSmallDevice ? "28%" : "60%",
+                                        left: isSmallDevice ? "90%" : "175px",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility}
@@ -277,8 +278,8 @@ const InstructorRegister = () => {
                                     className="custom-cursor-pointer"
                                     style={{
                                         position: "absolute",
-                                        top: "60%",
-                                        right: "15px",
+                                        top: isSmallDevice ? "82%" : "60%",
+                                        left: isSmallDevice ? "90%" : "395px",
                                         fontSize: "20px",
                                     }}
                                     onClick={togglePasswordVisibility2}
@@ -306,13 +307,13 @@ const InstructorRegister = () => {
                                 to="/login"
                                 className="label-text-alt custom-cursor-default"
                             >
-                                Already have an account? {" "}
+                                Already have an account?{" "}
                                 <span className="text-primary hover:underline custom-cursor-pointer">
                                     Login now
                                 </span>
                             </Link>
                         </label>
-                        
+
                         <p
                             className={`flex flex-col lg:flex-row justify-between z-10 ${
                                 error
