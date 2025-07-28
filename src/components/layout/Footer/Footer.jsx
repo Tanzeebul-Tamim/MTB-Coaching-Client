@@ -65,7 +65,7 @@ const Footer = () => {
                         <a
                             className="underline"
                             id="email"
-                            href="mailto:tamim200091@gmail.com"
+                            href="mailto:tanzeebul.tamim2003@gmail.com"
                         >
                             info@mtb_club.com
                         </a>

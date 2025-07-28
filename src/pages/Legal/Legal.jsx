@@ -116,9 +116,9 @@ const Legal = () => {
                             </p>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 {" "}
-                                <a href="mailto:tamim200091@gmail.com">
+                                <a href="mailto:tanzeebul.tamim2003@gmail.com">
                                     <strong className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline">
-                                        tamim200091@gmail.com{" "}
+                                        tanzeebul.tamim2003@gmail.com{" "}
                                     </strong>
                                 </a>
                                 with the subject line{" "}
