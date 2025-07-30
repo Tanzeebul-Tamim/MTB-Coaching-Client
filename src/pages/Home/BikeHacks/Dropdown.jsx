@@ -48,7 +48,7 @@ const Dropdown = ({
             <span
                 className={`absolute pointer-events-none transition-all duration-200 z-50 ${
                     selectBikeType &&
-                    "-translate-y-[22px] text-sm bg-base-100 dark:bg-opacity-70 px-2 rounded-xl border-t border-base-content border-opacity-30"
+                    "-translate-y-[22px] text-sm bg-base-100 bg-opacity-70 px-2 rounded-xl border-t border-base-content border-opacity-30"
                 }`}
             >
                 {placeholder}
@@ -62,7 +62,7 @@ const Dropdown = ({
             </span>
             <div
                 ref={dropdownContainerRef}
-                className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full dark:bg-opacity-80 bg-base-100 text-base-content"
+                className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full bg-opacity-80 bg-base-100 text-base-content"
                 onClick={() => {
                     if (!isLoggedIn) {
                         toast.warning(
@@ -92,7 +92,7 @@ const Dropdown = ({
                 <div
                     className={`
                         absolute left-0 right-0 mt-1 z-50
-                        bg-base-100 dark:bg-opacity-80 border border-base-content border-opacity-30 rounded-2xl shadow-lg p-1
+                        bg-base-100 bg-opacity-80 border border-base-content border-opacity-30 rounded-2xl shadow-lg p-1
                         transition-all duration-200 ease-in-out origin-top transform
                         ${
                             isFocused
