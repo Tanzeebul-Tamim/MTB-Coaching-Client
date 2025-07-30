@@ -215,6 +215,10 @@ const useInstructorRegister = () => {
                     reader.readAsDataURL(image);
                 } else {
                     setError("Passwords do not match!");
+                    setFormFields((prev) => ({
+                        ...prev,
+                        confirmPassword: "",
+                    }));
                     return;
                 }
             } else if (
@@ -239,8 +243,8 @@ const useInstructorRegister = () => {
 
     const handleImageButtonText = (image) => {
         const imageName = image.name;
-        if (imageName.length > 40) {
-            setImageButtonText(`${image.name.slice(0, 22)} . . . .`);
+        if (imageName.length > 20) {
+            setImageButtonText(`${image.name.slice(0, 20)} . . . .`);
         } else {
             setImageButtonText(imageName);
         }
