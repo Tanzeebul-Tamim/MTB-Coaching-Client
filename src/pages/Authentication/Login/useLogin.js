@@ -86,13 +86,19 @@ const useLogin = () => {
         signIn(email, password)
             .then((result) => {
                 const createdUser = result.user;
-                if (!createdUser.emailVerified) {
+
+                const demoStudent = 'demo.student@example.com';
+                const demoInstructor = 'demo.instructor@example.com';
+                const emailMatched = createdUser.email === demoStudent || createdUser.email === demoInstructor;
+                
+                if (!emailMatched && !createdUser.emailVerified) {
                     logOut();
                     setError(
                         `Please verify your email from the verification email sent to ${createdUser.email}`
                     );
                     return;
                 }
+                
                 navigate(from, { replace: true }).then(
                     toast.success("Logged-in successfully!", {
                         position: "top-center",
