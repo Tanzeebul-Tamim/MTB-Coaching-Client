@@ -55,27 +55,16 @@ const useLogin = () => {
 
     const handleGoogleSignIn = () => {
         googleSignIn()
-            .then((result) => {
-                saveUserViaSocial(result.user);
-                getUserData(result.user?.email).then((userDetails) => {
-                    let { name } = userDetails;
-                    name = name?.split(" ")[0];
-                    const message = `Welcome ${name}! You're logged-in as ${
-                        userDetails?.role === "Instructor"
-                            ? "an instructor"
-                            : "a student"
-                    }`;
-                    toast.success(message, config);
-                });
-                navigate(from, { replace: true });
-            })
+            .then((result) => saveUserViaSocial(result.user))
             .catch((error) => {
                 console.error(error);
-                if (error.code === "auth/user-disabled") {
+                if (error.code === "auth/user-disabled")
                     setError("Your account has been suspended!");
-                }
             })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false);
+                navigate(from, { replace: true });
+            });
     };
 
     const handleLogin = (event) => {
@@ -98,19 +87,19 @@ const useLogin = () => {
                     );
                     return;
                 }
-                
-                navigate(from, { replace: true }).then(
-                    toast.success("Logged-in successfully!", {
-                        position: "top-center",
-                        autoClose: 1100,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        transition: Flip,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    })
-                );
+
+                getUserData(result.user?.email).then((userDetails) => {
+                    let { name } = userDetails;
+                    name = name?.split(" ")[0];
+                    const message = `Welcome ${name}! You're logged-in as ${
+                        userDetails?.role === "Instructor"
+                            ? "an instructor"
+                            : "a student"
+                    }`;
+                    toast.success(message, config);
+                });
+
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.error(error);

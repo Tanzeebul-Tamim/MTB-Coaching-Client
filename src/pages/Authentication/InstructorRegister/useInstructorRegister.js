@@ -261,23 +261,21 @@ const useInstructorRegister = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => {
-                saveInstructorViaSocial(result.user)
-                    .then(() => navigate(from, { replace: true }))
-                    .catch((error) => {
-                        logOut().then(() => {
-                            toast.warning(error.message, {
-                                position: "top-center",
-                                autoClose: 1500,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                transition: Flip,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            });
-                            navigate("/login");
+                saveInstructorViaSocial(result.user).catch((error) => {
+                    logOut().then(() => {
+                        toast.warning(error.message, {
+                            position: "top-center",
+                            autoClose: 1500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            transition: Flip,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
                         });
+                        navigate("/login");
                     });
+                });
             })
             .catch((error) => {
                 console.error(error);
@@ -285,7 +283,10 @@ const useInstructorRegister = () => {
                     setError("Your account has been suspended!");
                 }
             })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false);
+                navigate(from, { replace: true });
+            });
     };
 
     // Update field values on change
