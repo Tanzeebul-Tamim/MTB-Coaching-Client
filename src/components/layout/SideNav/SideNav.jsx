@@ -4,29 +4,21 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ActiveLink2 from "../../ui/ActiveLink2";
-import { useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import useScreenSize from "../../../hooks/useScreenSize";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
-import useUserData from "../../../hooks/useUserData";
 import SklSideNav from "../../skeletons/SklSideNav";
 import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
+import useSideNav from "./useSideNav";
 
 const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
-    const { loading } = useAuth();
-    const [title, setTitle] = useState("User");
-    const { isSmallDevice } = useScreenSize();
-    const { loading: userLoading, userDetails } = useUserData();
-
-    useEffect(() => {
-        if (!loading && !userLoading) {
-            if (userDetails?.role === "Instructor") {
-                setTitle("Instructor");
-            } else if (userDetails?.role === "Student") {
-                setTitle("Student");
-            }
-        }
-    }, [loading, userDetails?.role, userLoading]);
+    const {
+        title,
+        isSmallDevice,
+        paidBookings,
+        userDetails,
+        loading,
+        userLoading,
+        booking,
+    } = useSideNav();
 
     const url = "url('/assets/sidenav_banner.jpg')";
     const lightBg =
@@ -34,16 +26,17 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
     const darkBg =
         "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), " + url;
     const bg = isDarkTheme ? darkBg : lightBg;
+    const style = {
+        backgroundImage: bg,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+    };
 
     return (
         <div
-            style={{
-                backgroundImage: bg,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
-            }}
+            style={style}
             className="h-screen fixed p-7 bg-base-200 dark:text-white text-yellow-50"
         >
             <button
@@ -115,19 +108,34 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/selected-classes"
                             >
-                                {!isSmallDevice && "My"} Booked Courses
+                                {!isSmallDevice && "My"} Booked Courses{" "}
+                                {booking.length > 0 && (
+                                    <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
+                                        {booking.length}
+                                    </span>
+                                )}
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/enrolled-classes"
                             >
-                                {!isSmallDevice && "My"} Enrolled Courses
+                                {!isSmallDevice && "My"} Enrolled Courses{" "}
+                                {paidBookings.length > 0 && (
+                                    <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
+                                        {paidBookings.length}
+                                    </span>
+                                )}
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/payment"
                             >
-                                {!isSmallDevice && "My"} Payment History
+                                {!isSmallDevice && "My"} Payment History{" "}
+                                {paidBookings.length > 0 && (
+                                    <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
+                                        {paidBookings.length}
+                                    </span>
+                                )}
                             </ActiveLink2>
                         </>
                     )}
@@ -157,7 +165,12 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/my-classes"
                             >
-                                My Courses
+                                My Courses{" "}
+                                {userDetails?.classes?.length > 0 && (
+                                    <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
+                                        {userDetails?.classes?.length}
+                                    </span>
+                                )}
                             </ActiveLink2>
                         </>
                     )}
