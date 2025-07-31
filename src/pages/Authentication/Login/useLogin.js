@@ -17,6 +17,7 @@ const useLogin = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
     const emailRef = useRef();
+    const passRef = useRef();
     const customId = "unauthorized";
     useTitle("| Login");
 
@@ -76,10 +77,12 @@ const useLogin = () => {
             .then((result) => {
                 const createdUser = result.user;
 
-                const demoStudent = 'demo.student@example.com';
-                const demoInstructor = 'demo.instructor@example.com';
-                const emailMatched = createdUser.email === demoStudent || createdUser.email === demoInstructor;
-                
+                const demoStudent = "demo.student@example.com";
+                const demoInstructor = "demo.instructor@example.com";
+                const emailMatched =
+                    createdUser.email === demoStudent ||
+                    createdUser.email === demoInstructor;
+
                 if (!emailMatched && !createdUser.emailVerified) {
                     logOut();
                     setError(
@@ -115,16 +118,17 @@ const useLogin = () => {
             .finally(() => setLoading(false));
     };
 
-    const handleValidateCaptcha = () => {
+    const handleFieldChange = () => {
+        const emailValue = emailRef.current.value;
+        const passValue = passRef.current.value;
         const captchaValue = captchaRef.current.value;
-        if (captchaValue.length === 6) {
-            if (validateCaptcha(captchaValue)) {
-                setDisabled(false);
-            } else {
-                setDisabled(true);
-            }
-        } else {
-            setDisabled(true);
+
+        if (!emailValue || !passValue || !captchaValue) setDisabled(true);
+        else {
+            if (captchaValue.length === 6) {
+                if (validateCaptcha(captchaValue)) setDisabled(false);
+                else setDisabled(true);
+            } else setDisabled(true);
         }
     };
 
@@ -176,11 +180,12 @@ const useLogin = () => {
         handleGoogleSignIn,
         handleLogin,
         togglePasswordVisibility,
-        handleValidateCaptcha,
+        handleFieldChange,
         handlePasswordReset,
         emailRef,
         showPassword,
         captchaRef,
+        passRef,
     };
 };
 

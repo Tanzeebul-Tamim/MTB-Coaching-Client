@@ -105,8 +105,8 @@ const SingleInstructorsClasses = () => {
                 <div className="flex justify-center text-accent">
                     <div className="text-2xl md:text-4xl lg:text-5xl my-5 z-[1] text-center">
                         {isMyWall
-                            ? "You haven't added any courses yet"
-                            : `${instructor.name} has't added any courses yet`}
+                            ? "You Haven't Added Any Courses Yet"
+                            : `${instructor.name} Hasn't Added Any Courses Yet`}
                     </div>
                 </div>
             )}

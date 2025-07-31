@@ -202,14 +202,27 @@ const InstructorRegister = () => {
                                     <select
                                         onChange={handleSelectGender}
                                         name="gender"
-                                        className="input input-bordered select font-light text-gray-600 dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0  w-full max-w-xs text-sm"
+                                        className={`input input-bordered select font-light ${
+                                            !selectedGender &&
+                                            "text-gray-600 dark:text-gray-400"
+                                        } bg-stone-300 dark:bg-stone-800 border-0  w-full max-w-xs text-sm`}
                                         value={selectedGender}
                                     >
                                         <option hidden>
                                             Enter your gender
                                         </option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Male"
+                                        >
+                                            Male
+                                        </option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Female"
+                                        >
+                                            Female
+                                        </option>
                                     </select>
                                 </label>
                             </div>
@@ -338,6 +351,7 @@ const InstructorRegister = () => {
                         </div>
                         <div className="z-[10] justify-center gap-10 flex">
                             <button
+                                type="button"
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
                                 className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"

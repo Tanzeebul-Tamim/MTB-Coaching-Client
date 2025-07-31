@@ -15,11 +15,12 @@ const Login = () => {
         handleGoogleSignIn,
         handleLogin,
         togglePasswordVisibility,
-        handleValidateCaptcha,
+        handleFieldChange,
         handlePasswordReset,
         emailRef,
         showPassword,
         captchaRef,
+        passRef,
     } = useLogin();
 
     const [clicked, setClicked] = useState(false);
@@ -36,7 +37,12 @@ const Login = () => {
             }}
         >
             <form
-                onSubmit={handleLogin}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!disabled) {
+                        handleLogin(e);
+                    }
+                }}
                 className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-20 w-full"
             >
                 <div className="block lg:hidden w-full">
@@ -71,6 +77,7 @@ const Login = () => {
                                 </span>
                             </label>
                             <input
+                                onChange={handleFieldChange}
                                 ref={emailRef}
                                 type="email"
                                 name="email"
@@ -86,6 +93,8 @@ const Login = () => {
                                 </span>
                             </label>
                             <input
+                                onChange={handleFieldChange}
+                                ref={passRef}
                                 type={showPassword ? "text" : "password"}
                                 autoComplete="off"
                                 name="password"
@@ -141,7 +150,7 @@ const Login = () => {
                                 </span>
                             </label>
                             <input
-                                onChange={handleValidateCaptcha}
+                                onChange={handleFieldChange}
                                 type="text"
                                 required
                                 ref={captchaRef}
@@ -174,6 +183,7 @@ const Login = () => {
                         <div className="z-[10] justify-center gap-10 flex">
                             <button
                                 formNoValidate
+                                type="button"
                                 onClick={handleGoogleSignIn}
                                 className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-3/4 w-4/5"
                             >

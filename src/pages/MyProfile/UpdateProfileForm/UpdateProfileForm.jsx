@@ -177,18 +177,24 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             defaultValue={
                                                 userDetails?.gender ?? ""
                                             }
-                                            className="input select font-light text-base w-full max-w-xs border-gray-500 border-opacity-50 lg:border-0"
+                                            className={`${
+                                                !selectedGender &&
+                                                "text-gray-500"
+                                            } input select font-light text-base w-full max-w-xs border-gray-500 border-opacity-50 lg:border-0`}
                                         >
-                                            <option
-                                                className="text-gray-500"
-                                                value=""
-                                                disabled
-                                                hidden
-                                            >
+                                            <option value="" hidden>
                                                 Enter your gender
                                             </option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">
+                                            <option
+                                                className="text-base-content"
+                                                value="Male"
+                                            >
+                                                Male
+                                            </option>
+                                            <option
+                                                className="text-base-content"
+                                                value="Female"
+                                            >
                                                 Female
                                             </option>
                                         </select>
@@ -236,13 +242,25 @@ const UpdateProfileForm = ({ userDetails }) => {
                                             setSelectedGender(e.target.value);
                                             handleSelectGender(e);
                                         }}
-                                        className="input select font-light text-base text-gray-500 w-full max-w-xs border-0"
+                                        className={`${
+                                            !selectedGender && "text-gray-500"
+                                        } input select font-light text-base w-full max-w-xs border-gray-500 border-opacity-50 lg:border-0`}
                                     >
                                         <option value="" disabled hidden>
                                             Enter your gender
                                         </option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Male"
+                                        >
+                                            Male
+                                        </option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Female"
+                                        >
+                                            Female
+                                        </option>
                                     </select>
                                 </label>
                             </div>

@@ -5,7 +5,7 @@ const usePagination = (items, resultsPerPage = 5) => {
     const totalPages = Math.ceil((items?.length || 0) / resultsPerPage);
 
     const paginatedItems = useMemo(() => {
-        return items.slice(
+        return items?.slice(
             (currentPage - 1) * resultsPerPage,
             currentPage * resultsPerPage
         );

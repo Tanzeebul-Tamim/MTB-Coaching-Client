@@ -199,14 +199,27 @@ const Register = () => {
                                     <select
                                         onChange={handleSelectGender}
                                         name="gender"
-                                        className="select font-light w-full max-w-xs text-gray-600 dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                        className={`select font-light w-full max-w-xs ${
+                                            !selectedGender &&
+                                            "text-gray-600 dark:text-gray-400"
+                                        } bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm`}
                                         value={selectedGender}
                                     >
                                         <option hidden>
                                             Enter your gender
                                         </option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Male"
+                                        >
+                                            Male
+                                        </option>
+                                        <option
+                                            className="text-base-content"
+                                            value="Female"
+                                        >
+                                            Female
+                                        </option>
                                     </select>
                                 </label>
                             </div>
@@ -304,7 +317,7 @@ const Register = () => {
                                 to="/login"
                                 className="label-text-alt custom-cursor-default"
                             >
-                                Already have an account? {" "}
+                                Already have an account?{" "}
                                 <span className="text-primary hover:underline custom-cursor-pointer">
                                     Login now
                                 </span>
@@ -334,6 +347,7 @@ const Register = () => {
                         </div>
                         <div className="z-[10] justify-center gap-10 flex">
                             <button
+                                type="button"
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
                                 className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
