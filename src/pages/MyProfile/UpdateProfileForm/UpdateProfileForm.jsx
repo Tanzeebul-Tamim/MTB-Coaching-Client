@@ -16,7 +16,6 @@ const UpdateProfileForm = ({ userDetails }) => {
         monitorChange,
         isSmallDevice,
         quoteMaxLength,
-        setSelectedGender,
         selectedGender,
     } = useUpdateProfileForm(userDetails);
 
@@ -174,9 +173,7 @@ const UpdateProfileForm = ({ userDetails }) => {
                                         <select
                                             name="gender"
                                             onChange={handleSelectGender}
-                                            defaultValue={
-                                                userDetails?.gender ?? ""
-                                            }
+                                            value={selectedGender}
                                             className={`${
                                                 !selectedGender &&
                                                 "text-gray-500"
@@ -237,16 +234,13 @@ const UpdateProfileForm = ({ userDetails }) => {
                                 <label>
                                     <select
                                         name="gender"
+                                        onChange={handleSelectGender}
                                         value={selectedGender}
-                                        onChange={(e) => {
-                                            setSelectedGender(e.target.value);
-                                            handleSelectGender(e);
-                                        }}
                                         className={`${
                                             !selectedGender && "text-gray-500"
                                         } input select font-light text-base w-full max-w-xs border-gray-500 border-opacity-50 lg:border-0`}
                                     >
-                                        <option value="" disabled hidden>
+                                        <option value="" hidden>
                                             Enter your gender
                                         </option>
                                         <option

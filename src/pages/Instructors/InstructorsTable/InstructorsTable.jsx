@@ -59,23 +59,24 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                         <td>
                                             <Link
                                                 to={`/instructors/${instructor._id}`}
-                                                className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content"
                                             >
-                                                {isSmallDevice ? (
-                                                    <span className="text-[12px]">
-                                                        View
-                                                    </span>
-                                                ) : (
-                                                    <>
-                                                        See{" "}
-                                                        {
-                                                            instructor.name.split(
-                                                                " "
-                                                            )[0]
-                                                        }
-                                                        &apos;s Courses
-                                                    </>
-                                                )}
+                                                <button className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content">
+                                                    {isSmallDevice ? (
+                                                        <span className="text-[12px]">
+                                                            View
+                                                        </span>
+                                                    ) : (
+                                                        <>
+                                                            See{" "}
+                                                            {
+                                                                instructor.name.split(
+                                                                    " "
+                                                                )[0]
+                                                            }
+                                                            &apos;s Courses
+                                                        </>
+                                                    )}
+                                                </button>
                                             </Link>
                                         </td>
                                     </tr>

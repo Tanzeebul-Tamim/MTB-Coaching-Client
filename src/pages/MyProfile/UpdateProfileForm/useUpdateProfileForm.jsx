@@ -332,10 +332,10 @@ const useUpdateProfileForm = (userDetails) => {
     // Synchronous monitorChange
     const monitorChange = (event) => {
         if (!userDoc) return true; // disable button while loading data
+
         const form = event.target.form || event.target.closest("form");
         if (!form) return true;
 
-        // Map form field names to userDoc keys
         const fieldMap = {
             name: userDoc.name || user?.displayName || "",
             address: userDoc.address || "",
@@ -344,21 +344,35 @@ const useUpdateProfileForm = (userDetails) => {
             quote: userDoc.quote || "",
         };
 
+        let hasChange = false;
+        let allEmpty = true;
+
         for (const [formField, userValue] of Object.entries(fieldMap)) {
-            if (form[formField] && form[formField].value !== userValue)
-                return false; // enable if changed
+            const input = form[formField];
+            if (input) {
+                const currentVal = input.value.trim();
+                if (currentVal !== userValue) hasChange = true;
+                if (currentVal !== "") allEmpty = false;
+            }
         }
-        // Check for file changes
-        if (form.image && form.image.files.length > 0) return false;
-        if (form.cover && form.cover.files.length > 0) return false;
-        return true; // disable if nothing changed
+
+        const hasImage = form.image?.files.length > 0;
+        const hasCover = form.cover?.files.length > 0;
+
+        if (hasImage || hasCover) {
+            hasChange = true;
+            allEmpty = false;
+        }
+
+        // Disable if nothing changed or all fields are empty
+        return !hasChange || allEmpty;
     };
 
     useEffect(() => {
         if (userDetails?.gender) {
             setSelectedGender(userDetails?.gender);
         }
-    }, [selectedGender, userDetails]);
+    }, [userDetails]);
 
     return {
         imageButtonText,
@@ -374,7 +388,6 @@ const useUpdateProfileForm = (userDetails) => {
         monitorChange,
         isSmallDevice,
         quoteMaxLength,
-        setSelectedGender,
         selectedGender,
     };
 };
