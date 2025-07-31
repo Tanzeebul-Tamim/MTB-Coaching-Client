@@ -7,22 +7,28 @@ import {
 import app from "../../../firebase/firebase.config";
 import { useEffect, useRef, useState } from "react";
 import useScreenSize from "../../../hooks/useScreenSize";
-import { Flip, Slide, toast, Zoom } from "react-toastify";
+import { Flip, Zoom, Slide, Bounce, toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 
-const fireToast = (message) => {
-    const time = 2000;
-    toast.error(message, {
+const fireToast = (message, type = "error") => {
+    const time = 2100;
+    const transitions = [Flip, Zoom, Slide, Bounce];
+    const randomTransition =
+        transitions[Math.floor(Math.random() * transitions.length)];
+
+    const config = {
         position: "top-right",
         autoClose: time,
         hideProgressBar: false,
         limit: 3,
-        transition: Flip,
+        transition: randomTransition,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-    });
+    };
+
+    toast[type](message, config);
 };
 
 const useChangePassword = (email) => {
@@ -87,35 +93,22 @@ const useChangePassword = (email) => {
     };
     const toggleConfirmPasswordVisibility = () => {
         setShowConfirmPassword(!showConfirmPassword);
-    };    
+    };
 
     const createPass = (event) => {
         event.preventDefault();
-
-        const config = {
-            position: "top-left",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            transition: Zoom,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        };
-
         passwordReset(email)
             .then(() => {
-                toast.success(
+                fireToast(
                     `A password creation link has been sent to ${email}`,
-                    config
+                    "success"
                 );
             })
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/too-many-requests")
-                    toast.error(
-                        "Too many unsuccessful attempts! Try again later.",
-                        config
+                    fireToast(
+                        "Too many unsuccessful attempts! Try again later."
                     );
             })
             .finally(() => authLoading(false));
@@ -124,27 +117,43 @@ const useChangePassword = (email) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        if (currentPass === newPass) {
+            setError("Choose a different password.");
+            fireToast(
+                "New password must be different from current password.",
+                "warning"
+            );
+            setFormFields((prev) => ({
+                ...prev,
+                newPass: "",
+                confirmPass: "",
+            }));
+            return;
+        } else if (newPass !== confirmPass) {
+            setError("Passwords do not match!");
+            fireToast(
+                "New password and confirm password must be the same.",
+                "warning"
+            );
+            setFormFields((prev) => ({
+                ...prev,
+                confirmPass: "",
+            }));
+            return;
+        }
+
         const credential = EmailAuthProvider.credential(
             auth.currentUser.email,
             currentPassInput
         );
         setLoading(true);
-        let message;
         reauthenticateWithCredential(auth.currentUser, credential)
             .then(() => {
                 return updatePassword(auth.currentUser, newPassInput).then(
                     () => {
-                        toast.success("Password has been updated!", {
-                            position: "top-center",
-                            autoClose: 1100,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            transition: Slide,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
+                        fireToast("Password has been updated!", "success");
                         setError("");
+                        setFormFields(fields);
                         setLoading(false);
                         modalRef.current.close();
                     }
@@ -153,9 +162,8 @@ const useChangePassword = (email) => {
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/wrong-password") {
-                    message = "Current password is incorrect";
-                    setError(message);
-                    fireToast(message);
+                    setError("Current password is incorrect");
+                    fireToast("The current password you entered is incorrect. Please try again.");
                     setFormFields((prev) => ({
                         ...prev,
                         currentPass: "",
@@ -163,9 +171,8 @@ const useChangePassword = (email) => {
                     setLoading(false);
                     return;
                 } else if (error.code === "auth/too-many-requests") {
-                    message = "Too many unsuccessful attempts! Try again later";
-                    setError(message);
-                    fireToast(message);
+                    setError("Try again later");
+                    fireToast("Too many unsuccessful attempts! Try again later");
                     setFormFields(fields);
                     setLoading(false);
                     return;
@@ -205,7 +212,7 @@ const useChangePassword = (email) => {
         fields,
         formFields,
         setFormFields,
-        createPass
+        createPass,
     };
 };
 
