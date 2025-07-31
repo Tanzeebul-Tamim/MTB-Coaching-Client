@@ -108,7 +108,9 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/selected-classes"
                             >
-                                {!isSmallDevice && "My"} Booked Courses{" "}
+                                <span>
+                                    {!isSmallDevice && "My"} Booked Courses{" "}
+                                </span>
                                 {booking.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
                                         {booking.length}
@@ -119,7 +121,9 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/enrolled-classes"
                             >
-                                {!isSmallDevice && "My"} Enrolled Courses{" "}
+                                <span>
+                                    {!isSmallDevice && "My"} Enrolled Courses{" "}
+                                </span>
                                 {paidBookings.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
                                         {paidBookings.length}
@@ -130,7 +134,9 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/payment"
                             >
-                                {!isSmallDevice && "My"} Payment History{" "}
+                                <span>
+                                    {!isSmallDevice && "My"} Payment History{" "}
+                                </span>
                                 {paidBookings.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
                                         {paidBookings.length}
@@ -165,7 +171,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/my-classes"
                             >
-                                My Courses{" "}
+                                <span>My Courses </span>
                                 {userDetails?.classes?.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
                                         {userDetails?.classes?.length}
