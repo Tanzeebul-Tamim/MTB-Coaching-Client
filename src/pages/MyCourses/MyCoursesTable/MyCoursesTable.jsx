@@ -53,6 +53,7 @@ const MyCoursesTable = ({
                             totalStudent,
                             studentSlot
                         } = course;
+                        const newIndex = resultsPerPage * (currentPage - 1) + index;
                         const modalId = `class_modal_${index}`;
                         const status = getStatus(startDate, endDate);
 
@@ -60,8 +61,7 @@ const MyCoursesTable = ({
                             <>
                                 <tr key={course._id}>
                                     <td>
-                                        {resultsPerPage * (currentPage - 1) +
-                                            (index + 1)}
+                                        {newIndex + 1}
                                     </td>
                                     <td className="flex justify-center">
                                         <ImageWithLoader
@@ -119,7 +119,7 @@ const MyCoursesTable = ({
                                     </td>
                                     <td>
                                         <Link
-                                            to={`/dashboard/my-classes/students/${userDetails?._id}/${index}`}
+                                            to={`/dashboard/my-classes/students/${userDetails?._id}/${newIndex}`}
                                             className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0"
                                         >
                                             {isSmallDevice ? (

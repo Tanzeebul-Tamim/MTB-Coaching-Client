@@ -50,14 +50,14 @@ const SelectedClassesTable = ({
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
                     {userBookings.map((classItem, index) => {
+                        const newIndex = resultsPerPage * (currentPage - 1) + index;
                         const modalId = `class_modal_${index}`;
 
                         return (
                             <>
                                 <tr className="" key={classItem._id}>
                                     <td>
-                                        {resultsPerPage * (currentPage - 1) +
-                                            (index + 1)}
+                                        {newIndex + 1}
                                     </td>
                                     <td className="flex justify-center">
                                         <ImageWithLoader
