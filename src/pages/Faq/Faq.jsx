@@ -15,7 +15,7 @@ const Faq = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: isSmallDevice ? "65% 50%" : "center",
-                backgroundAttachment: isSmallDevice && "fixed",
+                backgroundAttachment: "fixed",
             }}
         >
             <div className="relative z-20">

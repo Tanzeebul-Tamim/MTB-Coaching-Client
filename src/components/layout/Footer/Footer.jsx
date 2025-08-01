@@ -182,8 +182,10 @@ const Footer = () => {
                         institutions.
                     </h4>
                     <h4 className="lg:text-md lg:tracking-widest">
-                        &copy; 2023-{new Date().getFullYear()} MTB Coaching Network.
-                        All rights reserved. Designed & Developed by
+                        &copy; 2023-{new Date().getFullYear()} MTB Coaching Network -
+                        All Rights Reserved
+                        {isSmallDevice ? <><br/></> : ` - `}
+                        Designed & Developed by
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
                             className="uppercase ms-1 font-bold text-secondary underline"
