@@ -1,5 +1,5 @@
 <h1 style="display: flex; align-items: center;">
-    <img src="./documentation/logo.png" alt="Logo" width="100"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/logo.png" alt="Logo" width="100"/>
     <span>MTB-Coaching - Client End</span>
 </h1>
 
@@ -8,7 +8,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 <br>
 
 <p align="center">
-   <img src="documentation/doc_banner.png" alt="Banner" />
+   <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/banner.png" alt="Banner" />
 </p>
 
 <br>
@@ -38,7 +38,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
    <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router" />
-  </a>  
+  </a>
 
   <a href="https://www.npmjs.com/package/react-simple-captcha" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/React_Simple_Captcha-6B7280?style=for-the-badge&logo=react&logoColor=white" alt="React Simple Captcha" />
@@ -46,7 +46,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
    <a href="https://react-leaflet.js.org/" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/React_Leaflet-44A4AE?style=for-the-badge&logo=leaflet&logoColor=white" alt="React Leaflet" />
-   </a>    
+   </a>
 
    <a href="https://github.com/timarney/react-youtube" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/React_Youtube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="React YouTube" />
@@ -54,7 +54,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
    <a href="https://developers.google.com/youtube/v3" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/YouTube_API-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube API" />
-  </a> 
+  </a>
 
    <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
@@ -70,7 +70,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
   <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
-  </a>  
+  </a>
 
    <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
@@ -347,14 +347,14 @@ Try out the app with the following demo credentials:
 -   **Student Account**
 
     -   **Email:** `demo.student@example.com`
-    -   **Password:** `demo1234`
+    -   **Password:** `Demo12345$`
 
 <br>
 
 -   **Instructor Account**
 
     -   **Email:** `demo.instructor@example.com`
-    -   **Password:** `demo1234`
+    -   **Password:** `Demo12345$`
 
 <br>
 
@@ -362,16 +362,20 @@ Try out the app with the following demo credentials:
 
 Use the following **Visa** test card during checkout:
 
--   Card Number: `4242 4242 4242 4242` (Visa)
--   Expiry: `1234`
--   CVC: `123`
--   ZIP/Postal: `12345` or any 5-digit number
+-   **Card Number**: `4242 4242 4242 4242` (Visa)
+-   **Expiry:** `1234`
+-   **CVC:** `123`
+-   **ZIP/Postal:** `12345` or any 5-digit number
 
 <br>
 
-> **⚠️ Important Note:** <br>
->
+
+> [!IMPORTANT]
 > **Please avoid submitting any sensitive personal information or inappropriate content (e.g., images, names, course titles).**
+
+<br>
+
+> **Note:** <br>
 >
 > -   This is a demo project. You can explore the app fully using the provided student or instructor credentials.
 > -   All users and data are dummy/test entries.

@@ -1,5 +1,5 @@
 <h1 style="display: flex; align-items: center;">
-    <img src="./documentation/logo.png" alt="Logo" width="100"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/logo.png" alt="MTB Coaching Logo" width="100"/>
     <span>MTB-Coaching - Project Features</span>
 </h1>
 
@@ -8,24 +8,27 @@ A comprehensive breakdown of all the key features and functionalities built into
 ## 📑 Table of Contents
 
 -   [**Core Features & Functionalities**](#core-features--functionalities)
-    - [Adaptive Theme Toggle: Dark & Light Modes](#adaptive-theme-toggle-dark--light-modes)
-    - [Mobile Responsive Design](#mobile-responsive-design)
-    - [Custom Skeleton Loaders](#custom-skeleton-loaders)
-    - [Installable PWA Button](#installable-pwa-button)
-    - [Dynamic Content Suggestions (YouTube API Integration)](#dynamic-content-suggestions-youtube-api-integration)
-    - [Email System](#email-system)
-    - [Authentication](#authentication)
-        - [Register](#register)
-        - [Email Verification](#email-verification)
-        - [Login](#login)
-        - [Password Reset](#password-reset)
-            - [Forgot Password](#forgot-password)
-            - [Change or Set Password](#change-or-set-password)
-            - [Password Reset Email Notification](#password-reset-email-notification)
-        - [Google Authentication](#google-authentication)
-        - [Access Control](#access-control)
-            - [Private Routes](#private-routes)
-            - [Role Based Routes](#private-routes)
+
+    -   [Mobile Responsive Design](#mobile-responsive-design)
+    -   [Adaptive Theme Toggle: Dark & Light Modes](#adaptive-theme-toggle-dark--light-modes)
+    -   [Toast, Alert & Confirmation Notifications](#toast-alert--confirmation-notifications)
+    -   [Custom Cursor & Scrollbar](#custom-cursor--scrollbar)
+    -   [Custom Skeleton Loaders](#custom-skeleton-loaders)
+    -   [Installable PWA Button](#installable-pwa-button)
+    -   [Dynamic Content Suggestions (YouTube API Integration)](#dynamic-content-suggestions-youtube-api-integration)
+    -   [Email System](#email-system)
+    -   [Authentication](#authentication)
+        -   [Register](#register)
+        -   [Email Verification](#email-verification)
+        -   [Login](#login)
+        -   [Password Reset](#password-reset)
+            -   [Forgot Password](#forgot-password)
+            -   [Change or Set Password](#change-or-set-password)
+            -   [Password Reset Email Notification](#password-reset-email-notification)
+        -   [Google Authentication](#google-authentication)
+        -   [Access Control](#access-control)
+            -   [Private Routes](#private-routes)
+            -   [Role Based Routes](#private-routes)
 
     <br>
 
@@ -65,14 +68,24 @@ A comprehensive breakdown of all the key features and functionalities built into
 
 <br>
 
+### Mobile Responsive Design
+
+The entire website is built to be mobile-friendly and adapts seamlessly to smartphones.
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/responsive.png" width="850" alt="Responsive Home Page Preview"/>
+</p>
+
+<br>
+
 ### Adaptive Theme Toggle: Dark & Light Modes
 
 The application supports both dark and light themes, automatically adjusting based on the user's system preferences. Users can manually toggle the theme as well, ensuring a comfortable experience in any lighting condition.
 
-
 <p align="center">
-    <img src="documentation/footer.png" width="49%" alt="Light Mode"/>
-    <img src="documentation/footer.png" width="49%" alt="Dark Mode"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/dark_mode.png" width="49%" alt="Dark Theme Example"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/light_mode.png" width="49%" alt="Light Theme Example"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/responsive_theme_toggle.jpg" width="59%" alt="Responsive Theme Toggle UI"/>
 </p>
 
 > **Note:** <br>
@@ -81,11 +94,32 @@ The application supports both dark and light themes, automatically adjusting bas
 
 <br>
 
-### Mobile Responsive Design
+### Toast, Alert & Confirmation Notifications
 
-The entire website is built to be mobile-friendly and adapts seamlessly to smartphones.
+To provide quick and meaningful feedback to users, the application uses two libraries for notifications:
+
+* [`react-toastify`](https://fkhadra.github.io/react-toastify/introduction) — for non-blocking toast messages (e.g., success/error feedback).
+* [`SweetAlert2`](https://sweetalert2.github.io/) — for modal alerts (e.g., confirmation dialogs, warnings).
+
+These tools are used throughout the app to improve user interaction and enhance the overall UX.
+
+You’ll find examples of them in action in the following sections:
+
+* ✅ [Email Verification](#email-verification)
+* ✅ [Forgot Password](#forgot-password)
+* ✅ [Private Routes](#private-routes)
+* ✅ [Role Based Routes](#role-based-routes)
+* ✅ [Payment Methods](#payment-methods)
+
+
+<br>
+
+### Custom Cursor & Scrollbar
+
+Custom animated cursor and styled scrollbar for enhanced aesthetics (desktop only).
+
 <p align="center">
-    <img src="documentation/responsive.png" width="300" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/cursor_and_scrollbar.png" width="850" alt="Custom Cursor and Scrollbar Demo"/>
 </p>
 
 <br>
@@ -93,8 +127,10 @@ The entire website is built to be mobile-friendly and adapts seamlessly to smart
 ### Custom Skeleton Loaders
 
 The app features fully customized skeleton loaders tailored to the UI design, providing smooth and visually consistent loading placeholders throughout the application. These loaders improve perceived performance and maintain user engagement during data fetching on various pages and components.
+
 <p align="center">
-    <img src="documentation/responsive.png" width="300" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/skeleton-1.gif" width="850" alt="Skeleton Loader Example 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/skeleton-2.gif" width="850" alt="Skeleton Loader Example 2"/>
 </p>
 
 <br>
@@ -104,7 +140,7 @@ The app features fully customized skeleton loaders tailored to the UI design, pr
 A floating `🚴‍♂️ Install the App` button appears briefly at intervals and fades out to reduce distraction. Users can install the _Progressive Web App (PWA)_ to their home screen for a native-app-like experience.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Server/refs/heads/main/public/mail.png" width="850" alt="Banner"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/pwa.gif" width="850" alt="Installable PWA Button Demo"/>
 </p>
 
 > **Note:** <br>
@@ -118,7 +154,7 @@ A floating `🚴‍♂️ Install the App` button appears briefly at intervals a
 Videos are dynamically fetched from YouTube using the YouTube Data API based on the selected bike type. Logged-in users can personalize results via a dropdown. A responsive carousel layout ensures smooth viewing, with fallback videos shown if API data isn’t available..
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Server/refs/heads/main/public/mail.png" width="850" alt="Banner"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/yt_api.gif" width="850" alt="YouTube API Integration Demo"/>
 </p>
 
 > **Note:** <br>
@@ -132,7 +168,7 @@ Videos are dynamically fetched from YouTube using the YouTube Data API based on 
 This site supports transactional email notifications (such as enrollment confirmations and payment receipts) for users. This feature is implemented on the [_server_](https://github.com/Tanzeebul-Tamim/MTB-Coaching-Server) side.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Server/refs/heads/main/public/mail.png" width="850" alt="Banner"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/mail.png" width="850" alt="Transactional Email Example"/>
 </p>
 
 > **Note:** <br>
@@ -149,14 +185,14 @@ Users can register as instructors or students and log in using their registered 
 
 -   **_As Student:_**
     <p align="center">
-    <img src="documentation/registration-1.png" width="750"  alt="Student Registration"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/register-s.png" width="850"  alt="Student Registration Form"/>
     </p>
 
     <br>
 
 -   **_As Instructor:_**
     <p align="center">
-    <img src="documentation/registration-2.png" width="750"  alt="Student Registration"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/register-i.png" width="850"  alt="Instructor Registration Form"/>
     </p>
 
     <br>
@@ -164,17 +200,17 @@ Users can register as instructors or students and log in using their registered 
 -   Both students and instructors can register by providing their name, email, contact number, address, gender, password, and a profile image.
 -   Passwords must meet security requirements (minimum length, uppercase, digit, special character).
 -   After registration, a verification email is sent to activate the account.
-- Provides real-time password strength feedback, showing which criteria (uppercase, numbers, special characters, minimal length) are met. The confirm password field and submit button remain disabled until all requirements are fulfilled.
+-   Provides real-time password strength feedback, showing which criteria (uppercase, numbers, special characters, minimal length) are met. The confirm password field and submit button remain disabled until all requirements are fulfilled.
 
-    <br>
+      <br>
 
 #### Email Verification
 
 <p align="center">
-    <img src="documentation/email-verification.png" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/email_verification.png" width="850" alt="Email Verification UI"/>
 </p>
 <p align="center">
-    <img src="documentation/email-verification-mail.png" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/email_verification_mail.png" width="850" alt="Email Verification Mail Example"/>
 </p>
 
 -   After registration, a verification email is sent to the user's email address.
@@ -191,11 +227,11 @@ Users can register as instructors or students and log in using their registered 
 #### Login
 
 <p align="center">
-    <img src="documentation/login.png" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/login.png" width="850" alt="Login Page UI"/>
 </p>
 
 -   Captcha validation is required for login to enhance security.
--   Social login option **_(Google)_** is also available for quick access.
+-   Social login option (Google) is also available for quick access.
 -   Only users with verified emails can log in.
 
 <br>
@@ -207,7 +243,7 @@ Users can access their account either by resetting a forgotten password or setti
 ##### Forgot Password
 
 <p align="center">
-<img src="documentation/password-reset.png" width="750" alt="Login1"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/forgot_password.png" width="850" alt="Forgot Password UI"/>
 </p>
 
 -   Users can reset their password by clicking **_`Forgot password?`_** and entering their registered email.
@@ -222,12 +258,12 @@ Users can access their account either by resetting a forgotten password or setti
 ##### Change or Set Password
 
 <p align="center">
-<img src="documentation/change-password.png" width="750" alt="Login1"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/change_password.png" width="850" alt="Change or Set Password UI"/>
 </p>
 
 -   Users can also update their password directly from their user dashboard after logging in.
 -   Additionally, users who signed in via Google and don’t have a password yet can create one here. Upon submitting, they will receive an email link to securely set their new password.
-- Provides real-time password strength feedback, showing which criteria (uppercase, numbers, special characters, minimal length) are met. The confirm password field and submit button remain disabled until all requirements are fulfilled.
+-   Provides real-time password strength feedback, showing which criteria (uppercase, numbers, special characters, minimal length) are met. The confirm password field and submit button remain disabled until all requirements are fulfilled.
 
 <br>
 
@@ -236,7 +272,7 @@ Users can access their account either by resetting a forgotten password or setti
 Users receive this email with a secure link to reset or set their password after initiating either `Forgot password` or `Create a password` from their dashboard.
 
 <p align="center">
-    <img src="documentation/password-reset-mail.png" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/password_reset_mail.png" width="850" alt="Password Reset Email Example"/>
 </p>
 
 > **⚠️ Note:** <br>
@@ -250,7 +286,7 @@ Users receive this email with a secure link to reset or set their password after
 Users can sign-in/sign-up quickly and securely using their Google accounts. This option simplifies access without the need to create a separate password during registration.
 
 <p align="center">
-    <img src="documentation/gmail-authentication.png" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/google_authentication.png" width="850" alt="Google Authentication UI"/>
 </p>
 
 <br>
@@ -264,8 +300,10 @@ The application enforces strict access control with protected routes and role-ba
 `Dashboard` and `instructors' wall` are protected routes and only accessible to authenticated users (requires signing in). Unauthenticated users are automatically redirected to the login page.
 
 <p align="center">
-    <img src="documentation/private-route.gif" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/private-route.gif" width="850" alt="Private Route Redirect Demo"/>
 </p>
+
+_This GIF demonstrates an unauthenticated user being redirected to the login page when attempting to access a private route, and then being redirected back to the intended page after successful login._
 
 <br>
 
@@ -274,8 +312,10 @@ The application enforces strict access control with protected routes and role-ba
 Some routes are further restricted based on user roles (e.g., only instructors can access course creation pages, only students can access payment pages). Unauthorized users are redirected and shown an appropriate message.
 
 <p align="center">
-    <img src="documentation/role-route.gif" width="750" alt="Login1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/role-route.gif" width="850" alt="Role Based Route Redirect Demo"/>
 </p>
+
+_This GIF demonstrates an instructor being redirected to the home page when attempting to access a student-only route._
 
 <br>
 
@@ -290,8 +330,9 @@ Some routes are further restricted based on user roles (e.g., only instructors c
 ### Dynamic Home Page
 
 Includes a slider, typewriter animation, popular instructors/courses, and embedded YouTube bike hack videos.
+
 <p align="center">
-<img src="documentation/dynamic-home-page.png" width="650" alt="Home 1"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/dynamic_homepage.png" width="750" alt="Dynamic Home Page UI"/>
 </p>
 
 <br>
@@ -299,28 +340,32 @@ Includes a slider, typewriter animation, popular instructors/courses, and embedd
 ### Footer
 
 A meaningful footer is present on all pages except dashboard, including a mini map, ensuring consistency and providing essential links or information.
+
 <p align="center">
-<img src="documentation/footer.png" width="750" alt="Banner"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/footer.png" width="850" alt="Website Footer UI"/>
 </p>
 
 <br>
 
 ### Courses Page
 
-Users can search for courses, check seat status, view price details, see the instructor's name, and the course name. The page also allows users to book courses directly.
+Users can search for courses, check course & seat status, view price and all other details. The page also allows users to book courses directly.
 
 <p align="center">
-    <img src="documentation/courses.png" width="750" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/courses.png" width="850" alt="Courses Page UI"/>
+</p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/course-info-1.png" width="850" alt="Course Info Modal Example 1"/>
 </p>
 
 <br>
 
 ### Instructors' Page
 
-Users can search for instructors, view their name, email, and the number of courses they have taken. Users can also visit the instructors' individual walls for more detailed information.
+Users can search for instructors, view their name, email, and the number of courses they have taken. Users can also visit the [_instructors' individual walls_](#instructors-wall) for more detailed information.
 
 <p align="center">
-    <img src="documentation/instructors.png" width="750" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/instructors.png" width="850" alt="Instructors Page UI"/>
 </p>
 
 <br>
@@ -328,8 +373,12 @@ Users can search for instructors, view their name, email, and the number of cour
 ### Instructors' Wall
 
 Separate dedicated page for each instructor to showcase all the courses offered by them.
+
 <p align="center">
-<img src="documentation/instructors-wall.png" width="750" alt="Home 1"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/instructors_wall.png" width="850" alt="Instructor Wall UI"/>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/course-info-2.png" width="850" alt="Course Info Modal Example 2"/>
 </p>
 
 <br>
@@ -341,48 +390,59 @@ Separate dashboards for students and instructors. All dashboard pages featuring 
 #### Student Dashboard
 
 ##### Student Profile
-View and update personal information, including password change.
+
+View and update personal information, including profile photo and [_password change/creation_](#change-or-set-password).
+
 <p align="center">
-    <img src="documentation/user-profile-s.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/user-profile-s.png" width="850" alt="Student Profile UI"/>
 </p>
 <p align="center">
-    <img src="documentation/update-profile-s.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/update-profile.png" width="850" alt="Update Student Profile UI"/>
 </p>
 
 > **⚠️ Note:** <br>
 >
-> Users who signed up via Google and have not completed their additional profile information must update their profile here before they can purchase courses or make transactions.
+> - Users who signed up via Google and have not completed their additional profile information must update their profile here before they can purchase courses or make transactions.
+> - Updates may take a few moments to reflect on the user interface. If changes aren't visible yet, please try reloading the page.
 
 <br>
 
 ##### Booked Courses
-Shows unpaid courses with basic details and cancellation options.
+
+Shows unpaid courses with all details and cancellation options.
+
 <p align="center">
-    <img src="documentation/booked-courses.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/booked-courses.png" width="850" alt="Booked Courses Table UI"/>
 </p>
 
 <br>
 
 ##### Enrolled Courses
+
 Displays all paid and enrolled courses.
+
 <p align="center">
-    <img src="documentation/enrolled-courses.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/enrolled-courses.png" width="850" alt="Enrolled Courses Table UI"/>
 </p>
 
 <br>
 
 ##### Payment Methods
+
 Allows students to make secure payments via Stripe. You can try this feature using the [**_Test Payment Info_**](./README.md#-test-payment-info-stripe) provided in the README.
+
 <p align="center">
-    <img src="documentation/payment.gif" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/payment.gif" width="850" alt="Stripe Payment Demo"/>
 </p>
 
 <br>
 
 ##### Payment History
+
 Track transaction details, including status and timestamps.
+
 <p align="center">
-    <img src="documentation/payment-history.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/payment-history.png" width="850" alt="Payment History Table UI"/>
 </p>
 
 <br>
@@ -390,47 +450,61 @@ Track transaction details, including status and timestamps.
 #### Instructor Dashboard
 
 ##### Instructor Profile
-View and update personal information, including password change.
+
+View and update personal information, including profile photo, cover photo, quote and [_password change/creation_](#change-or-set-password).
+
 <p align="center">
-    <img src="documentation/user-profile-i.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/user-profile-i.png" width="850" alt="Instructor Profile UI"/>
 </p>
 <p align="center">
-    <img src="documentation/update-profile-i.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/update-profile-i.png" width="850" alt="Update Instructor Profile UI"/>
 </p>
+
+> **⚠️ Note:** <br>
+>
+> - Users who signed up via Google and have not completed their additional profile information must update their profile here before they can purchase courses or make transactions.
+> - Updates may take a few moments to reflect on the user interface. If changes aren't visible yet, please try reloading the page.
 
 <br>
 
 ##### My Wall (Instructors' public profile)
+
 <p align="center">
-    <img src="documentation/my-wall.png" width="850" alt="Instructor Wall"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/my-wall.png" width="850" alt="My Wall (Instructor Public Profile) UI"/>
 </p>
 
 -   Instructors can access their own public profile page directly from their dashboard.
--   The instructor's wall cover image can be updated from the profile page in the dashboard.
+-   The instructor's wall cover image can be updated from the [_profile page_](#instructor-profile) in the dashboard.
 -   Notice that instructors don't have a "Book Course" button on their own wall, unlike what students see on instructor profiles.
 
 <br>
 
 ##### Add a Course
+
 A detailed form to create and publish new courses.
+
 <p align="center">
-    <img src="documentation/add-a-course.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/add-a-course.png" width="850" alt="Add a Course Form UI"/>
 </p>
 
 <br>
 
 ##### My Offered Courses
+
 Lists all courses created by the instructor.
+
 <p align="center">
-    <img src="documentation/my-courses.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/my-courses.png" width="850" alt="My Offered Courses Table UI"/>
 </p>
 
 <br>
 
 ##### My Students
+
 View and search all students enrolled in a specific course offered by the instructor.
+
 <p align="center">
-    <img src="documentation/my-students.png" width="850" alt="Home 1"/>
+    <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/my-students.png" width="850" alt="My Students Table UI"/>
 </p>
 
 Instantly filter students using the integrated search feature by:
@@ -448,8 +522,9 @@ A collection of auxiliary pages like 404, About Us, Legal Info, and others that 
 ##### 404 Not Found
 
 A custom _404 Not Found_ page with an added GIF, enhancing the user experience in case of page not found errors.
+
 <p align="center">
-<img src="documentation/not-found-404.gif" width="850" alt="Banner"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/not-found-404.gif" width="850" alt="404 Not Found Page"/>
 </p>
 
 <br>
@@ -457,8 +532,9 @@ A custom _404 Not Found_ page with an added GIF, enhancing the user experience i
 ##### No Internet
 
 A custom _No Internet_ page with a playful offline message and visual cue, guiding users to reconnect and resume their journey smoothly.
+
 <p align="center">
-<img src="documentation/not-found-404.gif" width="850" alt="Banner"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/no-internet.png" width="850" alt="No Internet Page UI"/>
 </p>
 
 <br>
@@ -466,8 +542,9 @@ A custom _No Internet_ page with a playful offline message and visual cue, guidi
 ##### About Us
 
 This page provides information about the website's purpose and other relevant details, helping users understand the mission and vision of the platform.
+
 <p align="center">
-<img src="documentation/about-us.png" width="750" alt="Home 1"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/about-us.png" width="850" alt="About Us Page UI"/>
 </p>
 
 <br>
@@ -477,7 +554,7 @@ This page provides information about the website's purpose and other relevant de
 This page provides answers to common questions and offers support resources to help users navigate and make the most of the platform. It is designed with clear sections for easy access and quick guidance.
 
 <p align="center">  
-  <img src="documentation/legal.png" width="750" alt="FAQ & Support Page"/>  
+  <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/faq.png" width="850" alt="FAQ & Support Page UI"/>  
 </p>
 
 -   **Getting Started:** Guidance for new users on account creation, navigating features, and using tooltips for help.
@@ -490,8 +567,9 @@ This page provides answers to common questions and offers support resources to h
 ##### Legal Information
 
 This page presents all legal information in a visually appealing, organized, and accessible format. Each section is directly accessible via anchor links from the site footer for user convenience.
+
 <p align="center">
-<img src="documentation/legal.png" width="750" alt="Legal Page"/>
+<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/legal.png" width="850" alt="Legal Information Page UI"/>
 </p>
 
 -   **Privacy Policy:** Clear explanation of how user data (e.g., Google login) is handled and protected. No tracking or data sharing involved.
