@@ -12,6 +12,7 @@ A comprehensive breakdown of all the key features and functionalities built into
     -   [Mobile Responsive Design](#mobile-responsive-design)
     -   [Adaptive Theme Toggle: Dark & Light Modes](#adaptive-theme-toggle-dark--light-modes)
     -   [Toast, Alert & Confirmation Notifications](#toast-alert--confirmation-notifications)
+    -   [Interactive Footer & Mini-Map](#interactive-footer--mini-map)
     -   [Custom Cursor & Scrollbar](#custom-cursor--scrollbar)
     -   [Custom Skeleton Loaders](#custom-skeleton-loaders)
     -   [Installable PWA Button](#installable-pwa-button)
@@ -34,7 +35,6 @@ A comprehensive breakdown of all the key features and functionalities built into
 
 -   [**Page Overviews & UI Walkthrough**](#page-overviews--ui-walkthrough)
     -   [Dynamic Home Page](#dynamic-home-page)
-    -   [Footer](#footer)
     -   [Courses Page](#courses-page)
     -   [Instructors Page](#instructors-page)
     -   [Instructor's Wall](#instructors-wall)
@@ -111,6 +111,23 @@ You’ll find examples of them in action in the following sections:
 * ✅ [Role Based Routes](#role-based-routes)
 * ✅ [Payment Methods](#payment-methods)
 
+
+<br>
+
+### Interactive Footer & Mini-Map
+
+A consistent, meaningful footer is present on all pages except the dashboard, providing essential links, navigation, and contact information for easy access. The footer features:
+
+<p align="center"> <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/footer.gif" width="850" alt="Website Footer UI with Interactive Map and Navigation"/> </p>
+
+- **Interactive Mini-Map:** Powered by Leaflet, the embedded map allows users to view real locations, zoom, and drag for a dynamic, real-world experience directly from the footer.
+- **Quick Navigation Links:** Anchor links to key sections of the FAQ and Legal pages (such as Privacy Policy, Terms of Service, Data Deletion, Cookie Notice, Getting Started, Troubleshooting, Account & Data, and Contact Support), as well as direct links to the full FAQ and Legal pages themselves.
+- **Contact & Location Details:** Physical address, phone number, and email for direct communication, plus opening hours for user convenience.
+- **Social Media Links:** Prominent icons link to the project's social profiles (X/Twitter, YouTube, Facebook), encouraging community engagement.
+- **Branding & Copyright:** Displays the company logo, a brief description, and an all rights reserved message, including the current year and developer credit.
+- **Educational Disclaimer:** Clearly states the site is for educational purposes only and not affiliated with official organizations.
+
+This comprehensive footer enhances professionalism, usability, and accessibility by offering real-time location context, seamless navigation, and clear communication channels at the bottom of every page.
 
 <br>
 
@@ -333,16 +350,6 @@ Includes a slider, typewriter animation, popular instructors/courses, and embedd
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/dynamic_homepage.png" width="750" alt="Dynamic Home Page UI"/>
-</p>
-
-<br>
-
-### Footer
-
-A meaningful footer is present on all pages except dashboard, including a mini map, ensuring consistency and providing essential links or information.
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/footer.png" width="850" alt="Website Footer UI"/>
 </p>
 
 <br>
