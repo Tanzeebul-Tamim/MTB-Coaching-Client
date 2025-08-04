@@ -83,7 +83,7 @@ const Login = () => {
                                 name="email"
                                 required
                                 placeholder="Enter your email"
-                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                         </div>
                         <div className="z-[10] relative form-control">
@@ -100,7 +100,7 @@ const Login = () => {
                                 name="password"
                                 required
                                 placeholder="Enter your password"
-                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <div
                                 className="custom-cursor-pointer"
@@ -156,7 +156,7 @@ const Login = () => {
                                 ref={captchaRef}
                                 name="captcha"
                                 placeholder="Enter the above text"
-                                className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <label className="label custom-cursor-default z-[10]">
                                 <Link

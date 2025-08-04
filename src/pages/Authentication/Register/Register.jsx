@@ -109,7 +109,7 @@ const Register = () => {
                                     value={formFields.name}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your full name"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
 
@@ -126,7 +126,7 @@ const Register = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
                         </div>
@@ -145,7 +145,7 @@ const Register = () => {
                                     value={formFields.contact}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your contact no"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
 
@@ -162,7 +162,7 @@ const Register = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
                         </div>
@@ -201,7 +201,7 @@ const Register = () => {
                                         name="gender"
                                         className={`select font-light w-full max-w-xs ${
                                             !selectedGender &&
-                                            "text-gray-600 dark:text-gray-400"
+                                            "text-gray-600 dark:text-gray-400 focus:outline-secondary"
                                         } bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm`}
                                         value={selectedGender}
                                     >
@@ -251,7 +251,7 @@ const Register = () => {
                                         setIsValid(valid);
                                     }}
                                     placeholder="Enter your password"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"
@@ -282,7 +282,7 @@ const Register = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"

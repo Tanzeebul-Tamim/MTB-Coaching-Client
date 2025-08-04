@@ -112,7 +112,7 @@ const InstructorRegister = () => {
                                     value={formFields.name}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your full name"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
 
@@ -129,7 +129,7 @@ const InstructorRegister = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const InstructorRegister = () => {
                                     value={formFields.contact}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your contact no"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
 
@@ -165,7 +165,7 @@ const InstructorRegister = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                             </div>
                         </div>
@@ -205,7 +205,7 @@ const InstructorRegister = () => {
                                         className={`input input-bordered select font-light ${
                                             !selectedGender &&
                                             "text-gray-600 dark:text-gray-400"
-                                        } bg-stone-300 dark:bg-stone-800 border-0  w-full max-w-xs text-sm`}
+                                        } bg-stone-300 dark:bg-stone-800 border-0  w-full max-w-xs text-sm focus:outline-secondary`}
                                         value={selectedGender}
                                     >
                                         <option hidden>
@@ -254,7 +254,7 @@ const InstructorRegister = () => {
                                         setIsValid(valid);
                                     }}
                                     placeholder="Enter your password"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered w-full text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"
@@ -285,7 +285,7 @@ const InstructorRegister = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
+                                    className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"
