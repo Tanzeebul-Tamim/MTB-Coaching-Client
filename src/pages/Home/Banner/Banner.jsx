@@ -4,12 +4,13 @@ import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import { Fade } from "react-awesome-reveal";
+import Buttons from "./Buttons";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Banner = () => {
     const [duration, delay, damping] = [2000, 500, 0.3];
-    const interval  = duration + 800;
+    const interval = duration + 800;
 
     return (
         <AutoplaySlider
@@ -35,7 +36,7 @@ const Banner = () => {
                     <Fade
                         delay={delay}
                         cascade
-                        damping={damping}                        
+                        damping={damping}
                         duration={duration}
                     >
                         <div>
@@ -56,6 +57,9 @@ const Banner = () => {
                             </span>{" "}
                             <span className="text-white">bike courses</span>
                         </div>
+                    </Fade>
+                    <Fade delay={delay} damping={damping} duration={duration}>
+                        <Buttons />
                     </Fade>
                 </div>
 
@@ -82,7 +86,7 @@ const Banner = () => {
                     <Fade
                         delay={delay}
                         cascade
-                        damping={damping}                        
+                        damping={damping}
                         duration={duration}
                     >
                         <div>
@@ -103,6 +107,9 @@ const Banner = () => {
                                 Bike Training
                             </span>
                         </div>
+                    </Fade>
+                    <Fade delay={delay} damping={damping} duration={duration}>
+                        <Buttons alignment="right" />
                     </Fade>
                 </div>
 
@@ -129,7 +136,7 @@ const Banner = () => {
                     <Fade
                         delay={delay}
                         cascade
-                        damping={damping}                        
+                        damping={damping}
                         duration={duration}
                     >
                         <div>
@@ -150,6 +157,9 @@ const Banner = () => {
                             </span>{" "}
                             <span className="text-white">Bike instructors</span>
                         </div>
+                    </Fade>
+                    <Fade delay={delay} damping={damping} duration={duration}>
+                        <Buttons />
                     </Fade>
                 </div>
 
@@ -176,7 +186,7 @@ const Banner = () => {
                     <Fade
                         delay={delay}
                         cascade
-                        damping={damping}                        
+                        damping={damping}
                         duration={duration}
                     >
                         <div>
@@ -197,6 +207,9 @@ const Banner = () => {
                             </span>{" "}
                             <span className="text-white">Your passion</span>
                         </div>
+                    </Fade>
+                    <Fade delay={delay} damping={damping} duration={duration}>
+                        <Buttons alignment="right" />
                     </Fade>
                 </div>
 

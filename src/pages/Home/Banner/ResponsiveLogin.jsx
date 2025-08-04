@@ -1,6 +1,4 @@
-import { SlNote } from "react-icons/sl";
-import { Link } from "react-router-dom";
-import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import useAuth from "../../../hooks/useAuth";
 
 const ResponsiveLogin = ({ alignment }) => {
@@ -14,7 +12,7 @@ const ResponsiveLogin = ({ alignment }) => {
 
     return (
         <>
-            {user ? (
+            {user && (
                 <div
                     className={`lg:hidden bottom-0 flex absolute z-10 ${
                         alignment === "right" && "right-0"
@@ -26,33 +24,9 @@ const ResponsiveLogin = ({ alignment }) => {
                     >
                         <div className="flex tracking-[2px] items-center gap-2">
                             <FiLogOut className="text-xl" />
-                            <span className="text-md text">Logout</span>
+                            <span className="text-md text">Sign Out</span>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div
-                    className={`lg:hidden bottom-0 flex absolute z-10 ${
-                        alignment == "right" && "right-0"
-                    }`}
-                >
-                    <Link
-                        to="/login"
-                        className="btn btn-ghost font-light text-primary"
-                    >
-                        <div className="flex tracking-[2px] items-center gap-2">
-                            <FiLogIn className="text-xl" />
-                            <span className="text-md">Login</span>
-                        </div>
-                    </Link>
-                    <Link to="/register" className="btn btn-ghost font-light text-base-content">
-                        <div className="flex tracking-[2px] items-center gap-2">
-                            <SlNote className="text-md" />
-                            <span className="text-md">
-                                Register
-                            </span>
-                        </div>
-                    </Link>
                 </div>
             )}
         </>
