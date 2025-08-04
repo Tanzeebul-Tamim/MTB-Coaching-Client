@@ -3,6 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import LeafletMap from "./LeafletMap/LeafletMap";
 import scrollWithOffset from "../../../routes/utils/Scroll/ScrollWithOffset";
 import useScreenSize from "../../../hooks/useScreenSize";
+import SendMessage from "./SendMessage/SendMessage";
 
 const Footer = () => {
     const location = useLocation();
@@ -52,7 +53,7 @@ const Footer = () => {
                         Contact Us
                     </span>
                     <span className="text-sm description">
-                        Duifkruid 84, 4007 SZ Tiel
+                        Autoweg, 3911 TL Rhenen,
                         <br />
                         Netherlands
                     </span>
@@ -71,6 +72,7 @@ const Footer = () => {
                         </a>
                     </span>
                 </div>
+                <SendMessage bgLocations={bgLocations} />
                 <div>
                     <RouterLink
                         to="/support"
@@ -182,9 +184,15 @@ const Footer = () => {
                         institutions.
                     </h4>
                     <h4 className="lg:text-md lg:tracking-widest">
-                        &copy; 2023-{new Date().getFullYear()} MTB Coaching Network -
-                        All Rights Reserved
-                        {isSmallDevice ? <><br/></> : ` - `}
+                        &copy; 2023-{new Date().getFullYear()} MTB Coaching
+                        Network - All Rights Reserved
+                        {isSmallDevice ? (
+                            <>
+                                <br />
+                            </>
+                        ) : (
+                            ` - `
+                        )}
                         Designed & Developed by
                         <a
                             href="https://github.com/Tanzeebul-Tamim"
