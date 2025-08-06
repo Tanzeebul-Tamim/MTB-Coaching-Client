@@ -1,16 +1,20 @@
-import { AiFillHome } from "react-icons/ai";
-import { BsFillInfoCircleFill } from "react-icons/bs";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ActiveLink2 from "../../ui/ActiveLink2";
-import { RiArrowRightDoubleFill } from "react-icons/ri";
 import SklSideNav from "../../skeletons/SklSideNav";
 import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
 import useSideNav from "./useSideNav";
 
+import { AiFillHome } from "react-icons/ai";
+import { BsFillInfoCircleFill, BsInfoCircle } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { IoSchoolSharp } from "react-icons/io5";
+import { RiArrowRightDoubleFill } from "react-icons/ri";
+import { MdOutlinePostAdd, MdOutlineMessage } from "react-icons/md";
+import { GoStack } from "react-icons/go";
+
 const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
-    const {
+    let {
         title,
         isSmallDevice,
         paidBookings,
@@ -93,17 +97,22 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                 <ThemeToggle />
 
                 <div className="divider"></div>
+                {!loading && !userLoading && (
+                    <ActiveLink2
+                        setSideNavOpen={setSideNavOpen}
+                        to="/dashboard/profile"
+                    >
+                        <span className="flex items-center gap-3">
+                            <BsInfoCircle className="text-xl" />{" "}
+                            <span>My Profile</span>
+                        </span>
+                    </ActiveLink2>
+                )}
                 {(userDetails?.role == "Student" ||
                     typeof userDetails?.role === "undefined") &&
                     !loading &&
                     !userLoading && (
                         <>
-                            <ActiveLink2
-                                setSideNavOpen={setSideNavOpen}
-                                to="/dashboard/profile"
-                            >
-                                My Profile
-                            </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/selected-classes"
@@ -151,27 +160,30 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                         <>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
-                                to="/dashboard/profile"
-                            >
-                                My Profile
-                            </ActiveLink2>
-                            <ActiveLink2
-                                setSideNavOpen={setSideNavOpen}
                                 to={`/instructors/${userDetails?._id}`}
                             >
-                                My Wall
+                                <span className="flex items-center gap-3">
+                                    <CgProfile className="text-xl" />{" "}
+                                    <span>My Wall</span>
+                                </span>
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/add-class"
                             >
-                                Add a Course
+                                <span className="flex items-center gap-3">
+                                    <MdOutlinePostAdd className="text-xl" />{" "}
+                                    <span>Add a Course</span>
+                                </span>
                             </ActiveLink2>
                             <ActiveLink2
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/my-classes"
                             >
-                                <span>My Courses </span>
+                                <span className="flex items-center gap-3">
+                                    <GoStack className="text-xl" />{" "}
+                                    <span>My Courses</span>
+                                </span>
                                 {userDetails?.classes?.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
                                         {userDetails?.classes?.length}
@@ -180,7 +192,19 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                             </ActiveLink2>
                         </>
                     )}
-                {loading || (userLoading && <SklSideNav />)}
+                {loading || userLoading ? (
+                    <SklSideNav />
+                ) : (
+                    <ActiveLink2
+                        setSideNavOpen={setSideNavOpen}
+                        to="/dashboard/prfile"
+                    >
+                        <span className="flex items-center gap-3">
+                            <MdOutlineMessage className="text-xl" />{" "}
+                            <span>Sent Messages</span>
+                        </span>
+                    </ActiveLink2>
+                )}
             </div>
         </div>
     );

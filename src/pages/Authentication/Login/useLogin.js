@@ -2,14 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
-import { Flip, toast, Zoom } from "react-toastify";
-import { loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import { Bounce, Flip, toast, Zoom } from "react-toastify";
+import { loadCaptchaEngine, validateCaptcha } from "./captcha";
 import { getUserData, saveUserViaSocial } from "../../../api/authApi";
+import { light, dark } from "../../../styles/colors.json";
+import useDarkTheme from "../../../hooks/useDarkTheme";
 
 const useLogin = () => {
+    const captchaLength = 6;
     const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
         useAuth();
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+    const [captchaChars, setCaptchaChars] = useState(
+        Array(captchaLength).fill("")
+    );
+    const [captchaValue, setCaptchaValue] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     const getPrevLocation = localStorage.getItem("location");
@@ -21,38 +29,44 @@ const useLogin = () => {
     const customId = "unauthorized";
     useTitle("| Login");
 
+    const isDarkTheme = useDarkTheme();
+    const [fontColor, setFontColor] = useState("");
+    const [bgColor, setBgColor] = useState("");
+    const [reload, setReload] = useState(true);
+
     const config = {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
-        transition: Flip,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+        transition: Flip,
     };
+
+    useEffect(() => {
+        setFontColor(isDarkTheme ? dark.baseContent : light.baseContent);
+        setBgColor(isDarkTheme ? dark.base300 : light.base300);
+    }, [isDarkTheme]);
+
+    useEffect(() => {
+        loadCaptchaEngine(captchaLength, bgColor, fontColor);
+    }, [bgColor, fontColor, reload]);
 
     useEffect(() => {
         if (location.state && location.state.showToast) {
             toast.warning(
                 "To view detailed information, you have to login first",
                 {
-                    position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
+                    ...config,
+                    transition: Bounce,
                     toastId: customId,
-                    progress: undefined,
                 }
             );
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.state]);
-
-    useEffect(() => {
-        loadCaptchaEnginge(6);
-    }, []);
 
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -106,30 +120,56 @@ const useLogin = () => {
             })
             .catch((error) => {
                 console.error(error);
-                if (error.code === "auth/wrong-password")
+                if (error.code === "auth/wrong-password") {
                     setError("Incorrect password!");
-                else if (error.code === "auth/user-not-found")
+                    form.password.value = "";
+                } else if (error.code === "auth/user-not-found") {
                     setError("User not found! Enter a verified email.");
-                else if (error.code === "auth/too-many-requests")
+                    form.email.value = "";
+                    form.password.value = "";
+                } else if (error.code === "auth/too-many-requests") {
                     setError(
                         "Too many unsuccessful attempts! Try again later."
                     );
+                    form.reset();
+                }
+                setDisabled(true);
             })
             .finally(() => setLoading(false));
     };
 
-    const handleFieldChange = () => {
-        const emailValue = emailRef.current.value;
+    const handleFieldChange = (captcha_value) => {
+        captcha_value =
+            typeof captcha_value == "string" ? captcha_value : captchaValue;
+        const emailValue = emailRef.current.value.trim();
         const passValue = passRef.current.value;
-        const captchaValue = captchaRef.current.value;
 
-        if (!emailValue || !passValue || !captchaValue) setDisabled(true);
-        else {
-            if (captchaValue.length === 6) {
-                if (validateCaptcha(captchaValue)) setDisabled(false);
-                else setDisabled(true);
-            } else setDisabled(true);
+        if (!validateCaptcha(captcha_value, setSuccess, setError)) {
+            setDisabled(true);
+            return;
         }
+
+        if (!emailValue || !passValue || !captcha_value) {
+            setDisabled(true);
+            return;
+        }
+
+        if (captcha_value.length !== captchaLength) {
+            setDisabled(true);
+            return;
+        }
+
+        setDisabled(false);
+        setError("");
+    };
+
+    const handleCaptchaChange = (idx, value) => {
+        const updated = [...captchaChars];
+        updated[idx] = value;
+        setCaptchaChars(updated);
+        const joined = updated.join("");
+        handleFieldChange(joined);
+        setCaptchaValue(joined);
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -147,14 +187,10 @@ const useLogin = () => {
                 toast.success(
                     `A password reset link has been sent to ${email}`,
                     {
+                        ...config,
                         position: "top-left",
                         autoClose: 1500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
                         transition: Zoom,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
                     }
                 );
                 event.target.newPassword.value = "";
@@ -173,9 +209,75 @@ const useLogin = () => {
             .finally(() => setLoading(false));
     };
 
+    const onChange = (e, idx) => {
+        handleCaptchaChange(idx, e.target.value);
+        if (e.target.value && idx < captchaLength - 1) {
+            const next = document.getElementById(`captcha-char-${idx + 1}`);
+            if (next) next.focus();
+        }
+    };
+
+    const onKeyDown = (e, idx, captchaChars) => {
+        // Backspace/delete: move to previous field if empty
+        if (e.key === "Backspace" && !e.target.value) {
+            captchaChars[idx] = "";
+            const prev = document.getElementById(`captcha-char-${idx - 1}`);
+            if (prev) prev.focus();
+        } else if (e.key === "Delete") {
+            e.target.value = "";
+            captchaChars[idx] = "";
+            const prev = document.getElementById(`captcha-char-${idx - 1}`);
+            if (prev) prev.focus();
+        }
+
+        // ArrowRight: move to next field
+        if (
+            (e.key === "ArrowRight" || e.key === "Right") &&
+            idx < captchaLength - 1
+        ) {
+            const next = document.getElementById(`captcha-char-${idx + 1}`);
+            if (next) next.focus();
+        }
+
+        // ArrowLeft: move to previous field
+        if ((e.key === "ArrowLeft" || e.key === "Left") && idx > 0) {
+            const prev = document.getElementById(`captcha-char-${idx - 1}`);
+            if (prev) prev.focus();
+        }
+
+        if (e.key === "Home" && idx > 0) {
+            const prev = document.getElementById(`captcha-char-${0}`);
+            if (prev) prev.focus();
+        }
+
+        if (e.key === "End" && idx < captchaLength - 1) {
+            const prev = document.getElementById(
+                `captcha-char-${captchaLength - 1}`
+            );
+            if (prev) prev.focus();
+        }
+    };
+
+    const reloadCaptcha = () => {
+        setReload((reload) => !reload);
+        setCaptchaChars(Array(captchaLength).fill(""));
+        // ! Password change triggers captcha error
+
+        if (error && error.split(" ").includes("Captcha")) {
+            setError("");
+        }
+
+        if (success && success.split(" ").includes("Captcha")) {
+            setSuccess("");
+        }
+    };
+
     return {
         loading,
         error,
+        setError,
+        success,
+        setSuccess,
         disabled,
         handleGoogleSignIn,
         handleLogin,
@@ -186,6 +288,12 @@ const useLogin = () => {
         showPassword,
         captchaRef,
         passRef,
+        captchaLength,
+        captchaChars,
+        setCaptchaChars,
+        onChange,
+        onKeyDown,
+        reloadCaptcha,
     };
 };
 

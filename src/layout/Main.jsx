@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import ScrollToTop from "../routes/utils/Scroll/ScrollToTop";
 import RouteTracker from "../routes/utils/RouteTracker/RouteTracker";
 import Navbar from "../components/layout/Navbar/Navbar";
@@ -9,6 +9,12 @@ import NoInternetPage from "../components/pages/NoInternetPage";
 
 const Main = () => {
     const { isOnline } = useNetworkStatus();
+    const location = useLocation();
+    const authenticationPage = [
+        "/login",
+        "/register",
+        "/instructor-register",
+    ].includes(location.pathname);
 
     if (!isOnline) {
         return <NoInternetPage />;
@@ -20,7 +26,7 @@ const Main = () => {
             <ScrollToTop />
             <Navbar />
             <Outlet />
-            <Footer />
+            {!authenticationPage && <Footer />}
             <InstallPWAButton />
         </div>
     );

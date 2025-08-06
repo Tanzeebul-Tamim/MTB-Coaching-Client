@@ -6,6 +6,7 @@ import useInstructorRegister from "./useInstructorRegister";
 import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import { passStrength } from "../../../styles/colors.json";
+import { VscClearAll } from "react-icons/vsc";
 
 const InstructorRegister = () => {
     const {
@@ -29,10 +30,23 @@ const InstructorRegister = () => {
         showPassword2,
         isValid,
         setIsValid,
+        imageRef,
+        clearForm,
     } = useInstructorRegister();
 
     const [status, setStatus] = useState("");
     const [colorCode, setColorCode] = useState("");
+
+    const ClearFormBtn = () => (
+        <button
+            onClick={() => clearForm(setStatus)}
+            type="reset"
+            className="text-xs font-bold text-stone-900 bg-secondary rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+        >
+            <span>Clear Form</span>
+            <VscClearAll />
+        </button>
+    );
 
     return (
         <div
@@ -61,7 +75,7 @@ const InstructorRegister = () => {
                             <span className="text-accent">
                                 Not an instructor?{" "}
                             </span>
-                            <span className="text-secondary underline">
+                            <span className="text-primary underline">
                                 Register as a student
                             </span>
                         </Link>
@@ -89,21 +103,22 @@ const InstructorRegister = () => {
                             className="description text-sm link link-hover"
                         >
                             Not an instructor?{" "}
-                            <span className="text-secondary">
+                            <strong className="text-primary">
                                 Register as a student
-                            </span>
+                            </strong>
                         </Link>
                     </div>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[500px] shadow-2xl bg-base-100">
                     <div className="card-body p-4 md:p-6 lg:p-8">
-                        {/* Responsive input fields: stack vertically on mobile, horizontally on larger screens */}
+                        {/* Responsive input fields */}
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Name
                                     </span>
+                                    {isSmallDevice && <ClearFormBtn />}
                                 </label>
                                 <input
                                     type="text"
@@ -121,6 +136,7 @@ const InstructorRegister = () => {
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Email
                                     </span>
+                                    {!isSmallDevice && <ClearFormBtn />}
                                 </label>
                                 <input
                                     type="email"
@@ -179,6 +195,7 @@ const InstructorRegister = () => {
                                 </label>
                                 <label>
                                     <input
+                                        ref={imageRef}
                                         onChange={handleFieldChange}
                                         type="file"
                                         name="image"
@@ -325,6 +342,10 @@ const InstructorRegister = () => {
                                     Login now
                                 </span>
                             </Link>
+                            <div className="label-text-alt custom-cursor-default">
+                                <span className="text-primary">NB:</span> All
+                                fields are required
+                            </div>
                         </label>
 
                         <p
@@ -342,7 +363,7 @@ const InstructorRegister = () => {
                                     {status}
                                 </span>
                             </span>
-                            <span>
+                            <span className="text-xs lg:text-sm description">
                                 {error ? error : success ? success : ""}
                             </span>
                         </p>

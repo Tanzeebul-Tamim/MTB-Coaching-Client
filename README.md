@@ -371,7 +371,7 @@ Use the following **Visa** test card during checkout:
 
 
 > [!IMPORTANT]
-> **Please avoid submitting any sensitive personal information or inappropriate content (e.g., images, names, course titles).**
+> **Please avoid submitting any sensitive personal information or inappropriate content (e.g., images, names, course titles, messages).**
 
 <br>
 

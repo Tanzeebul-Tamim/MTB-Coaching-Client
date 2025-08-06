@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
@@ -21,10 +21,11 @@ const useInstructorRegister = () => {
         googleSignIn,
         emailVerification,
     } = useAuth();
+    const imageRef = useRef();
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
-    const [formFields, setFormFields] = useState({
+    const fields = {
         name: "",
         email: "",
         contact: "",
@@ -32,7 +33,8 @@ const useInstructorRegister = () => {
         password: "",
         confirmPassword: "",
         image: null,
-    });
+    };
+    const [formFields, setFormFields] = useState(fields);
 
     useEffect(() => {
         if (!isValid) {
@@ -55,7 +57,7 @@ const useInstructorRegister = () => {
         setSelectedGender(selectGender);
     };
 
-    const isFormValid =
+    let isFormValid =
         formFields.name &&
         formFields.email &&
         formFields.contact &&
@@ -197,6 +199,10 @@ const useInstructorRegister = () => {
                                                         "This email is already in use"
                                                     );
                                                     setSuccess("");
+                                                    setFormFields({
+                                                        ...formFields,
+                                                        email: "",
+                                                    });
                                                 }
                                                 setLoading(false);
                                             });
@@ -306,6 +312,17 @@ const useInstructorRegister = () => {
         }
     };
 
+    // Clear the form
+    const clearForm = (setStatus) => {
+        imageRef.current.value = "";
+        isFormValid = false;
+        setIsValid(false);
+        setFormFields(fields);
+        setSelectedGender("");
+        setStatus("");
+        setImageButtonText("Upload Image");
+    };
+
     return {
         success,
         setSuccess,
@@ -327,6 +344,8 @@ const useInstructorRegister = () => {
         showPassword2,
         isValid,
         setIsValid,
+        imageRef,
+        clearForm
     };
 };
 

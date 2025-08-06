@@ -5,6 +5,7 @@ const SklSideNav = () => {
             <div className="h-6 bg-accent rounded w-1/2"></div>
             <div className="h-6 bg-accent rounded w-1/2"></div>
             <div className="h-6 bg-accent rounded w-1/2"></div>
+            <div className="h-6 bg-accent rounded w-1/2"></div>
         </div>
     );
 };
