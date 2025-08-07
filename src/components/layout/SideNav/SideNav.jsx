@@ -8,9 +8,14 @@ import { AiFillHome } from "react-icons/ai";
 import { BsFillInfoCircleFill, BsInfoCircle } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import { IoSchoolSharp } from "react-icons/io5";
+import { IoSchoolSharp, IoCartOutline } from "react-icons/io5";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
-import { MdOutlinePostAdd, MdOutlineMessage } from "react-icons/md";
+import {
+    MdOutlinePostAdd,
+    MdOutlineMessage,
+    MdOutlineInventory2,
+    MdOutlinePayments,
+} from "react-icons/md";
 import { GoStack } from "react-icons/go";
 
 const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
@@ -69,7 +74,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
             <h1 className="title mb-10 uppercase text-center text-2xl text-accent">
                 {title} Dashboard
             </h1>
-            <div className="flex flex-col lg:gap-5 gap-3">
+            <div className="flex flex-col lg:gap-4 gap-3">
                 <Link
                     to="/"
                     className="font-bold flex gap-3 items-center tracking-widest description lg:text-lg text-base"
@@ -102,8 +107,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                         setSideNavOpen={setSideNavOpen}
                         to="/dashboard/profile"
                     >
-                        <span className="flex items-center gap-3">
-                            <BsInfoCircle className="text-xl" />{" "}
+                        <span className="flex items-center gap-3 lg:text-base text-sm">
+                            <BsInfoCircle className="lg:text-xl text-lg" />{" "}
                             <span>My Profile</span>
                         </span>
                     </ActiveLink2>
@@ -117,7 +122,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/selected-classes"
                             >
-                                <span>
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <IoCartOutline className="lg:text-xl text-lg" />
                                     {!isSmallDevice && "My"} Booked Courses{" "}
                                 </span>
                                 {booking.length > 0 && (
@@ -130,8 +136,9 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/enrolled-classes"
                             >
-                                <span>
-                                    {!isSmallDevice && "My"} Enrolled Courses{" "}
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <MdOutlineInventory2 className="lg:text-xl text-lg" />{" "}
+                                    {!isSmallDevice && "My"} Enrolled Courses
                                 </span>
                                 {paidBookings.length > 0 && (
                                     <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
@@ -143,7 +150,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/payment"
                             >
-                                <span>
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <MdOutlinePayments className="lg:text-xl text-lg" />
                                     {!isSmallDevice && "My"} Payment History{" "}
                                 </span>
                                 {paidBookings.length > 0 && (
@@ -162,8 +170,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to={`/instructors/${userDetails?._id}`}
                             >
-                                <span className="flex items-center gap-3">
-                                    <CgProfile className="text-xl" />{" "}
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <CgProfile className="lg:text-xl text-lg" />{" "}
                                     <span>My Wall</span>
                                 </span>
                             </ActiveLink2>
@@ -171,8 +179,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/add-class"
                             >
-                                <span className="flex items-center gap-3">
-                                    <MdOutlinePostAdd className="text-xl" />{" "}
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <MdOutlinePostAdd className="lg:text-xl text-lg" />{" "}
                                     <span>Add a Course</span>
                                 </span>
                             </ActiveLink2>
@@ -180,8 +188,8 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                                 setSideNavOpen={setSideNavOpen}
                                 to="/dashboard/my-classes"
                             >
-                                <span className="flex items-center gap-3">
-                                    <GoStack className="text-xl" />{" "}
+                                <span className="flex items-center gap-3 lg:text-base text-sm">
+                                    <GoStack className="lg:text-xl text-lg" />{" "}
                                     <span>My Courses</span>
                                 </span>
                                 {userDetails?.classes?.length > 0 && (
@@ -197,10 +205,10 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                 ) : (
                     <ActiveLink2
                         setSideNavOpen={setSideNavOpen}
-                        to="/dashboard/prfile"
+                        to="/dashboard/messages"
                     >
-                        <span className="flex items-center gap-3">
-                            <MdOutlineMessage className="text-xl" />{" "}
+                        <span className="flex items-center gap-3 lg:text-base text-sm">
+                            <MdOutlineMessage className="lg:text-xl text-lg" />{" "}
                             <span>Sent Messages</span>
                         </span>
                     </ActiveLink2>

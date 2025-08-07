@@ -3,37 +3,64 @@ import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import { Bounce, Flip, toast, Zoom } from "react-toastify";
-import { loadCaptchaEngine, validateCaptcha } from "./captcha";
+import {
+    drawCaptchaWithData,
+    generateCaptchaDrawingData,
+    generateCaptchaText,
+    validateCaptcha,
+} from "./captcha";
 import { getUserData, saveUserViaSocial } from "../../../api/authApi";
 import { light, dark } from "../../../styles/colors.json";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 
 const useLogin = () => {
-    const captchaLength = 6;
+    // Auth
     const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
         useAuth();
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const [captchaChars, setCaptchaChars] = useState(
-        Array(captchaLength).fill("")
-    );
-    const [captchaValue, setCaptchaValue] = useState("");
+
+    // Navigation
     const navigate = useNavigate();
     const location = useLocation();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
-    const captchaRef = useRef(null);
-    const [disabled, setDisabled] = useState(true);
+
+    // Refs
     const emailRef = useRef();
     const passRef = useRef();
-    const customId = "unauthorized";
-    useTitle("| Login");
+    const captchaRef = useRef(null);
 
-    const isDarkTheme = useDarkTheme();
-    const [fontColor, setFontColor] = useState("");
-    const [bgColor, setBgColor] = useState("");
+    // UI State
+    const [showPassword, setShowPassword] = useState(false);
+    const [disabled, setDisabled] = useState(true);
+
+    // Captcha
+    const captchaLength = 6;
+    const [captchaChars, setCaptchaChars] = useState(
+        Array(captchaLength).fill("")
+    );
+    const [captchaInput, setCaptchaInput] = useState("");
+    const [captchaData, setCaptchaData] = useState(null);
     const [reload, setReload] = useState(true);
 
+    // Theme
+    const isDarkTheme = useDarkTheme();
+    const themes = {
+        lightTheme: {
+            background: light.base300,
+            font: light.baseContent,
+        },
+        darkTheme: {
+            background: dark.base300,
+            font: dark.baseContent,
+        },
+    };
+
+    // Feedback messages
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    // Toast Config
+    const customId = "unauthorized";
     const config = {
         position: "top-center",
         autoClose: 2000,
@@ -45,15 +72,31 @@ const useLogin = () => {
         transition: Flip,
     };
 
-    useEffect(() => {
-        setFontColor(isDarkTheme ? dark.baseContent : light.baseContent);
-        setBgColor(isDarkTheme ? dark.base300 : light.base300);
-    }, [isDarkTheme]);
+    // Page title
+    useTitle("| Login");
 
+    // Generate captcha and drawing data on page mount/captcha reload
     useEffect(() => {
-        loadCaptchaEngine(captchaLength, bgColor, fontColor);
-    }, [bgColor, fontColor, reload]);
+        const text = generateCaptchaText(captchaLength);
+        const data = generateCaptchaDrawingData(text);
+        setCaptchaData(data);
+    }, [reload]);
 
+    // Update canvas colors when theme changes
+    useEffect(() => {
+        const canvas = document.getElementById("canv");
+
+        if (canvas && captchaData) {
+            const { background, font } = isDarkTheme
+                ? themes.darkTheme
+                : themes.lightTheme;
+
+            drawCaptchaWithData(canvas, captchaData, background, font);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isDarkTheme, captchaData]);
+
+    // Show toast message to unauthorized users
     useEffect(() => {
         if (location.state && location.state.showToast) {
             toast.warning(
@@ -65,6 +108,7 @@ const useLogin = () => {
                 }
             );
         }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.state]);
 
@@ -140,7 +184,7 @@ const useLogin = () => {
 
     const handleFieldChange = (captcha_value) => {
         captcha_value =
-            typeof captcha_value == "string" ? captcha_value : captchaValue;
+            typeof captcha_value == "string" ? captcha_value : captchaInput;
         const emailValue = emailRef.current.value.trim();
         const passValue = passRef.current.value;
 
@@ -168,11 +212,9 @@ const useLogin = () => {
         updated[idx] = value;
         setCaptchaChars(updated);
         const joined = updated.join("");
+        setCaptchaInput(joined);
         handleFieldChange(joined);
-        setCaptchaValue(joined);
     };
-
-    const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -209,7 +251,7 @@ const useLogin = () => {
             .finally(() => setLoading(false));
     };
 
-    const onChange = (e, idx) => {
+    const onCaptchaChange = (e, idx) => {
         handleCaptchaChange(idx, e.target.value);
         if (e.target.value && idx < captchaLength - 1) {
             const next = document.getElementById(`captcha-char-${idx + 1}`);
@@ -217,7 +259,7 @@ const useLogin = () => {
         }
     };
 
-    const onKeyDown = (e, idx, captchaChars) => {
+    const onCaptchaKeyDown = (e, idx, captchaChars) => {
         // Backspace/delete: move to previous field if empty
         if (e.key === "Backspace" && !e.target.value) {
             captchaChars[idx] = "";
@@ -259,9 +301,10 @@ const useLogin = () => {
     };
 
     const reloadCaptcha = () => {
+        setDisabled(true);
         setReload((reload) => !reload);
         setCaptchaChars(Array(captchaLength).fill(""));
-        // ! Password change triggers captcha error
+        setCaptchaInput("");
 
         if (error && error.split(" ").includes("Captcha")) {
             setError("");
@@ -291,9 +334,11 @@ const useLogin = () => {
         captchaLength,
         captchaChars,
         setCaptchaChars,
-        onChange,
-        onKeyDown,
+        setCaptchaInput,
+        onCaptchaChange,
+        onCaptchaKeyDown,
         reloadCaptcha,
+        setDisabled,
     };
 };
 

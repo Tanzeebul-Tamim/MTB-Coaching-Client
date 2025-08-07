@@ -1,29 +1,24 @@
 // /* eslint-disable no-unused-vars */
 import { Component } from "react";
-import ReactHtmlParser from "react-html-parser";
+import parse from "html-react-parser";
 
 let captcha_value = "";
-let captcha_number = "";
+let captcha_length = "";
 
 let LoadCanvasTemplateNoReload_HTML =
-    '<div><canvas id="canv"></canvas><div><a id="reload_href"  style="cursor: pointer; color: blue"></a></div></div>';
+    '<div><canvas id="canv"></canvas><div><a style="cursor: pointer; color: blue"></a></div></div>';
 
-export const loadCaptchaEngine = (
-    numberOfCharacters,
-    backgroundColor = "white",
-    fontColor = "black"
-) => {
+// Generate the captcha value
+export const generateCaptchaText = (length) => {
     let captchaValue = "";
-    captcha_number = numberOfCharacters;
-    
+    captcha_length = parseInt(length);
+
     const upperCaseCharSet = "ABDEFGHIJKLMNPQRTUY";
     const lowerCaseCharSet = "abdefghijkmnpqrtuy";
     const numberCharSet = "0123456789";
     const specialCharSet = "!@#$%&()+=[]{}:?";
     const charSet =
         upperCaseCharSet + lowerCaseCharSet + numberCharSet + specialCharSet;
-
-    const length = parseInt(numberOfCharacters);
 
     let maxSpecialChars = 3;
     let specialCharCount = 0;
@@ -49,91 +44,145 @@ export const loadCaptchaEngine = (
 
     captcha_value = captchaValue;
 
-    let canvas = document.getElementById("canv"),
-        ctx = canvas.getContext("2d");
+    return captchaValue;
+};
 
-    // Calculate max font size for canvas height
+// Precompute layout data
+export const generateCaptchaDrawingData = (captchaValue) => {
+    let drawingData = [];
+    let lineData = [];
+    let dotData = [];
+
+    // Maximum and minimum font size
     const maxFontSize = 30;
     const minFontSize = 18;
-    // Adjust canvas width and height to fit all chars and effects
-    ctx.canvas.width = parseInt(length) * (maxFontSize - 13); // more space per char
-    ctx.canvas.height = maxFontSize + 5; // shorter height
+    const spacing = 12; // space between characters
+    let currX = 14; // starting x position
 
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // calculate height and width
+    const height = maxFontSize + 5;
+    const width = captcha_length * (maxFontSize - 13);
 
-    ctx.textBaseline = "middle";
-    ctx.font = `italic 20px Arial`;
-    ctx.fillStyle = fontColor;
-
-    // Draw each character with random font size, rotation, and improved spacing
-    let baseX = 14; // starting x position
-    let spacing = 12; // closer spacing between chars
-    let currX = baseX;
-
-    for (let i = 0; i < parseInt(length); i++) {
-        let fontSize =
+    // calculate font size, angle, y-offset and starting position for each characters
+    for (let i = 0; i < captcha_length; i++) {
+        const fontSize =
             Math.floor(Math.random() * (maxFontSize - minFontSize + 1)) +
             minFontSize;
-        ctx.font = `bold ${fontSize}px 'Fira Mono', 'Consolas', 'Menlo', 'monospace'`;
-        let angle = (Math.random() - 0.5) * 1.2;
-        let yOffset = Math.floor(Math.random() * 12) - 5;
-        ctx.save();
-        ctx.translate(currX, ctx.canvas.height / 2 + yOffset);
-        ctx.rotate(angle);
-        ctx.fillText(captchaValue[i], 0, 0);
-        ctx.restore();
+        const angle = (Math.random() - 0.5) * 1.2;
+        const yOffset = Math.floor(Math.random() * 12) - 5;
+
+        drawingData.push({
+            char: captchaValue[i],
+            x: currX,
+            fontSize,
+            angle,
+            yOffset,
+        });
+
         currX += spacing;
     }
 
-    // Add random lines and dots as noise
+    // calculate data for random lines
     for (let i = 0; i < 4; i++) {
-        ctx.beginPath();
-        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-        ctx.strokeStyle = fontColor;
-        ctx.globalAlpha = 0.25;
-        ctx.lineWidth = Math.random() * 2 + 1;
-        ctx.stroke();
-        ctx.globalAlpha = 1.0;
+        const moveTo = { x: Math.random() * width, y: Math.random() * height };
+        const lineTo = { x: Math.random() * width, y: Math.random() * height };
+        const lineWidth = Math.random() * 2 + 1;
+
+        lineData.push({ moveTo, lineTo, lineWidth });
     }
 
+    // calculate data for random dots
     for (let i = 0; i < 10; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const radius = Math.random() * 2 + 1;
+
+        dotData.push({ x, y, radius });
+    }
+
+    const captchaData = { drawingData, lineData, dotData };
+
+    // Adjust canvas width and height to fit all chars and effects
+    return { captchaData, height, width };
+};
+
+// Use consistent data for drawing
+export const drawCaptchaWithData = (canvas, data, bgColor, fontColor) => {
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const { captchaData, width, height } = data;
+    const { drawingData, lineData, dotData } = captchaData;
+
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = fontColor;
+
+    // Draw each character with the precalculated random font size, rotation, and improved spacing
+    drawingData.forEach(({ char, x, fontSize, angle, yOffset }) => {
+        ctx.save();
+        ctx.translate(x, height / 2 + yOffset);
+        ctx.rotate(angle);
+        ctx.font = `bold ${fontSize}px 'Fira Mono', 'Consolas', 'Menlo', 'monospace'`;
+        ctx.fillText(char, 0, 0);
+        ctx.restore();
+    });
+
+    // Add random lines as noise
+    lineData.forEach(({ moveTo, lineTo, lineWidth }) => {
         ctx.beginPath();
-        let dotX = Math.random() * canvas.width;
-        let dotY = Math.random() * canvas.height;
-        ctx.arc(dotX, dotY, Math.random() * 2 + 1, 0, 2 * Math.PI);
+        ctx.moveTo(moveTo.x, moveTo.y);
+        ctx.lineTo(lineTo.x, lineTo.y);
+        ctx.strokeStyle = fontColor;
+        ctx.globalAlpha = 0.25;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        ctx.globalAlpha = 1.0;
+    });
+
+    // Add random dots as noise
+    dotData.forEach(({ x, y, radius }) => {
+        ctx.beginPath();
+        // parameters: width (x), height (y), radius, start angle, end angle (360deg here)
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
         ctx.fillStyle = fontColor;
         ctx.globalAlpha = 0.3;
         ctx.fill();
         ctx.globalAlpha = 1.0;
-    }
-
-    document.getElementById("reload_href").onclick = function () {
-        loadCaptchaEngine(captcha_number, backgroundColor, fontColor);
-    };
+    });
 };
 
+// Validating user input
 export const validateCaptcha = (userValue, setSuccess, setError) => {
-    if (userValue.length === captcha_number) {
-        if (userValue === captcha_value) {
-            setSuccess("Captcha Matched");
-            setError("");
-            return true;
+    console.log({captcha_length, userValue});
+    if (userValue) {
+        if (userValue.length === captcha_length) {
+            if (userValue === captcha_value) {
+                setSuccess("Captcha Matched");
+                setError("");
+                return true;
+            } else {
+                setError("Invalid Captcha");
+                setSuccess("");
+                return false;
+            }
         } else {
-            setError("Invalid Captcha");
             setSuccess("");
+            setError("");
             return false;
         }
     } else {
-        setSuccess("");
-        setError("");
         return false;
     }
 };
 
 export class LoadCanvasTemplateNoReload extends Component {
     render() {
-        return ReactHtmlParser(LoadCanvasTemplateNoReload_HTML);
+        return parse(LoadCanvasTemplateNoReload_HTML);
     }
 }

@@ -20,7 +20,7 @@ const passwordStrengthChecker = (e, setSuccess, setError) => {
         valid = false;
         setStatusAndColor(
             "",
-            "Password must be at least 6 characters long!",
+            "Requires at least 6 characters",
             "Too Weak"
         );
     } else {
@@ -28,21 +28,21 @@ const passwordStrengthChecker = (e, setSuccess, setError) => {
             valid = false;
             setStatusAndColor(
                 "",
-                "Password must contain at least one letter",
+                "Requires at least one letter",
                 "Weak"
             );
         } else if (!/(?=.*[A-Z])/.test(password)) {
             valid = false;
             setStatusAndColor(
                 "",
-                "Password must contain at least one uppercase letter",
+                "Requires at least one uppercase letter",
                 "Weak"
             );
         } else if (!/(?=.*\d)/.test(password)) {
             valid = false;
             setStatusAndColor(
                 "",
-                "Password must contain at least one digit",
+                "Requires at least one digit",
                 "Weak"
             );
         } else if (
@@ -51,7 +51,7 @@ const passwordStrengthChecker = (e, setSuccess, setError) => {
             valid = false;
             setStatusAndColor(
                 "",
-                "Password must contain at least one special character",
+                "Requires at least one special character",
                 "Weak"
             );
         } else {

@@ -30,9 +30,11 @@ const Login = () => {
         captchaLength,
         captchaChars,
         setCaptchaChars,
-        onChange,
-        onKeyDown,
-        reloadCaptcha
+        setCaptchaInput,
+        onCaptchaChange,
+        onCaptchaKeyDown,
+        reloadCaptcha,
+        setDisabled,
     } = useLogin();
 
     const [clicked, setClicked] = useState(false);
@@ -89,9 +91,11 @@ const Login = () => {
                                 </span>
                                 <button
                                     onClick={() => {
+                                        setDisabled(true);
                                         setCaptchaChars(
                                             Array(captchaLength).fill("")
                                         );
+                                        setCaptchaInput("");
                                         setError("");
                                         setSuccess("");
                                     }}
@@ -192,9 +196,15 @@ const Login = () => {
                                             required
                                             value={captchaChars[idx]}
                                             className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 focus:outline-secondary"
-                                            onChange={(e) => onChange(e, idx)}
+                                            onChange={(e) =>
+                                                onCaptchaChange(e, idx)
+                                            }
                                             onKeyDown={(e) =>
-                                                onKeyDown(e, idx, captchaChars)
+                                                onCaptchaKeyDown(
+                                                    e,
+                                                    idx,
+                                                    captchaChars
+                                                )
                                             }
                                             id={`captcha-char-${idx}`}
                                             ref={

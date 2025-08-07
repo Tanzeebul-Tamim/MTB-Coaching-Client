@@ -40,10 +40,6 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
     <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router" />
   </a>
 
-  <a href="https://www.npmjs.com/package/react-simple-captcha" target="_blank" rel="noopener noreferrer">
-   <img src="https://img.shields.io/badge/React_Simple_Captcha-6B7280?style=for-the-badge&logo=react&logoColor=white" alt="React Simple Captcha" />
-   </a>
-
    <a href="https://react-leaflet.js.org/" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/React_Leaflet-44A4AE?style=for-the-badge&logo=leaflet&logoColor=white" alt="React Leaflet" />
    </a>
@@ -115,7 +111,6 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 #### **Authentication & Security**
 
 -   **Firebase**: For authentication
--   **React Simple Captcha**: For adding simple captcha validation to forms
 
 #### **Payments**
 
