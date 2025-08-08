@@ -16,16 +16,11 @@ const useClassesTable = (userDetails, user) => {
     );
 
     const handleBook = (isBooked, classItem, booking, setBooking) => {
-        const {
-            instructorId,
-            classIndex,
-            startDate,
-            endDate,
-            name,
-        } = classItem;
+        const { instructorId, classIndex, startDate, endDate, name } =
+            classItem;
 
         if (!user) {
-            toast.warning("To book courses, you have to login first", {
+            toast.info("Please log in to book a course.", {
                 position: "top-center",
                 autoClose: 1100,
                 hideProgressBar: false,
@@ -48,15 +43,21 @@ const useClassesTable = (userDetails, user) => {
                 endDate
             );
             setBooking(!booking);
-            toast.success(`"${name}" has been booked`, {
-                position: "top-center",
-                autoClose: 1100,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(
+                <>
+                    <span className="font-bold text-green-500">{name}</span> has
+                    been booked
+                </>,
+                {
+                    position: "top-center",
+                    autoClose: 1100,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }
+            );
         }
     };
 

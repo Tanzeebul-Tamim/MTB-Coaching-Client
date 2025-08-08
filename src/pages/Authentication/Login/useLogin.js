@@ -99,7 +99,7 @@ const useLogin = () => {
     // Show toast message to unauthorized users
     useEffect(() => {
         if (location.state && location.state.showToast) {
-            toast.warning(
+            toast.info(
                 "To view detailed information, you have to login first",
                 {
                     ...config,

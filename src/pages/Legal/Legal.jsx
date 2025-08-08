@@ -112,7 +112,7 @@ const Legal = () => {
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 If you logged into this site using your email or
                                 Google account and want your data removed from
-                                Firebase, you can{" "}
+                                Firebase, you can send us a message using the{" "}
                                 <span
                                     onClick={() =>
                                         window.scrollTo({
@@ -122,9 +122,9 @@ const Legal = () => {
                                     }
                                     className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 custom-cursor-pointer underline font-semibold transition-colors"
                                 >
-                                    send us a message
+                                    Support Request
                                 </span>{" "}
-                                using the form at the bottom of the page.
+                                form at the bottom of the page.
                             </p>
                             <p className="text-sm md:text-base">
                                 Use the subject line{" "}

@@ -16,7 +16,7 @@ export const generateCaptchaText = (length) => {
     const upperCaseCharSet = "ABDEFGHIJKLMNPQRTUY";
     const lowerCaseCharSet = "abdefghijkmnpqrtuy";
     const numberCharSet = "0123456789";
-    const specialCharSet = "!@#$%&()+=[]{}:?";
+    const specialCharSet = "!@#$%&={}?";
     const charSet =
         upperCaseCharSet + lowerCaseCharSet + numberCharSet + specialCharSet;
 

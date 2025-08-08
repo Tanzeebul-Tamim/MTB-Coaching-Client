@@ -50,15 +50,14 @@ const SelectedClassesTable = ({
                 <SelectedClassesTableHead />
                 <tbody className="text-sm">
                     {userBookings.map((classItem, index) => {
-                        const newIndex = resultsPerPage * (currentPage - 1) + index;
+                        const newIndex =
+                            resultsPerPage * (currentPage - 1) + index;
                         const modalId = `class_modal_${index}`;
 
                         return (
                             <>
                                 <tr className="" key={classItem._id}>
-                                    <td>
-                                        {newIndex + 1}
-                                    </td>
+                                    <td>{newIndex + 1}</td>
                                     <td className="flex justify-center">
                                         <ImageWithLoader
                                             className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
@@ -68,28 +67,17 @@ const SelectedClassesTable = ({
                                         />
                                     </td>
                                     <td>
-                                        <div>
-                                            <div className="font-bold">
-                                                {isSmallDevice
-                                                    ? classItem?.["class-name"]
-                                                          .length > 15
-                                                        ? classItem[
-                                                              "class-name"
-                                                          ].slice(0, 15) + "..."
-                                                        : classItem[
-                                                              "class-name"
-                                                          ]
-                                                    : classItem?.["class-name"]}
-                                            </div>
-                                        </div>
+                                        {isSmallDevice
+                                            ? classItem?.["class-name"].length >
+                                              15
+                                                ? classItem["class-name"].slice(
+                                                      0,
+                                                      15
+                                                  ) + "..."
+                                                : classItem["class-name"]
+                                            : classItem?.["class-name"]}
                                     </td>
-                                    <td>
-                                        <div>
-                                            <div className="font-bold">
-                                                {classItem.instructorName}
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <td>{classItem.instructorName}</td>
                                     <td>$ {classItem.classFee}</td>
                                     <td>
                                         <button

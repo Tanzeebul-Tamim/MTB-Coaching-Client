@@ -65,8 +65,8 @@ const Dropdown = ({
                 className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full bg-opacity-80 bg-base-100 text-base-content"
                 onClick={() => {
                     if (!isLoggedIn) {
-                        toast.warning(
-                            "To use this feature, you have to login first",
+                        toast.info(
+                            "Please log in to use this feature",
                             {
                                 position: "top-center",
                                 autoClose: 2000,

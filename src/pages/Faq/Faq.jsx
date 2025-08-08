@@ -130,7 +130,8 @@ const Faq = () => {
                                 Contact Support
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                Need help or want to report a bug? Feel free to{" "}
+                                Need help or want to report a bug? Feel free to
+                                send us a message using the{" "}
                                 <span
                                     onClick={() =>
                                         window.scrollTo({
@@ -140,16 +141,16 @@ const Faq = () => {
                                     }
                                     className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 custom-cursor-pointer underline font-semibold transition-colors"
                                 >
-                                    send us a message
+                                    Support Request
                                 </span>{" "}
-                                using the form at the bottom of the page.
+                                form at the bottom of the page.
                             </p>
                             <p className="text-sm md:text-base">
                                 Please include details about your issue, the
-                                device and browser you&apos;re using, and the subject
-                                of your message. This helps us resolve your
-                                problem more efficiently. We usually respond
-                                within the same day.
+                                device and browser you&apos;re using, and the
+                                subject of your message. This helps us resolve
+                                your problem more efficiently. We usually
+                                respond within the same day.
                             </p>
                         </section>
                     </div>

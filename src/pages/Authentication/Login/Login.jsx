@@ -194,6 +194,7 @@ const Login = () => {
                                             inputMode="text"
                                             maxLength={1}
                                             required
+                                            placeholder="_"
                                             value={captchaChars[idx]}
                                             className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 focus:outline-secondary"
                                             onChange={(e) =>

@@ -1,14 +1,8 @@
 import PaymentHistoryTableHead from "./PaymentHistoryTableHead";
 import moment from "moment/moment";
 
-const PaymentHistoryTable = ({
-    userBookings,
-    search,
-    settings,
-    isSmallDevice,
-}) => {
+const PaymentHistoryTable = ({ userBookings, search, settings }) => {
     const { resultsPerPage, currentPage } = settings;
-    const length = isSmallDevice ? 5 : 10;
 
     const sortedBookings = [...userBookings].sort((a, b) => {
         return moment(b.date).unix() - moment(a.date).unix();
@@ -33,7 +27,7 @@ const PaymentHistoryTable = ({
     return (
         <div
             className={`overflow-x-auto custom-scrollbar z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg ${
-                sortedBookings.length > length
+                sortedBookings.length > resultsPerPage
                     ? "lg:max-h-[50vh] max-h-[45vh] overflow-y-auto"
                     : ""
             }`}
@@ -43,56 +37,23 @@ const PaymentHistoryTable = ({
                 <PaymentHistoryTableHead />
                 <tbody className="text-sm">
                     {sortedBookings.map((classItem, index) => {
+                        const newIndex =
+                            resultsPerPage * (currentPage - 1) + index;
                         return (
                             <tr className="" key={classItem._id}>
+                                <td>{newIndex + 1}</td>
+                                <td>{classItem["class-name"]}</td>
+                                <td>{classItem.transactionId}</td>
                                 <td>
-                                    {resultsPerPage * (currentPage - 1) +
-                                        (index + 1)}
+                                    {moment(classItem.date).format(
+                                        "dddd, Do MMMM YYYY"
+                                    )}
                                 </td>
                                 <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {classItem["class-name"]}
-                                        </div>
-                                    </div>
+                                    {moment(classItem.date).format("hh : mm a")}
                                 </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {classItem.transactionId}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {moment(classItem.date).format(
-                                                "dddd, Do MMMM YYYY"
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {moment(classItem.date).format(
-                                                "hh : mm a"
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            $ {classItem.classFee}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">Paid</div>
-                                    </div>
-                                </td>
+                                <td>$ {classItem.classFee}</td>
+                                <td>Paid</td>
                             </tr>
                         );
                     })}

@@ -3,59 +3,61 @@ import useAuth from "../../hooks/useAuth";
 import useScreenSize from "../../hooks/useScreenSize";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
-import { getBookedClasses } from "../../api/bookApi";
 import usePagination from "../../hooks/usePagination";
+import { getMessages } from "../../api/messageApi";
 
-const usePaymentHistory = () => {
+const useMessages = () => {
     const { user } = useAuth();
-    const [userBookings, setUserBookings] = useState([]);
-    const paidBookings = userBookings.filter(
-        (booking) => booking.paymentStatus === "paid"
-    );
+    const [messages, setMessages] = useState([]);
     const { isSmallDevice } = useScreenSize();
     const { loading, userDetails } = useUserData();
-    useTitle("| Payment History");
+    useTitle("| Tickets");
 
     useEffect(() => {
         if (user && user.email && userDetails?._id) {
-            getBookedClasses(userDetails?._id)
+            getMessages(userDetails?._id)
                 .then((data) => {
-                    setUserBookings(data);
+                    setMessages(data);
                 })
                 .catch((error) => console.error(error));
         } else if (!user) {
-            setUserBookings([]);
+            setMessages([]);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, userBookings]);
+    }, [userDetails, messages]);
 
     const [search, setSearch] = useState("");
-    const [filteredHistory, setFilteredHistory] = useState(paidBookings || []);
+    const [filteredMessages, setFilteredMessages] = useState(
+        messages || []
+    );
     const resultsPerPage = isSmallDevice ? 5 : 8;
 
-    const renderCondition = paidBookings && paidBookings.length > 0;
-    const searchableFields = [{ field: "class-name", split: false }];
+    const renderCondition = messages && messages.length > 0;
+    const searchableFields = [
+        { field: "subject", split: true },
+        { field: "ticketId", split: false },
+    ];
 
     // Pagination logic
-    const paginationHook = usePagination(paidBookings, resultsPerPage);
-    const paginatedHistory = paginationHook?.paginatedItems;
+    const paginationHook = usePagination(messages, resultsPerPage);
+    const paginatedMessages = paginationHook?.paginatedItems;
     const { currentPage } = paginationHook;
     const paginationSettings = { resultsPerPage, currentPage };
 
     return {
+        isSmallDevice,
         loading,
         search,
         setSearch,
-        filteredHistory,
-        setFilteredHistory,
+        filteredMessages,
+        setFilteredMessages,
+        paginatedMessages,
+        paginationSettings,
+        messages,
+        paginationHook,
         renderCondition,
         searchableFields,
-        paginatedHistory,
-        paginationSettings,
-        isSmallDevice,
-        paidBookings,
-        paginationHook,
     };
 };
 
-export default usePaymentHistory;
+export default useMessages;

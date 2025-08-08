@@ -5,14 +5,17 @@ import ThemeToggle from "../../ui/ThemeToggle/ThemeToggle";
 import useSideNav from "./useSideNav";
 
 import { AiFillHome } from "react-icons/ai";
-import { BsFillInfoCircleFill, BsInfoCircle } from "react-icons/bs";
+import {
+    BsFillInfoCircleFill,
+    BsInfoCircle,
+    BsTicketDetailedFill,
+} from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { IoSchoolSharp, IoCartOutline } from "react-icons/io5";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
 import {
     MdOutlinePostAdd,
-    MdOutlineMessage,
     MdOutlineInventory2,
     MdOutlinePayments,
 } from "react-icons/md";
@@ -27,6 +30,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
         loading,
         userLoading,
         booking,
+        messages,
     } = useSideNav();
 
     const url = "url('/assets/sidenav_banner.jpg')";
@@ -208,9 +212,14 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
                         to="/dashboard/messages"
                     >
                         <span className="flex items-center gap-3 lg:text-base text-sm">
-                            <MdOutlineMessage className="lg:text-xl text-lg" />{" "}
-                            <span>Sent Messages</span>
+                            <BsTicketDetailedFill className="lg:text-xl text-lg" />{" "}
+                            <span>Submitted Tickets</span>
                         </span>
+                        {messages.length > 0 && (
+                            <span className="bg-primary py-1 px-2 rounded-full text-gray-800 text-xs">
+                                {messages.length}
+                            </span>
+                        )}
                     </ActiveLink2>
                 )}
             </div>

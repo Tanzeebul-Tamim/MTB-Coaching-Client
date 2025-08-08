@@ -44,6 +44,8 @@ const EnrolledClassesTable = ({
                 <EnrolledClassesTableHead />
                 <tbody className="text-sm">
                     {sortedBookings.map((classItem, index) => {
+                        const newIndex =
+                            resultsPerPage * (currentPage - 1) + index;
                         const { startDate, endDate } = classItem;
                         const status = getStatus(startDate, endDate);
                         const duration = Math.ceil(
@@ -59,10 +61,7 @@ const EnrolledClassesTable = ({
 
                         return (
                             <tr className="" key={classItem._id}>
-                                <td>
-                                    {resultsPerPage * (currentPage - 1) +
-                                        (index + 1)}
-                                </td>
+                                <td>{newIndex + 1}</td>
                                 <td className="flex justify-center">
                                     <ImageWithLoader
                                         className={`lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl ${
@@ -71,54 +70,16 @@ const EnrolledClassesTable = ({
                                         src={classItem.classImage}
                                     />
                                 </td>
+                                <td>{classItem?.["class-name"]}</td>
+                                <td>{classItem.instructorName}</td>
                                 <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {classItem?.["class-name"]}
-                                        </div>
-                                    </div>
+                                    {moment(startDate).format("Do MMM, YYYY")}
                                 </td>
                                 <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {classItem.instructorName}
-                                        </div>
-                                    </div>
+                                    {moment(endDate).format("Do MMM, YYYY")}
                                 </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {moment(startDate).format(
-                                                "Do MMM, YYYY"
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {moment(endDate).format(
-                                                "Do MMM, YYYY"
-                                            )}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div className="font-bold">
-                                            {duration} Days
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <div
-                                            className={`font-bold ${statusColor}`}
-                                        >
-                                            {status}
-                                        </div>
-                                    </div>
-                                </td>
+                                <td>{duration} Days</td>
+                                <td className={statusColor}>{status}</td>
                             </tr>
                         );
                     })}

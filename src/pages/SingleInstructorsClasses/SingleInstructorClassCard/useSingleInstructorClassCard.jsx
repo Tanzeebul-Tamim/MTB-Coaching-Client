@@ -64,15 +64,23 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
                 classItem.endDate
             );
             setBooking(!booking);
-            toast.success(`"${classItem.name}" has been booked`, {
-                position: "top-center",
-                autoClose: 1100,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(
+                <>
+                    <span className="font-bold text-green-500">
+                        {classItem?.name}
+                    </span>{" "}
+                    has been booked
+                </>,
+                {
+                    position: "top-center",
+                    autoClose: 1100,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }
+            );
         }
     };
 
