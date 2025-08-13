@@ -1,0 +1,8 @@
+node_modules
+dist
+.env.example
+.env
+.vite
+.vercel
+public
+build
