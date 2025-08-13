@@ -14,7 +14,7 @@ const SendMessage = ({ bgLocations }) => {
             }}
         >
             <span className="uppercase text-lg lg:text-xl text-secondary">
-                Send us a Message
+                Support Request
             </span>
             {!user && (
                 <>
@@ -41,6 +41,7 @@ const SendMessage = ({ bgLocations }) => {
             <input
                 name="subject"
                 required
+                maxLength={35}
                 type="text"
                 placeholder="Subject"
                 className={`${

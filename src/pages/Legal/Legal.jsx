@@ -111,23 +111,26 @@ const Legal = () => {
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 If you logged into this site using your email or
-                                Google and want your data removed from Firebase,
-                                you can email a request to:
-                            </p>
-                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                {" "}
-                                <a href="mailto:tanzeebul.tamim2003@gmail.com">
-                                    <strong className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline">
-                                        tanzeebul.tamim2003@gmail.com{" "}
-                                    </strong>
-                                </a>
-                                with the subject line{" "}
-                                <em className="text-yellow-800 dark:text-yellow-200">
-                                    &quot;Data Deletion Request&quot;
-                                </em>
+                                Google account and want your data removed from
+                                Firebase, you can send us a message using the{" "}
+                                <span
+                                    onClick={() =>
+                                        window.scrollTo({
+                                            top: document.body.scrollHeight,
+                                            behavior: "smooth",
+                                        })
+                                    }
+                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 custom-cursor-pointer underline font-semibold transition-colors"
+                                >
+                                    Support Request
+                                </span>{" "}
+                                form at the bottom of the page.
                             </p>
                             <p className="text-sm md:text-base">
-                                Include the Google email you used to sign in.
+                                Use the subject line{" "}
+                                <em className="text-yellow-800 dark:text-yellow-200">
+                                    &quot;Data Deletion Request&quot;.
+                                </em>{" "}
                                 Your data will be deleted in most cases within
                                 that day.
                             </p>

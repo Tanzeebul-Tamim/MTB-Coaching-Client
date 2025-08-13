@@ -72,7 +72,7 @@ const Footer = () => {
                         </a>
                     </span>
                 </div>
-                <SendMessage bgLocations={bgLocations} />
+                {!isSmallDevice && <SendMessage bgLocations={bgLocations} />}
                 <div>
                     <RouterLink
                         to="/support"
@@ -153,6 +153,7 @@ const Footer = () => {
                         Cookie Notice
                     </HashLink>
                 </div>
+                {isSmallDevice && <SendMessage bgLocations={bgLocations} />}
             </footer>
             <div className="flex justify-center">
                 <hr

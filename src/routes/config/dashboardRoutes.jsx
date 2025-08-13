@@ -1,5 +1,6 @@
 import AddClass from "../../pages/AddClass/AddClass";
 import EnrolledClass from "../../pages/EnrolledClass/EnrolledClass";
+import Messages from "../../pages/Messages/Messages";
 import MyCourses from "../../pages/MyCourses/MyCourses";
 import MyStudents from "../../pages/MyCourses/MyCoursesTable/MyStudents/MyStudents";
 import MyProfile from "../../pages/MyProfile/MyProfile";
@@ -60,6 +61,10 @@ const dashboardRoutes = [
                 <MyCourses />
             </RoleRoute>
         ),
+    },
+    {
+        path: "messages",
+        element: <Messages />,
     },
     {
         path: "my-classes/students/:id/:idx",
