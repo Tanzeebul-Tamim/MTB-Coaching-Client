@@ -39,7 +39,7 @@ const SklPaymentHistory = ({ isSmallDevice }) => {
                         </tr>
                     </thead>
                     <tbody className="text-sm">
-                        {Array.from({ length: 5 }).map((_, i) => {
+                        {Array.from({ length: 8 }).map((_, i) => {
                             return (
                                 <tr className="" key={i}>
                                     <td>{i + 1}</td>

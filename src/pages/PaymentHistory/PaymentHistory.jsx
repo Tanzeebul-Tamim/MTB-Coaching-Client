@@ -63,7 +63,6 @@ const PaymentHistory = () => {
                 search={search}
                 userBookings={filteredHistory}
                 settings={paginationSettings}
-                isSmallDevice={isSmallDevice}
             ></PaymentHistoryTable>
             {/* Pagination Controls at the bottom */}
             <Pagination search={search} paginationHook={paginationHook} />

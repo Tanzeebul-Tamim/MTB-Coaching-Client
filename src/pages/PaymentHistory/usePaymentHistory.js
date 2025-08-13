@@ -31,7 +31,7 @@ const usePaymentHistory = () => {
 
     const [search, setSearch] = useState("");
     const [filteredHistory, setFilteredHistory] = useState(paidBookings || []);
-    const resultsPerPage = isSmallDevice ? 5 : 10;
+    const resultsPerPage = isSmallDevice ? 5 : 8;
 
     const renderCondition = paidBookings && paidBookings.length > 0;
     const searchableFields = [{ field: "class-name", split: false }];

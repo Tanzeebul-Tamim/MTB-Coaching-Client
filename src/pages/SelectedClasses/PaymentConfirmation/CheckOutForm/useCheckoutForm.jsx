@@ -116,9 +116,14 @@ const useCheckoutForm = (classItem) => {
                             classItem.classIndex
                         );
                         toast.success(
-                            `Enrolled in "${classItem["class-name"]}"`,
+                            <>
+                                Enrolled in{" "}
+                                <span className="text-green-500 font-bold">
+                                    {classItem["class-name"]}
+                                </span>
+                            </>,
                             {
-                                position: "top-center",
+                                position: "top-left",
                                 autoClose: 2000,
                                 hideProgressBar: false,
                                 closeOnClick: true,
