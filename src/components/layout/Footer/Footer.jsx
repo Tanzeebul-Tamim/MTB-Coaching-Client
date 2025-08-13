@@ -32,7 +32,7 @@ const Footer = () => {
                     <span className="uppercase text-lg lg:text-xl text-secondary">
                         Our Location
                     </span>
-                    <LeafletMap></LeafletMap>
+                    <LeafletMap smallDevice={isSmallDevice}></LeafletMap>
                 </div>
                 <div>
                     <span className="uppercase text-lg lg:text-xl text-secondary">
