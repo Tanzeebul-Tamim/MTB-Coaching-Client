@@ -42,7 +42,7 @@ const MyCoursesTable = ({
             <table className="z-[100] table text-center description dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 whitespace-nowrap lg:whitespace-normal">
                 {/* head */}
                 <MyCoursesTableHead isSmallDevice={isSmallDevice} />
-                <tbody className={"text-sm"}>
+                <tbody className="text-sm">
                     {courses.map((course, index) => {
                         const {
                             name,
@@ -86,7 +86,7 @@ const MyCoursesTable = ({
                                     )}
                                     <td>{course.totalStudent}</td>
                                     <td
-                                        className={`text-base-content font-bold ${
+                                        className={`text-base-content ${
                                             status === "Ongoing"
                                                 ? "text-green-600"
                                                 : status === "Upcoming"

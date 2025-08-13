@@ -9,7 +9,7 @@ const useSelectedClassesTable = (
             typeof userDetails?.contactNo === "undefined" ||
             userDetails?.gender === "undefined"
         ) {
-            toast.warning(
+            toast.info(
                 "To purchase classes, you have to update your profile first!",
                 {
                     position: "top-center",
