@@ -6,6 +6,7 @@ import useRegister from "./useRegister";
 import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import { passStrength } from "../../../styles/colors.json";
+import { VscClearAll } from "react-icons/vsc";
 
 const Register = () => {
     const {
@@ -29,10 +30,23 @@ const Register = () => {
         showPassword2,
         isValid,
         setIsValid,
+        imageRef,
+        clearForm,
     } = useRegister();
 
     const [status, setStatus] = useState("");
     const [colorCode, setColorCode] = useState("");
+
+    const ClearFormBtn = () => (
+        <button
+            onClick={() => clearForm(setStatus)}
+            type="reset"
+            className="text-xs font-bold text-stone-900 bg-secondary rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+        >
+            <span>Clear Form</span>
+            <VscClearAll />
+        </button>
+    );
 
     return (
         <div
@@ -86,21 +100,22 @@ const Register = () => {
                             className="description text-sm link link-hover"
                         >
                             Not a student?{" "}
-                            <span className="text-primary">
+                            <strong className="text-primary">
                                 Register as an instructor
-                            </span>
+                            </strong>
                         </Link>
                     </div>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[500px] shadow-2xl bg-base-100">
                     <div className="card-body p-4 md:p-6 lg:p-8">
-                        {/* Responsive input fields: stack vertically on mobile, horizontally on larger screens */}
+                        {/* Responsive input fields */}
                         <div className="flex flex-col md:flex-row justify-center gap-3 w-full">
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Name
                                     </span>
+                                    {isSmallDevice && <ClearFormBtn />}
                                 </label>
                                 <input
                                     type="text"
@@ -118,6 +133,7 @@ const Register = () => {
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Email
                                     </span>
+                                    {!isSmallDevice && <ClearFormBtn />}
                                 </label>
                                 <input
                                     type="email"
@@ -176,6 +192,7 @@ const Register = () => {
                                 </label>
                                 <label className="custom-cursor-default">
                                     <input
+                                        ref={imageRef}
                                         onChange={handleFieldChange}
                                         type="file"
                                         name="image"
@@ -322,6 +339,10 @@ const Register = () => {
                                     Login now
                                 </span>
                             </Link>
+                            <div className="label-text-alt custom-cursor-default">
+                                <span className="text-primary">NB:</span> All
+                                fields are required
+                            </div>
                         </label>
                         <p
                             className={`flex flex-col lg:flex-row justify-between z-10 ${
@@ -338,7 +359,7 @@ const Register = () => {
                                     {status}
                                 </span>
                             </span>
-                            <span>
+                            <span className="text-xs lg:text-sm description">
                                 {error ? error : success ? success : ""}
                             </span>
                         </p>

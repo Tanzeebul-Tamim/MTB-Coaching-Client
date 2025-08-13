@@ -1,16 +1,22 @@
-import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { LoadCanvasTemplateNoReload } from "react-simple-captcha";
-import { TbFidgetSpinner } from "react-icons/tb";
+import { LoadCanvasTemplateNoReload } from "./captcha";
 import "../../../styles/captcha.css";
 import useLogin from "./useLogin";
-import { useState } from "react";
+
+import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { TbFidgetSpinner } from "react-icons/tb";
+import { VscClearAll } from "react-icons/vsc";
+import { IoReload } from "react-icons/io5";
 
 const Login = () => {
     const {
         loading,
         error,
+        setError,
+        success,
+        setSuccess,
         disabled,
         handleGoogleSignIn,
         handleLogin,
@@ -21,6 +27,14 @@ const Login = () => {
         showPassword,
         captchaRef,
         passRef,
+        captchaLength,
+        captchaChars,
+        setCaptchaChars,
+        setCaptchaInput,
+        onCaptchaChange,
+        onCaptchaKeyDown,
+        reloadCaptcha,
+        setDisabled,
     } = useLogin();
 
     const [clicked, setClicked] = useState(false);
@@ -75,6 +89,22 @@ const Login = () => {
                                 <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                     Email
                                 </span>
+                                <button
+                                    onClick={() => {
+                                        setDisabled(true);
+                                        setCaptchaChars(
+                                            Array(captchaLength).fill("")
+                                        );
+                                        setCaptchaInput("");
+                                        setError("");
+                                        setSuccess("");
+                                    }}
+                                    type="reset"
+                                    className="text-xs font-bold text-stone-900 bg-secondary rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+                                >
+                                    <span>Clear Form</span>
+                                    <VscClearAll />
+                                </button>
                             </label>
                             <input
                                 onChange={handleFieldChange}
@@ -141,23 +171,54 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="z-[10] form-control">
-                            <label className="label custom-cursor-default">
-                                <span className="uppercase label-text font-bold tracking-widest text-base-content">
-                                    <p className="mb-1">Enter captcha code</p>
-                                    <p className="font-light">
-                                        <LoadCanvasTemplateNoReload />
-                                    </p>
+                            <div className="label custom-cursor-default mb-1">
+                                <span className="uppercase label-text font-bold tracking-widest text-base-content flex flex-col gap-1">
+                                    <span>Enter captcha code</span>
+                                    <LoadCanvasTemplateNoReload />
                                 </span>
-                            </label>
-                            <input
-                                onChange={handleFieldChange}
-                                type="text"
-                                required
-                                ref={captchaRef}
-                                name="captcha"
-                                placeholder="Enter the above text"
-                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
-                            />
+                                <button
+                                    onClick={reloadCaptcha}
+                                    type="button"
+                                    className="text-sm text-stone-900 font-bold bg-secondary lg:rounded-xl rounded-md lg:px-3 px-2 lg:py-1 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+                                >
+                                    <span>Reload Captcha</span>
+                                    <IoReload />
+                                </button>
+                            </div>
+                            <div className="flex justify-between mt-2">
+                                {Array.from({ length: captchaLength }).map(
+                                    (_, idx) => (
+                                        <input
+                                            key={idx}
+                                            type="text"
+                                            inputMode="text"
+                                            maxLength={1}
+                                            required
+                                            placeholder="_"
+                                            value={captchaChars[idx]}
+                                            className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 focus:outline-secondary"
+                                            onChange={(e) =>
+                                                onCaptchaChange(e, idx)
+                                            }
+                                            onKeyDown={(e) =>
+                                                onCaptchaKeyDown(
+                                                    e,
+                                                    idx,
+                                                    captchaChars
+                                                )
+                                            }
+                                            id={`captcha-char-${idx}`}
+                                            ref={
+                                                idx === 0
+                                                    ? captchaRef
+                                                    : undefined
+                                            }
+                                            name={`captcha-${idx}`}
+                                            autoComplete="off"
+                                        />
+                                    )
+                                )}
+                            </div>
                             <label className="label custom-cursor-default z-[10]">
                                 <Link
                                     to="/register"
@@ -170,11 +231,17 @@ const Login = () => {
                                 </Link>
                             </label>
                             <p
-                                className={`text-red-600 z-10 ${
-                                    error ? "visible" : "invisible"
+                                className={`z-10 text-xs lg:text-sm description ${
+                                    error || success ? "visible" : "invisible"
+                                } ${
+                                    error
+                                        ? "text-red-600"
+                                        : success
+                                        ? "text-green-500"
+                                        : ""
                                 }`}
                             >
-                                {error ? error : "a"}
+                                {error ? error : success ? success : "a"}
                             </p>
                         </div>
                         <div className="divider text-base-content description">
