@@ -12,7 +12,7 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                     <h1>No results found for your search</h1>
                 </div>
             ) : (
-                <div ref={tableRef} className="overflow-x-auto">
+                <div ref={tableRef} className="overflow-x-auto table-wrapper">
                     <table className="table text-center description text-base-content lg:whitespace-normal whitespace-nowrap">
                         {/* head */}
                         <InstructorsTableHead />

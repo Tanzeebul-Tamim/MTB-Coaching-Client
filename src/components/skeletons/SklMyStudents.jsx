@@ -37,7 +37,7 @@ const SklMyStudents = ({ isSmallDevice }) => {
                     <ClipLoader color={color} />
                 </span>
             </div>
-            <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+            <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg table-wrapper">
                 <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 bg-opacity-50">

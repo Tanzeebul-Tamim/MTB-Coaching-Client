@@ -24,7 +24,7 @@ const SklEnrolledClass = ({ isSmallDevice }) => {
                     <ClipLoader color={color} />
                 </span>{" "}
             </div>
-            <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg">
+            <div className="overflow-x-auto z-10 bg-black bg-opacity-30 lg:bg-transparent rounded-lg table-wrapper">
                 <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 dark:lg:bg-opacity-50 dark:bg-opacity-50 lg:bg-opacity-50 bg-opacity-70">

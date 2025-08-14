@@ -187,7 +187,19 @@ body.no-scrollbar::-webkit-scrollbar {
 html.no-scrollbar,
 body.no-scrollbar {
     -ms-overflow-style: none; /* IE/Edge */
-    scrollbar-width: none;     /* Firefox */
+    scrollbar-width: none; /* Firefox */
     overflow-y: auto; /* allow scroll but hide scrollbar */
 }
 
+@media (max-width: 768px) {
+    .table-wrapper {
+        overflow-x: auto; /* allow horizontal scroll */
+        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .table-wrapper::-webkit-scrollbar {
+        height: 0; /* hides horizontal scrollbar */
+        display: none; /* fallback for WebKit */
+    }
+}
