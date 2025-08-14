@@ -23,7 +23,10 @@ const PaymentConfirmation = () => {
         studentName,
         setFocus,
         isSmallDevice,
+        calculateTotalWithTax,
     } = usePaymentConfirmation();
+
+    const { total } = calculateTotalWithTax();
 
     return (
         <StripeProvider>
@@ -31,7 +34,7 @@ const PaymentConfirmation = () => {
                 {isSmallDevice && (
                     <DashboardPageTitle title="Confirm Payment" />
                 )}
-                <div className="z-10 overflow-x-auto mt-[25%] lg:mt-0 flex flex-col bg-base-100 w-full max-w-[410px] py-5 px-3 sm:px-4 rounded-2xl lg:bg-opacity-50 bg-opacity-60 description">
+                <div className="z-10 overflow-x-auto mt-[25%] lg:mt-0 flex flex-col bg-base-100 w-full max-w-[410px] py-5 px-3 sm:px-4 rounded-2xl lg:bg-opacity-50 bg-opacity-60 border border-accent border-opacity-30 lg:border-0 description">
                     {!isSmallDevice && (
                         <h1 className="z-[100] text-base-content text-lg sm:text-xl mb-3 tracking-[3px] sm:tracking-[5px] lg:tracking-[9px] text-center uppercase font-extrabold">
                             Confirm Payment
@@ -121,6 +124,22 @@ const PaymentConfirmation = () => {
                                             : ""}
                                     </div>
                                 </div>
+                                <div className="z-50 flex items-center">
+                                    <strong className="">
+                                        Total (Tax 10%):
+                                    </strong>{" "}
+                                    <div
+                                        className={
+                                            loading || loading2
+                                                ? "ml-2 rounded bg-gray-500 w-1/12 h-3 animate-pulse"
+                                                : "ml-1"
+                                        }
+                                    >
+                                        {!loading && !loading2 && classItem
+                                            ? "$ " + total
+                                            : ""}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -158,6 +177,7 @@ const PaymentConfirmation = () => {
                                 />
                             </div>
                             <CheckoutForm
+                                total={total}
                                 setFocus={setFocus}
                                 cardDetails={cardDetails}
                                 setFlipped={setFlipped}

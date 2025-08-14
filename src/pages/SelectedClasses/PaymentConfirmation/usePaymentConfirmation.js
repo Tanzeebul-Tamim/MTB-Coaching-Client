@@ -29,6 +29,14 @@ const usePaymentConfirmation = () => {
     } = useUserData();
     useTitle("| Payment");
 
+    function calculateTotalWithTax(taxRate = 0.1) {
+        const taxAmount = classItem?.classFee * taxRate;
+        const total = classItem?.classFee + taxAmount;
+        return {
+            total: parseFloat(total.toFixed(2)),
+        };
+    }
+
     useEffect(() => {
         if (userDetails?._id && studentId && itemId) {
             setLoading2(true);
@@ -69,7 +77,7 @@ const usePaymentConfirmation = () => {
                 .finally(() => setLoading2(false));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [userDetails, studentId, itemId]);    
+    }, [userDetails, studentId, itemId]);
 
     const handleNumberChange = (event) => {
         let { value } = event.target;
@@ -130,6 +138,7 @@ const usePaymentConfirmation = () => {
         studentName,
         setFocus,
         isSmallDevice,
+        calculateTotalWithTax,
     };
 };
 

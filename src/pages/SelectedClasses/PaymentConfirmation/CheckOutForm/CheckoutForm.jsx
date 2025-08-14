@@ -6,7 +6,13 @@ import { BeatLoader } from "react-spinners";
 import useDarkTheme from "../../../../hooks/useDarkTheme";
 import { light, dark } from "../../../../styles/colors.json";
 
-const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
+const CheckoutForm = ({
+    classItem,
+    setFlipped,
+    cardDetails,
+    setFocus,
+    total,
+}) => {
     const { handleSubmit, cardError, stripe, disabled } =
         useCheckoutForm(classItem);
 
@@ -62,7 +68,7 @@ const CheckoutForm = ({ classItem, setFlipped, cardDetails, setFocus }) => {
                         <BeatLoader color={color} />
                     ) : (
                         <>
-                            <BsFillCreditCardFill /> Pay ${classItem?.classFee}
+                            <BsFillCreditCardFill /> Pay ${total}
                         </>
                     )}
                 </button>
