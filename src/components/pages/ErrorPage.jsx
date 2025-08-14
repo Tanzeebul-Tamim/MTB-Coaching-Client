@@ -86,7 +86,7 @@ const ErrorPage = () => {
                     </p>
                     <Link
                         to="/"
-                        className="description uppercase bg-yellow-500 text-xl p-3 text-white rounded-xl hover:bg-yellow-600 duration-150"
+                        className="description uppercase bg-yellow-500 text-xl p-3 text-white rounded-xl hover:bg-yellow-600 duration-150 font-extrabold"
                     >
                         Back to Homepage
                     </Link>

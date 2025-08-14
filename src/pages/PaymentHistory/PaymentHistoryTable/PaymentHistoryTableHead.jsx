@@ -7,7 +7,7 @@ const PaymentHistoryTableHead = () => {
                 <th className="">Transaction ID</th>
                 <th className="">Date</th>
                 <th className="">Time</th>
-                <th className="">Amount</th>
+                <th className="">Amount Paid</th>
                 <th className="">Status</th>
             </tr>
         </thead>

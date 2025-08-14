@@ -1,12 +1,22 @@
 import PaymentHistoryTableHead from "./PaymentHistoryTableHead";
 import moment from "moment/moment";
 
-const PaymentHistoryTable = ({ userBookings, search, settings }) => {
+const PaymentHistoryTable = ({
+    userBookings,
+    search,
+    settings,
+}) => {
     const { resultsPerPage, currentPage } = settings;
 
     const sortedBookings = [...userBookings].sort((a, b) => {
         return moment(b.date).unix() - moment(a.date).unix();
     });
+
+    function calculateTotalWithTax(classItem, taxRate = 0.1) {
+        const taxAmount = classItem?.classFee * taxRate;
+        const total = classItem?.classFee + taxAmount;
+        return total.toFixed(2);
+    }
 
     if (sortedBookings?.length === 0) {
         return (
@@ -42,7 +52,12 @@ const PaymentHistoryTable = ({ userBookings, search, settings }) => {
                         return (
                             <tr className="" key={classItem._id}>
                                 <td>{newIndex + 1}</td>
-                                <td>{classItem["class-name"]}</td>
+                                <td>
+                                    {classItem?.["class-name"].length > 18
+                                        ? classItem["class-name"].slice(0, 18) +
+                                          "..."
+                                        : classItem["class-name"]}
+                                </td>
                                 <td>{classItem.transactionId}</td>
                                 <td>
                                     {moment(classItem.date).format(
@@ -52,7 +67,7 @@ const PaymentHistoryTable = ({ userBookings, search, settings }) => {
                                 <td>
                                     {moment(classItem.date).format("hh : mm a")}
                                 </td>
-                                <td>$ {classItem.classFee}</td>
+                                <td>$ {calculateTotalWithTax(classItem)}</td>
                                 <td>Paid</td>
                             </tr>
                         );
