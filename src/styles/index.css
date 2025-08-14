@@ -89,12 +89,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Custom cursor */
 @layer base {
-    html, .custom-cursor-default {
-        cursor: url('/cursors/arrow.cur'), auto;
+    html,
+    .custom-cursor-default {
+        cursor: url("/cursors/arrow.cur"), auto;
     }
 
-    a, button, button:hover, .custom-cursor-pointer {
-        cursor: url('/cursors/pointer.cur'), pointer;
+    a,
+    button,
+    button:hover,
+    .custom-cursor-pointer {
+        cursor: url("/cursors/pointer.cur"), pointer;
     }
 
     input[type="text"],
@@ -102,42 +106,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     input[type="password"],
     textarea,
     [contenteditable="true"] {
-        cursor: url('/cursors/text-selector.cur'), text;
+        cursor: url("/cursors/text-selector.cur"), text;
     }
 
-    body.waiting, 
+    body.waiting,
     .loading {
-        cursor: url('/cursors/working.cur'), wait;
+        cursor: url("/cursors/working.cur"), wait;
     }
 
     .progress {
-        cursor: url('/cursors/progress.cur'), progress;
+        cursor: url("/cursors/progress.cur"), progress;
     }
 
     .help,
     [aria-describedby] {
-        cursor: url('/cursors/help-select.cur'), help;
+        cursor: url("/cursors/help-select.cur"), help;
     }
 
     .move,
     [draggable="true"] {
-        cursor: url('/cursors/move.cur'), move;
+        cursor: url("/cursors/move.cur"), move;
     }
 
     .resize-ns {
-        cursor: url('/cursors/resize-ver.cur'), ns-resize;
+        cursor: url("/cursors/resize-ver.cur"), ns-resize;
     }
 
     .resize-ew {
-        cursor: url('/cursors/resize-hor.cur'), ew-resize;
+        cursor: url("/cursors/resize-hor.cur"), ew-resize;
     }
 
     .resize-bl {
-        cursor: url('/cursors/resize-dia-1.cur'), sw-resize;
+        cursor: url("/cursors/resize-dia-1.cur"), sw-resize;
     }
 
     .resize-br {
-        cursor: url('/cursors/resize-dia-2.cur'), se-resize;
+        cursor: url("/cursors/resize-dia-2.cur"), se-resize;
     }
 }
 
@@ -171,3 +175,19 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #cd6c1cc0;
 }
+
+/* Allow scrolling but hide the bar */
+html.no-scrollbar::-webkit-scrollbar,
+body.no-scrollbar::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+html.no-scrollbar,
+body.no-scrollbar {
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
+    overflow-y: auto; /* allow scroll but hide scrollbar */
+}
+

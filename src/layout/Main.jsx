@@ -6,22 +6,37 @@ import Footer from "../components/layout/Footer/Footer";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 import InstallPWAButton from "../components/ui/InstallPWAButton";
 import NoInternetPage from "../components/pages/NoInternetPage";
+import { useEffect } from "react";
 
 const Main = () => {
     const { isOnline } = useNetworkStatus();
-    const location = useLocation();
+    const { pathname } = useLocation();
     const authenticationPage = [
         "/login",
         "/register",
         "/instructor-register",
-    ].includes(location.pathname);
+    ].includes(pathname);
+
+    // Remove scrollbar from authentication pages
+    useEffect(() => {
+        const root = document.documentElement;
+        const body = document.body;
+
+        if (authenticationPage) {
+            root.classList.add("no-scrollbar");
+            body.classList.add("no-scrollbar");
+        } else {
+            root.classList.remove("no-scrollbar");
+            body.classList.remove("no-scrollbar");
+        }
+    }, [authenticationPage, pathname]);
 
     if (!isOnline) {
         return <NoInternetPage />;
     }
 
     return (
-        <div className="overflow-x-hidden">
+        <div className={!authenticationPage && "overflow-x-hidden"}>
             <RouteTracker />
             <ScrollToTop />
             <Navbar />
