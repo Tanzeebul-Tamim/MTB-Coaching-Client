@@ -2,12 +2,18 @@ import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import getStatus from "../../../hooks/getStatus";
 import EnrolledClassesTableHead from "./EnrolledClassesTableHead";
 import moment from "moment/moment";
+import { IoMdDownload } from "react-icons/io";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import ReceiptPDF from "../ReceiptPDF/ReceiptPDF";
 
 const EnrolledClassesTable = ({
+    userDetails,
     userBookings,
     isSmallDevice,
     search,
     settings,
+    generateInvoiceId,
+    calculateTotalWithTax,
 }) => {
     const { resultsPerPage, currentPage } = settings;
 
@@ -44,9 +50,19 @@ const EnrolledClassesTable = ({
                 <EnrolledClassesTableHead />
                 <tbody className="text-sm">
                     {sortedBookings.map((classItem, index) => {
+                        const {
+                            studentName,
+                            studentEmail,
+                            ["class-name"]: className,
+                            instructorName,
+                            transactionId,
+                            startDate,
+                            endDate,
+                            classFee,
+                            date,
+                        } = classItem;
                         const newIndex =
                             resultsPerPage * (currentPage - 1) + index;
-                        const { startDate, endDate } = classItem;
                         const status = getStatus(startDate, endDate);
                         const duration = Math.ceil(
                             (new Date(endDate) - new Date(startDate)) /
@@ -58,6 +74,22 @@ const EnrolledClassesTable = ({
                                 : status === "Upcoming"
                                 ? "text-blue-500"
                                 : "text-red-500";
+
+                        const props = {
+                            userDetails,
+                            currentDate: new Date().toISOString(),
+                            invoiceId: generateInvoiceId(),
+                            studentName,
+                            studentEmail,
+                            className,
+                            instructorName,
+                            transactionId,
+                            startDate,
+                            endDate,
+                            duration,
+                            price: calculateTotalWithTax(classFee),
+                            paymentDate: date,
+                        };
 
                         return (
                             <tr className="" key={classItem._id}>
@@ -73,13 +105,39 @@ const EnrolledClassesTable = ({
                                 <td>{classItem?.["class-name"]}</td>
                                 <td>{classItem.instructorName}</td>
                                 <td>
-                                    {moment(startDate).format("Do MMM, YYYY")}
-                                </td>
-                                <td>
+                                    {moment(startDate).format("Do MMM, YYYY")}{" "}
+                                    <br />{" "}
                                     {moment(endDate).format("Do MMM, YYYY")}
                                 </td>
                                 <td>{duration} Days</td>
                                 <td className={statusColor}>{status}</td>
+                                <td>
+                                    <PDFDownloadLink
+                                        onLoadError={(err) =>
+                                            console.error(
+                                                "PDF load error:",
+                                                err
+                                            )
+                                        }
+                                        document={<ReceiptPDF props={props} />}
+                                        fileName={`Receipt-${studentName}-${className}-${moment(
+                                            new Date()
+                                        ).format("DD-MM-YY")}.pdf`}
+                                    >
+                                        <button className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content hover:bg-base-200 bg-base-100 dark:hover:bg-stone-700 dark:bg-stone-500 border-0">
+                                            {isSmallDevice ? (
+                                                <span className="text-[12px]">
+                                                    Download
+                                                </span>
+                                            ) : (
+                                                <>
+                                                    <IoMdDownload />
+                                                    <span>Download</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    </PDFDownloadLink>
+                                </td>
                             </tr>
                         );
                     })}

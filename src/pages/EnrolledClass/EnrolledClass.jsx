@@ -20,6 +20,9 @@ const EnrolledClass = () => {
         paginationHook,
         renderCondition,
         searchableFields,
+        generateInvoiceId,
+        userDetails,
+        calculateTotalWithTax,
     } = useEnrolledClass();
 
     if (loading) {
@@ -64,8 +67,11 @@ const EnrolledClass = () => {
             <EnrolledClassesTable
                 search={search}
                 isSmallDevice={isSmallDevice}
+                userDetails={userDetails}
                 userBookings={filteredPaidBookings}
+                generateInvoiceId={generateInvoiceId}
                 settings={paginationSettings}
+                calculateTotalWithTax={calculateTotalWithTax}
             ></EnrolledClassesTable>
             {/* Pagination Controls at the bottom */}
             <Pagination search={search} paginationHook={paginationHook} />

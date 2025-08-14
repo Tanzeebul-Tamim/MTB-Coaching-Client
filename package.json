@@ -11,6 +11,7 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.0",
     "@stripe/react-stripe-js": "^2.1.1",
     "@stripe/stripe-js": "^1.54.0",
     "@sweetalert2/theme-dark": "^5.0.15",

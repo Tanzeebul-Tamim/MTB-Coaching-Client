@@ -6,10 +6,10 @@ const EnrolledClassesTableHead = () => {
                 <th className="">Image</th>
                 <th className="">Course</th>
                 <th className="">Instructor</th>
-                <th className="">Start Date</th>
-                <th className="">End Date</th>
+                <th className="">Start-End Date</th>
                 <th className="">Duration</th>
                 <th className="">Status</th>
+                <th className="">Invoice</th>
             </tr>
         </thead>
     );
