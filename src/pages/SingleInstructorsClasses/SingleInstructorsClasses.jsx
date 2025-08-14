@@ -62,7 +62,7 @@ const SingleInstructorsClasses = () => {
                     fullWidth={true}
                 />
                 {isMyWall && (
-                    <span className="lg:text-4xl text-2xl text-accent font-semibold">
+                    <span className="lg:text-4xl text-2xl text-center text-accent font-semibold">
                         (My Wall)
                     </span>
                 )}

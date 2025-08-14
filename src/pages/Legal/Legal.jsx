@@ -1,10 +1,12 @@
 import useTitle from "../../hooks/useTitle";
+import useScreenSize from "../../hooks/useScreenSize";
+import useAuth from "../../hooks/useAuth";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
-import useScreenSize from "../../hooks/useScreenSize";
 
 const Legal = () => {
     useTitle("| Legal");
+    const { handleScrollGlow } = useAuth();
     const { isSmallDevice } = useScreenSize();
 
     return (
@@ -34,7 +36,7 @@ const Legal = () => {
                             href="https://github.com/Tanzeebul-Tamim"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline font-semibold transition-colors duration-300"
+                            className="underline font-semibold"
                         >
                             Tanzeebul Tamim
                         </a>{" "}
@@ -44,40 +46,54 @@ const Legal = () => {
 
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
-                            id="privacy-policy"
+                            id="data-deletion"
                             className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
                             <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
-                                Privacy Policy
+                                User Data Deletion
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                This project uses Firebase Authentication to
-                                simulate real-world login flows. Data entered
-                                during login (e.g., your Google account email)
-                                is not stored, shared, or processed in any way
-                                beyond what&#39;s required to authenticate you.
-                            </p>
-                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                No personal information is sold or used for
-                                marketing purposes. Your data stays within
-                                Firebase&#39;s secure infrastructure and is only
-                                used to provide authentication functionality.
+                                If you logged into this site using your email or
+                                Google account and want your data removed from
+                                our site, you can send us a message using the{" "}
+                                <span
+                                    onClick={handleScrollGlow}
+                                    className="custom-cursor-pointer underline font-semibold"
+                                >
+                                    Support Request
+                                </span>{" "}
+                                form at the bottom of the page.
                             </p>
                             <p className="text-sm md:text-base">
-                                If you ever wish to remove your data, refer to
-                                the{" "}
-                                <HashLink
-                                    smooth
-                                    to="/legal#data-deletion"
-                                    scroll={scrollWithOffset}
-                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline font-semibold transition-colors duration-300"
-                                >
-                                    User Data Deletion
-                                </HashLink>{" "}
-                                section below.
+                                Use the subject line{" "}
+                                <em>&quot;Data Deletion Request&quot;.</em> Your
+                                data will be deleted in most cases within that
+                                day.
                             </p>
                         </section>
 
+                        <section
+                            id="cookie"
+                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
+                        >
+                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                                Cookie Notice
+                            </h2>
+                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
+                                This site does not use cookies for tracking,
+                                advertising, or analytics. However, Firebase
+                                Authentication may set essential cookies for
+                                login functionality.
+                            </p>
+                            <p className="text-sm md:text-base">
+                                These are strictly necessary for the site to
+                                function and do not collect personal data beyond
+                                authentication.
+                            </p>
+                        </section>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
                             id="terms"
                             className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
@@ -99,60 +115,67 @@ const Legal = () => {
                                 is not a production-grade service.
                             </p>
                         </section>
-                    </div>
 
-                    <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
-                            id="data-deletion"
+                            id="privacy-policy"
                             className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
                         >
                             <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
-                                User Data Deletion
+                                Privacy Policy
                             </h2>
-                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                If you logged into this site using your email or
-                                Google account and want your data removed from
-                                Firebase, you can send us a message using the{" "}
-                                <span
-                                    onClick={() =>
-                                        window.scrollTo({
-                                            top: document.body.scrollHeight,
-                                            behavior: "smooth",
-                                        })
-                                    }
-                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 custom-cursor-pointer underline font-semibold transition-colors"
+                            <p className="mb-1 lg:mb-2 text-sm md:text-base">
+                                This project uses{" "}
+                                <a
+                                    href="https://firebase.google.com/support/privacy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
-                                    Support Request
-                                </span>{" "}
-                                form at the bottom of the page.
+                                    <code className="underline font-semibold">
+                                        <i>Firebase</i>
+                                    </code>
+                                </a>{" "}
+                                Authentication for secure login,{" "}
+                                <a
+                                    href="https://www.mongodb.com/legal/privacy-policy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <code className="underline font-semibold">
+                                        <i>MongoDB</i>
+                                    </code>
+                                </a>{" "}
+                                to store user data and{" "}
+                                <a
+                                    href="https://imgbb.com/privacy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <code className="underline font-semibold">
+                                        <i>imgbb</i>
+                                    </code>
+                                </a>{" "}
+                                to host user-uploaded images. Each service is
+                                subject to its own privacy policy.
                             </p>
                             <p className="text-sm md:text-base">
-                                Use the subject line{" "}
-                                <em className="text-yellow-800 dark:text-yellow-200">
-                                    &quot;Data Deletion Request&quot;.
-                                </em>{" "}
-                                Your data will be deleted in most cases within
-                                that day.
-                            </p>
-                        </section>
-
-                        <section
-                            id="cookie"
-                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-yellow-600 min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
-                        >
-                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
-                                Cookie Notice
-                            </h2>
-                            <p className="lg:mb-2 mb-1 text-sm md:text-base">
-                                This site does not use cookies for tracking,
-                                advertising, or analytics. However, Firebase
-                                Authentication may set essential cookies for
-                                login functionality.
+                                No personal information is shared, sold or used
+                                for marketing purposes. Your data stays within
+                                MongoDB and Firebase&#39;s secure infrastructure
+                                and is only used to operate the service and
+                                provide authentication functionality.
                             </p>
                             <p className="text-sm md:text-base">
-                                These are strictly necessary for the site to
-                                function and do not collect personal data beyond
-                                authentication.
+                                If you ever wish to remove your data, refer to
+                                the{" "}
+                                <HashLink
+                                    smooth
+                                    to="/legal#data-deletion"
+                                    scroll={scrollWithOffset}
+                                    className="custom-cursor-pointer underline font-semibold"
+                                >
+                                    User Data Deletion
+                                </HashLink>{" "}
+                                section above.
                             </p>
                         </section>
                     </div>

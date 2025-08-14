@@ -1,9 +1,8 @@
-import useAuth from "../../../../hooks/useAuth";
 import useSendMessage from "./useSendMessage";
+import "../../../../styles/support.css";
 
 const SendMessage = ({ bgLocations }) => {
-    const { user } = useAuth();
-    const { handleSendMessage } = useSendMessage(user);
+    const { handleSendMessage, user, glowClass } = useSendMessage();
 
     return (
         <form
@@ -13,7 +12,9 @@ const SendMessage = ({ bgLocations }) => {
                 e.target.reset();
             }}
         >
-            <span className="uppercase text-lg lg:text-xl text-secondary">
+            <span
+                className={`${glowClass} transition-all ease-in-out duration-[500ms]`}
+            >
                 Support Request
             </span>
             {!user && (

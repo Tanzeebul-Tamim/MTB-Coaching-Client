@@ -2,9 +2,11 @@ import useTitle from "../../hooks/useTitle";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
 import useScreenSize from "../../hooks/useScreenSize";
+import useAuth from "../../hooks/useAuth";
 
 const Faq = () => {
     useTitle("| FAQ & Support");
+    const { handleScrollGlow } = useAuth();
     const { isSmallDevice } = useScreenSize();
 
     return (
@@ -81,7 +83,7 @@ const Faq = () => {
                                     smooth
                                     to="/support#contact-support"
                                     scroll={scrollWithOffset}
-                                    className="underline font-semibold transition-colors duration-300 text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200"
+                                    className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Contact Support
                                 </HashLink>{" "}
@@ -112,7 +114,7 @@ const Faq = () => {
                                     smooth
                                     to="/legal#data-deletion"
                                     scroll={scrollWithOffset}
-                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 underline font-semibold transition-colors duration-300"
+                                    className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Legal → User Data Deletion
                                 </HashLink>{" "}
@@ -133,13 +135,8 @@ const Faq = () => {
                                 Need help or want to report a bug? Feel free to
                                 send us a message using the{" "}
                                 <span
-                                    onClick={() =>
-                                        window.scrollTo({
-                                            top: document.body.scrollHeight,
-                                            behavior: "smooth",
-                                        })
-                                    }
-                                    className="text-yellow-800 dark:text-yellow-200 dark:hover:text-yellow-800 hover:text-yellow-200 custom-cursor-pointer underline font-semibold transition-colors"
+                                    onClick={handleScrollGlow}
+                                    className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Support Request
                                 </span>{" "}

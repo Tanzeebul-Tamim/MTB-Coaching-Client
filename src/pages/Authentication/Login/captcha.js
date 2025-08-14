@@ -159,7 +159,6 @@ export const drawCaptchaWithData = (canvas, data, bgColor, fontColor) => {
 
 // Validating user input
 export const validateCaptcha = (userValue, setSuccess, setError) => {
-    console.log({captcha_length, userValue});
     if (userValue) {
         if (userValue.length === captcha_length) {
             if (userValue === captcha_value) {

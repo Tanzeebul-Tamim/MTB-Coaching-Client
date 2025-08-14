@@ -1,9 +1,28 @@
 import { Flip, toast } from "react-toastify";
 import useUserData from "../../../../hooks/useUserData";
 import { sendMessage } from "../../../../api/messageApi";
+import useAuth from "../../../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import useDarkTheme from "../../../../hooks/useDarkTheme";
 
-const useSendMessage = (user) => {
+const useSendMessage = () => {
     const { userDetails } = useUserData();
+    const { user, supportGlow } = useAuth();
+    const isDarkTheme = useDarkTheme();
+
+    const className = "uppercase text-lg lg:text-xl";
+    const [glowClass, setGlowClass] = useState(className);
+
+    useEffect(() => {
+        if (supportGlow)
+            setGlowClass(
+                `${className} ${
+                    isDarkTheme ? "text-primary" : "text-secondary"
+                } support-glow scale-105`
+            );
+        else setGlowClass(`${className} text-secondary`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [supportGlow]);
 
     const config = {
         position: "top-right",
@@ -70,7 +89,7 @@ const useSendMessage = (user) => {
         );
     };
 
-    return { handleSendMessage };
+    return { handleSendMessage, user, glowClass };
 };
 
 export default useSendMessage;

@@ -4,7 +4,7 @@ import { BiLogInCircle, BiSupport } from "react-icons/bi";
 import useScreenSize from "../../../hooks/useScreenSize";
 
 const Buttons = ({ alignment }) => {
-    const { user } = useAuth();
+    const { user, handleScrollGlow } = useAuth();
     const { isSmallDevice } = useScreenSize();
 
     return (
@@ -30,12 +30,7 @@ const Buttons = ({ alignment }) => {
                 </button>
             )}
             <button
-                onClick={() =>
-                    window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: "smooth",
-                    })
-                }
+                onClick={handleScrollGlow}
                 style={{ fontFamily: "Khand" }}
                 className="uppercase z-10 font-bold lg:text-xl text-[10px] hover:scale-105 ease-in-out transition-transform duration-300 lg:text-start lg:mt-4"
             >

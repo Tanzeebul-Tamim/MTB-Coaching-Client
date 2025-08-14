@@ -1,0 +1,17 @@
+.support-glow {
+    /* bright orange glow */
+    text-shadow: 
+        0 0 5px rgb(255, 136, 0),
+        0 0 10px rgba(236, 131, 11, 0.6),
+        0 0 20px rgba(236, 131, 11, 0.4);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.dark .support-glow {
+    /* yellow glow for dark mode */
+    text-shadow: 
+        0 0 13px rgba(255, 238, 0, 0.8),
+        0 0 17px rgba(255, 238, 0, 0.6),
+        0 0 15px rgba(255, 238, 0, 0.4);
+    transition: text-shadow 0.3s ease-in-out;
+}
