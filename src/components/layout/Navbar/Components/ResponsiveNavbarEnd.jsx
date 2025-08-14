@@ -11,44 +11,42 @@ const ResponsiveNavbarEnd = ({ props }) => {
         : user?.displayName?.split(" ")[0];
 
     return (
-        <div className="navbar-end flex gap-2 lg:hidden">
+        <div className="navbar-end flex gap-2 lg:hidden relative">
             {user ? (
                 <Link
                     to="/dashboard/profile"
                     data-tip={userDetails?.name || user?.displayName}
-                    className="tooltip tooltip-bottom tooltip-primary"
+                    className="tooltip tooltip-bottom tooltip-primary absolute -top-4"
                 >
                     {userBookings.length >= 1 && (
-                        <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[2px] badge-md badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
+                        <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[3px] badge-sm badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
                             <MdShoppingCart />
-                            <span className="text-[0.65rem]">
+                            <span className="text-[0.65rem] font-bold">
                                 {userBookings?.length}
                             </span>
                         </span>
                     )}
-                    <div className="relative">
-                        <img
-                            className={`h-[42.5px] w-[42.5px] rounded-full relative ${
-                                userLoading && "animate-pulse"
-                            }`}
-                            src={
-                                userLoading
-                                    ? "/assets/user_avatar.png"
-                                    : userDetails?.image || user?.photoURL
-                                    ? userDetails?.image || user?.photoURL
-                                    : "/assets/user_avatar.png"
-                            }
-                            alt=""
-                        />
-                        <h1 className="dark:text-secondary text-primary text-xs absolute right-2">
-                            {name}
-                        </h1>
-                    </div>
+                    <img
+                        className={`h-[45px] w-[45px] rounded-full ${
+                            userLoading && "animate-pulse"
+                        }`}
+                        src={
+                            userLoading
+                                ? "/assets/user_avatar.png"
+                                : userDetails?.image || user?.photoURL
+                                ? userDetails?.image || user?.photoURL
+                                : "/assets/user_avatar.png"
+                        }
+                        alt=""
+                    />
+                    <h1 className="dark:text-secondary text-primary text-xs">
+                        {name}
+                    </h1>
                 </Link>
             ) : loading ? (
                 <div>
                     <img
-                        className="h-[42.5px] w-[42.5px] rounded-full animate-pulse"
+                        className="h-[45px] w-[45px] rounded-full animate-pulse"
                         src="/assets/user_avatar.png"
                         alt=""
                     />
