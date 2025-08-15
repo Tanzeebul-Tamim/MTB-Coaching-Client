@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        maxWidth: "50%"
     },
     section: { marginVertical: 6 },
     footer: { marginTop: "auto", textAlign: "center" },
