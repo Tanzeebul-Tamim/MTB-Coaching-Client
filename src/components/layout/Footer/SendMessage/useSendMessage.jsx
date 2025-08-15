@@ -4,14 +4,24 @@ import { sendMessage } from "../../../../api/messageApi";
 import useAuth from "../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import useDarkTheme from "../../../../hooks/useDarkTheme";
+import useScreenSize from "../../../../hooks/useScreenSize";
 
 const useSendMessage = () => {
     const { userDetails } = useUserData();
     const { user, supportGlow } = useAuth();
     const isDarkTheme = useDarkTheme();
+    const { isSmallDevice } = useScreenSize();
 
     const className = "uppercase text-lg lg:text-xl";
     const [glowClass, setGlowClass] = useState(className);
+
+    const textLimit = 500;
+    const [textLength, setTextLength] = useState(0);
+    const [textFocus, setTextFocus] = useState(false);
+
+    const subjectLimit = 60;
+    const [subjectLength, setSubjectLength] = useState(0);
+    const [subjectFocus, setSubjectFocus] = useState(false);
 
     useEffect(() => {
         if (supportGlow)
@@ -21,8 +31,18 @@ const useSendMessage = () => {
                 } support-glow scale-105`
             );
         else setGlowClass(`${className} text-secondary`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [supportGlow]);
+
+    const handleTextChange = (e) => {
+        const textLength = e.target.value.length;
+        setTextLength(textLength);
+    };
+
+    const handleSubjectChange = (e) => {
+        const subjectLength = e.target.value.length;
+        setSubjectLength(subjectLength);
+    };
 
     const config = {
         position: "top-right",
@@ -42,6 +62,13 @@ const useSendMessage = () => {
     };
 
     const handleSendMessage = (e) => {
+        e.preventDefault();
+
+        setTextLength(0);
+        setSubjectLength(0);
+        setTextFocus(false);
+        setSubjectFocus(false);
+
         const form = e.target;
 
         const guestMessage = {
@@ -64,6 +91,8 @@ const useSendMessage = () => {
 
         sendMessage(user ? memberMessage : guestMessage);
 
+        e.target.reset();
+
         {
             user &&
                 toast.info(
@@ -74,6 +103,7 @@ const useSendMessage = () => {
                     config
                 );
         }
+
         setTimeout(
             () =>
                 toast.success(
@@ -89,7 +119,22 @@ const useSendMessage = () => {
         );
     };
 
-    return { handleSendMessage, user, glowClass };
+    return {
+        handleSendMessage,
+        user,
+        glowClass,
+        textLimit,
+        textLength,
+        handleTextChange,
+        textFocus,
+        setTextFocus,
+        subjectLimit,
+        subjectLength,
+        handleSubjectChange,
+        subjectFocus,
+        setSubjectFocus,
+        isSmallDevice,
+    };
 };
 
 export default useSendMessage;
