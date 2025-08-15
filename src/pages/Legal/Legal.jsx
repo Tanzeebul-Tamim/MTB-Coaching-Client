@@ -13,7 +13,7 @@ const Legal = () => {
         <div
             className="lg:pt-40 pt-20 lg:pb-24 pb-12 lg:px-10 relative min-h-screen"
             style={{
-                backgroundImage: "url('/assets/legal.avif')",
+                backgroundImage: "url('/assets/images/legal.avif')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: isSmallDevice ? "65% 50%" : "center",

@@ -39,10 +39,10 @@ const NavbarEnd = ({ props }) => {
                             }`}
                             src={
                                 userLoading
-                                    ? "/assets/user_avatar.png"
+                                    ? "/assets/images/user_avatar.png"
                                     : userDetails?.image || user?.photoURL
                                     ? userDetails?.image || user?.photoURL
-                                    : "/assets/user_avatar.png"
+                                    : "/assets/images/user_avatar.png"
                             }
                         />
                         {userBookings.length >= 1 && (

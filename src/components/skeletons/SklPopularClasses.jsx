@@ -7,7 +7,7 @@ const SklPopularClasses = () => {
             <div>
                 <img
                     className="rounded-t-2xl h-[240px] z-0 w-full"
-                    src="/assets/class-loading.gif"
+                    src="/assets/images/class-loading.gif"
                 />
             </div>
             <div className="card-body z-50">
@@ -22,7 +22,7 @@ const SklPopularClasses = () => {
                 </div>
                 <img
                     className="group-hover:scale-110 duration-200 lg:w-[100px] w-[calc(22vw)] lg:h-[100px] h-[calc(22vw)] rounded-full border-zinc-400 border-[2px] lg:border-[4px] absolute bottom-[30%] lg:bottom-[20%] right-[4%]"
-                    src="/assets/user_avatar.png"
+                    src="/assets/images/user_avatar.png"
                 />
             </div>
             <div className="absolute lg:bottom-0 right-0 w-1/2 h-full bg-gradient-to-r from-transparent to-base-100"></div>

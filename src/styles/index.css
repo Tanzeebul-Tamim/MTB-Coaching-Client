@@ -91,14 +91,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @layer base {
     html,
     .custom-cursor-default {
-        cursor: url("/cursors/arrow.cur"), auto;
+        cursor: url("/assets/cursors/arrow.cur"), auto;
     }
 
     a,
     button,
     button:hover,
     .custom-cursor-pointer {
-        cursor: url("/cursors/pointer.cur"), pointer;
+        cursor: url("/assets/cursors/pointer.cur"), pointer;
     }
 
     input[type="text"],
@@ -106,38 +106,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     input[type="password"],
     textarea,
     [contenteditable="true"] {
-        cursor: url("/cursors/text-selector.cur"), text;
+        cursor: url("/assets/cursors/text-selector.cur"), text;
     }
 
     body.waiting,
     .loading {
-        cursor: url("/cursors/working.cur"), wait;
+        cursor: url("/assets/cursors/working.cur"), wait;
     }
 
     .progress {
-        cursor: url("/cursors/progress.cur"), progress;
+        cursor: url("/assets/cursors/progress.cur"), progress;
     }
 
     .help,
     [aria-describedby] {
-        cursor: url("/cursors/help-select.cur"), help;
+        cursor: url("/assets/cursors/help-select.cur"), help;
     }
 
     .move,
     [draggable="true"] {
-        cursor: url("/cursors/move.cur"), move;
+        cursor: url("/assets/cursors/move.cur"), move;
     }
 
     .resize-ns {
-        cursor: url("/cursors/resize-ver.cur"), ns-resize;
+        cursor: url("/assets/cursors/resize-ver.cur"), ns-resize;
     }
 
     .resize-ew {
-        cursor: url("/cursors/resize-hor.cur"), ew-resize;
+        cursor: url("/assets/cursors/resize-hor.cur"), ew-resize;
     }
 
     .resize-bl {
-        cursor: url("/cursors/resize-dia-1.cur"), sw-resize;
+        cursor: url("/assets/cursors/resize-dia-1.cur"), sw-resize;
     }
 
     .resize-br {

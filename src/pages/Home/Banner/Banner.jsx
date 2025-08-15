@@ -22,7 +22,7 @@ const Banner = () => {
             <div id="slide1" className="relative w-full">
                 <ImageWithLoader
                     className="w-full lg:pt-16"
-                    src="/assets/home_banner_1.avif"
+                    src="/assets/images/home_banner_1.avif"
                 />
 
                 <img
@@ -72,7 +72,7 @@ const Banner = () => {
             <div id="slide2" className="relative w-full">
                 <ImageWithLoader
                     className="w-full"
-                    src="/assets/home_banner_2.avif"
+                    src="/assets/images/home_banner_2.avif"
                 />
 
                 <img
@@ -122,7 +122,7 @@ const Banner = () => {
             <div id="slide3" className="relative w-full">
                 <ImageWithLoader
                     className="w-full"
-                    src="/assets/home_banner_3.avif"
+                    src="/assets/images/home_banner_3.avif"
                 />
 
                 <img
@@ -172,7 +172,7 @@ const Banner = () => {
             <div id="slide4" className="relative w-full">
                 <ImageWithLoader
                     className="w-full"
-                    src="/assets/home_banner_4.avif"
+                    src="/assets/images/home_banner_4.avif"
                 />
 
                 <img

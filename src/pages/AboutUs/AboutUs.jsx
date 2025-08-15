@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div
             className="lg:pt-40 pt-20 lg:pb-24 pb-12 lg:px-10 relative min-h-screen"
             style={{
-                backgroundImage: "url('/assets/about_us_banner.avif')",
+                backgroundImage: "url('/assets/images/about_us_banner.avif')",
                 backgroundPosition: isSmallDevice ? "32.5% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

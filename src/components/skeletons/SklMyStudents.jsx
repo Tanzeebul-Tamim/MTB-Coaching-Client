@@ -59,7 +59,7 @@ const SklMyStudents = ({ isSmallDevice }) => {
                                     <td className="flex justify-center">
                                         <img
                                             className="rounded-full w-[4.5vh]"
-                                            src="/assets/user_avatar.png"
+                                            src="/assets/images/user_avatar.png"
                                         />
                                     </td>
                                     <td>

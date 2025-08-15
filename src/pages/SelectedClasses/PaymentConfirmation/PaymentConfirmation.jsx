@@ -59,7 +59,7 @@ const PaymentConfirmation = () => {
                                                 <ImageWithLoader
                                                     src={
                                                         loading || loading2
-                                                            ? "/assets/class-loading.gif"
+                                                            ? "/assets/images/class-loading.gif"
                                                             : classItem?.classImage
                                                     }
                                                     className={`w-full max-w-[340px] h-[52vw] max-h-[200px] min-h-[120px] rounded-2xl`}

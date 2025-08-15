@@ -43,7 +43,7 @@ const useSingleInstructorsClasses = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.400), rgba(0, 0, 0, 0.400)), url('${
             instructor.cover
                 ? instructor.cover
-                : "/assets/instructor_default_banner.avif"
+                : "/assets/images/instructor_default_banner.avif"
         }')`,
         backgroundPosition: "center",
         backgroundSize: "cover",

@@ -33,7 +33,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
         messages,
     } = useSideNav();
 
-    const url = "url('/assets/sidenav_banner.jpg')";
+    const url = "url('/assets/images/sidenav_banner.jpg')";
     const lightBg =
         "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " + url;
     const darkBg =
@@ -69,7 +69,7 @@ const SideNav = ({ sideNavOpen, setSideNavOpen, isDarkTheme }) => {
             <div className="flex justify-center items-center">
                 <img
                     className="w-[300px]"
-                    src={`/assets/MTB_Coaching_${
+                    src={`/assets/images/MTB_Coaching_${
                         isDarkTheme ? "Dark" : "Light"
                     }.png`}
                 />

@@ -8,9 +8,9 @@ import "../../../../styles/leaflet.css";
 // Fix Leaflet's default icon path for static hosting
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-    iconUrl: "/assets/marker-icon.png",
-    iconRetinaUrl: "/assets/marker-icon-2x.png",
-    shadowUrl: "/assets/marker-shadow.png",
+    iconUrl: "/assets/images/marker-icon.png",
+    iconRetinaUrl: "/assets/images/marker-icon-2x.png",
+    shadowUrl: "/assets/images/marker-shadow.png",
 });
 
 const LeafletMap = ({ smallDevice }) => {

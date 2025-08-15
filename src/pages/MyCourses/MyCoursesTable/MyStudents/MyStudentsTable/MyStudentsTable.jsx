@@ -42,10 +42,10 @@ const MyStudentsTable = ({ students, search, settings }) => {
                                 <td className="flex justify-center">
                                     <ImageWithLoader
                                         className="rounded-full w-[4.5vh]"
-                                        gif="/assets/user_avatar.png"
+                                        gif="/assets/images/user_avatar.png"
                                         src={
                                             student?.image ||
-                                            "/assets/user_avatar.png"
+                                            "/assets/images/user_avatar.png"
                                         }
                                         alt={student?.["class-name"]}
                                     />

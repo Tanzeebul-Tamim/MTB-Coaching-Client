@@ -95,7 +95,7 @@ const ReceiptPDF = ({ props }) => {
                         <View style={{ marginTop: 30 }}>
                             <Image
                                 style={{ width: 130 }}
-                                src="/assets/paid-stamp.png"
+                                src="/assets/images/paid-stamp.png"
                             />
                         </View>
                     </View>

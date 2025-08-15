@@ -6,7 +6,7 @@ const Header = ({ props }) => {
     return (
         <>
             <View style={styles.headerRow}>
-                <Image style={styles.logo} src="/assets/MTB_Coaching_PDF.png" />
+                <Image style={styles.logo} src="/assets/images/MTB_Coaching_PDF.png" />
                 <View style={{ alignItems: "flex-end" }}>
                     <Image style={styles.secondaryLogo} src="/favicon.png" />
                     <Text style={{ fontSize: 10, marginTop: 3 }}>

@@ -15,7 +15,7 @@ const Footer = () => {
         <div
             style={{
                 backgroundImage: bgLocations
-                    ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/assets/footer.avif')"
+                    ? "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.400)), url('/assets/images/footer.avif')"
                     : "none",
                 backgroundPosition: isSmallDevice ? "70% 50%" : "center",
                 backgroundSize: "cover",

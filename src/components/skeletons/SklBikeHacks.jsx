@@ -5,7 +5,7 @@ const SklBikeHacks = () => {
                 <div className="flex items-center justify-center">
                     <img
                         className="w-full max-h-[17.5vh] lg:max-h-[9vw] rounded-lg object-cover"
-                        src="/assets/youtube_loader.gif"
+                        src="/assets/images/youtube_loader.gif"
                     />
                 </div>
                 <div className="flex flex-col gap-1 mt-3 description text-white ">

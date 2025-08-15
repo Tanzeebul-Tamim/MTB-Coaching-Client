@@ -24,7 +24,7 @@ const SklPopularInstructors = () => {
                 <div className="absolute right-[2%] mr-2">
                     <img
                         className="group-hover:scale-110 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full lg:h-[6vw] lg:w-[6vw] border-zinc-400 border-[2px]"
-                        src="/assets/user_avatar.png"
+                        src="/assets/images/user_avatar.png"
                     />
                 </div>
             </div>

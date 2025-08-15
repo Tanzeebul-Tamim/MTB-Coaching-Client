@@ -54,7 +54,7 @@ const SklSelectedClasses = ({ isSmallDevice }) => {
                                     <td className="flex justify-center">
                                         <img
                                             className="lg:w-20 lg:h-12 h-6 rounded-lg lg:rounded-xl object-cover"
-                                            src="/assets/class-loading.gif"
+                                            src="/assets/images/class-loading.gif"
                                         />
                                     </td>
                                     <td>

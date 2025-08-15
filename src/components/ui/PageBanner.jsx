@@ -4,7 +4,7 @@ const PageBanner = ({ src, texts, side }) => {
     return (
         <div className="relative">
             <div className="flex items-center justify-center w-full h-full">
-                <ImageWithLoader src={`/assets/${src}_banner.png`} alt="" />
+                <ImageWithLoader src={`/assets/images/${src}_banner.png`} alt="" />
             </div>
             <div
                 className={`z-[10] pl-3 lg:pl-0 lg:${side === "left" ? "left" : "right"}-10 ${

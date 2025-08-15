@@ -32,10 +32,10 @@ const ResponsiveNavbarEnd = ({ props }) => {
                         }`}
                         src={
                             userLoading
-                                ? "/assets/user_avatar.png"
+                                ? "/assets/images/user_avatar.png"
                                 : userDetails?.image || user?.photoURL
                                 ? userDetails?.image || user?.photoURL
-                                : "/assets/user_avatar.png"
+                                : "/assets/images/user_avatar.png"
                         }
                         alt=""
                     />
@@ -47,7 +47,7 @@ const ResponsiveNavbarEnd = ({ props }) => {
                 <div>
                     <img
                         className="h-[45px] w-[45px] rounded-full animate-pulse"
-                        src="/assets/user_avatar.png"
+                        src="/assets/images/user_avatar.png"
                         alt=""
                     />
                 </div>

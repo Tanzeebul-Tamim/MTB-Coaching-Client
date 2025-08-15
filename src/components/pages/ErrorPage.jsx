@@ -27,7 +27,7 @@ const ErrorPage = () => {
     return (
         <div
             style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.200), #0e0d0d), url('/assets/error_banner${
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.200), #0e0d0d), url('/assets/images/error_banner${
                     isSmallDevice ? "_res.jpg" : ".avif"
                 }')`,
                 backgroundPosition: "center",
@@ -57,7 +57,7 @@ const ErrorPage = () => {
                         Keep pedaling and stay tuned for our triumphant return!
                     </p>
                     <img
-                        src="/assets/error_gif.gif"
+                        src="/assets/images/error_gif.gif"
                         className="rounded-2xl mb-5 w-5/6"
                     />
                     <Link
@@ -69,7 +69,7 @@ const ErrorPage = () => {
                 </div>
             ) : (
                 <>
-                    <img src="/assets/error_gif.gif" className="rounded-xl" />
+                    <img src="/assets/images/error_gif.gif" className="rounded-xl" />
                     <p className="description text-white w-3/4 mb-4 mt-5 text-2xl text-center">
                         Oops! Looks like you tried to land on a wrong trail.{" "}
                         {error && error.message && (

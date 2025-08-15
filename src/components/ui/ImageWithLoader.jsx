@@ -5,7 +5,7 @@ export default function ImageWithLoader({
     className,
     style,
     alt,
-    gif = "/assets/loading.gif",
+    gif = "/assets/images/loading.gif",
 }) {
     const [isLoading, setIsLoading] = useState(true);
 

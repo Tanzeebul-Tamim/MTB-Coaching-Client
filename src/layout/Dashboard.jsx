@@ -23,7 +23,7 @@ const Dashboard = () => {
         return <NoInternetPage />;
     }
 
-    const url = "url('/assets/dashboard_banner_res.jpg')";
+    const url = "url('/assets/images/dashboard_banner_res.jpg')";
     const lightBg =
         "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " + url;
     const darkBg =
@@ -78,7 +78,7 @@ const Dashboard = () => {
                         <div
                             style={{
                                 backgroundImage:
-                                    "url('/assets/dashboard_banner.avif')",
+                                    "url('/assets/images/dashboard_banner.avif')",
                                 backgroundPosition: "center",
                                 backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
