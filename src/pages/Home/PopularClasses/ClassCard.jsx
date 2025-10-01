@@ -3,17 +3,25 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 
-const ClassCard = ({ topClass }) => {
+const ClassCard = ({ topClass, isLoggedIn, play }) => {
     return (
         <Link
+            onClick={() => {
+                if (!isLoggedIn) {
+                    setTimeout(() => {
+                        play("warning");
+                    }, 500);
+                    return;
+                }
+            }}
             to={`/instructors/${topClass.instructorId}`}
             className="group card relative h-full description rounded-2xl card-compact w-full lg:mx-3 bg-base-200 dark:shadow-xl"
         >
             <div>
                 <ImageWithLoader
                     style={{
-                        "objectPosition": "left",
-                        "objectFit": "cover",
+                        objectPosition: "left",
+                        objectFit: "cover",
                     }}
                     src={topClass.image}
                     className="rounded-t-2xl h-[240px] z-0 w-full"

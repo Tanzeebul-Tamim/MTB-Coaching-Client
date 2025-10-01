@@ -10,12 +10,14 @@ import {
 import Swal from "sweetalert2";
 import usePagination from "../../hooks/usePagination";
 import useTitle from "../../hooks/useTitle";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const useSelectedClasses = () => {
     const { user } = useAuth();
     const [unpaidBookings, setUnpaidBookings] = useState([]);
     const { isSmallDevice } = useScreenSize();
     const { loading, userDetails } = useUserData();
+    const { play } = useSoundEffects();
     useTitle("| Booked Courses");
 
     useEffect(() => {
@@ -50,6 +52,7 @@ const useSelectedClasses = () => {
             backdrop: "#00000",
         }).then((result) => {
             if (result.isConfirmed) {
+                play("success");
                 Swal.fire({
                     title: "Booking List has been Cleared!",
                     icon: "success",

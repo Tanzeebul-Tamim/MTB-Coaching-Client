@@ -3,6 +3,8 @@ import useScreenSize from "../../hooks/useScreenSize";
 import { getAllInstructors, getTotalInstructors } from "../../api/api";
 import { getUserData } from "../../api/authApi";
 import useTitle from "../../hooks/useTitle";
+import useAuth from "../../hooks/useAuth";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const useInstructors = () => {
     const titleDescription =
@@ -16,6 +18,8 @@ const useInstructors = () => {
     const searchRef = useRef(null);
     const tableRef = useRef(null);
     const { isSmallDevice } = useScreenSize();
+    const { user } = useAuth();
+    const { play } = useSoundEffects();
     useTitle("| Instructors");
 
     useEffect(() => {
@@ -90,6 +94,8 @@ const useInstructors = () => {
         search,
         setSearch,
         searchStyle,
+        user,
+        play,
     };
 };
 

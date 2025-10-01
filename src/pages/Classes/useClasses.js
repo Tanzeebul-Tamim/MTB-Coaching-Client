@@ -4,6 +4,8 @@ import useScreenSize from "../../hooks/useScreenSize";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
 import { getAllClasses, getTotalClasses } from "../../api/api";
+import { useNavigate } from "react-router-dom";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const useClasses = () => {
     const titleDescription =
@@ -18,9 +20,11 @@ const useClasses = () => {
     const tableRef = useRef(null);
     const { isSmallDevice } = useScreenSize();
     const { loading: userLoading, userDetails } = useUserData();
+    const navigate = useNavigate();
     useTitle("| Courses");
 
     const [totalClasses, setTotalClasses] = useState({});
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         getTotalClasses()
@@ -95,6 +99,8 @@ const useClasses = () => {
         search,
         setSearch,
         searchStyle,
+        navigate,
+        play
     };
 };
 

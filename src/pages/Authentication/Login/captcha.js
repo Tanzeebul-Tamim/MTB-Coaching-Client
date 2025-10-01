@@ -158,10 +158,11 @@ export const drawCaptchaWithData = (canvas, data, bgColor, fontColor) => {
 };
 
 // Validating user input
-export const validateCaptcha = (userValue, setSuccess, setError) => {
+export const validateCaptcha = (userValue, setSuccess, setError, playSound) => {
     if (userValue) {
         if (userValue.length === captcha_length) {
             if (userValue === captcha_value) {
+                playSound("captcha");
                 setSuccess("Captcha Matched");
                 setError("");
                 return true;

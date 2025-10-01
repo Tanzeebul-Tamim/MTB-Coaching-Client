@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useUserData from "../../../hooks/useUserData";
 import { bookClass, getBookedClasses } from "../../../api/bookApi";
 import { toast } from "react-toastify";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useSingleInstructorClassCard = (classItem, instructorId, index) => {
     const availableSeat = classItem.studentSlot - classItem.totalStudent;
@@ -18,6 +19,7 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
         (booking) => booking.paymentStatus === "paid"
     );
     const { loading: userLoading, userDetails } = useUserData();
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         if (user && user.email && userDetails?._id) {
@@ -64,6 +66,7 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
                 classItem.endDate
             );
             setBooking(!booking);
+            play("success");
             toast.success(
                 <>
                     <span className="font-bold text-green-500">

@@ -3,9 +3,17 @@ import { GiTeacher } from "react-icons/gi";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const InstructorCard = ({ topInstructor }) => {
+const InstructorCard = ({ topInstructor, isLoggedIn, play }) => {
     return (
         <Link
+            onClick={() => {
+                if (!isLoggedIn) {
+                    setTimeout(() => {
+                        play("warning");
+                    }, 500);
+                    return;
+                }
+            }}
             to={`/instructors/${topInstructor._id}`}
             className="card h-full group description rounded-2xl card-compact lg:mx-3 bg-base-200 dark:shadow-xl"
         >

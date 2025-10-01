@@ -28,6 +28,8 @@ const Classes = () => {
         search,
         setSearch,
         searchStyle,
+        navigate,
+        play
     } = useClasses();
 
     return (
@@ -97,6 +99,9 @@ const Classes = () => {
                             user={user}
                             userDetails={userDetails}
                             userLoading={userLoading}
+                            isLoggedIn={Boolean(user)}
+                            navigate={navigate}
+                            play={play}
                         />
                         {classes.length >= visibleCount && (
                             <div className="flex justify-center">

@@ -12,6 +12,7 @@ import {
 import { getUserData, saveUserViaSocial } from "../../../api/authApi";
 import { light, dark } from "../../../styles/colors.json";
 import useDarkTheme from "../../../hooks/useDarkTheme";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useLogin = () => {
     // Auth
@@ -72,6 +73,9 @@ const useLogin = () => {
         transition: Flip,
     };
 
+    // Sound effects
+    const { play } = useSoundEffects();
+
     // Page title
     useTitle("| Login");
 
@@ -115,6 +119,7 @@ const useLogin = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then((result) => saveUserViaSocial(result.user))
+            .then(() => play("alert"))
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/user-disabled")
@@ -152,11 +157,12 @@ const useLogin = () => {
                 getUserData(result.user?.email).then((userDetails) => {
                     let { name } = userDetails;
                     name = name?.split(" ")[0];
-                    const message = `Welcome ${name}! You're logged-in as ${
+                    const message = `Welcome ${name}! You have logged-in as ${
                         userDetails?.role === "Instructor"
                             ? "an instructor"
                             : "a student"
                     }`;
+                    play("alert");
                     toast.success(message, config);
                 });
 
@@ -188,7 +194,7 @@ const useLogin = () => {
         const emailValue = emailRef.current.value.trim();
         const passValue = passRef.current.value;
 
-        if (!validateCaptcha(captcha_value, setSuccess, setError)) {
+        if (!validateCaptcha(captcha_value, setSuccess, setError, play)) {
             setDisabled(true);
             return;
         }
@@ -305,6 +311,7 @@ const useLogin = () => {
         setReload((reload) => !reload);
         setCaptchaChars(Array(captchaLength).fill(""));
         setCaptchaInput("");
+        document.getElementById("captcha-char-0").focus();
 
         if (error && error.split(" ").includes("Captcha")) {
             setError("");

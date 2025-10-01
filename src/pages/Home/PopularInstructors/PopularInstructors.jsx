@@ -11,6 +11,8 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import useScreenSize from "../../../hooks/useScreenSize";
 import SklPopularInstructors from "../../../components/skeletons/SklPopularInstructors";
+import useAuth from "../../../hooks/useAuth";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const popularInstructorsDes =
     "Get to know some of our highly skilled and experienced instructors who'll lead your way throughout this journey. Each of our instructor brings a unique teaching style and a wealth of practical experience, ensuring that our students receive the best instruction possible.";
@@ -20,6 +22,8 @@ const PopularInstructors = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const { user } = useAuth();
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         setNumberOfSlides(isSmallDevice ? 1 : 3);
@@ -63,6 +67,8 @@ const PopularInstructors = () => {
                               <SwiperSlide key={i}>
                                   <InstructorCard
                                       topInstructor={topInstructor}
+                                      isLoggedIn={Boolean(user)}
+                                      play={play}
                                   ></InstructorCard>
                               </SwiperSlide>
                           );

@@ -2,7 +2,13 @@ import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import InstructorsTableHead from "./InstructorsTableHead";
 import { Link } from "react-router-dom";
 
-const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
+const InstructorsTable = ({
+    instructors,
+    tableRef,
+    isSmallDevice,
+    isLoggedIn,
+    play,
+}) => {
     const maxLength = isSmallDevice ? 25 : 50;
 
     return (
@@ -60,7 +66,17 @@ const InstructorsTable = ({ instructors, tableRef, isSmallDevice }) => {
                                             <Link
                                                 to={`/instructors/${instructor._id}`}
                                             >
-                                                <button className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content">
+                                                <button
+                                                    onClick={() => {
+                                                        if (!isLoggedIn) {
+                                                            setTimeout(() => {
+                                                                play("warning");
+                                                            }, 500);
+                                                            return;
+                                                        }
+                                                    }}
+                                                    className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content"
+                                                >
                                                     {isSmallDevice ? (
                                                         <span className="text-[12px]">
                                                             View

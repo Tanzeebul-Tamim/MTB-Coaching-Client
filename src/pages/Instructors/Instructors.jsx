@@ -24,6 +24,8 @@ const Instructors = () => {
         search,
         setSearch,
         searchStyle,
+        user,
+        play
     } = useInstructors();
 
     return (
@@ -83,6 +85,8 @@ const Instructors = () => {
                             tableRef={tableRef}
                             instructors={instructors}
                             isSmallDevice={isSmallDevice}
+                            isLoggedIn={Boolean(user)}
+                            play={play}
                         />
                         {instructors.length >= visibleCount && (
                             <div className="flex justify-center">

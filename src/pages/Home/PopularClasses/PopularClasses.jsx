@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper";
 import useScreenSize from "../../../hooks/useScreenSize";
 import SklPopularClasses from "../../../components/skeletons/SklPopularClasses";
+import useAuth from "../../../hooks/useAuth";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const popularClassesDes =
     "We offer a curated collection of the most sought-after courses which are highly recommended for mountain bike enthusiasts. Discover a range of exciting and educational courses designed to enhance your MTB skills and knowledge.";
@@ -19,6 +21,8 @@ const PopularClasses = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isSmallDevice } = useScreenSize();
+    const { user } = useAuth();
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         setNumberOfSlides(isSmallDevice ? 1 : 3);
@@ -62,7 +66,11 @@ const PopularClasses = () => {
                     : topClasses.map((topClass, i) => {
                           return (
                               <SwiperSlide key={i}>
-                                  <ClassCard topClass={topClass}></ClassCard>
+                                  <ClassCard
+                                      topClass={topClass}
+                                      isLoggedIn={Boolean(user)}
+                                      play={play}
+                                  ></ClassCard>
                               </SwiperSlide>
                           );
                       })}

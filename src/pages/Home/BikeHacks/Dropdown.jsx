@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../../../styles/bikeHacks.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const Dropdown = ({
     selectBikeType,
@@ -16,6 +17,7 @@ const Dropdown = ({
     const location = useLocation();
     const placeholder = "Select the Type of Bike You Ride";
     const customId = "unauthorized";
+    const { play } = useSoundEffects();
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -64,23 +66,21 @@ const Dropdown = ({
                 ref={dropdownContainerRef}
                 className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full bg-opacity-80 bg-base-100 text-base-content"
                 onClick={() => {
-                    if (!isLoggedIn) {
-                        toast.info(
-                            "Please log in to use this feature",
-                            {
-                                position: "top-center",
-                                autoClose: 2000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnFocusLoss: false,
-                                draggable: true,
-                                toastId: customId,
-                                progress: undefined,
-                            }
-                        );
+                    if (!isLoggedIn) {                        
+                        toast.info("Please log in to use this feature", {
+                            position: "top-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnFocusLoss: false,
+                            draggable: true,
+                            toastId: customId,
+                            progress: undefined,
+                        });
                         navigate("/login", {
                             state: { from: location },
                         });
+                        play("warning");
                         return;
                     }
                     setIsFocused((prev) => !prev);

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { bookClass, getBookedClasses } from "../../../api/bookApi";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import { toast } from "react-toastify";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useClassesTable = (userDetails, user) => {
     const [userBookings, setUserBookings] = useState([]);
@@ -14,12 +15,14 @@ const useClassesTable = (userDetails, user) => {
     const paid = userBookings?.filter(
         (booking) => booking.paymentStatus === "paid"
     );
+    const { play } = useSoundEffects();
 
     const handleBook = (isBooked, classItem, booking, setBooking) => {
         const { instructorId, classIndex, startDate, endDate, name } =
             classItem;
 
         if (!user) {
+            play("warning");
             toast.info("Please log in to book a course.", {
                 position: "top-center",
                 autoClose: 1100,
@@ -43,6 +46,7 @@ const useClassesTable = (userDetails, user) => {
                 endDate
             );
             setBooking(!booking);
+            play("success");
             toast.success(
                 <>
                     <span className="font-bold text-green-500">{name}</span> has

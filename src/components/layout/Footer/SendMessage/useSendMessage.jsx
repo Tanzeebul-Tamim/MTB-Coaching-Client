@@ -5,12 +5,14 @@ import useAuth from "../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import useDarkTheme from "../../../../hooks/useDarkTheme";
 import useScreenSize from "../../../../hooks/useScreenSize";
+import useSoundEffects from "../../../../hooks/useSoundEffects";
 
 const useSendMessage = () => {
     const { userDetails } = useUserData();
     const { user, supportGlow } = useAuth();
     const isDarkTheme = useDarkTheme();
     const { isSmallDevice } = useScreenSize();
+    const { play } = useSoundEffects();
 
     const className = "uppercase text-lg lg:text-xl";
     const [glowClass, setGlowClass] = useState(className);
@@ -92,6 +94,7 @@ const useSendMessage = () => {
         sendMessage(user ? memberMessage : guestMessage);
 
         e.target.reset();
+        play("message");
 
         {
             user &&

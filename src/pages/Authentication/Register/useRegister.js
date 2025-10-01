@@ -6,6 +6,7 @@ import useTitle from "../../../hooks/useTitle";
 import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 import { toast, Flip } from "react-toastify";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useRegister = () => {
     const [isValid, setIsValid] = useState(false);
@@ -50,6 +51,7 @@ const useRegister = () => {
     const { isSmallDevice } = useScreenSize();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
+    const { play } = useSoundEffects();
     useTitle("| Student-Registration");
 
     const handleSelectGender = (event) => {
@@ -159,6 +161,7 @@ const useRegister = () => {
                                                     contactNo
                                                 )
                                                     .then(() => {
+                                                        play("success");
                                                         Swal.fire({
                                                             title: `A verification email has been sent to ${email}`,
                                                             text: "After verifying your email you can log in",
@@ -283,6 +286,7 @@ const useRegister = () => {
                     });
                 });
             })
+            .then(() => play("success"))
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/user-disabled") {

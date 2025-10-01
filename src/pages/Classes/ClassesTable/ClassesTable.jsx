@@ -7,6 +7,7 @@ import { light, dark } from "../../../styles/colors.json";
 import useClassesTable from "./useClassesTable";
 import ClassDetail from "../../../components/ui/ClassDetail";
 import getStatus from "../../../hooks/getStatus";
+import { toast } from "react-toastify";
 
 const ClassesTable = ({
     classes,
@@ -16,6 +17,9 @@ const ClassesTable = ({
     user,
     userDetails,
     userLoading,
+    isLoggedIn,
+    navigate,
+    play,
 }) => {
     const { booking, setBooking, loading } = rest;
     const { bookedClasses, enrolledClasses, isDarkTheme, handleBook } =
@@ -131,11 +135,40 @@ const ClassesTable = ({
                                                     </button>
                                                 ) : (
                                                     <button
-                                                        onClick={() =>
-                                                            window[
-                                                                modalId
-                                                            ].showModal()
-                                                        }
+                                                        onClick={() => {
+                                                            if (isLoggedIn) {
+                                                                window[
+                                                                    modalId
+                                                                ].showModal();
+                                                            } else {
+                                                                toast.info(
+                                                                    "Please log in to view course details",
+                                                                    {
+                                                                        position:
+                                                                            "top-center",
+                                                                        autoClose: 2000,
+                                                                        hideProgressBar: false,
+                                                                        closeOnClick: true,
+                                                                        pauseOnFocusLoss: false,
+                                                                        draggable: true,
+                                                                        toastId:
+                                                                            "unauthorized",
+                                                                        progress:
+                                                                            undefined,
+                                                                    }
+                                                                );
+                                                                navigate(
+                                                                    "/login",
+                                                                    {
+                                                                        state: {
+                                                                            from: location,
+                                                                        },
+                                                                    }
+                                                                );
+                                                                play("warning");
+                                                                return;
+                                                            }
+                                                        }}
                                                         className={`btn text-base-content btn-sm lg:rounded-lg rounded-full ${
                                                             availableSeat == 0
                                                                 ? "dark:bg-red-800 bg-red-600"

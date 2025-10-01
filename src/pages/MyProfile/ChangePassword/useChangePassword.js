@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import useScreenSize from "../../../hooks/useScreenSize";
 import { Flip, Zoom, Slide, Bounce, toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const fireToast = (message, type = "error") => {
     const time = 2100;
@@ -43,6 +44,7 @@ const useChangePassword = (email) => {
     const modalRef = useRef(null);
     const { isSmallDevice } = useScreenSize();
     const { passwordReset, setLoading: authLoading } = useAuth();
+    const { play } = useSoundEffects();
 
     const [currentPassInput, setCurrentPassInput] = useState(null);
     const [newPassInput, setNewPassInput] = useState(null);
@@ -151,6 +153,7 @@ const useChangePassword = (email) => {
             .then(() => {
                 return updatePassword(auth.currentUser, newPassInput).then(
                     () => {
+                        play("success");
                         fireToast("Password has been updated!", "success");
                         setError("");
                         setFormFields(fields);
@@ -163,7 +166,9 @@ const useChangePassword = (email) => {
                 console.error(error);
                 if (error.code === "auth/wrong-password") {
                     setError("Current password is incorrect");
-                    fireToast("The current password you entered is incorrect. Please try again.");
+                    fireToast(
+                        "The current password you entered is incorrect. Please try again."
+                    );
                     setFormFields((prev) => ({
                         ...prev,
                         currentPass: "",
@@ -172,7 +177,9 @@ const useChangePassword = (email) => {
                     return;
                 } else if (error.code === "auth/too-many-requests") {
                     setError("Try again later");
-                    fireToast("Too many unsuccessful attempts! Try again later");
+                    fireToast(
+                        "Too many unsuccessful attempts! Try again later"
+                    );
                     setFormFields(fields);
                     setLoading(false);
                     return;

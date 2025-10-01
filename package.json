@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host --host",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -36,7 +36,8 @@
     "react-youtube": "^10.1.0",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.12",
-    "swiper": "^9.4.1"
+    "swiper": "^9.4.1",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",

@@ -4,12 +4,14 @@ import useAuth from "../../hooks/useAuth";
 import { getUserData, saveUser } from "../../api/authApi";
 import { Flip, toast } from "react-toastify";
 import useScreenSize from "../../hooks/useScreenSize";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const useAddClass = () => {
     const [imageButtonText, setImageButtonText] = useState("Upload Thumbnail");
     const [error, setError] = useState("");
     const [helmet, setHelmet] = useState("Add a Course");
     const { isSmallDevice } = useScreenSize();
+    const { play } = useSoundEffects();
     useTitle(`| ${helmet}`);
 
     const [formData, setFormData] = useState({
@@ -122,6 +124,7 @@ const useAddClass = () => {
             setFormData({ name: "", price: "", studentSlot: "", image: null });
             setImageButtonText("Upload Thumbnail");
 
+            play("success");
             toast.success("Course added successfully!", {
                 position: "top-center",
                 autoClose: 1100,

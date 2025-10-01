@@ -3,12 +3,14 @@ import useScreenSize from "../../../hooks/useScreenSize";
 import useAuth from "../../../hooks/useAuth";
 import { Flip, toast } from "react-toastify";
 import { getUserData, saveUser } from "../../../api/authApi";
+import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useUpdateProfileForm = (userDetails) => {
     const { isSmallDevice } = useScreenSize();
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
     const [coverImageButtonText, setCoverImageButtonText] =
         useState("Upload Cover Image");
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         setCoverImageButtonText(
@@ -50,6 +52,7 @@ const useUpdateProfileForm = (userDetails) => {
     };
 
     const quoteMaxLength = 25;
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -179,6 +182,7 @@ const useUpdateProfileForm = (userDetails) => {
                                             )
                                                 .then(() => {
                                                     saveUser(user);
+                                                    play("success");
                                                     toast.success(
                                                         "Profile Updated",
                                                         {
@@ -216,6 +220,7 @@ const useUpdateProfileForm = (userDetails) => {
                                     updateUser(name, imageUrl, contactNo)
                                         .then(() => {
                                             saveUser(user);
+                                            play("success");
                                             toast.success("Profile Updated", {
                                                 position: "top-center",
                                                 autoClose: 1100,
@@ -271,6 +276,7 @@ const useUpdateProfileForm = (userDetails) => {
                         updateUser(name)
                             .then(() => {
                                 saveUser(user);
+                                play("success");
                                 toast.success("Profile Updated", {
                                     position: "top-center",
                                     autoClose: 1100,
@@ -296,6 +302,7 @@ const useUpdateProfileForm = (userDetails) => {
                 updateUser(name)
                     .then(() => {
                         saveUser(user);
+                        play("success");
                         toast.success("Profile Updated", {
                             position: "top-center",
                             autoClose: 1100,
