@@ -19,7 +19,7 @@ const bikeHacksDes =
 const BikeHacks = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const { isSmallDevice } = useScreenSize();
-    const { user } = useAuth();
+    const { user, isIOS } = useAuth();
     const [selectBikeType, setSelectBikeType] = useState("");
     const [shouldFetch, setShouldFetch] = useState(false);
     const query = `${selectBikeType} Bike Hacks`;
@@ -38,7 +38,7 @@ const BikeHacks = () => {
                 dropdownCondition ? "pt-10" : "lg:pt-40 pt-20"
             } px-5 lg:px-10`}
             style={{
-                backgroundAttachment: "fixed",
+                backgroundAttachment: !isIOS && "fixed",
                 backgroundImage:
                     "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.100)), url('/assets/images/bike_hack_banner.avif')",
                 backgroundPosition: isSmallDevice ? "55% 50%" : "center",

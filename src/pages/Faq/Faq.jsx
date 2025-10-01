@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Faq = () => {
     useTitle("| FAQ & Support");
+    const { isIOS } = useAuth();
     const { handleScrollGlow } = useAuth();
     const { isSmallDevice } = useScreenSize();
 
@@ -16,8 +17,12 @@ const Faq = () => {
                 backgroundImage: "url('/assets/images/support.jpg')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: isSmallDevice ? "65% 50%" : "center",
-                backgroundAttachment: "fixed",
+                backgroundPosition: isSmallDevice
+                    ? isIOS
+                        ? "80% 50%"
+                        : "65% 50%"
+                    : "center",
+                backgroundAttachment: !isIOS && "fixed",
             }}
         >
             <div className="relative z-20">

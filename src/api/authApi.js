@@ -43,7 +43,7 @@ export const saveUserViaSocial = (user) => {
     getUserData(currentUser.email).then((userDetails) => {
         let { name } = userDetails;
         name = name?.split(" ")[0];
-        const message = `Welcome ${name}! You're logged-in as ${
+        const message = `Welcome ${name}! You have logged-in as ${
             userDetails?.role === "Instructor" ? "an instructor" : "a student"
         }`;
         toast.success(message, config);
@@ -107,7 +107,7 @@ export const saveInstructorViaSocial = async (user) => {
 
     let { name } = currentUser;
     name = name?.split(" ")[0];
-    const message = `Welcome ${name}! You're logged-in as an instructor`;
+    const message = `Welcome ${name}! You have logged-in as an instructor`;
     toast.success(message, config);
 
     currentUser = {
@@ -172,7 +172,7 @@ export const saveStudentViaSocial = async (user) => {
 
     let { name } = currentUser;
     name = name?.split(" ")[0];
-    const message = `Welcome ${name}! You're logged-in as a student`;
+    const message = `Welcome ${name}! You have logged-in as a student`;
     toast.success(message, config);
 
     currentUser = {

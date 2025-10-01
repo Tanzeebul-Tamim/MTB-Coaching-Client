@@ -81,6 +81,9 @@ const AuthProvider = ({ children }) => {
         };
     }, []);
 
+    const isIOS =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
     const authInfo = {
         user,
         loading,
@@ -96,6 +99,7 @@ const AuthProvider = ({ children }) => {
         passwordReset,
         supportGlow,
         handleScrollGlow,
+        isIOS
     };
 
     return (

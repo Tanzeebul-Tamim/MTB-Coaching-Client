@@ -6,7 +6,7 @@ import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
 
 const Legal = () => {
     useTitle("| Legal");
-    const { handleScrollGlow } = useAuth();
+    const { handleScrollGlow, isIOS } = useAuth();
     const { isSmallDevice } = useScreenSize();
 
     return (
@@ -16,8 +16,12 @@ const Legal = () => {
                 backgroundImage: "url('/assets/images/legal.avif')",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: isSmallDevice ? "65% 50%" : "center",
-                backgroundAttachment: isSmallDevice && "fixed",
+                backgroundPosition: isSmallDevice
+                    ? isIOS
+                        ? "55% 50%"
+                        : "65% 50%"
+                    : "center",
+                backgroundAttachment: isSmallDevice && !isIOS && "fixed",
             }}
         >
             <div className="relative z-20">

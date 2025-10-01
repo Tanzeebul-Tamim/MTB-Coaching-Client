@@ -1,19 +1,25 @@
 import useTitle from "../../hooks/useTitle";
 import useScreenSize from "../../hooks/useScreenSize";
+import useAuth from "../../hooks/useAuth";
 
 const AboutUs = () => {
     useTitle("| About Us");
     const { isSmallDevice } = useScreenSize();
+    const { isIOS } = useAuth();
 
     return (
         <div
             className="lg:pt-40 pt-20 lg:pb-24 pb-12 lg:px-10 relative min-h-screen"
             style={{
                 backgroundImage: "url('/assets/images/about_us_banner.avif')",
-                backgroundPosition: isSmallDevice ? "32.5% 50%" : "center",
+                backgroundPosition: isSmallDevice
+                    ? isIOS
+                        ? "35.5% 50%"
+                        : "32.5% 50%"
+                    : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                backgroundAttachment: "fixed",
+                backgroundAttachment: !isIOS && "fixed",
             }}
         >
             <div className="relative z-20">

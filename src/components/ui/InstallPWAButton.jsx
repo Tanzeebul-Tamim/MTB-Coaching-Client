@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import "../../styles/pwa.css";
+import useAuth from "../../hooks/useAuth";
 
 const InstallPWAButton = () => {
+    const { isIOS } = useAuth();
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [installReady, setInstallReady] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -66,10 +68,32 @@ const InstallPWAButton = () => {
         ? `slideInUp ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`
         : `slideOutDown ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`;
 
+    const btnCls =
+        "z-[1000] glow-effect fixed lg:bottom-5 bottom-3 lg:right-5 right-3 lg:text-base text-sm bg-primary dark:bg-opacity-70 bg-opacity-75 hover:bg-opacity-80 text-accent transition-all duration-500 ease-in-out lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg tracking-wider lg:tracking-widest";
+
+    if (isIOS) {
+        // iOS Safari does not support before installprompt
+        return (
+            <button
+                className={btnCls}
+                style={{
+                    animation: `slideInUp ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`,
+                }}
+                onClick={() => {
+                    alert(
+                        "To install this app, tap the Share icon (square with arrow) and choose 'Add to Home Screen'."
+                    );
+                }}
+            >
+                🚴‍♂️ Install the App
+            </button>
+        );
+    }
+
     return (
         <button
             onClick={handleInstall}
-            className="z-[1000] glow-effect fixed lg:bottom-5 bottom-3 lg:right-5 right-3 lg:text-base text-sm bg-primary dark:bg-opacity-70 bg-opacity-75 hover:bg-opacity-80 text-accent transition-all duration-500 ease-in-out lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg tracking-wider lg:tracking-widest"
+            className={btnCls}
             style={{ animation }}
         >
             🚴‍♂️ Install the App
