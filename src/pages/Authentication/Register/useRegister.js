@@ -21,6 +21,7 @@ const useRegister = () => {
         logOut,
         googleSignIn,
         emailVerification,
+        isIOS,
     } = useAuth();
     const imageRef = useRef();
     const [showPassword, setShowPassword] = useState(false);
@@ -350,6 +351,7 @@ const useRegister = () => {
         setIsValid,
         imageRef,
         clearForm,
+        isIOS,
     };
 };
 

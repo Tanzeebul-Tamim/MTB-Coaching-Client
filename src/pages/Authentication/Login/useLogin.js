@@ -13,11 +13,19 @@ import { getUserData, saveUserViaSocial } from "../../../api/authApi";
 import { light, dark } from "../../../styles/colors.json";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import useSoundEffects from "../../../hooks/useSoundEffects";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const useLogin = () => {
     // Auth
-    const { signIn, setLoading, loading, googleSignIn, logOut, passwordReset } =
-        useAuth();
+    const {
+        signIn,
+        setLoading,
+        loading,
+        googleSignIn,
+        logOut,
+        passwordReset,
+        isIOS,
+    } = useAuth();
 
     // Navigation
     const navigate = useNavigate();
@@ -75,6 +83,9 @@ const useLogin = () => {
 
     // Sound effects
     const { play } = useSoundEffects();
+
+    // Screen Size
+    const { isSmallDevice } = useScreenSize();
 
     // Page title
     useTitle("| Login");
@@ -346,6 +357,8 @@ const useLogin = () => {
         onCaptchaKeyDown,
         reloadCaptcha,
         setDisabled,
+        isIOS,
+        isSmallDevice
     };
 };
 

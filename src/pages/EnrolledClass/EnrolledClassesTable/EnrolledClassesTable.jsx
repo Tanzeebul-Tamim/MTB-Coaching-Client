@@ -109,7 +109,6 @@ const EnrolledClassesTable = ({
                                     <br />{" "}
                                     {moment(endDate).format("Do MMM, YYYY")}
                                 </td>
-                                <td>{duration} Days</td>
                                 <td className={statusColor}>{status}</td>
                                 <td>
                                     <PDFDownloadLink

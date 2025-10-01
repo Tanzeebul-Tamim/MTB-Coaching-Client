@@ -35,6 +35,8 @@ const Login = () => {
         onCaptchaKeyDown,
         reloadCaptcha,
         setDisabled,
+        isIOS,
+        isSmallDevice,
     } = useLogin();
 
     const [clicked, setClicked] = useState(false);
@@ -45,9 +47,14 @@ const Login = () => {
             style={{
                 backgroundImage:
                     "linear-gradient(rgba(0, 0, 0, 0.600), rgba(0, 0, 0, 0.450)), url('/assets/images/login_banner.avif')",
-                backgroundPosition: "center",
+                backgroundPosition: isSmallDevice
+                    ? isIOS
+                        ? "35.5% 50%"
+                        : "32.5% 50%"
+                    : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
+                backgroundAttachment: !isIOS && "fixed",
             }}
         >
             <form
@@ -82,7 +89,7 @@ const Login = () => {
                         begin!
                     </p>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm shadow-2xl bg-base-100 lg:bg-opacity-90 bg-opacity-80">
                     <div className="card-body p-4 md:p-6 lg:p-8">
                         <div className="form-control">
                             <label className="label custom-cursor-default">
@@ -113,7 +120,7 @@ const Login = () => {
                                 name="email"
                                 required
                                 placeholder="Enter your email"
-                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                         </div>
                         <div className="z-[10] relative form-control">
@@ -130,7 +137,7 @@ const Login = () => {
                                 name="password"
                                 required
                                 placeholder="Enter your password"
-                                className="focus:outline-secondary placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <div
                                 className="custom-cursor-pointer"
@@ -196,7 +203,7 @@ const Login = () => {
                                             required
                                             placeholder="_"
                                             value={captchaChars[idx]}
-                                            className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 focus:outline-secondary"
+                                            className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)]"
                                             onChange={(e) =>
                                                 onCaptchaChange(e, idx)
                                             }

@@ -41,7 +41,7 @@ const SklMyStudents = ({ isSmallDevice }) => {
                 <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 bg-opacity-50">
-                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-xs">
+                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-sm">
                             <th>No</th>
                             <th>Photo</th>
                             <th>Name</th>

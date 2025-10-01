@@ -2,6 +2,7 @@ import { GiTeacher } from "react-icons/gi";
 import { ClipLoader } from "react-spinners";
 import useDarkTheme from "../../hooks/useDarkTheme";
 import { light, dark } from "../../styles/colors.json";
+import { IoMdDownload } from "react-icons/io";
 
 const SklEnrolledClass = ({ isSmallDevice }) => {
     const isDarkTheme = useDarkTheme();
@@ -28,15 +29,14 @@ const SklEnrolledClass = ({ isSmallDevice }) => {
                 <table className="z-[100] table text-center description text-base-content whitespace-nowrap lg:whitespace-normal">
                     {/* head */}
                     <thead className="bg-base-200 dark:lg:bg-opacity-50 dark:bg-opacity-50 lg:bg-opacity-50 bg-opacity-70">
-                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-xs">
+                        <tr className="dark:lg:text-base-content dark:text-base-content lg:text-base-content text-gray-200 text-sm">
                             <th className="">No</th>
-                <th className="">Image</th>
-                <th className="">Course</th>
-                <th className="">Instructor</th>
-                <th className="">Start Date</th>
-                <th className="">End Date</th>
-                <th className="">Duration</th>
-                <th className="">Status</th>
+                            <th className="">Image</th>
+                            <th className="">Course</th>
+                            <th className="">Instructor</th>
+                            <th className="">Start-End Date</th>
+                            <th className="">Status</th>
+                            <th className="">Invoice</th>
                         </tr>
                     </thead>
                     <tbody className="text-sm">
@@ -52,6 +52,17 @@ const SklEnrolledClass = ({ isSmallDevice }) => {
                                     </td>
                                     <td>
                                         <div className="flex items-center justify-center">
+                                            <div className="w-full sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center justify-center">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="flex flex-col items-center justify-center gap-1">
+                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                             <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
                                         </div>
                                     </td>
@@ -61,24 +72,23 @@ const SklEnrolledClass = ({ isSmallDevice }) => {
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center justify-center">
-                                            <div className="w-16 sm:w-24 h-3 lg:h-4 bg-gray-500 rounded"></div>
-                                        </div>
+                                        <button
+                                            disabled
+                                            className="btn btn-xs text-xs lg:rounded-lg rounded-full text-base-content dark:bg-stone-500  border-0 disabled:bg-base-200 dark:disabled:bg-base-200 animate-bounce"
+                                        >
+                                            {isSmallDevice ? (
+                                                <>
+                                                    <span className="text-[12px]">
+                                                        Download
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <IoMdDownload />
+                                                    <span>Download</span>
+                                                </>
+                                            )}
+                                        </button>
                                     </td>
                                 </tr>
                             );

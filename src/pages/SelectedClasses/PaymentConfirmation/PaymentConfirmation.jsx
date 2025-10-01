@@ -182,6 +182,8 @@ const PaymentConfirmation = () => {
                                 cardDetails={cardDetails}
                                 setFlipped={setFlipped}
                                 classItem={classItem}
+                                loading={loading}
+                                loading2={loading2}
                             ></CheckoutForm>
                         </div>
                     </div>

@@ -12,6 +12,8 @@ const CheckoutForm = ({
     cardDetails,
     setFocus,
     total,
+    loading,
+    loading2,
 }) => {
     const { handleSubmit, cardError, stripe, disabled } =
         useCheckoutForm(classItem);
@@ -68,7 +70,12 @@ const CheckoutForm = ({
                         <BeatLoader color={color} />
                     ) : (
                         <>
-                            <BsFillCreditCardFill /> Pay ${total}
+                            <BsFillCreditCardFill />
+                            <span>
+                                {!loading && !loading2 && classItem
+                                    ? "Pay $ " + total
+                                    : "loading..."}
+                            </span>
                         </>
                     )}
                 </button>

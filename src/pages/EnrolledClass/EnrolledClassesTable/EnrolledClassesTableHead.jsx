@@ -7,7 +7,6 @@ const EnrolledClassesTableHead = () => {
                 <th className="">Course</th>
                 <th className="">Instructor</th>
                 <th className="">Start-End Date</th>
-                <th className="">Duration</th>
                 <th className="">Status</th>
                 <th className="">Invoice</th>
             </tr>
