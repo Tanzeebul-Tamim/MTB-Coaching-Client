@@ -1,0 +1,148 @@
+/* Input Font */
+.phone-input {
+    font-family: "Khand", sans-serif !important;
+}
+
+/* Whole Dropdown */
+@media (min-width: 1024px) {
+    .country-list {
+        width: auto !important;
+    }
+}
+
+/* Top Row */
+.search {
+    font-family: "Khand", sans-serif !important;
+    background-color: #cfc6af !important;
+    padding: 7px !important;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+}
+
+.dark .search {
+    font-family: "Khand", sans-serif !important;
+    background-color: #302f2f !important;
+    padding: 7px !important;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+}
+
+@media (min-width: 1024px) {
+    .search-emoji {
+        display: none;
+    }
+}
+
+.flag-dropdown .open {
+    background-color: #bfb69f !important;
+}
+
+.dark .flag-dropdown .open {
+    background-color: #403b3b !important;
+}
+
+.selected-flag:hover {
+    background-color: #bfb69f !important;
+}
+
+.dark .selected-flag:hover {
+    background-color: #403b3b !important;
+}
+
+/* Search Box */
+.search-box {
+    font-family: "Quicksand", sans-serif;
+    background-color: #b5ab93 !important;
+    color: #3e4141 !important;
+}
+
+.dark .search-box {
+    font-family: "Quicksand", sans-serif;
+    background-color: #888b8b !important;
+    color: #3e4141 !important;
+}
+
+.search-box::placeholder {
+    color: #817863 !important;
+    font-family: "Quicksand", sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.dark .search-box::placeholder {
+    color: #4d5151 !important;
+    font-family: "Quicksand", sans-serif;
+    letter-spacing: 0.05em;
+}
+
+/* Row */
+.country {
+    font-family: "Quicksand", sans-serif;
+    background-color: #e3e0d8;
+}
+
+.dark .country {
+    font-family: "Quicksand", sans-serif;
+    background-color: #0e0d0d;
+}
+
+.country:hover {
+    background-color: #8f8367 !important;
+}
+
+.dark .country:hover {
+    background-color: #403b3b !important;
+}
+
+.no-entries-message {
+    background-color: #e3e0d8;
+}
+
+.dark .no-entries-message {
+    background-color: #0e0d0d;
+}
+
+/* Selected Row */
+.highlight {
+    background-color: #bfb69f !important;
+}
+
+.dark .highlight {
+    background-color: #201e1e !important;
+}
+
+/* Country Name Text */
+.country-name {
+    color: #364253 !important;
+    letter-spacing: 0.03em;
+    font-weight: bolder;
+}
+
+.dark .country-name {
+    color: #f5f3f0 !important;
+    letter-spacing: 0.03em;
+    font-weight: bolder;
+}
+
+/* Country Code Text */
+.dial-code {
+    color: rgb(31, 41, 55, 0.512) !important;
+}
+
+.dark .dial-code {
+    color: rgb(245, 243, 240, 0.512) !important;
+}
+
+/* Scrollbar Customization */
+ul.country-list {
+  scrollbar-width: thin;
+  scrollbar-color: #8f8367 transparent;
+}
+
+.dark ul.country-list {
+  scrollbar-width: thin;
+  scrollbar-color: #201e1e transparent;
+}

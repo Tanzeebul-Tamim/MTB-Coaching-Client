@@ -127,6 +127,15 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     FAQ & Support
                 </span>
             </ActiveLink>
+            <ActiveLink to="/support">
+                <span
+                    onClick={() => setOpen(!open)}
+                    className="flex items-center gap-1"
+                >
+                    <MdOutlineHelp className="text-xs" />
+                    Report an Issue
+                </span>
+            </ActiveLink>
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
             <ActiveLink customColor={customColor} to="/login">
                 <span

@@ -8,6 +8,7 @@ import useClassesTable from "./useClassesTable";
 import ClassDetail from "../../../components/ui/ClassDetail";
 import getStatus from "../../../hooks/getStatus";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const ClassesTable = ({
     classes,
@@ -79,14 +80,20 @@ const ClassesTable = ({
                                         >
                                             <td>{index + 1}</td>
                                             <td className="lg:flex lg:justify-center">
-                                                <ImageWithLoader
-                                                    className="lg:w-32 lg:rounded-xl rounded-lg lg:h-16"
-                                                    src={classItem?.image}
-                                                    alt="Avatar Tailwind CSS Component"
-                                                />
+                                                <Link
+                                                    to={`/instructors/${classItem?.instructorId}`}
+                                                >
+                                                    <ImageWithLoader
+                                                        className="lg:w-32 lg:rounded-xl rounded-lg lg:h-16"
+                                                        src={classItem?.image}
+                                                        alt="Avatar Tailwind CSS Component"
+                                                    />
+                                                </Link>
                                             </td>
                                             <td>
-                                                <div>
+                                                <Link
+                                                    to={`/instructors/${classItem?.instructorId}`}
+                                                >
                                                     <div>
                                                         {isSmallDevice
                                                             ? classItem?.name
@@ -106,7 +113,7 @@ const ClassesTable = ({
                                                               ) + "..."
                                                             : classItem.name}
                                                     </div>
-                                                </div>
+                                                </Link>
                                             </td>
                                             <td className={color}>{status}</td>
                                             <td>$ {classItem?.price}</td>

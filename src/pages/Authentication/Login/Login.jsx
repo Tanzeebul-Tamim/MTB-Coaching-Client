@@ -107,7 +107,7 @@ const Login = () => {
                                         setSuccess("");
                                     }}
                                     type="reset"
-                                    className="text-xs font-bold text-stone-900 bg-secondary rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+                                    className="text-xs font-bold text-accent bg-secondary dark:bg-yellow-600 rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out description"
                                 >
                                     <span>Clear Form</span>
                                     <VscClearAll />
@@ -120,7 +120,7 @@ const Login = () => {
                                 name="email"
                                 required
                                 placeholder="Enter your email"
-                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                         </div>
                         <div className="z-[10] relative form-control">
@@ -137,7 +137,7 @@ const Login = () => {
                                 name="password"
                                 required
                                 placeholder="Enter your password"
-                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm"
                             />
                             <div
                                 className="custom-cursor-pointer"
@@ -186,9 +186,9 @@ const Login = () => {
                                 <button
                                     onClick={reloadCaptcha}
                                     type="button"
-                                    className="text-sm text-stone-900 font-bold bg-secondary lg:rounded-xl rounded-md lg:px-3 px-2 lg:py-1 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+                                    className="text-xs text-accent font-bold bg-secondary dark:bg-yellow-600 lg:rounded-xl rounded-md lg:px-3 px-2 lg:py-1 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out description"
                                 >
-                                    <span>Reload Captcha</span>
+                                    <span>Refresh Code</span>
                                     <IoReload />
                                 </button>
                             </div>
@@ -203,7 +203,7 @@ const Login = () => {
                                             required
                                             placeholder="_"
                                             value={captchaChars[idx]}
-                                            className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-300 dark:bg-stone-800 border-0 dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)]"
+                                            className="lg:w-12 w-11 h-10 text-center input input-bordered bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)]"
                                             onChange={(e) =>
                                                 onCaptchaChange(e, idx)
                                             }
@@ -259,7 +259,7 @@ const Login = () => {
                                 formNoValidate
                                 type="button"
                                 onClick={handleGoogleSignIn}
-                                className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-3/4 w-4/5"
+                                className="lg:hover:scale-105 btn btn-circle dark:hover:bg-base-300 hover:bg-[#b8aa8a] bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-3/4 w-4/5"
                             >
                                 <FcGoogle className="text-2xl" />{" "}
                                 <span className="font-bold font-sans description text-sm text-base-content">

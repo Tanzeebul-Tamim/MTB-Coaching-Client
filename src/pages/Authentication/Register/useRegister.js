@@ -11,6 +11,8 @@ import useSoundEffects from "../../../hooks/useSoundEffects";
 const useRegister = () => {
     const [isValid, setIsValid] = useState(false);
     const [error, setError] = useState("");
+    const [contactError, setContactError] = useState("");
+    const [isContactValid, setIsContactValid] = useState(false);
     const [success, setSuccess] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
     const {
@@ -69,7 +71,8 @@ const useRegister = () => {
         formFields.confirmPassword &&
         selectedGender &&
         formFields.image &&
-        isValid;
+        isValid &&
+        isContactValid;
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -352,6 +355,9 @@ const useRegister = () => {
         imageRef,
         clearForm,
         isIOS,
+        contactError,
+        setContactError,
+        setIsContactValid,
     };
 };
 

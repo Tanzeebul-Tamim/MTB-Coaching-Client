@@ -60,9 +60,7 @@ const SendMessage = ({ bgLocations }) => {
                     onBlur={() => setSubjectFocus(false)}
                     type="text"
                     placeholder="Subject"
-                    className={`${
-                        bgLocations && "bg-opacity-70"
-                    } ${
+                    className={`${bgLocations && "bg-opacity-70"} ${
                         subjectLength < subjectLimit
                             ? "dark:text-yellow-200 text-orange-900"
                             : "text-red-600"
@@ -92,9 +90,7 @@ const SendMessage = ({ bgLocations }) => {
                 onFocus={() => setTextFocus(true)}
                 onBlur={() => setTextFocus(false)}
                 placeholder="Your message goes here"
-                className={`${
-                    bgLocations && "bg-opacity-70"
-                } ${
+                className={`${bgLocations && "bg-opacity-70"} ${
                     textLength < textLimit
                         ? "dark:text-yellow-200 text-orange-900"
                         : "text-red-600"
@@ -108,7 +104,9 @@ const SendMessage = ({ bgLocations }) => {
                     textLength < textLimit
                         ? "bg-secondary dark:text-yellow-900 text-orange-900"
                         : "bg-red-500 dark:bg-red-600 text-stone-800"
-                } absolute ${isSmallDevice ? "bottom-9" : "bottom-11"} -right-[13%]`}
+                } absolute ${
+                    isSmallDevice ? "bottom-9" : "bottom-11"
+                } -right-[13%]`}
             >
                 {textLength}/{textLimit}
             </span>

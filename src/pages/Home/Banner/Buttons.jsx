@@ -19,7 +19,7 @@ const Buttons = ({ alignment }) => {
                     className="uppercase z-10 font-bold lg:text-xl text-[10px] hover:scale-105 ease-in-out transition-transform duration-300 lg:text-start lg:mt-4"
                 >
                     <Link
-                        to="/login"
+                        to="/register"
                         className="bg-secondary text-accent glow-effect lg:px-5 px-2 lg:py-2 lg:rounded-3xl rounded-xl lg:flex lg:items-center lg:gap-2 group"
                     >
                         <span>Join Now</span>

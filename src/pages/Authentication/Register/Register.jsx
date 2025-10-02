@@ -7,6 +7,10 @@ import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import { passStrength } from "../../../styles/colors.json";
 import { VscClearAll } from "react-icons/vsc";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import "../../../styles/phoneNo.css";
 
 const Register = () => {
     const {
@@ -33,6 +37,9 @@ const Register = () => {
         imageRef,
         clearForm,
         isIOS,
+        contactError,
+        setContactError,
+        setIsContactValid,
     } = useRegister();
 
     const [status, setStatus] = useState("");
@@ -42,7 +49,7 @@ const Register = () => {
         <button
             onClick={() => clearForm(setStatus)}
             type="reset"
-            className="text-xs font-bold text-stone-900 bg-secondary rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
+            className="text-xs description font-bold text-accent bg-secondary dark:bg-yellow-600 rounded-md px-2 flex items-center gap-1 hover:scale-95 transition-transform ease-in-out"
         >
             <span>Clear Form</span>
             <VscClearAll />
@@ -99,7 +106,7 @@ const Register = () => {
                     <div className="text-end">
                         <Link
                             to="/instructor-register"
-                            className="description text-sm link link-hover"
+                            className="description text-sm link link-hover text-white"
                         >
                             Not a student?{" "}
                             <strong className="text-primary">
@@ -126,7 +133,7 @@ const Register = () => {
                                     value={formFields.name}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your full name"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
 
@@ -144,7 +151,7 @@ const Register = () => {
                                     value={formFields.email}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your email"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm custom-cursor-text"
                                 />
                             </div>
                         </div>
@@ -155,15 +162,93 @@ const Register = () => {
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
                                         Contact No
                                     </span>
+                                    <span
+                                        className={`lg:hidden text-xs lg:text-sm description text-red-600 ${
+                                            contactError && "visible"
+                                        }`}
+                                    >
+                                        {contactError}
+                                    </span>
                                 </label>
-                                <input
-                                    type="number"
-                                    required
-                                    name="contact"
+                                <PhoneInput
+                                    country={"auto"}
                                     value={formFields.contact}
-                                    onChange={handleFieldChange}
-                                    placeholder="Enter your contact no"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    searchPlaceholder={`${
+                                        isSmallDevice ? "" : "🔎 "
+                                    }Search Country...`}
+                                    onChange={(value, country) => {
+                                        const phoneWithPlus = value.startsWith(
+                                            "+"
+                                        )
+                                            ? value
+                                            : "+" + value;
+
+                                        setIsContactValid(
+                                            isValidPhoneNumber(phoneWithPlus)
+                                        );
+
+                                        handleFieldChange({
+                                            target: {
+                                                name: "contact",
+                                                value: phoneWithPlus,
+                                            },
+                                        });
+
+                                        if (value) {
+                                            if (
+                                                isValidPhoneNumber(
+                                                    phoneWithPlus
+                                                )
+                                            ) {
+                                                setContactError("");
+                                            } else {
+                                                if (country.name) {
+                                                    setContactError(
+                                                        `Invalid number for ${country.name}`
+                                                    );
+                                                } else {
+                                                    setContactError(
+                                                        "Invalid number"
+                                                    );
+                                                }
+                                            }
+                                        } else {
+                                            setContactError("");
+                                        }
+                                    }}
+                                    inputProps={{
+                                        name: "contact",
+                                        required: true,
+                                        placeholder: "Enter your contact no",
+                                        className:
+                                            "w-full dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm lg:pl-10 pl-12 placeholder:text-gray-600 placeholder:dark:text-gray-400 custom-phone-input custom-cursor-text phone-input",
+                                        style: {
+                                            minHeight: "40px",
+                                            borderRadius: "0.5rem",
+                                            width: "100%",
+                                            zIndex: 1001,
+                                        },
+                                    }}
+                                    containerClass="w-full"
+                                    buttonStyle={{
+                                        background: "transparent",
+                                        border: "none",
+                                        zIndex: 1002,
+                                    }}
+                                    dropdownStyle={{
+                                        background: "#d1d5db",
+                                        borderRadius: "0.5rem",
+                                        zIndex: 2000,
+                                    }} // gray-300
+                                    searchStyle={{
+                                        background: "#fff",
+                                        borderRadius: "0.5rem",
+                                        zIndex: 2001,
+                                    }}
+                                    enableAreaCodes={true}
+                                    enableSearch={true}
+                                    disableCountryCode={false}
+                                    disableDropdown={false}
                                 />
                             </div>
 
@@ -180,7 +265,7 @@ const Register = () => {
                                     value={formFields.address}
                                     onChange={handleFieldChange}
                                     placeholder="Enter your address"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                             </div>
                         </div>
@@ -202,7 +287,7 @@ const Register = () => {
                                         hidden
                                         accept="image/*"
                                     />
-                                    <div className="btn btn-sm bg-stone-400 dark:bg-stone-700 hover:bg-stone-500 dark:hover:bg-stone-600 border-0 w-full custom-cursor-pointer">
+                                    <div className="btn btn-sm bg-stone-400 dark:bg-stone-700 hover:bg-stone-500 dark:hover:bg-stone-600 bg-opacity-70 dark:bg-opacity-70 border-0 w-full">
                                         {imageButtonText}
                                     </div>
                                 </label>
@@ -221,7 +306,7 @@ const Register = () => {
                                         className={`select font-light w-full max-w-xs ${
                                             !selectedGender &&
                                             "text-gray-600 dark:text-gray-400 dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)]"
-                                        } bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm`}
+                                        } bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm`}
                                         value={selectedGender}
                                     >
                                         <option hidden>
@@ -270,7 +355,7 @@ const Register = () => {
                                         setIsValid(valid);
                                     }}
                                     placeholder="Enter your password"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-300 dark:bg-stone-800 border-0 input input-bordered text-sm"
+                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 dark:bg-stone-800 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"
@@ -301,7 +386,7 @@ const Register = () => {
                                     value={formFields.confirmPassword}
                                     onChange={handleFieldChange}
                                     placeholder="Confirm your password"
-                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-300 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
+                                    className="dark:focus:outline-yellow-200 focus:outline-orange-100 focus:shadow-[0_0_5px_2px_rgba(255,255,200,0.9),0_0_15px_8px_rgba(255,193,7,0.6)] dark:focus:shadow-[0_0_10px_5px_rgba(253,224,71,0.5)] placeholder:text-gray-600 placeholder:dark:text-gray-400 dark:disabled:placeholder:text-gray-500 disabled:placeholder:text-gray-500 bg-stone-200 bg-opacity-70 dark:bg-opacity-70 disabled:bg-opacity-70 dark:disabled:bg-opacity-70 disabled:bg-stone-400 dark:bg-stone-800 dark:disabled:bg-stone-700 border-0 input input-bordered text-sm"
                                 />
                                 <div
                                     className="custom-cursor-pointer"
@@ -364,6 +449,13 @@ const Register = () => {
                             <span className="text-xs lg:text-sm description">
                                 {error ? error : success ? success : ""}
                             </span>
+                            <span
+                                className={`hidden lg:block text-xs lg:text-sm description absolute pt-5 right-8 text-red-600 ${
+                                    contactError && "visible"
+                                }`}
+                            >
+                                {contactError}
+                            </span>
                         </p>
                         <div className="divider text-base-content description">
                             Or
@@ -373,7 +465,7 @@ const Register = () => {
                                 type="button"
                                 formNoValidate
                                 onClick={handleGoogleSignIn}
-                                className="lg:hover:scale-105 btn btn-circle hover:bg-base-300 bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
+                                className="lg:hover:scale-105 btn btn-circle dark:hover:bg-base-300 hover:bg-[#b8aa8a] bg-base-200 border-0 z-[10] flex justify-center items-center lg:w-2/3 w-4/5"
                             >
                                 <FcGoogle className="text-2xl" />{" "}
                                 <span className="font-bold font-sans description text-sm text-base-content">

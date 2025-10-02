@@ -28,24 +28,34 @@ const InstructorsTable = ({
                                     <tr key={instructor._id}>
                                         <td>{index + 1}</td>
                                         <td>
-                                            <div className="avatar">
-                                                <div className="mask lg:mask-squircle mask-circle lg:w-24 lg:h-24">
-                                                    <ImageWithLoader
-                                                        src={instructor.image}
-                                                        alt="Avatar Tailwind CSS Component"
-                                                    />
+                                            <Link
+                                                to={`/instructors/${instructor._id}`}
+                                            >
+                                                <div className="avatar">
+                                                    <div className="mask lg:mask-squircle mask-circle lg:w-24 lg:h-24">
+                                                        <ImageWithLoader
+                                                            src={
+                                                                instructor.image
+                                                            }
+                                                            alt="Avatar Tailwind CSS Component"
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </td>
                                         <td>
-                                            <div>
-                                                <div className="font-bold">
-                                                    {instructor.name}
+                                            <Link
+                                                to={`/instructors/${instructor._id}`}
+                                            >
+                                                <div>
+                                                    <div className="font-bold">
+                                                        {instructor.name}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <span className="badge badge-ghost badge-md">
-                                                {instructor.email}
-                                            </span>
+                                                <span className="badge badge-ghost badge-md">
+                                                    {instructor.email}
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td>
                                             <div>

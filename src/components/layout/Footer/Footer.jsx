@@ -53,13 +53,26 @@ const Footer = () => {
                         Contact Us
                     </span>
                     <span className="text-sm description">
-                        Autoweg, 3911 TL Rhenen,
-                        <br />
-                        Netherlands
+                        <a
+                            href="https://www.google.com/maps/place/MTB+route,+rhenen/@51.972747,5.5471453,16z/data=!4m10!1m2!2m1!1smountain+bike+trail!3m6!1s0x47c654097f4e5ef1:0x2691c597450a599b!8m2!3d51.972747!4d5.5566725!15sChNtb3VudGFpbiBiaWtlIHRyYWlsWhUiE21vdW50YWluIGJpa2UgdHJhaWySAQ5zcG9ydHNfY29tcGxleJoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VNMWR6UlRhRFpCUlJBQqoBaAoIL20vMDE5OWcKCC9tLzBfbWpwEAEqFyITbW91bnRhaW4gYmlrZSB0cmFpbCgAMh4QASIaVSV2fnus8nDHm1tfIzap4DhCiohlFPsxWzwyFxACIhNtb3VudGFpbiBiaWtlIHRyYWls4AEA-gEECAAQGg!16s%2Fg%2F11dybfjq3d?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline"
+                        >
+                            Autoweg, 3911 TL Rhenen,
+                            <br />
+                            Netherlands
+                        </a>
                     </span>
                     <span className="text-sm description">
-                        {" "}
-                        Phone: +31644460635
+                        Phone:{" "}
+                        <a
+                            className="hover:underline"
+                            id="email"
+                            href="https://wa.me/31644460635"
+                        >
+                            +31644460635
+                        </a>
                     </span>
                     <span className="text-sm description">
                         Email:{" "}
@@ -84,7 +97,7 @@ const Footer = () => {
                         smooth
                         to="/support#getting-started"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Getting Started
                     </HashLink>
@@ -92,7 +105,7 @@ const Footer = () => {
                         smooth
                         to="/support#troubleshooting"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Troubleshooting
                     </HashLink>
@@ -100,7 +113,7 @@ const Footer = () => {
                         smooth
                         to="/support#account-data"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Account & Data
                     </HashLink>
@@ -108,7 +121,7 @@ const Footer = () => {
                         smooth
                         to="/support#contact-support"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Contact Support
                     </HashLink>
@@ -124,7 +137,7 @@ const Footer = () => {
                         smooth
                         to="/legal#privacy-policy"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Privacy Policy
                     </HashLink>
@@ -132,7 +145,7 @@ const Footer = () => {
                         smooth
                         to="/legal#terms"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Terms of Service
                     </HashLink>
@@ -140,7 +153,7 @@ const Footer = () => {
                         smooth
                         to="/legal#data-deletion"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         User data deletion
                     </HashLink>
@@ -148,7 +161,7 @@ const Footer = () => {
                         smooth
                         to="/legal#cookie"
                         scroll={scrollWithOffset}
-                        className="text-sm description link link-hover"
+                        className="text-sm description hover:underline"
                     >
                         Cookie Notice
                     </HashLink>
@@ -207,6 +220,20 @@ const Footer = () => {
                 </div>
                 <div className="md:place-self-center md:justify-self-end">
                     <div className="grid grid-flow-col gap-4">
+                        <a
+                            href="https://wa.me/31644460635"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32"
+                                className="fill-current h-7 w-7"
+                            >
+                                <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.61.845 5.028 2.272 7.002L4 29l7.169-2.24A11.923 11.923 0 0 0 16.001 27c6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 21.818a9.793 9.793 0 0 1-5.001-1.366l-.357-.212-4.257 1.33 1.39-4.15-.232-.369A9.776 9.776 0 0 1 6.182 15c0-5.416 4.403-9.818 9.819-9.818S25.818 9.584 25.818 15 21.417 24.818 16 24.818zm5.401-7.317c-.295-.148-1.74-.859-2.011-.956-.27-.099-.467-.148-.664.148s-.762.957-.934 1.154c-.173.197-.345.222-.64.074-.295-.148-1.248-.46-2.377-1.466-.879-.783-1.472-1.75-1.645-2.046-.173-.296-.018-.456.13-.604.133-.133.295-.346.443-.519.148-.173.197-.296.295-.494.099-.197.049-.37-.025-.519-.074-.148-.664-1.604-.91-2.2-.24-.58-.484-.5-.664-.51l-.567-.01c-.197 0-.519.074-.791.37s-1.04 1.016-1.04 2.478 1.064 2.875 1.213 3.074c.148.197 2.094 3.2 5.077 4.487.709.306 1.262.489 1.694.626.711.227 1.358.195 1.87.118.57-.085 1.74-.712 1.986-1.4.246-.689.246-1.28.172-1.4-.074-.123-.27-.197-.565-.345z" />
+                            </svg>
+                        </a>
+
                         <a
                             href="https://x.com/tanzeebul"
                             target="_blank"
