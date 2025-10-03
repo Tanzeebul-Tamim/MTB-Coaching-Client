@@ -1,15 +1,17 @@
 import { Flip, toast } from "react-toastify";
-import useUserData from "../../../../hooks/useUserData";
-import { sendMessage } from "../../../../api/messageApi";
-import useAuth from "../../../../hooks/useAuth";
+import useUserData from "../../../../../hooks/useUserData";
+import { sendMessage } from "../../../../../api/messageApi";
+import useAuth from "../../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import useDarkTheme from "../../../../hooks/useDarkTheme";
-import useScreenSize from "../../../../hooks/useScreenSize";
-import useSoundEffects from "../../../../hooks/useSoundEffects";
+import useDarkTheme from "../../../../../hooks/useDarkTheme";
+import useScreenSize from "../../../../../hooks/useScreenSize";
+import useSoundEffects from "../../../../../hooks/useSoundEffects";
+import useGlowingTitle from "../../../../../hooks/useGlowingTitle";
 
 const useSendMessage = () => {
     const { userDetails } = useUserData();
-    const { user, supportGlow } = useAuth();
+    const { user } = useAuth();
+    const { supportGlow } = useGlowingTitle();
     const isDarkTheme = useDarkTheme();
     const { isSmallDevice } = useScreenSize();
     const { play } = useSoundEffects();

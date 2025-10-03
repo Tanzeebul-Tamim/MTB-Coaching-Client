@@ -3,7 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import osm from "./osm-providers";
 import "leaflet/dist/leaflet.css";
 import { useRef } from "react";
-import "../../../../styles/leaflet.css";
+import "../../../../../styles/leaflet.css";
 
 // Fix Leaflet's default icon path for static hosting
 delete L.Icon.Default.prototype._getIconUrl;

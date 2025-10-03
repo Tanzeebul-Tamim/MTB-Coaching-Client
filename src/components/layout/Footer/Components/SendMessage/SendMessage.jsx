@@ -1,5 +1,5 @@
 import useSendMessage from "./useSendMessage";
-import "../../../../styles/support.css";
+import "../../../../../styles/support.css";
 
 const SendMessage = ({ bgLocations }) => {
     const {
