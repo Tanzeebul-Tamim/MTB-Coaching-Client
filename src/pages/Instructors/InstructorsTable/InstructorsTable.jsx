@@ -52,10 +52,14 @@ const InstructorsTable = ({
                                                         {instructor.name}
                                                     </div>
                                                 </div>
-                                                <span className="badge badge-ghost badge-md">
-                                                    {instructor.email}
-                                                </span>
                                             </Link>
+                                            <span className="badge badge-ghost badge-md">
+                                                <a
+                                                    href={`mailto:${instructor.email}`}
+                                                >
+                                                    {instructor.email}
+                                                </a>
+                                            </span>
                                         </td>
                                         <td>
                                             <div>
@@ -85,7 +89,7 @@ const InstructorsTable = ({
                                                             return;
                                                         }
                                                     }}
-                                                    className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content"
+                                                    className="btn btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 text-base-content hover:text-stone-300 dark:hover:text-stone-950 duration-300"
                                                 >
                                                     {isSmallDevice ? (
                                                         <span className="text-[12px]">

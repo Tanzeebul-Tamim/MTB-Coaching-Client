@@ -31,7 +31,7 @@ const SklClasses = ({ isSmallDevice, role }) => {
                             <th className="">Available Slots</th>
                             <th className="">View Details</th>
                             {role !== "Instructor" && (
-                                <th className="">Book Courses</th>
+                                <th className="">Add Courses</th>
                             )}
                         </tr>
                     </thead>

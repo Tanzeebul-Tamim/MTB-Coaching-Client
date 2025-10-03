@@ -1,6 +1,9 @@
 import ClassesTableHead from "./ClassesTableHead";
-import { MdLibraryAdd } from "react-icons/md";
-import { BsInfoCircleFill } from "react-icons/bs";
+import {
+    BsCartFill,
+    BsFillCartCheckFill,
+    BsInfoCircleFill,
+} from "react-icons/bs";
 import { BeatLoader } from "react-spinners";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import { light, dark } from "../../../styles/colors.json";
@@ -9,6 +12,8 @@ import ClassDetail from "../../../components/ui/ClassDetail";
 import getStatus from "../../../hooks/getStatus";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { RxCircleBackslash } from "react-icons/rx";
 
 const ClassesTable = ({
     classes,
@@ -117,14 +122,13 @@ const ClassesTable = ({
                                             </td>
                                             <td className={color}>{status}</td>
                                             <td>$ {classItem?.price}</td>
-                                            <td>
-                                                {availableSeat == 0 ? (
-                                                    <div className="text-red-700">
-                                                        Fully Booked
-                                                    </div>
-                                                ) : (
-                                                    availableSeat
-                                                )}
+                                            <td
+                                                className={
+                                                    availableSeat == 0 &&
+                                                    "text-red-700"
+                                                }
+                                            >
+                                                {availableSeat}
                                             </td>
                                             <td>
                                                 {loading || userLoading ? (
@@ -149,7 +153,17 @@ const ClassesTable = ({
                                                                 ].showModal();
                                                             } else {
                                                                 toast.info(
-                                                                    "Please log in to view course details",
+                                                                    <div className="text-center">
+                                                                        To view
+                                                                        course
+                                                                        details,
+                                                                        you have
+                                                                        to{" "}
+                                                                        <strong>
+                                                                            login
+                                                                        </strong>{" "}
+                                                                        first
+                                                                    </div>,
                                                                     {
                                                                         position:
                                                                             "top-center",
@@ -178,8 +192,8 @@ const ClassesTable = ({
                                                         }}
                                                         className={`btn text-base-content btn-sm lg:rounded-lg rounded-full ${
                                                             availableSeat == 0
-                                                                ? "dark:bg-red-800 bg-red-600"
-                                                                : "hover:bg-base-300 bg-base-200"
+                                                                ? "dark:bg-red-800 bg-red-600 hover:bg-red-700 hover:text-stone-300 dark:hover:text-stone-800 dark:hover:bg-red-700"
+                                                                : "hover:bg-base-300 bg-base-200 hover:text-stone-300 dark:hover:text-stone-950"
                                                         } border-0`}
                                                     >
                                                         <BsInfoCircleFill />
@@ -213,15 +227,33 @@ const ClassesTable = ({
                                                             />
                                                         </button>
                                                     ) : isBooked ? (
-                                                        <div>Booked</div>
+                                                        <div className="flex gap-2 items-center justify-center">
+                                                            <BsFillCartCheckFill />{" "}
+                                                            <span>Added</span>
+                                                        </div>
                                                     ) : isEnrolled ? (
                                                         availableSeat == 0 ? (
-                                                            <div className="text-red-700">
-                                                                Enrolled
+                                                            <div className="flex gap-2 items-center justify-center text-red-700">
+                                                                <RiVerifiedBadgeFill />{" "}
+                                                                <span>
+                                                                    Enrolled
+                                                                </span>
                                                             </div>
                                                         ) : (
-                                                            <div>Enrolled</div>
+                                                            <div className="flex gap-2 items-center justify-center">
+                                                                <RiVerifiedBadgeFill />{" "}
+                                                                <span>
+                                                                    Enrolled
+                                                                </span>
+                                                            </div>
                                                         )
+                                                    ) : availableSeat == 0 ? (
+                                                        <div className="flex gap-2 items-center justify-center text-red-700">
+                                                            <RxCircleBackslash />{" "}
+                                                            <span>
+                                                                Fully Booked
+                                                            </span>
+                                                        </div>
                                                     ) : (
                                                         <button
                                                             onClick={() =>
@@ -245,19 +277,19 @@ const ClassesTable = ({
                                                             className={`${
                                                                 availableSeat ==
                                                                 0
-                                                                    ? "dark:disabled:bg-red-800 disabled:bg-red-600"
+                                                                    ? "dark:disabled:bg-red-800 disabled:bg-red-600 "
                                                                     : "dark:disabled:bg-[#1c1917] disabled:bg-[#a79d83]"
-                                                            } btn text-base-content btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0`}
+                                                            } btn text-base-content btn-sm lg:rounded-lg rounded-full hover:bg-base-300 bg-base-200 border-0 hover:text-stone-300 dark:hover:text-stone-950`}
                                                         >
-                                                            <MdLibraryAdd />{" "}
+                                                            <BsCartFill />{" "}
                                                             {isSmallDevice ? (
                                                                 <span className="text-[12px]">
                                                                     {" "}
-                                                                    Book
+                                                                    Add
                                                                 </span>
                                                             ) : (
                                                                 <span>
-                                                                    Book Course
+                                                                    Add to Cart
                                                                 </span>
                                                             )}
                                                         </button>

@@ -10,7 +10,7 @@ const ClassesTableHead = ({ userDetails }) => {
                 <th className="">Available Slots</th>
                 <th className="">View Details</th>
                 {userDetails?.role !== "Instructor" && (
-                    <th className="">Book Courses</th>
+                    <th className="">Add Courses</th>
                 )}
             </tr>
         </thead>

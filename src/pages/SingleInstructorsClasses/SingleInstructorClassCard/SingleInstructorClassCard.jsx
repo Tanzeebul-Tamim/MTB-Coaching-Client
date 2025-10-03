@@ -1,6 +1,12 @@
-import { BsFillPersonPlusFill, BsInfoCircleFill } from "react-icons/bs";
+import {
+    BsFillPersonPlusFill,
+    BsInfoCircleFill,
+    BsFillCartCheckFill,
+    BsCartFill,
+} from "react-icons/bs";
+import { RxCircleBackslash } from "react-icons/rx";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { ImPriceTags } from "react-icons/im";
-import { MdLibraryAdd } from "react-icons/md";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import useSingleInstructorClassCard from "./useSingleInstructorClassCard";
 import ClassDetail from "../../../components/ui/ClassDetail";
@@ -58,7 +64,7 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                     {availableSeat == 0 ? (
                         <div className="flex gap-2 items-center">
                             <p className="text-red-600 font-bold text-end">
-                                Fully Booked
+                                No Seats Left
                             </p>
                         </div>
                     ) : (
@@ -95,16 +101,28 @@ const SingleInstructorClassCard = ({ classItem, index, instructorId }) => {
                                 } btn text-base-content btn-sm rounded-full hover:bg-[#a79d83] dark:hover:bg-[#2e2926] bg-base-300 border-0`}
                             >
                                 <span>
-                                    {isBooked ? (
-                                        "Booked"
-                                    ) : isEnrolled ? (
-                                        "Enrolled"
+                                    {isEnrolled ? (
+                                        <div className="flex gap-2">
+                                            <RiVerifiedBadgeFill />{" "}
+                                            <span>Enrolled</span>
+                                        </div>
+                                    ) : availableSeat == 0 ? (
+                                        <div className="flex gap-2">
+                                            <RxCircleBackslash />{" "}
+                                            <span>Fully Booked</span>
+                                        </div>
+                                    ) : isBooked ? (
+                                        <div className="flex gap-2">
+                                            <BsFillCartCheckFill />{" "}
+                                            <span>Added</span>
+                                        </div>
                                     ) : (
                                         <div className="flex gap-2">
-                                            <MdLibraryAdd />{" "}
-                                            <span>Book Course</span>
+                                            <BsCartFill />{" "}
+                                            <span>Add to Cart</span>
                                         </div>
                                     )}
+                                    {}
                                 </span>
                             </button>
                         )}
