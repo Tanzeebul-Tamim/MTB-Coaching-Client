@@ -10,10 +10,11 @@ const InstallPWAButton = () => {
     const [visible, setVisible] = useState(false);
     const [closed, setClosed] = useState(false);
     const [dismissCount, setDismissCount] = useState(0);
+    const [side, setSide] = useState(true); // true = right, false = left
 
-    const duration = 30; // seconds the button stays fully visible
+    const duration = 20; // seconds the button stays fully visible
     const reappearEvery = 90; // seconds between reappearances
-    const fadeDuration = 1; // seconds for fade-out
+    const fadeDuration = 1.5; // seconds for fade-out
 
     useEffect(() => {
         const onBeforeInstallPrompt = (e) => {
@@ -31,6 +32,13 @@ const InstallPWAButton = () => {
             );
         };
     }, []);
+
+    // Swap sides
+    useEffect(() => {
+        if (!visible) {
+            setTimeout(() => setSide((side) => !side), 1000 * fadeDuration);
+        }
+    }, [setVisible, visible]);
 
     useEffect(() => {
         if (!installReady) return;
@@ -86,8 +94,9 @@ const InstallPWAButton = () => {
         ? `slideInUp ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`
         : `slideOutDown ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`;
 
-    const btnCls =
-        "z-[1000] glow-effect lg:bottom-5 bottom-3 lg:left-5 left-3 lg:text-base text-sm bg-primary dark:bg-opacity-70 bg-opacity-75 hover:bg-opacity-80 text-accent transition-all duration-500 ease-in-out lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg tracking-wider lg:tracking-widest";
+    const btnCls = `z-[1000] glow-effect lg:bottom-5 bottom-3 ${
+        side ? "lg:right-5 right-3" : "lg:left-5 left-3"
+    } lg:text-base text-sm bg-primary dark:bg-opacity-70 bg-opacity-75 hover:bg-opacity-80 text-accent transition-all duration-500 ease-in-out lg:px-5 px-3 lg:py-3 py-1 font-semibold rounded-full shadow-lg tracking-wider lg:tracking-widest`;
 
     // pointer-events: none when not visible, auto when visible
     const pointerEvents = visible ? "auto" : "none";
@@ -100,10 +109,14 @@ const InstallPWAButton = () => {
                     animation: `slideInUp ${fadeDuration}s cubic-bezier(0.23, 1, 1, 1) forwards`,
                     pointerEvents,
                 }}
-                className="z-[1000] fixed lg:bottom-5 bottom-3 lg:left-5 left-3"
+                className={`z-[1000] fixed lg:bottom-5 bottom-3 ${
+                    side ? "lg:right-5 right-3" : "lg:left-5 left-3"
+                }`}
             >
                 <button
-                    className="absolute -top-2 -left-2 bg-accent text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs shadow-md border border-primary"
+                    className={`absolute -top-2 ${
+                        side ? "-right-2" : "-left-2"
+                    } bg-accent text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs shadow-md border border-primary`}
                     style={{ zIndex: 1001 }}
                     aria-label="Close install button"
                     onClick={handleClose}
@@ -131,10 +144,14 @@ const InstallPWAButton = () => {
                 animation,
                 pointerEvents,
             }}
-            className="z-[1000] fixed lg:bottom-5 bottom-3 lg:left-5 left-3 flex items-center"
+            className={`z-[1000] fixed lg:bottom-5 bottom-3 ${
+                side ? "lg:right-5 right-3" : "lg:left-5 left-3"
+            } flex items-center`}
         >
             <button
-                className="absolute lg:-right-3 -right-2 bg-accent text-secondary rounded-full lg:w-7 w-4 lg:h-7 h-4 flex items-center justify-center text-lg shadow-md border border-primary glow-effect"
+                className={`absolute ${
+                    side ? "lg:-left-3 -left-2" : "lg:-right-3 -right-2"
+                } bg-accent text-secondary rounded-full lg:w-7 w-4 lg:h-7 h-4 flex items-center justify-center text-lg shadow-md border border-primary glow-effect`}
                 style={{ zIndex: 1001 }}
                 aria-label="Close install button"
                 onClick={handleClose}
