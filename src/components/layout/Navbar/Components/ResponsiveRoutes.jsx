@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import ActiveLink from "../../../ui/ActiveLink";
 import ThemeToggle from "../../../ui/ThemeToggle/ThemeToggle";
-import { AiOutlineHome, AiOutlineInfoCircle } from "react-icons/ai";
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { MdOutlineHelp, MdOutlineSchool } from "react-icons/md";
-import { LuLayoutDashboard, LuScale } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
+import { AiFillHome } from "react-icons/ai";
+import { FaBalanceScale, FaChalkboardTeacher, FaUser } from "react-icons/fa";
+import { MdBugReport, MdOutlineHelp, MdSchool } from "react-icons/md";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { SlNote } from "react-icons/sl";
 import { GiTeacher } from "react-icons/gi";
+import { BiSolidDashboard } from "react-icons/bi";
+import { BsInfoCircleFill } from "react-icons/bs";
+import useSoundEffects from "../../../../hooks/useSoundEffects";
+import { useLocation, useNavigate } from "react-router-dom";
+import useGlowingTitle from "../../../../hooks/useGlowingTitle";
 
 const ResponsiveRoutes = ({ props, navRef }) => {
     const {
@@ -20,6 +23,17 @@ const ResponsiveRoutes = ({ props, navRef }) => {
         open,
         setOpen,
     } = props;
+
+    const { handleScrollGlow } = useGlowingTitle();
+    const { play } = useSoundEffects();
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    const authenticationPage = [
+        "/login",
+        "/register",
+        "/instructor-register",
+    ].includes(pathname);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -54,7 +68,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     onClick={() => setOpen(!open)}
                     className="flex items-center gap-1"
                 >
-                    <AiOutlineHome className="text-xs" />
+                    <AiFillHome className="text-xs" />
                     Home
                 </span>
             </ActiveLink>
@@ -72,7 +86,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     onClick={() => setOpen(!open)}
                     className="flex items-center gap-1"
                 >
-                    <MdOutlineSchool className="text-xs" />
+                    <MdSchool className="text-xs" />
                     Courses
                 </span>
             </ActiveLink>
@@ -82,7 +96,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                         onClick={() => setOpen(!open)}
                         className="flex items-center gap-1"
                     >
-                        <LuLayoutDashboard className="text-xs" />
+                        <BiSolidDashboard className="text-xs" />
                         Dashboard
                     </span>
                 </ActiveLink>
@@ -95,7 +109,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                             location.pathname === myWallRoute && "text-primary"
                         }`}
                     >
-                        <CgProfile className="text-xs" />
+                        <FaUser className="text-xs" />
                         My Wall
                     </span>
                 </ActiveLink>
@@ -105,7 +119,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     onClick={() => setOpen(!open)}
                     className="flex items-center gap-1"
                 >
-                    <AiOutlineInfoCircle className="text-xs" />
+                    <BsInfoCircleFill className="text-xs" />
                     About Us
                 </span>
             </ActiveLink>
@@ -114,7 +128,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     onClick={() => setOpen(!open)}
                     className="flex items-center gap-1"
                 >
-                    <LuScale className="text-xs" />
+                    <FaBalanceScale className="text-xs" />
                     Legal
                 </span>
             </ActiveLink>
@@ -127,15 +141,25 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     FAQ & Support
                 </span>
             </ActiveLink>
-            <ActiveLink to="/support">
-                <span
-                    onClick={() => setOpen(!open)}
-                    className="flex items-center gap-1"
-                >
-                    <MdOutlineHelp className="text-xs" />
-                    Report an Issue
-                </span>
-            </ActiveLink>
+            <span
+                onClick={() => {
+                    setOpen(!open);
+                    if (authenticationPage) {
+                        navigate("/");
+                        setTimeout(() => {
+                            handleScrollGlow();
+                            setTimeout(() => play("alert"), 1000);
+                        }, 300);
+                    } else {
+                        handleScrollGlow();
+                        setTimeout(() => play("alert"), 1000);
+                    }
+                }}
+                className="flex items-center gap-1"
+            >
+                <MdBugReport className="text-xs" />
+                Report an Issue
+            </span>
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
             <ActiveLink customColor={customColor} to="/login">
                 <span
