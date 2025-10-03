@@ -125,21 +125,34 @@ const useAddClass = () => {
             setImageButtonText("Upload Thumbnail");
 
             play("success");
-            toast.success("Course added successfully!", {
-                position: "top-center",
-                autoClose: 1100,
-                hideProgressBar: false,
-                closeOnClick: true,
-                transition: Flip,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.success(
+                <div className="text-center text-green-500">
+                    Course added successfully!
+                </div>,
+                {
+                    position: "top-center",
+                    autoClose: 1100,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    transition: Flip,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }
+            );
             setTimeout(() => {
                 window.location.replace(`/instructors/${userDoc._id}`);
             }, 1200);
         } catch (err) {
-            toast.error("Failed to add course. Please try again.");
+            toast.error(
+                <div className="text-center">
+                    <span className="font-bold text-green-500 text-[17px]">
+                        Failed to add course!
+                    </span>
+                    <br />
+                    Please try again
+                </div>
+            );
             console.error(err);
         } finally {
             setLoading2(false);

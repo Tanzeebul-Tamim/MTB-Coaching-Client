@@ -38,6 +38,16 @@ const useRegister = () => {
         confirmPassword: "",
         image: null,
     };
+    const config = {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Flip,
+    };
     const [formFields, setFormFields] = useState(fields);
 
     useEffect(() => {
@@ -272,25 +282,48 @@ const useRegister = () => {
     };
 
     const handleGoogleSignIn = () => {
+        const welcomeToast = (name) => {
+            const Message = () => (
+                <div className="text-center">
+                    <span className="font-bold text-green-500 text-[18px]">
+                        Welcome {name}
+                    </span>{" "}
+                    <br />
+                    <span className={!isSmallDevice && " text-justify"}>
+                        You have logged-in as a <strong>Student</strong>
+                    </span>
+                </div>
+            );
+
+            toast.success(<Message />, config);
+        };
+
         googleSignIn()
             .then((result) => {
-                saveStudentViaSocial(result.user).catch((error) => {
-                    logOut().then(() => {
-                        toast.warning(error.message, {
-                            position: "top-center",
-                            autoClose: 1500,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            transition: Flip,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
+                saveStudentViaSocial(result.user, welcomeToast).catch(
+                    (error) => {
+                        logOut().then(() => {
+                            toast.warning(
+                                <div className="text-center">
+                                    {error.message}
+                                </div>,
+                                {
+                                    position: "top-center",
+                                    autoClose: 1500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    transition: Flip,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                }
+                            );
+                            navigate("/login");
                         });
-                        navigate("/login");
-                    });
-                });
+                    }
+                );
             })
-            .then(() => play("success"))
+            .then(() => play("alert"))
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/user-disabled") {

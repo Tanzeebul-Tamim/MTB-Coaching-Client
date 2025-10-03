@@ -66,17 +66,23 @@ const Dropdown = ({
                 ref={dropdownContainerRef}
                 className="relative custom-cursor-pointer font-light text-xs lg:text-base w-3/4 lg:w-full max-w-xs border border-base-content border-opacity-30 rounded-full bg-opacity-80 bg-base-100 text-base-content"
                 onClick={() => {
-                    if (!isLoggedIn) {                        
-                        toast.info("Please log in to use this feature", {
-                            position: "top-center",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnFocusLoss: false,
-                            draggable: true,
-                            toastId: customId,
-                            progress: undefined,
-                        });
+                    if (!isLoggedIn) {
+                        toast.info(
+                            <div className="text-center">
+                                To use this feature, you have to{" "}
+                                <strong>login</strong> first
+                            </div>,
+                            {
+                                position: "top-center",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: false,
+                                draggable: true,
+                                toastId: customId,
+                                progress: undefined,
+                            }
+                        );
                         navigate("/login", {
                             state: { from: location },
                         });

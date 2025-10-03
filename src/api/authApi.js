@@ -1,17 +1,3 @@
-import { Flip, toast } from "react-toastify";
-
-// toast config
-const config = {
-    position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    transition: Flip,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-};
-
 // save a user to database
 export const saveUser = (user) => {
     const currentUser = {
@@ -31,7 +17,7 @@ export const saveUser = (user) => {
 };
 
 // save a user to database via social login
-export const saveUserViaSocial = (user) => {
+export const saveUserViaSocial = (user, toast) => {
     const providerData =
         user.providerData && user.providerData[0] ? user.providerData[0] : {};
     let currentUser = {
@@ -41,12 +27,13 @@ export const saveUserViaSocial = (user) => {
     };
 
     getUserData(currentUser.email).then((userDetails) => {
-        let { name } = userDetails;
-        name = name?.split(" ")[0];
-        const message = `Welcome ${name}! You have logged-in as ${
-            userDetails?.role === "Instructor" ? "an instructor" : "a student"
-        }`;
-        toast.success(message, config);
+        const { name } = currentUser;
+        const firstName = name?.split(" ")[0];
+        const properCasedName =
+            firstName.charAt(0).toUpperCase() +
+            firstName.slice(1).toLowerCase();
+
+        toast(userDetails, properCasedName);
 
         currentUser = {
             ...currentUser,
@@ -88,7 +75,7 @@ export const saveInstructor = (user) => {
 };
 
 // save an instructor to database via social login
-export const saveInstructorViaSocial = async (user) => {
+export const saveInstructorViaSocial = async (user, toast) => {
     const providerData = user.providerData?.[0] || {};
     let currentUser = {
         name: user.displayName || providerData.displayName,
@@ -106,9 +93,11 @@ export const saveInstructorViaSocial = async (user) => {
     }
 
     let { name } = currentUser;
-    name = name?.split(" ")[0];
-    const message = `Welcome ${name}! You have logged-in as an instructor`;
-    toast.success(message, config);
+    const firstName = name?.split(" ")[0];
+    const properCasedName =
+        firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
+    toast(properCasedName);
 
     currentUser = {
         ...currentUser,
@@ -153,7 +142,7 @@ export const saveStudent = (user) => {
 };
 
 // save an student to database via social login
-export const saveStudentViaSocial = async (user) => {
+export const saveStudentViaSocial = async (user, toast) => {
     const providerData = user.providerData?.[0] || {};
     let currentUser = {
         name: user.displayName || providerData.displayName,
@@ -170,10 +159,12 @@ export const saveStudentViaSocial = async (user) => {
         throw err;
     }
 
-    let { name } = currentUser;
-    name = name?.split(" ")[0];
-    const message = `Welcome ${name}! You have logged-in as a student`;
-    toast.success(message, config);
+    const { name } = currentUser;
+    const firstName = name?.split(" ")[0];
+    const properCasedName =
+        firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
+    toast(properCasedName);
 
     currentUser = {
         ...currentUser,

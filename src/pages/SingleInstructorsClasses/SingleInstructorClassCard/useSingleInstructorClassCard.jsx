@@ -68,12 +68,13 @@ const useSingleInstructorClassCard = (classItem, instructorId, index) => {
             setBooking(!booking);
             play("success");
             toast.success(
-                <>
-                    <span className="font-bold text-green-500">
+                <div className="text-center">
+                    <span className="font-bold text-green-500 text-[18px]">
                         {classItem?.name}
-                    </span>{" "}
+                    </span>
+                    <br />
                     has been booked
-                </>,
+                </div>,
                 {
                     position: "top-center",
                     autoClose: 1100,

@@ -47,8 +47,10 @@ const usePaymentConfirmation = () => {
             )
                 .then(async (res) => {
                     if (res.status === 403) {
-                        toast.warning(
-                            "You are not authorized to access this page!",
+                        toast.error(
+                            <div className="text-center font-bold text-[18px] text-red-500">
+                                You are not authorized to access this page!
+                            </div>,
                             {
                                 position: "top-center",
                                 autoClose: 2000,

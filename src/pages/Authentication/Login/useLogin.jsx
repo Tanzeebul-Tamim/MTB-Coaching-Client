@@ -115,7 +115,10 @@ const useLogin = () => {
     useEffect(() => {
         if (location.state && location.state.showToast) {
             toast.info(
-                "To view detailed information, you have to login first",
+                <div className="text-center">
+                    To view detailed information, you have to{" "}
+                    <strong>login</strong> first
+                </div>,
                 {
                     ...config,
                     transition: Bounce,
@@ -128,8 +131,33 @@ const useLogin = () => {
     }, [location.state]);
 
     const handleGoogleSignIn = () => {
+        const welcomeToast = (userDetails, name) => {
+            const Message = () => (
+                <div className="text-center">
+                    <span className="font-bold text-green-500 text-[18px]">
+                        Welcome {name}
+                    </span>{" "}
+                    <br />
+                    <span className={!isSmallDevice && " text-justify"}>
+                        You have logged-in as{" "}
+                        {userDetails?.role === "Instructor" ? (
+                            <span>
+                                an <strong>Instructor</strong>
+                            </span>
+                        ) : (
+                            <span>
+                                a <strong>Student</strong>
+                            </span>
+                        )}
+                    </span>
+                </div>
+            );
+
+            toast.success(<Message />, config);
+        };
+
         googleSignIn()
-            .then((result) => saveUserViaSocial(result.user))
+            .then((result) => saveUserViaSocial(result.user, welcomeToast))
             .then(() => play("alert"))
             .catch((error) => {
                 console.error(error);
@@ -166,15 +194,39 @@ const useLogin = () => {
                 }
 
                 getUserData(result.user?.email).then((userDetails) => {
-                    let { name } = userDetails;
-                    name = name?.split(" ")[0];
-                    const message = `Welcome ${name}! You have logged-in as ${
-                        userDetails?.role === "Instructor"
-                            ? "an instructor"
-                            : "a student"
-                    }`;
+                    const { name } = userDetails;
+                    const firstName = name?.split(" ")[0];
+                    const properCasedName =
+                        firstName.charAt(0).toUpperCase() +
+                        firstName.slice(1).toLowerCase();
+
+                    const Message = () => (
+                        <div className="text-center">
+                            <span className="font-bold text-green-500 text-[18px]">
+                                Welcome {properCasedName}
+                            </span>{" "}
+                            <br />
+                            <span
+                                className={`text-sm ${
+                                    !isSmallDevice && "text-justify"
+                                }`}
+                            >
+                                You have logged-in as{" "}
+                                {userDetails?.role === "Instructor" ? (
+                                    <span>
+                                        an <strong>Instructor</strong>
+                                    </span>
+                                ) : (
+                                    <span>
+                                        a <strong>Student</strong>
+                                    </span>
+                                )}
+                            </span>
+                        </div>
+                    );
+
                     play("alert");
-                    toast.success(message, config);
+                    toast.success(<Message />, config);
                 });
 
                 navigate(from, { replace: true });
@@ -244,7 +296,13 @@ const useLogin = () => {
         passwordReset(email)
             .then(() => {
                 toast.success(
-                    `A password reset link has been sent to ${email}`,
+                    <div className="text-center">
+                        A password reset link has been sent to
+                        <br />
+                        <span className="font-bold text-green-500 text-[17px]">
+                            {email}
+                        </span>
+                    </div>,
                     {
                         ...config,
                         position: "top-left",
@@ -358,7 +416,7 @@ const useLogin = () => {
         reloadCaptcha,
         setDisabled,
         isIOS,
-        isSmallDevice
+        isSmallDevice,
     };
 };
 

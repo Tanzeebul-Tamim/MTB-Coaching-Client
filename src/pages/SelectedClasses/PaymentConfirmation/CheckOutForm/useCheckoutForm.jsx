@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { purchaseClass, updateStudentCount } from "../../../../api/bookApi";
 import { toast } from "react-toastify";
+import useSoundEffects from "../../../../hooks/useSoundEffects";
 
 const useCheckoutForm = (classItem) => {
     const { user } = useAuth();
@@ -14,6 +15,7 @@ const useCheckoutForm = (classItem) => {
     const [clientSecret, setClientSecret] = useState("");
     const navigate = useNavigate();
     const [disabled, setDisabled] = useState(false);
+    const { play } = useSoundEffects();
 
     useEffect(() => {
         if (classItem?.classFee) {
@@ -115,13 +117,14 @@ const useCheckoutForm = (classItem) => {
                             classItem.instructorId,
                             classItem.classIndex
                         );
+                        play("success");
                         toast.success(
-                            <>
-                                Enrolled in{" "}
-                                <span className="text-green-500 font-bold">
+                            <div className="text-center">
+                                Successfully enrolled in <br />
+                                <span className="font-bold text-green-500 text-[18px]">
                                     {classItem["class-name"]}
                                 </span>
-                            </>,
+                            </div>,
                             {
                                 position: "top-left",
                                 autoClose: 2000,

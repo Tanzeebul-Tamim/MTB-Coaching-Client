@@ -63,10 +63,7 @@ const RoleRoute = ({ allowedRole, children }) => {
                     style={{ height: isSmallDevice ? "90vh" : "300px" }}
                     className="flex justify-center items-center"
                 >
-                    <PropagateLoader
-                        style={{ zIndex: 10 }}
-                        color={color}
-                    />
+                    <PropagateLoader style={{ zIndex: 10 }} color={color} />
                 </div>
             </div>
         );
@@ -79,15 +76,20 @@ const RoleRoute = ({ allowedRole, children }) => {
         return children;
     }
 
-    toast.warning("You are not authorized to access this page!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
+    toast.error(
+        <div className="text-center font-bold text-[18px] text-red-500">
+            You are not authorized to access this page!
+        </div>,
+        {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        }
+    );
 
     // Use lastLocation set by RouteTracker
     const fallbackLocation =

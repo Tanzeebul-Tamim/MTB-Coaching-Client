@@ -23,15 +23,21 @@ const useClassesTable = (userDetails, user) => {
 
         if (!user) {
             play("warning");
-            toast.info("Please log in to book a course.", {
-                position: "top-center",
-                autoClose: 1100,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.info(
+                <div className="text-center">
+                    To book a course, you have to <strong>login</strong>{" "}
+                    first
+                </div>,
+                {
+                    position: "top-center",
+                    autoClose: 1100,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }
+            );
             setTimeout(function () {
                 window.location.replace("/login");
             }, 2000);
@@ -48,10 +54,11 @@ const useClassesTable = (userDetails, user) => {
             setBooking(!booking);
             play("success");
             toast.success(
-                <>
-                    <span className="font-bold text-green-500">{name}</span> has
-                    been booked
-                </>,
+                <div className="text-center">
+                    <span className="font-bold text-green-500 text-[18px]">{name}</span>
+                    <br />
+                    has been booked
+                </div>,
                 {
                     position: "top-center",
                     autoClose: 1100,
