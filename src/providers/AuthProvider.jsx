@@ -23,16 +23,6 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [booking, setBooking] = useState(false);
     const googleProvider = new GoogleAuthProvider();
-    const [supportGlow, setSupportGlow] = useState(false);
-
-    const handleScrollGlow = () => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth",
-        });
-        setSupportGlow(true);
-        setTimeout(() => setSupportGlow(false), 2000);
-    };
 
     const googleSignIn = () => {
         setLoading(true);
@@ -97,9 +87,7 @@ const AuthProvider = ({ children }) => {
         setBooking,
         emailVerification,
         passwordReset,
-        supportGlow,
-        handleScrollGlow,
-        isIOS
+        isIOS,
     };
 
     return (
