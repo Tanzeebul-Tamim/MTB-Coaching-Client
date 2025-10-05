@@ -37,6 +37,10 @@
     }
 }
 
+.flag {
+    margin-left: 2px;
+}
+
 .flag-dropdown .open {
     background-color: #bfb69f !important;
 }
@@ -138,11 +142,11 @@
 
 /* Scrollbar Customization */
 ul.country-list {
-  scrollbar-width: thin;
-  scrollbar-color: #8f8367 transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #8f8367 transparent;
 }
 
 .dark ul.country-list {
-  scrollbar-width: thin;
-  scrollbar-color: #201e1e transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #201e1e transparent;
 }

@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import "../../styles/pwa.css";
 import useAuth from "../../hooks/useAuth";
 import { IoMdClose } from "react-icons/io";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const InstallPWAButton = () => {
     const { isIOS } = useAuth();
+    const { isSmallDevice } = useScreenSize();
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [installReady, setInstallReady] = useState(false);
     const [visible, setVisible] = useState(false);
     const [closed, setClosed] = useState(false);
     const [dismissCount, setDismissCount] = useState(0);
-    const [side, setSide] = useState(true); // true = right, false = left
+    const [side, setSide] = useState(isSmallDevice ? false : true); // true = right, false = left
 
     const duration = 20; // seconds the button stays fully visible
     const reappearEvery = 90; // seconds between reappearances

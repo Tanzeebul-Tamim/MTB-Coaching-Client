@@ -52,7 +52,7 @@ const MyProfile = () => {
                                 {userDetails?.contactNo && (
                                     <p className="z-[10]">
                                         <strong className="text-secondary">Contact no :</strong>{" "}
-                                        {userDetails?.contactNo}
+                                        +{userDetails?.contactNo}
                                     </p>
                                 )}
                                 {userDetails?.role == "Instructor" &&

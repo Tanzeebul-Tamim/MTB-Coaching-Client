@@ -9,7 +9,7 @@ import { passStrength } from "../../../styles/colors.json";
 import { VscClearAll } from "react-icons/vsc";
 import PhoneInput from "react-phone-input-2";
 import { isValidPhoneNumber } from "libphonenumber-js";
-import "../../../styles/phoneNo.css"
+import "../../../styles/phoneNo.css";
 
 const InstructorRegister = () => {
     const {
@@ -39,6 +39,8 @@ const InstructorRegister = () => {
         contactError,
         setContactError,
         setIsContactValid,
+        country,
+        setCountry,
     } = useInstructorRegister();
 
     const [status, setStatus] = useState("");
@@ -162,7 +164,14 @@ const InstructorRegister = () => {
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
-                                        Contact No
+                                        Contact No{" "}
+                                        {!isSmallDevice && country ? (
+                                            <span className="text-primary">
+                                                ({country})
+                                            </span>
+                                        ) : (
+                                            ""
+                                        )}
                                     </span>
                                     <span
                                         className={`lg:hidden text-xs lg:text-sm description text-red-600 ${
@@ -179,6 +188,7 @@ const InstructorRegister = () => {
                                         isSmallDevice ? "" : "🔎 "
                                     }Search Country...`}
                                     onChange={(value, country) => {
+                                        setCountry(country?.name);
                                         const phoneWithPlus = value.startsWith(
                                             "+"
                                         )
@@ -451,6 +461,13 @@ const InstructorRegister = () => {
                             </span>
                             <span className="text-xs lg:text-sm description">
                                 {error ? error : success ? success : ""}
+                            </span>
+                            <span
+                                className={`hidden lg:block text-xs lg:text-sm description absolute pt-5 right-8 text-red-600 ${
+                                    contactError && "visible"
+                                }`}
+                            >
+                                {contactError}
                             </span>
                         </p>
                         <div className="divider text-base-content description">

@@ -46,8 +46,8 @@ const ChangePassword = ({ email }) => {
             id="my_modal_1"
             className="modal text-base-content description"
             onClick={(e) => {
-                // Only close if clicking the backdrop (not the form) and on mobile
-                if (e.target === e.currentTarget && isSmallDevice) {
+                // Only close if clicking the backdrop (not the form)
+                if (e.target === e.currentTarget) {
                     e.currentTarget.close();
                 }
             }}

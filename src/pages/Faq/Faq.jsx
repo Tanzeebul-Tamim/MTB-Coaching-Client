@@ -3,12 +3,15 @@ import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
 import useScreenSize from "../../hooks/useScreenSize";
 import useAuth from "../../hooks/useAuth";
+import useGlowingTitle from "../../hooks/useGlowingTitle";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const Faq = () => {
     useTitle("| FAQ & Support");
     const { isIOS } = useAuth();
-    const { handleScrollGlow } = useAuth();
+    const { handleScrollGlow } = useGlowingTitle();
     const { isSmallDevice } = useScreenSize();
+    const { play } = useSoundEffects();
 
     return (
         <div
@@ -140,7 +143,13 @@ const Faq = () => {
                                 Need help or want to report a bug? Feel free to
                                 send us a message using the{" "}
                                 <span
-                                    onClick={handleScrollGlow}
+                                    onClick={() => {
+                                        handleScrollGlow();
+                                        setTimeout(
+                                            () => play("alert"),
+                                            isSmallDevice ? 800 : 500
+                                        );
+                                    }}
                                     className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Support Request

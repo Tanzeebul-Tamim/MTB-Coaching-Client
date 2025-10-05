@@ -3,11 +3,15 @@ import useScreenSize from "../../hooks/useScreenSize";
 import useAuth from "../../hooks/useAuth";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
+import useGlowingTitle from "../../hooks/useGlowingTitle";
+import useSoundEffects from "../../hooks/useSoundEffects";
 
 const Legal = () => {
     useTitle("| Legal");
-    const { handleScrollGlow, isIOS } = useAuth();
+    const { isIOS } = useAuth();
     const { isSmallDevice } = useScreenSize();
+    const { handleScrollGlow } = useGlowingTitle();
+    const { play } = useSoundEffects();
 
     return (
         <div
@@ -61,7 +65,13 @@ const Legal = () => {
                                 Google account and want your data removed from
                                 our site, you can send us a message using the{" "}
                                 <span
-                                    onClick={handleScrollGlow}
+                                    onClick={() => {
+                                        handleScrollGlow();
+                                        setTimeout(
+                                            () => play("alert"),
+                                            isSmallDevice ? 800 : 500
+                                        );
+                                    }}
                                     className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Support Request

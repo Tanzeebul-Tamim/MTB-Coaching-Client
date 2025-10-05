@@ -40,6 +40,8 @@ const Register = () => {
         contactError,
         setContactError,
         setIsContactValid,
+        country,
+        setCountry,
     } = useRegister();
 
     const [status, setStatus] = useState("");
@@ -160,7 +162,14 @@ const Register = () => {
                             <div className="form-control w-full md:w-1/2">
                                 <label className="label custom-cursor-default">
                                     <span className="uppercase label-text font-bold tracking-widest text-base-content">
-                                        Contact No
+                                        Contact No{" "}
+                                        {!isSmallDevice && country ? (
+                                            <span className="text-primary">
+                                                ({country})
+                                            </span>
+                                        ) : (
+                                            ""
+                                        )}
                                     </span>
                                     <span
                                         className={`lg:hidden text-xs lg:text-sm description text-red-600 ${
@@ -177,6 +186,7 @@ const Register = () => {
                                         isSmallDevice ? "" : "🔎 "
                                     }Search Country...`}
                                     onChange={(value, country) => {
+                                        setCountry(country?.name);
                                         const phoneWithPlus = value.startsWith(
                                             "+"
                                         )

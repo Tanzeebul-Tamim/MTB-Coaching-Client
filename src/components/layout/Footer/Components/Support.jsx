@@ -7,7 +7,7 @@ const Support = () => {
         <div>
             <Link
                 to="/support"
-                className="uppercase text-lg lg:text-xl text-secondary"
+                className="uppercase text-lg lg:text-xl text-secondary hover:underline"
             >
                 FAQ & Support
             </Link>

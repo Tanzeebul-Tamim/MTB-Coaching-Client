@@ -15,6 +15,7 @@ const useRegister = () => {
     const [isContactValid, setIsContactValid] = useState(false);
     const [success, setSuccess] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
+    const [country, setCountry] = useState("");
     const {
         createUser,
         updateUser,
@@ -391,6 +392,8 @@ const useRegister = () => {
         contactError,
         setContactError,
         setIsContactValid,
+        country,
+        setCountry,
     };
 };
 

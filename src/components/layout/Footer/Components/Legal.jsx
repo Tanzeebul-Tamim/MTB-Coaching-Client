@@ -7,7 +7,7 @@ const Legal = () => {
         <div>
             <Link
                 to="/legal"
-                className="uppercase text-lg lg:text-xl text-secondary"
+                className="uppercase text-lg lg:text-xl text-secondary hover:underline"
             >
                 Legal
             </Link>
