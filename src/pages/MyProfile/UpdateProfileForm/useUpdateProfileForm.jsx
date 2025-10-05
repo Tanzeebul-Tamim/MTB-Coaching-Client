@@ -4,12 +4,19 @@ import useAuth from "../../../hooks/useAuth";
 import { Flip, toast } from "react-toastify";
 import { getUserData, saveUser } from "../../../api/authApi";
 import useSoundEffects from "../../../hooks/useSoundEffects";
+import parsePhoneNumberFromString from "libphonenumber-js";
+import countries from "i18n-iso-countries";
+import enLocale from "i18n-iso-countries/langs/en.json";
+countries.registerLocale(enLocale);
 
 const useUpdateProfileForm = (userDetails) => {
     const { isSmallDevice } = useScreenSize();
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
+    const [country, setCountry] = useState("");
     const [coverImageButtonText, setCoverImageButtonText] =
         useState("Upload Cover Image");
+    const [contactError, setContactError] = useState("");
+    const [isContactValid, setIsContactValid] = useState(true);
     const { play } = useSoundEffects();
 
     useEffect(() => {
@@ -21,6 +28,25 @@ const useUpdateProfileForm = (userDetails) => {
     const [selectedGender, setSelectedGender] = useState(
         userDetails?.gender || ""
     );
+
+    // Get country name for user's existing contact no
+    useEffect(() => {
+        if (userDetails?.contactNo) {
+            const phoneWithPlus = userDetails.contactNo.startsWith("+")
+                ? userDetails.contactNo
+                : "+" + userDetails.contactNo;
+
+            const phone = parsePhoneNumberFromString(phoneWithPlus);
+
+            if (phone) {
+                setCountry({
+                    name: countries.getName(phone.country, "en"),
+                    code: phone.country,
+                });
+            }
+        }
+    }, [userDetails.contactNo]);
+
     const { updateUser, user, setLoading } = useAuth();
     const [loading2, setLoading2] = useState(false);
     const [, setCoverImage] = useState(null);
@@ -357,10 +383,21 @@ const useUpdateProfileForm = (userDetails) => {
         fetchUser();
     }, [user.email]);
 
+    // Normalize phone number in plain format removing "+", "-" and spaces
+    const sanitizeContactNo = (value) => {
+        if (!value) return "";
+
+        // remove all spaces, parentheses, and hyphens
+        let cleaned = value.replace(/[\s()-]/g, "");
+
+        // remove the leading '+' if present
+        if (cleaned.startsWith("+")) cleaned = cleaned.slice(1);
+        
+        return cleaned;
+    };
+
     // Synchronous monitorChange
     const monitorChange = (event) => {
-        if (!userDoc) return true; // disable button while loading data
-
         const form = event.target.form || event.target.closest("form");
         if (!form) return true;
 
@@ -377,8 +414,15 @@ const useUpdateProfileForm = (userDetails) => {
 
         for (const [formField, userValue] of Object.entries(fieldMap)) {
             const input = form[formField];
+
             if (input) {
-                const currentVal = input.value.trim();
+                let currentVal = input.value.trim();
+
+                // Special handling for contact field (react-phone-input-2)
+                if (formField === "contact") {
+                    currentVal = sanitizeContactNo(currentVal);
+                }
+
                 if (currentVal !== userValue) hasChange = true;
                 if (currentVal !== "") allEmpty = false;
             }
@@ -417,6 +461,12 @@ const useUpdateProfileForm = (userDetails) => {
         isSmallDevice,
         quoteMaxLength,
         selectedGender,
+        contactError,
+        setContactError,
+        isContactValid,
+        setIsContactValid,
+        country,
+        setCountry,
     };
 };
 

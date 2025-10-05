@@ -1,5 +1,10 @@
 import { TbFidgetSpinner } from "react-icons/tb";
 import useUpdateProfileForm from "./useUpdateProfileForm";
+import PhoneInput from "react-phone-input-2";
+import {
+    isValidPhoneNumber,
+    parsePhoneNumberFromString,
+} from "libphonenumber-js";
 
 const UpdateProfileForm = ({ userDetails }) => {
     const {
@@ -17,6 +22,12 @@ const UpdateProfileForm = ({ userDetails }) => {
         isSmallDevice,
         quoteMaxLength,
         selectedGender,
+        contactError,
+        setContactError,
+        isContactValid,
+        setIsContactValid,
+        country: existingCountry,
+        setCountry,
     } = useUpdateProfileForm(userDetails);
 
     return (
@@ -24,8 +35,8 @@ const UpdateProfileForm = ({ userDetails }) => {
             id="my_modal_3"
             className="modal text-base-content description"
             onClick={(e) => {
-                // Only close if clicking the backdrop (not the form) and on mobile
-                if (e.target === e.currentTarget && isSmallDevice) {
+                // Only close if clicking the backdrop (not the form)
+                if (e.target === e.currentTarget) {
                     e.currentTarget.close();
                 }
             }}
@@ -42,13 +53,17 @@ const UpdateProfileForm = ({ userDetails }) => {
                 </h1>
                 <p
                     className={`z-[10] mt-1 ${
-                        isValidLength ? "text-base-content" : "text-red-500"
+                        isValidLength && !contactError
+                            ? "text-base-content"
+                            : "text-red-500"
                     } text-center`}
                 >
                     {!isSmallDevice &&
-                        (isValidLength
+                        (isValidLength && !contactError
                             ? "Press esc to cancel"
-                            : `Quote is too long! Max ${quoteMaxLength} characters`)}
+                            : !isValidLength
+                            ? `Quote is too long! Max ${quoteMaxLength} characters`
+                            : contactError)}
                 </p>
 
                 <div className="card-body p-0 md:p-6">
@@ -82,15 +97,114 @@ const UpdateProfileForm = ({ userDetails }) => {
                         <div className="form-control w-full md:w-1/2">
                             <label className="label">
                                 <strong className="label-text">
-                                    Contact no
+                                    Contact no{" "}
+                                    {existingCountry ? (
+                                        <span
+                                            title={
+                                                existingCountry?.name.length >
+                                                    13 || isSmallDevice
+                                                    ? existingCountry?.name
+                                                    : existingCountry?.code
+                                            }
+                                            className="text-primary"
+                                        >
+                                            {isSmallDevice
+                                                ? existingCountry?.code &&
+                                                  `(${existingCountry.code})`
+                                                : existingCountry?.name.length >
+                                                      13 || isSmallDevice
+                                                ? `(${existingCountry?.code})`
+                                                : `(${existingCountry?.name})`}
+                                        </span>
+                                    ) : (
+                                        ""
+                                    )}
                                 </strong>
+                                <span
+                                    className={`lg:hidden text-xs lg:text-sm description text-red-600 ${
+                                        contactError && "visible"
+                                    }`}
+                                >
+                                    {contactError}
+                                </span>
                             </label>
-                            <input
-                                type="number"
-                                name="contact"
-                                defaultValue={userDetails?.contactNo}
-                                placeholder="Enter your contact no"
-                                className="input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0"
+
+                            <PhoneInput
+                                country={"auto"}
+                                value={userDetails?.contactNo}
+                                searchPlaceholder={`${
+                                    isSmallDevice ? "" : "🔎 "
+                                }Search Country...`}
+                                onChange={(value, country) => {
+                                    const phoneWithPlus = value.startsWith("+")
+                                        ? value
+                                        : "+" + value;
+                                    const phone =
+                                        parsePhoneNumberFromString(
+                                            phoneWithPlus
+                                        );
+                                    setCountry({
+                                        name: country?.name,
+                                        code: phone?.country,
+                                    });
+                                    const valid =
+                                        isValidPhoneNumber(phoneWithPlus);
+                                    setIsContactValid(valid);
+                                    if (value) {
+                                        if (valid) {
+                                            setContactError("");
+                                        } else {
+                                            if (country?.name) {
+                                                setContactError(
+                                                    `Invalid number for ${
+                                                        country.name.length > 13
+                                                            ? phone?.country
+                                                            : country?.name
+                                                    }`
+                                                );
+                                            } else {
+                                                setContactError(
+                                                    "Invalid number"
+                                                );
+                                            }
+                                        }
+                                    } else {
+                                        setContactError("");
+                                    }
+                                }}
+                                inputProps={{
+                                    name: "contact", // not used by monitorChange
+                                    required: true,
+                                    placeholder: "Enter your contact no",
+                                    className:
+                                        "input placeholder:text-gray-500 border-gray-500 border-opacity-50 lg:border-0 lg:pl-10 pl-12 description",
+                                    style: {
+                                        minHeight: "40px",
+                                        borderRadius: "0.5rem",
+                                        width: "100%",
+                                        zIndex: 1001,
+                                    },
+                                }}
+                                containerClass="w-full"
+                                buttonStyle={{
+                                    background: "transparent",
+                                    border: "none",
+                                    zIndex: 1002,
+                                }}
+                                dropdownStyle={{
+                                    background: "#d1d5db",
+                                    borderRadius: "0.5rem",
+                                    zIndex: 2000,
+                                }} // gray-300
+                                searchStyle={{
+                                    background: "#fff",
+                                    borderRadius: "0.5rem",
+                                    zIndex: 2001,
+                                }}
+                                enableAreaCodes={true}
+                                enableSearch={true}
+                                disableCountryCode={false}
+                                disableDropdown={false}
                             />
                         </div>
                     </div>
@@ -263,7 +377,7 @@ const UpdateProfileForm = ({ userDetails }) => {
 
                     <div className="form-control mt-6">
                         <button
-                            disabled={btnStatus || loading2}
+                            disabled={btnStatus || loading2 || !isContactValid}
                             type="submit"
                             className={`btn btn-md text-md rounded-md lg:border-0 w-full md:w-auto dark:disabled:bg-stone-900 disabled:bg-stone-400 bg-base-200 dark:hover:bg-stone-800 dark:bg-base-300 ${
                                 loading2 &&
