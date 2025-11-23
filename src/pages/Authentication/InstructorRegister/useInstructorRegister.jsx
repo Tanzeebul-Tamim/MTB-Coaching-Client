@@ -16,6 +16,9 @@ const useInstructorRegister = () => {
     const [success, setSuccess] = useState("");
     const [selectedGender, setSelectedGender] = useState("");
     const [country, setCountry] = useState("");
+    const [agreed, setAgreed] = useState(false);
+    const [highlightText, setHighlightText] = useState(false);
+
     const {
         createUser,
         updateUser,
@@ -312,6 +315,34 @@ const useInstructorRegister = () => {
             toast.success(<Message />, config);
         };
 
+        const termsAndConditionToast = () => {
+            const Message = () => (
+                <div className="text-center">
+                    <span className="font-bold text-primary text-[17px]">
+                        Action Required
+                    </span>
+                    <br />
+                    <span
+                        className={
+                            !isSmallDevice && " text-justify text-[13px]"
+                        }
+                    >
+                        You need to agree to the{" "}
+                        <strong>Terms and Conditions</strong> before continuing.
+                    </span>
+                </div>
+            );
+
+            toast.warning(<Message />, config);
+        };
+
+        if (!agreed) {
+            setHighlightText(true);
+            setTimeout(() => setHighlightText(false), config.autoClose + 1100);
+            termsAndConditionToast();
+            return;
+        }
+
         googleSignIn()
             .then((result) => {
                 saveInstructorViaSocial(result.user, welcomeToast).catch(
@@ -407,6 +438,9 @@ const useInstructorRegister = () => {
         setIsContactValid,
         country,
         setCountry,
+        agreed,
+        setAgreed,
+        highlightText,
     };
 };
 

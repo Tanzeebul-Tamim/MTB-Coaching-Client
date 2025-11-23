@@ -67,6 +67,10 @@
     box-shadow: 0 0 25px rgba(255, 255, 0, 0.753);
 }
 
+.glow:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.753);
+}
+
 /* Hide default calendar icon */
 input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;

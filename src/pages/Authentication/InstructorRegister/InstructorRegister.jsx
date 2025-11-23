@@ -41,6 +41,9 @@ const InstructorRegister = () => {
         setIsContactValid,
         country,
         setCountry,
+        agreed,
+        setAgreed,
+        highlightText,
     } = useInstructorRegister();
 
     const [status, setStatus] = useState("");
@@ -443,7 +446,39 @@ const InstructorRegister = () => {
                                 fields are required
                             </div>
                         </label>
-
+                        <div
+                            className={`form-control my-2 flex-row items-center gap-2 z-[10] ${
+                                highlightText ? "animate-bounce-once" : ""
+                            }`}
+                        >
+                            <input
+                                type="checkbox"
+                                name="terms"
+                                checked={agreed}
+                                onChange={(e) => setAgreed(e.target.checked)}
+                                className="checkbox checkbox-primary rounded-md w-5 h-5"
+                                required
+                            />
+                            <label
+                                htmlFor="terms"
+                                className={"text-[0.85rem] description"}
+                            >
+                                <span className="text-accent">
+                                    I agree to the
+                                </span>
+                                <Link
+                                    to="/legal#terms"
+                                    className={`${
+                                        highlightText ? "auth-glow" : ""
+                                    } underline text-primary ml-1`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Terms and Conditions
+                                </Link>
+                                .
+                            </label>
+                        </div>
                         <p
                             className={`flex flex-col lg:flex-row justify-between z-10 ${
                                 error
