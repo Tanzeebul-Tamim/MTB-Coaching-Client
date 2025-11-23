@@ -4,7 +4,7 @@ import { PropagateLoader } from "react-spinners";
 import { getUserData } from "../../api/authApi";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import SklDashboardTitle from "../../components/skeletons/SklDashboardTitle";
 import { light, dark } from "../../styles/colors.json";
 import useDarkTheme from "../../hooks/useDarkTheme";
@@ -12,7 +12,7 @@ import useDarkTheme from "../../hooks/useDarkTheme";
 const RoleRoute = ({ allowedRole, children }) => {
     const { loading, user } = useAuth();
     const location = useLocation();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const [userDetails, setUserDetails] = useState(null);
     const [detailsLoading, setDetailsLoading] = useState(true);
 

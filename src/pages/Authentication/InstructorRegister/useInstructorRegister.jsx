@@ -5,7 +5,7 @@ import useTitle from "../../../hooks/useTitle";
 import { saveInstructor, saveInstructorViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 import { Flip, toast } from "react-toastify";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useSoundEffects from "../../../hooks/useSoundEffects";
 
 const useInstructorRegister = () => {
@@ -62,7 +62,7 @@ const useInstructorRegister = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
     const { play } = useSoundEffects();

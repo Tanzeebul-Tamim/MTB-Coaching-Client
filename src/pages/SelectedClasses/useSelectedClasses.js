@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useUserData from "../../hooks/useUserData";
 import {
     deleteAllClass,
@@ -15,7 +15,7 @@ import useSoundEffects from "../../hooks/useSoundEffects";
 const useSelectedClasses = () => {
     const { user } = useAuth();
     const [unpaidBookings, setUnpaidBookings] = useState([]);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading, userDetails } = useUserData();
     const { play } = useSoundEffects();
     useTitle("| Booked Courses");

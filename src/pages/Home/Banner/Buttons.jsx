@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { BiLogInCircle, BiSupport } from "react-icons/bi";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useGlowingTitle from "../../../hooks/useGlowingTitle";
 
 const Buttons = ({ alignment }) => {
     const { user } = useAuth();
     const { handleScrollGlow } = useGlowingTitle();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     return (
         <div

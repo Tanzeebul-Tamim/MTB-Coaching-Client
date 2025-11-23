@@ -1,7 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import useUserData from "../../hooks/useUserData";
 import { useEffect, useState } from "react";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useTitle from "../../hooks/useTitle";
 
 const useSingleInstructorsClasses = () => {
@@ -18,7 +18,7 @@ const useSingleInstructorsClasses = () => {
     const { id } = useParams();
     const [totalAttendee, setTotalAttendee] = useState(0);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const title = isMyWall ? "| My Wall" : `| ${firstName}'s Wall`;
     useTitle(title);
 

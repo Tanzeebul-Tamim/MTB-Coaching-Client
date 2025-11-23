@@ -1,4 +1,4 @@
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import { AiFillCloseCircle } from "react-icons/ai";
 import moment from "moment";
 import { Link, useLocation } from "react-router-dom";
@@ -6,7 +6,7 @@ import ImageWithLoader from "./ImageWithLoader";
 import getStatus from "../../hooks/getStatus";
 
 const ClassDetail = ({ i, detail }) => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const location = useLocation();
 
     const {

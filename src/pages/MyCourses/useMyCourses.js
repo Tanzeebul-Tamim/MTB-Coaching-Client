@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
 import usePagination from "../../hooks/usePagination";
 
 const useMyCourses = () => {
     const [totalStudent, setTotalStudent] = useState(0);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading, userDetails } = useUserData();
     useTitle("| My Courses");
 

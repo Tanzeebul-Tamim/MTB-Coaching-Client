@@ -4,7 +4,7 @@ import { sendMessage } from "../../../../../api/messageApi";
 import useAuth from "../../../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import useDarkTheme from "../../../../../hooks/useDarkTheme";
-import useScreenSize from "../../../../../hooks/useScreenSize";
+import useScreen from "../../../../../hooks/useScreen";
 import useSoundEffects from "../../../../../hooks/useSoundEffects";
 import useGlowingTitle from "../../../../../hooks/useGlowingTitle";
 
@@ -13,7 +13,7 @@ const useSendMessage = () => {
     const { user } = useAuth();
     const { supportGlow } = useGlowingTitle();
     const isDarkTheme = useDarkTheme();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { play } = useSoundEffects();
 
     const className = "uppercase text-lg lg:text-xl";

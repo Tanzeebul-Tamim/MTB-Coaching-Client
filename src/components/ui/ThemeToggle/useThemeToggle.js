@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import { useLocation } from "react-router-dom";
 
 const useThemeToggle = () => {
     const [isDark, setIsDark] = useState(true);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const location = useLocation();
     const isDashboard = location.pathname.includes("dashboard");
 

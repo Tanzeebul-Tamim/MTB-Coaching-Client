@@ -1,9 +1,9 @@
 import useTitle from "../../hooks/useTitle";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 
 const NoInternetPage = () => {
     useTitle("| No Internet");
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     return (
         <div className="flex relative justify-center lg:py-5 lg:px-20 px-10 flex-col items-center min-h-screen overflow-y-hidden">

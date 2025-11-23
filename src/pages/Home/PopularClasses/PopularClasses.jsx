@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import SklPopularClasses from "../../../components/skeletons/SklPopularClasses";
 import useAuth from "../../../hooks/useAuth";
 import useSoundEffects from "../../../hooks/useSoundEffects";
@@ -20,7 +20,7 @@ const PopularClasses = () => {
     const [topClasses, setTopClasses] = useState([]);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { user } = useAuth();
     const { play } = useSoundEffects();
 

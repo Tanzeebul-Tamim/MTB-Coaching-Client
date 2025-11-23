@@ -1,12 +1,12 @@
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useDarkTheme from "../../hooks/useDarkTheme";
 import { light, dark } from "../../styles/colors.json";
 
 const SklInstructors = () => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const isDarkTheme = useDarkTheme();
     const color = isDarkTheme ? dark.baseContent : light.baseContent;
 

@@ -1,6 +1,6 @@
 import { Link, useRouteError } from "react-router-dom";
 import useTitle from "../../hooks/useTitle";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 
 const ErrorPage = () => {
     const { error, statusText, status } = useRouteError();
@@ -22,7 +22,7 @@ const ErrorPage = () => {
         }
     }
 
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     return (
         <div

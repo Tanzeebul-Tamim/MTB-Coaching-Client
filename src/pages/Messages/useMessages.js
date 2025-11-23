@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
 import usePagination from "../../hooks/usePagination";
@@ -9,7 +9,7 @@ import { getMessages } from "../../api/messageApi";
 const useMessages = () => {
     const { user } = useAuth();
     const [messages, setMessages] = useState([]);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading, userDetails } = useUserData();
     useTitle("| Tickets");
 

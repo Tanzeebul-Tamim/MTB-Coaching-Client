@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import SendMessage from "./Components/SendMessage/SendMessage";
 import OurLocation from "./Components/OurLocation";
 import OpeningHours from "./Components/OpeningHours";
@@ -12,7 +12,7 @@ import Socials from "./Components/Socials";
 
 const Footer = () => {
     const location = useLocation();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const bgLocations =
         location.pathname == "/instructors" || location.pathname == "/classes";
 

@@ -1,7 +1,7 @@
 import useTitle from "../../hooks/useTitle";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useAuth from "../../hooks/useAuth";
 import useGlowingTitle from "../../hooks/useGlowingTitle";
 import useSoundEffects from "../../hooks/useSoundEffects";
@@ -10,7 +10,7 @@ const Faq = () => {
     useTitle("| FAQ & Support");
     const { isIOS } = useAuth();
     const { handleScrollGlow } = useGlowingTitle();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { play } = useSoundEffects();
 
     return (

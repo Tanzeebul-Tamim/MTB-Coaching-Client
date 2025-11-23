@@ -1,5 +1,5 @@
 import useTitle from "../../hooks/useTitle";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useAuth from "../../hooks/useAuth";
 import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
@@ -9,7 +9,7 @@ import useSoundEffects from "../../hooks/useSoundEffects";
 const Legal = () => {
     useTitle("| Legal");
     const { isIOS } = useAuth();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { handleScrollGlow } = useGlowingTitle();
     const { play } = useSoundEffects();
 

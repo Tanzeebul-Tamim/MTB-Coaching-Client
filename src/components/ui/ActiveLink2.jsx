@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 
 const ActiveLink2 = ({ to, children, setSideNavOpen }) => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     return (
         <NavLink

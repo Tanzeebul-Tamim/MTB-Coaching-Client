@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useAuth from "../../../hooks/useAuth";
 import { Flip, toast } from "react-toastify";
 import { getUserData, saveUser } from "../../../api/authApi";
@@ -10,7 +10,7 @@ import enLocale from "i18n-iso-countries/langs/en.json";
 countries.registerLocale(enLocale);
 
 const useUpdateProfileForm = (userDetails) => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
     const [country, setCountry] = useState("");
     const [coverImageButtonText, setCoverImageButtonText] =

@@ -6,7 +6,7 @@ import {
 } from "firebase/auth";
 import app from "../../../firebase/firebase.config";
 import { useEffect, useRef, useState } from "react";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import { Flip, Zoom, Slide, Bounce, toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 import useSoundEffects from "../../../hooks/useSoundEffects";
@@ -42,7 +42,7 @@ const useChangePassword = (email) => {
     const newPasswordRef = useRef();
     const confirmPasswordRef = useRef();
     const modalRef = useRef(null);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { passwordReset, setLoading: authLoading } = useAuth();
     const { play } = useSoundEffects();
 

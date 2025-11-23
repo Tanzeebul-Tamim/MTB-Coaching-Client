@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Navigation } from "swiper";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useYoutubeSearch from "../../../hooks/useYouTubeSearch";
 import useAuth from "../../../hooks/useAuth";
 import SklBikeHacks from "../../../components/skeletons/SklBikeHacks";
@@ -18,7 +18,7 @@ const bikeHacksDes =
 
 const BikeHacks = () => {
     const [numberOfSlides, setNumberOfSlides] = useState(null);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { user, isIOS } = useAuth();
     const [selectBikeType, setSelectBikeType] = useState("");
     const [shouldFetch, setShouldFetch] = useState(false);

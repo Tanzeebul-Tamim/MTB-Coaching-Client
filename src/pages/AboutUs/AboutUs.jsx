@@ -1,10 +1,10 @@
 import useTitle from "../../hooks/useTitle";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useAuth from "../../hooks/useAuth";
 
 const AboutUs = () => {
     useTitle("| About Us");
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { isIOS } = useAuth();
 
     return (

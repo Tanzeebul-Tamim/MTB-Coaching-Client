@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
 import { getAllClasses, getTotalClasses } from "../../api/api";
@@ -18,7 +18,7 @@ const useClasses = () => {
     const { user, ...rest } = useAuth();
     const searchRef = useRef(null);
     const tableRef = useRef(null);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading: userLoading, userDetails } = useUserData();
     const navigate = useNavigate();
     useTitle("| Courses");

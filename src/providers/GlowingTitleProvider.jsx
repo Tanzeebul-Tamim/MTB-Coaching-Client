@@ -1,13 +1,13 @@
 import { useState, createContext } from "react";
 import { toast } from "react-toastify";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreen from "../hooks/useScreen";
 import useAuth from "../hooks/useAuth";
 
 export const GlowingTitleContext = createContext(null);
 
 const GlowingTitleProvider = ({ children }) => {
     const [supportGlow, setSupportGlow] = useState(false);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { user } = useAuth();
 
     const Message = () => (

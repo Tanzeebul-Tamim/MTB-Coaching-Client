@@ -4,13 +4,13 @@ import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../../hooks/useUserData";
 import { getBookedClasses } from "../../../api/bookApi";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useSoundEffects from "../../../hooks/useSoundEffects";
 import useGlowingTitle from "../../../hooks/useGlowingTitle";
 
 const useNavbar = () => {
     const isDarkTheme = useDarkTheme();
-    const { isSmallDevice, isFullscreen, handleFullscreen } = useScreenSize();
+    const { isSmallDevice, isFullscreen, handleFullscreen } = useScreen();
     const [open, setOpen] = useState(false);
     const customColor = "text-secondary";
     const { user, logOut, loading, booking } = useAuth();

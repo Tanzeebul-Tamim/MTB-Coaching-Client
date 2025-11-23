@@ -1,9 +1,9 @@
 import { AiFillCloseCircle } from "react-icons/ai";
 import moment from "moment";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 
 const MessageModal = ({ i, detail }) => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     const { subject, message, date, ticketId } = detail;
 

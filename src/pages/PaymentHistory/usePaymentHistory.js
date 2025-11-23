@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useUserData from "../../hooks/useUserData";
 import useTitle from "../../hooks/useTitle";
 import { getBookedClasses } from "../../api/bookApi";
@@ -12,7 +12,7 @@ const usePaymentHistory = () => {
     const paidBookings = userBookings.filter(
         (booking) => booking.paymentStatus === "paid"
     );
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading, userDetails } = useUserData();
     useTitle("| Payment History");
 

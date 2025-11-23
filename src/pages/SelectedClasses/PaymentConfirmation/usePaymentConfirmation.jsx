@@ -4,10 +4,10 @@ import useTitle from "../../../hooks/useTitle";
 import useUserData from "../../../hooks/useUserData";
 import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 
 const usePaymentConfirmation = () => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const [classItem, setClassItem] = useState(null);
     const [flipped, setFlipped] = useState(false);
     const studentName = classItem?.studentName;

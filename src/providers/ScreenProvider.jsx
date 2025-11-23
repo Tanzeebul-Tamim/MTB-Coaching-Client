@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-export const ScreenSizeContext = createContext(null);
+export const ScreenContext = createContext(null);
 
-const ScreenSizeProvider = ({ children }) => {
+const ScreenProvider = ({ children }) => {
     const [isSmallDevice, setIsSmallDevice] = useState(null);
     const [splashShown, setSplashShown] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -95,10 +95,10 @@ const ScreenSizeProvider = ({ children }) => {
     };
 
     return (
-        <ScreenSizeContext.Provider value={screenInfo}>
+        <ScreenContext.Provider value={screenInfo}>
             {children}
-        </ScreenSizeContext.Provider>
+        </ScreenContext.Provider>
     );
 };
 
-export default ScreenSizeProvider;
+export default ScreenProvider;

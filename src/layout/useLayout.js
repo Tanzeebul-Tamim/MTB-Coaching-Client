@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreen from "../hooks/useScreen";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 import { useLocation } from "react-router-dom";
 import useDarkTheme from "../hooks/useDarkTheme";
@@ -13,7 +13,7 @@ const useLayout = () => {
 
     const isDarkTheme = useDarkTheme();
     const { isSmallDevice, splashShown, setSplashShown, splashDuration } =
-        useScreenSize();
+        useScreen();
 
     const validLocations = ["/profile", "/payment/", "/add-class"];
     const isValidLocation = validLocations.some((validLocation) =>

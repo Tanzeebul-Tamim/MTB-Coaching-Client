@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import SklPopularInstructors from "../../../components/skeletons/SklPopularInstructors";
 import useAuth from "../../../hooks/useAuth";
 import useSoundEffects from "../../../hooks/useSoundEffects";
@@ -21,7 +21,7 @@ const PopularInstructors = () => {
     const [topInstructors, setTopInstructors] = useState([]);
     const [numberOfSlides, setNumberOfSlides] = useState(null);
     const [loading, setLoading] = useState(false);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { user } = useAuth();
     const { play } = useSoundEffects();
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useUserData from "../../../hooks/useUserData";
 import { getBookedClasses } from "../../../api/bookApi";
 import { getMessages } from "../../../api/messageApi";
@@ -9,7 +9,7 @@ const useSideNav = () => {
     const { loading, user, booking, setBooking } = useAuth();
     const [messages, setMessages] = useState([]);
     const [title, setTitle] = useState("User");
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const [paidBookings, setPaidBookings] = useState([]);
     const { loading: userLoading, userDetails } = useUserData();
 

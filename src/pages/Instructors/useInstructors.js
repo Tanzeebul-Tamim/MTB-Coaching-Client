@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import { getAllInstructors, getTotalInstructors } from "../../api/api";
 import { getUserData } from "../../api/authApi";
 import useTitle from "../../hooks/useTitle";
@@ -17,7 +17,7 @@ const useInstructors = () => {
     const [totalInstructors, setTotalInstructors] = useState({});
     const searchRef = useRef(null);
     const tableRef = useRef(null);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { user } = useAuth();
     const { play } = useSoundEffects();
     useTitle("| Instructors");

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "../../styles/pwa.css";
 import useAuth from "../../hooks/useAuth";
 import { IoMdClose } from "react-icons/io";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 
 const InstallPWAButton = () => {
     const { isIOS } = useAuth();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [installReady, setInstallReady] = useState(false);
     const [visible, setVisible] = useState(false);

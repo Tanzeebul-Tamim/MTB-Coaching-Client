@@ -1,7 +1,7 @@
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 
 const SklDashboardTitle = () => {
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     if (isSmallDevice) {
         return (

@@ -13,7 +13,7 @@ import { getUserData, saveUserViaSocial } from "../../../api/authApi";
 import { light, dark } from "../../../styles/colors.json";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import useSoundEffects from "../../../hooks/useSoundEffects";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 
 const useLogin = () => {
     // Auth
@@ -85,7 +85,7 @@ const useLogin = () => {
     const { play } = useSoundEffects();
 
     // Screen Size
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
 
     // Page title
     useTitle("| Login");

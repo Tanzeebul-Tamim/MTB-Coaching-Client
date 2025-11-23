@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 import useTitle from "../../../hooks/useTitle";
 import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
@@ -62,7 +62,7 @@ const useRegister = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const getPrevLocation = localStorage.getItem("location");
     const from = location.state?.from?.pathname || getPrevLocation;
     const { play } = useSoundEffects();

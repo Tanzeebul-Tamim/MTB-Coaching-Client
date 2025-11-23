@@ -3,14 +3,14 @@ import useTitle from "../../hooks/useTitle";
 import useAuth from "../../hooks/useAuth";
 import { getUserData, saveUser } from "../../api/authApi";
 import { Flip, toast } from "react-toastify";
-import useScreenSize from "../../hooks/useScreenSize";
+import useScreen from "../../hooks/useScreen";
 import useSoundEffects from "../../hooks/useSoundEffects";
 
 const useAddClass = () => {
     const [imageButtonText, setImageButtonText] = useState("Upload Thumbnail");
     const [error, setError] = useState("");
     const [helmet, setHelmet] = useState("Add a Course");
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { play } = useSoundEffects();
     useTitle(`| ${helmet}`);
 

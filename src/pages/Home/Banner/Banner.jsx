@@ -6,14 +6,14 @@ import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import { Fade } from "react-awesome-reveal";
 import Buttons from "./Buttons";
 import { useEffect, useState } from "react";
-import useScreenSize from "../../../hooks/useScreenSize";
+import useScreen from "../../../hooks/useScreen";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Banner = () => {
     const [duration, damping] = [2000, 0.3];
     const interval = duration + 800;
-    const { splashDuration, splashShown } = useScreenSize();
+    const { splashDuration, splashShown } = useScreen();
     const [autoplayActive, setAutoplayActive] = useState(false);
     const [delay, setDelay] = useState(
         splashShown ? 500 : splashDuration + 200

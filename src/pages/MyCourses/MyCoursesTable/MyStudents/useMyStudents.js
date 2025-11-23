@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useScreenSize from "../../../../hooks/useScreenSize";
+import useScreen from "../../../../hooks/useScreen";
 import useUserData from "../../../../hooks/useUserData";
 import useTitle from "../../../../hooks/useTitle";
 import usePagination from "../../../../hooks/usePagination";
@@ -9,7 +9,7 @@ const useMyStudents = () => {
     const { idx } = useParams();
     const parsedIdx = parseInt(idx);
     const [students, setStudents] = useState([]);
-    const { isSmallDevice } = useScreenSize();
+    const { isSmallDevice } = useScreen();
     const { loading, userDetails, setLoading } = useUserData();
     useTitle("| My Students");
 
