@@ -2,7 +2,7 @@
 import COLORS from "./src/styles/colors.json";
 
 export default {
-    darkMode: "class", // You already have this
+    darkMode: "class",
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     daisyui: {
         themes: [
