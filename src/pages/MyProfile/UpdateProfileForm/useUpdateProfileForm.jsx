@@ -85,7 +85,8 @@ const useUpdateProfileForm = (userDetails) => {
         const name = form?.name?.value;
         const email = user.email;
         const address = form?.address?.value;
-        const contactNo = form?.contact?.value;
+        let contactNo = form?.contact?.value;
+        contactNo = contactNo && formatContactNo(contactNo);
         const gender = selectedGender;
         const quote = form?.quote?.value;
 
@@ -384,7 +385,7 @@ const useUpdateProfileForm = (userDetails) => {
     }, [user.email]);
 
     // Normalize phone number in plain format removing "+", "-" and spaces
-    const sanitizeContactNo = (value) => {
+    const formatContactNo = (value) => {
         if (!value) return "";
 
         // remove all spaces, parentheses, and hyphens
@@ -392,7 +393,7 @@ const useUpdateProfileForm = (userDetails) => {
 
         // remove the leading '+' if present
         if (cleaned.startsWith("+")) cleaned = cleaned.slice(1);
-        
+
         return cleaned;
     };
 
@@ -420,7 +421,7 @@ const useUpdateProfileForm = (userDetails) => {
 
                 // Special handling for contact field (react-phone-input-2)
                 if (formField === "contact") {
-                    currentVal = sanitizeContactNo(currentVal);
+                    currentVal = formatContactNo(currentVal);
                 }
 
                 if (currentVal !== userValue) hasChange = true;

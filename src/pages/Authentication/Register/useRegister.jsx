@@ -85,11 +85,24 @@ const useRegister = () => {
         isValid &&
         isContactValid;
 
+    // Normalize phone number in plain format removing "+", "-" and spaces
+    const formatContactNo = (value) => {
+        if (!value) return "";
+
+        // remove all spaces, parentheses, and hyphens
+        let cleaned = value.replace(/[\s()-]/g, "");
+
+        // remove the leading '+' if present
+        if (cleaned.startsWith("+")) cleaned = cleaned.slice(1);
+
+        return cleaned;
+    };
+
     const handleRegister = (event) => {
         event.preventDefault();
         const name = formFields.name;
         const email = formFields.email;
-        const contactNo = formFields.contact;
+        const contactNo = formatContactNo(formFields.contact);
         const address = formFields.address;
         const gender = selectedGender;
         const password = formFields.password;

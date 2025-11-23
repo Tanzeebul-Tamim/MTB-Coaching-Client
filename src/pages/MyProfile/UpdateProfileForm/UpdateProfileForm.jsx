@@ -101,20 +101,23 @@ const UpdateProfileForm = ({ userDetails }) => {
                                     {existingCountry ? (
                                         <span
                                             title={
-                                                existingCountry?.name.length >
+                                                existingCountry?.name?.length >
                                                     13 || isSmallDevice
                                                     ? existingCountry?.name
                                                     : existingCountry?.code
                                             }
                                             className="text-primary"
                                         >
-                                            {isSmallDevice
-                                                ? existingCountry?.code &&
-                                                  `(${existingCountry.code})`
-                                                : existingCountry?.name.length >
-                                                      13 || isSmallDevice
-                                                ? `(${existingCountry?.code})`
-                                                : `(${existingCountry?.name})`}
+                                            {existingCountry?.name && (
+                                                <>
+                                                    {isSmallDevice
+                                                        ? `(${existingCountry?.code})`
+                                                        : existingCountry?.name
+                                                              ?.length <= 13
+                                                        ? `(${existingCountry?.name})`
+                                                        : `(${existingCountry?.code})`}
+                                                </>
+                                            )}
                                         </span>
                                     ) : (
                                         ""
