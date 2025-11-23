@@ -1,34 +1,24 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import ScrollToTop from "../routes/utils/Scroll/ScrollToTop";
 import SideNav from "../components/layout/SideNav/SideNav";
 import RouteTracker from "../routes/utils/RouteTracker/RouteTracker";
-import useScreenSize from "../hooks/useScreenSize";
-import useNetworkStatus from "../hooks/useNetworkStatus";
 import NoInternetPage from "../components/pages/NoInternetPage";
-import useDarkTheme from "../hooks/useDarkTheme";
+import useLayout from "./useLayout";
 
 const Dashboard = () => {
-    const [sideNavOpen, setSideNavOpen] = useState(false);
-    const { isSmallDevice } = useScreenSize();
-    const { isOnline } = useNetworkStatus();
-    const location = useLocation();
-    const isDarkTheme = useDarkTheme();
-    const validLocations = ["/profile", "/payment/", "/add-class"];
-    const isValidLocation = validLocations.some((validLocation) =>
-        location.pathname.includes(validLocation)
-    );
+    const {
+        sideNavOpen,
+        setSideNavOpen,
+        isSmallDevice,
+        isOnline,
+        isValidLocation,
+        bg,
+        isDarkTheme,
+    } = useLayout();
 
     if (!isOnline) {
         return <NoInternetPage />;
     }
-
-    const url = "url('/assets/images/dashboard_banner_res.jpg')";
-    const lightBg =
-        "linear-gradient(rgba(50, 40, 20, 0.4), rgba(60, 50, 30, 0.3)), " + url;
-    const darkBg =
-        "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), " + url;
-    const bg = isDarkTheme ? darkBg : lightBg;
 
     return (
         <div className="relative min-h-screen">

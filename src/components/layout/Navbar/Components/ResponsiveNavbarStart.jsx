@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 
-const ResponsiveNavbarEnd = ({ props }) => {
+const ResponsiveNavbarStart = ({ props }) => {
     const { user, userBookings, userDetails, userLoading, loading, location } =
         props;
 
@@ -11,7 +11,7 @@ const ResponsiveNavbarEnd = ({ props }) => {
         : user?.displayName?.split(" ")[0];
 
     return (
-        <div className="navbar-end flex gap-2 lg:hidden relative">
+        <div className="navbar-start relative">
             {user ? (
                 <Link
                     to="/dashboard/profile"
@@ -19,7 +19,7 @@ const ResponsiveNavbarEnd = ({ props }) => {
                     className="tooltip tooltip-bottom tooltip-primary absolute -top-4"
                 >
                     {userBookings.length >= 1 && (
-                        <span className="absolute right-[8.5vw] -top-[1vw] badge flex gap-[3px] badge-sm badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
+                        <span className="absolute left-[8.5vw] -top-[1vw] badge flex gap-[3px] badge-sm badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
                             <MdShoppingCart />
                             <span className="text-[0.65rem] font-bold">
                                 {userBookings?.length}
@@ -76,4 +76,4 @@ const ResponsiveNavbarEnd = ({ props }) => {
     );
 };
 
-export default ResponsiveNavbarEnd;
+export default ResponsiveNavbarStart;

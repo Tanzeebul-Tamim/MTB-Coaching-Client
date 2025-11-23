@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [booking, setBooking] = useState(false);
-    const googleProvider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();    
 
     const googleSignIn = () => {
         setLoading(true);
@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
         setBooking,
         emailVerification,
         passwordReset,
-        isIOS,
+        isIOS,       
     };
 
     return (

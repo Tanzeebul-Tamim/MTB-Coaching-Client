@@ -15,6 +15,8 @@ const NavbarEnd = ({ props }) => {
         location,
     } = props;
 
+    const { pathname } = location;
+
     return user ? (
         <div className="navbar-end uppercase gap-7 lg:flex hidden">
             <button
@@ -67,7 +69,7 @@ const NavbarEnd = ({ props }) => {
         </div>
     ) : (
         <div className="navbar-end uppercase gap-5 lg:flex hidden">
-            {location.pathname !== "/login" && (
+            {pathname !== "/login" && (
                 <Link
                     to="/login"
                     className="font-light text-primary text-xl hover:scale-110 duration-200 transition-transform"
@@ -78,13 +80,11 @@ const NavbarEnd = ({ props }) => {
                     </div>
                 </Link>
             )}
-            {location.pathname !== "/register" && (
+            {pathname !== "/register" && (
                 <Link
                     to="/register"
                     className={`${
-                        location.pathname === "/login"
-                            ? "text-primary"
-                            : "text-accent"
+                        pathname === "/login" ? "text-primary" : "text-accent"
                     } font-light text-xl hover:scale-110 duration-200 transition-transform`}
                 >
                     <div className="flex tracking-[2px] items-center gap-2">
@@ -93,8 +93,7 @@ const NavbarEnd = ({ props }) => {
                     </div>
                 </Link>
             )}
-            {(location.pathname === "/register" ||
-                location.pathname === "/login") && (
+            {(pathname === "/register" || pathname === "/login") && (
                 <Link
                     to="/instructor-register"
                     className="text-accent font-light text-xl hover:scale-110 duration-200 transition-transform"

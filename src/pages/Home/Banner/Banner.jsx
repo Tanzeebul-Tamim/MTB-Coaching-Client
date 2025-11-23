@@ -5,16 +5,35 @@ import "react-awesome-slider/dist/styles.css";
 import ImageWithLoader from "../../../components/ui/ImageWithLoader";
 import { Fade } from "react-awesome-reveal";
 import Buttons from "./Buttons";
+import { useEffect, useState } from "react";
+import useScreenSize from "../../../hooks/useScreenSize";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const Banner = () => {
-    const [duration, delay, damping] = [2000, 500, 0.3];
+    const [duration, damping] = [2000, 0.3];
     const interval = duration + 800;
+    const { splashDuration, splashShown } = useScreenSize();
+    const [autoplayActive, setAutoplayActive] = useState(false);
+    const [delay, setDelay] = useState(
+        splashShown ? 500 : splashDuration + 200
+    );
+
+    useEffect(() => {
+        const timer1 =
+            !splashShown && setTimeout(() => setAutoplayActive(true), delay); // 2 seconds initial delay
+        const timer2 =
+            !splashShown && setTimeout(() => setDelay(500), delay + interval); // update delay after splash screen is gone
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <AutoplaySlider
-            play={true}
+            play={splashShown ? true : autoplayActive}
             cancelOnInteraction={false}
             interval={interval}
             className="w-full"

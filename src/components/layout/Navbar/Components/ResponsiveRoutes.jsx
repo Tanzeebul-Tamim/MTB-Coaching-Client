@@ -10,7 +10,7 @@ import { GiTeacher } from "react-icons/gi";
 import { BiSolidDashboard } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
 import useSoundEffects from "../../../../hooks/useSoundEffects";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useGlowingTitle from "../../../../hooks/useGlowingTitle";
 
 const ResponsiveRoutes = ({ props, navRef }) => {
@@ -22,18 +22,12 @@ const ResponsiveRoutes = ({ props, navRef }) => {
         handleLogOut,
         open,
         setOpen,
+        authenticationPage,
     } = props;
 
     const { handleScrollGlow } = useGlowingTitle();
     const { play } = useSoundEffects();
-    const { pathname } = useLocation();
     const navigate = useNavigate();
-
-    const authenticationPage = [
-        "/login",
-        "/register",
-        "/instructor-register",
-    ].includes(pathname);
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -55,10 +49,10 @@ const ResponsiveRoutes = ({ props, navRef }) => {
 
     return (
         <div
-            style={{ transition: "left 0.3s ease-in-out" }}
+            style={{ transition: "right 0.3s ease-in-out" }}
             ref={navRef}
             className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
-                open ? "top-10 left-5" : "top-10 -left-[150px]"
+                open ? "top-10 right-5" : "top-10 -right-[150px]"
             } lg:hidden z-10 py-2 px-4 bg-base-100 border border-base-content rounded-xl border-opacity-40`}
         >
             <ThemeToggle />

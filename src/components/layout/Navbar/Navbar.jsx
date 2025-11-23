@@ -1,15 +1,10 @@
-import { Link } from "react-router-dom";
 import "../../../styles/navbar.css";
-import ResponsiveRoutes from "./Components/ResponsiveRoutes";
-import Routes from "./Components/Routes";
-import NavbarEnd from "./Components/NavbarEnd";
-import ResponsiveNavbarEnd from "./Components/ResponsiveNavbarEnd";
-import { useRef } from "react";
 import useNavbar from "./useNavbar";
-import ResponsiveRoutesBtn from "./Components/ResponsiveRoutesBtn";
+import LargeNav from "./Components/LargeNav";
+import SmallNav from "./Components/SmallNav";
+import ScrollProgressBar from "./Components/ScrollbarProgress";
 
-const Navbar = () => {
-    const navRef = useRef(null);
+const Navbar = ({ authenticationPage }) => {
     const {
         isDarkTheme,
         loading,
@@ -22,67 +17,65 @@ const Navbar = () => {
         user,
         open,
         setOpen,
-        location
+        location,
+        isSmallDevice,
+        navigate,
+        play,
+        handleScrollGlow,
+        isFullscreen,
+        handleFullscreen,
+        dropdownOpen,
+        setDropdownOpen,
     } = useNavbar();
 
-    const Logo = ({ screen }) => (
-        <Link to="/">
-            <img
-                className={`w-[400px] ${screen} hover:scale-110 duration-200 transition-transform`}
-                src={`/assets/images/MTB_Coaching_${
-                    isDarkTheme ? "Dark" : "Light"
-                }.png`}
-                alt="Logo"
-            />
-        </Link>
-    );
-
     return (
-        <div className="from-transparent to-black bg-gradient-to-t fixed z-[1500] gap-5 navbar px-5 lg:px-10 lg:py-8 transition ease-in-out">
-            <div className="navbar-start gap-1 lg:gap-6 flex items-center">
-                <ResponsiveRoutes
-                    props={{
-                        user,
-                        userDetails,
-                        myWallRoute,
-                        customColor,
-                        handleLogOut,
-                        open,
-                        setOpen,
-                    }}
-                    navRef={navRef}
-                />
-                <ResponsiveRoutesBtn props={{ setOpen, open }} />
-                <Logo screen="hidden lg:block" />
-            </div>
-
-            <Logo screen="lg:hidden" />
-
-            <Routes props={{ user, myWallRoute, userDetails }} />
-
-            <NavbarEnd
+        <>
+            {!authenticationPage && (
+                <ScrollProgressBar isFullscreen={isFullscreen} />
+            )}
+            {/* For large Devices */}
+            <LargeNav
                 props={{
+                    isDarkTheme,
                     user,
+                    myWallRoute,
+                    userDetails,
                     handleLogOut,
-                    userDetails,
                     userLoading,
                     userBookings,
                     loading,
-                    location
+                    location,
+                    navigate,
+                    play,
+                    handleScrollGlow,
+                    authenticationPage,
+                    isFullscreen,
+                    handleFullscreen,
+                    dropdownOpen,
+                    setDropdownOpen,
                 }}
             />
 
-            <ResponsiveNavbarEnd
+            {/* For mobile devices */}
+            <SmallNav
                 props={{
+                    isDarkTheme,
                     user,
                     userBookings,
                     userDetails,
                     userLoading,
                     loading,
-                    location
+                    myWallRoute,
+                    customColor,
+                    handleLogOut,
+                    open,
+                    setOpen,
+                    location,
+                    authenticationPage,
+                    isSmallDevice,
                 }}
             />
-        </div>
+        </>
     );
 };
 

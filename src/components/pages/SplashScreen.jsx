@@ -3,24 +3,28 @@ import "../../styles/splashscreen.css";
 
 const SplashScreen = ({ onLogoLoaded, duration }) => {
     const [hide, setHide] = useState(false);
-    const [showText, setShowText] = useState(true);
+    const [showText, setShowText] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => setHide(true), duration - 300);
-        const textTimer = setTimeout(() => setShowText(true), duration - 1500);
+        const textTimer = setTimeout(() => setShowText(true), 200);
         return () => {
             clearTimeout(timer);
             clearTimeout(textTimer);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex flex-col items-center justify-center splash splash-fade bg-gradient-to-tr from-[#36280f] via-[#896727] to-[#e1a941]
+            className={`fixed inset-0 z-[10000] flex flex-col items-center justify-center splash splash-fade bg-gradient-to-tr from-[#36280f] via-[#896727] to-[#e1a941]
  ${hide ? "hide" : ""} transition-opacity duration-700`}
         >
-            <div className="relative flex items-center justify-center">
+            <div
+                className={`relative flex items-center justify-center transition-opacity ease-in-out duration-200 ${
+                    hide ? "opacity-0" : "opacity-100"
+                }`}
+            >
                 <div className="absolute animate-spin-slow rounded-full bg-gradient-to-tr from-primary to-accent opacity-40 blur-2xl w-56 h-56" />
                 <img
                     src="/public/logo.png"

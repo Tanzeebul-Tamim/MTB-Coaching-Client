@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import useAuth from "../../../hooks/useAuth";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../../hooks/useUserData";
 import { getBookedClasses } from "../../../api/bookApi";
+import useScreenSize from "../../../hooks/useScreenSize";
+import useSoundEffects from "../../../hooks/useSoundEffects";
+import useGlowingTitle from "../../../hooks/useGlowingTitle";
 
 const useNavbar = () => {
     const isDarkTheme = useDarkTheme();
+    const { isSmallDevice, isFullscreen, handleFullscreen } = useScreenSize();
     const [open, setOpen] = useState(false);
     const customColor = "text-secondary";
     const { user, logOut, loading, booking } = useAuth();
     const [userBookings, setUserBookings] = useState([]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
+    const { play } = useSoundEffects();
+    const { handleScrollGlow } = useGlowingTitle();
+
     const checkPrivatePath =
         location.pathname === "/" ||
         location.pathname === "/instructors" ||
@@ -60,7 +69,15 @@ const useNavbar = () => {
         user,
         open,
         setOpen,
-        location
+        location,
+        isSmallDevice,
+        navigate,
+        play,
+        handleScrollGlow,
+        isFullscreen,
+        handleFullscreen,
+        dropdownOpen,
+        setDropdownOpen,
     };
 };
 
