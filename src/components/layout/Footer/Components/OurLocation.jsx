@@ -3,8 +3,8 @@ import LeafletMap from "./LeafletMap/LeafletMap";
 
 const OurLocation = ({ isSmallDevice }) => {
     return (
-        <div>
-            <span className="uppercase text-lg lg:text-xl text-secondary">
+        <div className="lg:flex flex-col items-center text-center w-full h-full">
+            <span className="uppercase text-lg lg:text-xl text-secondary tracking-widest">
                 Our Location
             </span>
             <LeafletMap smallDevice={isSmallDevice}></LeafletMap>

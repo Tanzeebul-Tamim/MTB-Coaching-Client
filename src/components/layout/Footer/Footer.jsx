@@ -4,7 +4,7 @@ import SendMessage from "./Components/SendMessage/SendMessage";
 import OurLocation from "./Components/OurLocation";
 import OpeningHours from "./Components/OpeningHours";
 import ContactUs from "./Components/ContactUs";
-import Support from "./Components/Support";
+import Faq from "./Components/Faq";
 import Legal from "./Components/Legal";
 import Branding from "./Components/Branding";
 import Notice from "./Components/Notice";
@@ -35,11 +35,10 @@ const Footer = () => {
             >
                 <OurLocation isSmallDevice={isSmallDevice} />
                 <OpeningHours />
-                <ContactUs />
-                {!isSmallDevice && <SendMessage bgLocations={bgLocations} />}
-                <Support />
+                <Faq />
                 <Legal />
-                {isSmallDevice && <SendMessage bgLocations={bgLocations} />}
+                <ContactUs />
+                <SendMessage bgLocations={bgLocations} />
             </footer>
             <div className="flex justify-center">
                 <hr

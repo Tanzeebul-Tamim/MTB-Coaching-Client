@@ -2,8 +2,8 @@ import React from "react";
 
 const ContactUs = () => {
     return (
-        <div>
-            <span className="uppercase text-lg lg:text-xl text-secondary">
+        <div className="lg:flex flex-col items-center lg:text-center w-full h-full">
+            <span className="uppercase text-lg lg:text-xl text-secondary tracking-widest">
                 Contact Us
             </span>
             <span className="text-sm description">

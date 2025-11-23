@@ -28,13 +28,21 @@ const useSendMessage = () => {
     const [subjectFocus, setSubjectFocus] = useState(false);
 
     useEffect(() => {
-        if (supportGlow)
+        if (supportGlow) {
             setGlowClass(
                 `${className} ${
                     isDarkTheme ? "text-primary" : "text-secondary"
                 } support-glow scale-105`
             );
-        else setGlowClass(`${className} text-secondary`);
+            setTimeout(
+                () =>
+                    setGlowClass(
+                        (glowClassName) =>
+                            `${glowClassName} animate-bounce-once`
+                    ),
+                1200
+            );
+        } else setGlowClass(`${className} text-secondary`);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [supportGlow]);
 

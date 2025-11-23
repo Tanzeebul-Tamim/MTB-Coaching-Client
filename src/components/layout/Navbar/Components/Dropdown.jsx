@@ -58,7 +58,7 @@ const Dropdown = ({ props }) => {
                 aria-label="Toggle Fullscreen"
                 onClick={handleFullscreen}
             >
-                <div className="hover:scale-125 hover:rotate-[360deg] transition-transform duration-500 ease-in-out">
+                <div className="hover:scale-125 hover:rotate-90 transition-transform duration-500 ease-in-out">
                     {isFullscreen ? (
                         <MdFullscreenExit className="text-xl" />
                     ) : (

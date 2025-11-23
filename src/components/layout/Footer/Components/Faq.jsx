@@ -2,14 +2,14 @@ import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../../../routes/utils/Scroll/ScrollWithOffset";
 import { Link } from "react-router-dom";
 
-const Support = () => {
+const Faq = () => {
     return (
-        <div>
+        <div className="lg:flex flex-col items-center text-center w-full h-full">
             <Link
                 to="/support"
-                className="uppercase text-lg lg:text-xl text-secondary hover:underline"
+                className="uppercase text-lg lg:text-xl text-secondary hover:underline tracking-widest"
             >
-                FAQ & Support
+                FAQ
             </Link>
             <HashLink
                 smooth
@@ -47,4 +47,4 @@ const Support = () => {
     );
 };
 
-export default Support;
+export default Faq;

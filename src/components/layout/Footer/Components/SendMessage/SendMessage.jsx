@@ -20,12 +20,14 @@ const SendMessage = ({ bgLocations }) => {
     } = useSendMessage();
 
     return (
-        <form onSubmit={handleSendMessage} className="relative">
-            <span
-                className={`${glowClass} transition-all ease-in-out duration-[500ms]`}
-            >
-                Support Request
-            </span>
+        <form  onSubmit={handleSendMessage} className="relative">
+            <div className="lg:flex lg:w-full justify-center">
+                <span
+                    className={`${glowClass} transition-all ease-in-out duration-[500ms] tracking-widest`}
+                >
+                    Support Request
+                </span>
+            </div>
 
             {!user && (
                 <>
@@ -111,12 +113,14 @@ const SendMessage = ({ bgLocations }) => {
                 {textLength}/{textLimit}
             </span>
 
-            <button
-                type="submit"
-                className="bg-secondary dark:text-yellow-900 text-orange-900 font-bold px-3 lg:py-2 py-1 lg:rounded-xl rounded-xl mt-2 hover:scale-105 transition-transform ease-in-out"
-            >
-                Send Message
-            </button>
+            <div className="lg:w-full lg:flex justify-center">
+                <button
+                    type="submit"
+                    className="bg-secondary dark:text-yellow-900 text-orange-900 font-bold px-3 lg:py-2 py-1 lg:rounded-xl rounded-md mt-2 hover:scale-105 transition-all ease-in-out glow"
+                >
+                    Send Message
+                </button>
+            </div>
         </form>
     );
 };

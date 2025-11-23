@@ -45,7 +45,7 @@ const InstallPWAButton = () => {
     useEffect(() => {
         if (!installReady) return;
 
-        setVisible(true);
+        setVisible(true); 
 
         const interval = setInterval(() => {
             setVisible(true); // Re-show every N seconds

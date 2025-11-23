@@ -2,8 +2,8 @@ import React from "react";
 
 const OpeningHours = () => {
     return (
-        <div>
-            <span className="uppercase text-lg lg:text-xl text-secondary">
+        <div className="lg:flex flex-col items-center text-center w-full h-full">
+            <span className="uppercase text-lg lg:text-xl text-secondary tracking-widest">
                 Opening Hours
             </span>
             <span className="text-sm description">

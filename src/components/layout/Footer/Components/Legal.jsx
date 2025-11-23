@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const Legal = () => {
     return (
-        <div>
+        <div className="lg:flex flex-col items-center text-center w-full h-full">
             <Link
                 to="/legal"
-                className="uppercase text-lg lg:text-xl text-secondary hover:underline"
+                className="uppercase text-lg lg:text-xl text-secondary hover:underline tracking-widest"
             >
                 Legal
             </Link>
