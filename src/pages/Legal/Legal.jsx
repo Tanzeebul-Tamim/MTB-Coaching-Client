@@ -41,7 +41,7 @@ const Legal = () => {
                     <p className="lg:mb-2 mb-1 text-sm md:text-lg leading-relaxed text">
                         This website is a personal practice project built by{" "}
                         <a
-                            href="https://github.com/Tanzeebul-Tamim"
+                            href="https://www.linkedin.com/in/tanzeebul-tamim/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="underline font-semibold"
@@ -49,7 +49,18 @@ const Legal = () => {
                             Tanzeebul Tamim
                         </a>{" "}
                         for educational purposes only. It is not affiliated with
-                        any official organization.
+                        any official organization. The source code for this
+                        project is available on GitHub. You can view, study, or
+                        fork it{" "}
+                        <a
+                            href="https://github.com/Tanzeebul-Tamim/MTB-Coaching-Client"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline font-semibold"
+                        >
+                            here
+                        </a>
+                        .
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">

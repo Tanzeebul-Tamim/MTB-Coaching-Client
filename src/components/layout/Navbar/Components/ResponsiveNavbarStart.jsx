@@ -19,7 +19,7 @@ const ResponsiveNavbarStart = ({ props }) => {
                     className="tooltip tooltip-bottom tooltip-primary absolute -top-4"
                 >
                     {userBookings.length >= 1 && (
-                        <span className="absolute left-[8.5vw] -top-[1vw] badge flex gap-[3px] badge-sm badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
+                        <span className="absolute left-[7vw] -top-[1.5vw] badge flex gap-[3px] badge-sm badge-secondary dark:text-gray-800 text-yellow-50 title indicator-item">
                             <MdShoppingCart />
                             <span className="text-[0.65rem] font-bold">
                                 {userBookings?.length}

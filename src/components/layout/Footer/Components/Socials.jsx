@@ -4,10 +4,28 @@ const Socials = () => {
     return (
         <div className="md:place-self-center md:justify-self-end">
             <div className="grid grid-flow-col gap-4">
+                {/* Facebook */}
                 <a
-                    href="https://wa.me/31644460635"
+                    href="https://www.facebook.com/tanzeebul.tamim.1/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Visit my Facebook profile"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        className="fill-current h-6 w-6"
+                    >
+                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+                    </svg>
+                </a>
+                
+                {/* Whatsapp */}
+                <a
+                    href="https://wa.me/8801552140162"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Contact me on Whatsapp"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -18,23 +36,12 @@ const Socials = () => {
                     </svg>
                 </a>
 
-                <a
-                    href="https://x.com/tanzeebul"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        className="fill-current h-6 w-6"
-                    >
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-                    </svg>
-                </a>
+                {/* YouTube */}
                 <a
                     href="https://www.youtube.com/@tanzeebultamim9068"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Visit my YouTube channel"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -43,18 +50,39 @@ const Socials = () => {
                     >
                         <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
                     </svg>
-                </a>
+                </a>                
+
+                {/* GitHub */}
                 <a
-                    href="https://www.facebook.com/tanzeebul.tamim.1/"
+                    href="https://github.com/Tanzeebul-Tamim"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Visit my GitHub portfolio"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         className="fill-current h-6 w-6"
                     >
-                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+                        <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385 0.6 0.113 0.82-0.258 0.82-0.577 0-0.285-0.01-1.04-0.015-2.04-3.338 0.726-4.042-1.61-4.042-1.61-0.546-1.387-1.333-1.757-1.333-1.757-1.089-0.745 0.084-0.729 0.084-0.729 1.205 0.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495 0.997 0.108-0.775 0.418-1.305 0.76-1.605-2.665-0.3-5.466-1.332-5.466-5.93 0-1.31 0.469-2.381 1.236-3.221-0.135-0.303-0.54-1.523 0.105-3.176 0 0 1.005-0.322 3.3 1.23 0.96-0.267 1.98-0.399 3-0.405 1.02 0.006 2.04 0.138 3 0.405 2.28-1.552 3.285-1.23 3.285-1.23 0.645 1.653 0.24 2.873 0.12 3.176 0.765 0.84 1.23 1.911 1.23 3.221 0 4.61-2.805 5.625-5.475 5.92 0.435 0.375 0.81 1.096 0.81 2.22 0 1.606-0.015 2.896-0.015 3.286 0 0.315 0.21 0.69 0.825 0.57 4.765-1.59 8.2-6.082 8.2-11.38 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                    href="https://www.linkedin.com/in/tanzeebul-tamim/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Visit my LinkedIn Profile"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.026-3.061-1.865-3.061-1.867 0-2.154 1.459-2.154 2.967v5.698h-3v-11h2.881v1.507h.041c.401-.761 1.379-1.562 2.838-1.562 3.034 0 3.594 2.003 3.594 4.609v6.446z" />
                     </svg>
                 </a>
             </div>

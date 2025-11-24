@@ -9,22 +9,31 @@ const Notice = ({ isSmallDevice }) => {
         >
             <h4 className="lg:text-md lg:tracking-widest">
                 This website is for educational purposes only and is not
-                affiliated with any official organizations or institutions.
+                affiliated with any official organizations or institutions •
+                <a
+                    href="https://github.com/Tanzeebul-Tamim/MTB-Coaching-Client"
+                    className="ms-1 font-bold text-secondary hover:text-primary underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View source code for this project on GitHub"
+                >
+                    View Source
+                </a>
             </h4>
             <h4 className="lg:text-md lg:tracking-widest">
-                &copy; 2023-{new Date().getFullYear()} MTB Coaching Network -
+                &copy; 2023-{new Date().getFullYear()} MTB Coaching Network •
                 All Rights Reserved
                 {isSmallDevice ? (
                     <>
                         <br />
                     </>
                 ) : (
-                    ` - `
+                    ` • `
                 )}
                 Designed & Developed by
                 <a
                     href="https://github.com/Tanzeebul-Tamim"
-                    className="uppercase ms-1 font-bold text-secondary underline"
+                    className="uppercase ms-1 font-bold text-secondary hover:text-primary underline"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

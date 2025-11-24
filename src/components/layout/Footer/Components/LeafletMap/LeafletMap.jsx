@@ -20,19 +20,19 @@ const LeafletMap = ({ smallDevice }) => {
 
     return (
         <div
-            className={`relative group w-full h-full ${
+            className={`lg:relative group w-full h-full ${
                 smallDevice && "mt-4"
             } lg:flex flex-col items-center text-center w-full h-full`}
         >
-            <div className="absolute z-[1000] transition-all duration-300 lg:opacity-0 lg:group-hover:opacity-100 lg:right-6 right-[7.3rem] lg:top-[0.3rem] top-[0.1rem] lg:hover:scale-105 lg:hover:right-1 lg:hover:top-2 ease-in-out">
+            <div className="absolute z-[1000] transition-all duration-300 lg:opacity-0 lg:group-hover:opacity-100 lg:right- lg:top-[0.3rem] -translate-y-[0.8rem] lg:translate-y-0 lg:hover:scale-105 lg:hover:right-1 lg:hover:top-2 ease-in-out">
                 <a
                     href="https://www.google.com/maps/place/MTB+route,+rhenen/@51.972747,5.5471453,16z/data=!4m10!1m2!2m1!1smountain+bike+trail!3m6!1s0x47c654097f4e5ef1:0x2691c597450a599b!8m2!3d51.972747!4d5.5566725!15sChNtb3VudGFpbiBiaWtlIHRyYWlsWhUiE21vdW50YWluIGJpa2UgdHJhaWySAQ5zcG9ydHNfY29tcGxleJoBJENoZERTVWhOTUc5blMwVkpRMEZuU1VNMWR6UlRhRFpCUlJBQqoBaAoIL20vMDE5OWcKCC9tLzBfbWpwEAEqFyITbW91bnRhaW4gYmlrZSB0cmFpbCgAMh4QASIaVSV2fnus8nDHm1tfIzap4DhCiohlFPsxWzwyFxACIhNtb3VudGFpbiBiaWtlIHRyYWls4AEA-gEECAAQGg!16s%2Fg%2F11dybfjq3d?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`bg-secondary dark:text-yellow-900 text-orange-900 px-3 ${
                         smallDevice
-                            ? "rounded-md"
-                            : "lg:rounded-bl-lg lg:rounded-tr-lg"
+                            ? "rounded-t-md rounded-br-md"
+                            : "lg:rounded-b-lg"
                     } py-1 rounded-s- shadow-md hover:bg-primary lg:text-sm text-xs font-bold`}
                 >
                     View on Google Maps
