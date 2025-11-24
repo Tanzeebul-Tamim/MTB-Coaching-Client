@@ -7,8 +7,8 @@ const Title = () => {
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75 }}
-                className="text-base-content mb-1 lg:mb-5 text-xl lg:text-6xl tracking-wider"
+                transition={{ duration: 1 }}
+                className="text-base-content mb-1 lg:mb-5 text-xl lg:text-6xl lg:tracking-wider tracking-wide"
             >
                 Embrace the Mountain biking lifestyle !
             </motion.h2>
