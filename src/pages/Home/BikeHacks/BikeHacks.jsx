@@ -40,7 +40,7 @@ const BikeHacks = () => {
             style={{
                 backgroundAttachment: !isIOS && "fixed",
                 backgroundImage:
-                    "linear-gradient(rgba(0, 0, 0, 0.300), rgba(0, 0, 0, 0.100)), url('/assets/images/bike_hack_banner.avif')",
+                    "linear-gradient(to bottom, rgba(0, 0, 0, 0.500), rgba(0, 0, 0, 0)), url('/assets/images/bike_hack_banner.avif')",
                 backgroundPosition: isSmallDevice ? "55% 50%" : "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

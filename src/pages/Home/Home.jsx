@@ -5,6 +5,7 @@ import PopularClasses from "./PopularClasses/PopularClasses";
 import PopularInstructors from "./PopularInstructors/PopularInstructors";
 import Title from "./Title/Title";
 import "../../styles/swiper-buttons.css";
+import IntroVideo from "./IntroVideo/IntroVideo";
 
 const Home = () => {
     useTitle(null, location.pathname);
@@ -13,6 +14,7 @@ const Home = () => {
         <div>
             <Banner />
             <Title />
+            <IntroVideo />
             <PopularInstructors />
             <PopularClasses />
             <BikeHacks />
