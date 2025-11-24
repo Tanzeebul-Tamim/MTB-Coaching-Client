@@ -9,6 +9,7 @@ import { TbFidgetSpinner } from "react-icons/tb";
 import { VscClearAll } from "react-icons/vsc";
 import { IoReload } from "react-icons/io5";
 import useLogin from "./useLogin";
+import termsConditionToast from "../utility/termsConditionToast";
 
 const Login = () => {
     const {
@@ -37,6 +38,11 @@ const Login = () => {
         setDisabled,
         isIOS,
         isSmallDevice,
+        agreed,
+        setAgreed,
+        highlightText,
+        config,
+        setHighlightText,
     } = useLogin();
 
     const [clicked, setClicked] = useState(false);
@@ -177,7 +183,7 @@ const Login = () => {
                                 </div>
                             </label>
                         </div>
-                        <div className="z-[10] form-control">
+                        <div className="z-[10] form-control relative">
                             <div className="label custom-cursor-default mb-1">
                                 <span className="uppercase label-text font-bold tracking-widest text-base-content flex flex-col gap-1">
                                     <span>Enter captcha code</span>
@@ -237,8 +243,43 @@ const Login = () => {
                                     </span>
                                 </Link>
                             </label>
+                            <div
+                                className={`form-control flex-row items-center gap-1 z-[10] mt-2 ${
+                                    highlightText ? "animate-bounce-once" : ""
+                                }`}
+                            >
+                                <input
+                                    type="checkbox"
+                                    name="terms"
+                                    checked={agreed}
+                                    onChange={(e) =>
+                                        setAgreed(e.target.checked)
+                                    }
+                                    className="checkbox checkbox-primary rounded-md w-[0.7rem] h-[0.7em]"
+                                    required
+                                />
+                                <label
+                                    htmlFor="terms"
+                                    className={"text-xs description"}
+                                >
+                                    <span className="text-accent">
+                                        I agree to the
+                                    </span>
+                                    <Link
+                                        to="/legal#terms"
+                                        className={`${
+                                            highlightText ? "auth-glow" : ""
+                                        } underline text-primary ml-1`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Terms and Conditions
+                                    </Link>
+                                    .
+                                </label>
+                            </div>
                             <p
-                                className={`z-10 text-xs lg:text-sm description ${
+                                className={`z-10 absolute -bottom-5 text-xs description ${
                                     error || success ? "visible" : "invisible"
                                 } ${
                                     error
@@ -267,9 +308,22 @@ const Login = () => {
                                 </span>
                             </button>
                         </div>
-                        <div className="z-[10] form-control mt-6">
+                        <div
+                            onClick={() => {
+                                !disabled &&
+                                    !loading &&
+                                    !agreed &&
+                                    termsConditionToast(
+                                        isSmallDevice,
+                                        agreed,
+                                        config,
+                                        setHighlightText
+                                    );
+                            }}
+                            className="z-[10] form-control mt-6"
+                        >
                             <button
-                                disabled={disabled || (loading && true)}
+                                disabled={disabled || loading || !agreed}
                                 type="submit"
                                 className="btn bg-amber-500 dark:bg-yellow-500 disabled:bg-amber-900 dark:disabled:bg-yellow-900 disabled:text-stone-500 dark:hover:bg-yellow-600 hover:bg-amber-600 text-accent border-0 text-lg md:text-xl"
                             >

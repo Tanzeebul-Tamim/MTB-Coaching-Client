@@ -14,6 +14,7 @@ import { light, dark } from "../../../styles/colors.json";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import useSoundEffects from "../../../hooks/useSoundEffects";
 import useScreen from "../../../hooks/useScreen";
+import termsConditionToast from "../utility/termsConditionToast";
 
 const useLogin = () => {
     // Auth
@@ -67,6 +68,10 @@ const useLogin = () => {
     // Feedback messages
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+
+    // Terms & Condition
+    const [agreed, setAgreed] = useState(false);
+    const [highlightText, setHighlightText] = useState(false);
 
     // Toast Config
     const customId = "unauthorized";
@@ -155,6 +160,16 @@ const useLogin = () => {
 
             toast.success(<Message />, config);
         };
+
+        if (
+            !termsConditionToast(
+                isSmallDevice,
+                agreed,
+                config,
+                setHighlightText
+            )
+        )
+            return;
 
         googleSignIn()
             .then((result) => saveUserViaSocial(result.user, welcomeToast))
@@ -417,6 +432,11 @@ const useLogin = () => {
         setDisabled,
         isIOS,
         isSmallDevice,
+        agreed,
+        setAgreed,
+        highlightText,
+        config,
+        setHighlightText,
     };
 };
 

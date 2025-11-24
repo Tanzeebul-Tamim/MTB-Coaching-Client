@@ -12,6 +12,7 @@ import "react-phone-input-2/lib/style.css";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
 import "../../../styles/auth.css";
+import termsConditionToast from "../utility/termsConditionToast";
 
 const Register = () => {
     const {
@@ -46,6 +47,8 @@ const Register = () => {
         agreed,
         setAgreed,
         highlightText,
+        setHighlightText,
+        config,
     } = useRegister();
 
     const [status, setStatus] = useState("");
@@ -82,15 +85,15 @@ const Register = () => {
                     <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-primary text-center">
                         Register now!
                     </h1>
-                    <div className="text-center">
+                    <div className="text-center description text-sm">
+                        <span className="text-accent no-underline">
+                            Not a student?{" "}
+                        </span>
                         <Link
                             to="/instructor-register"
-                            className="description text-sm"
+                            className="text-primary underline"
                         >
-                            <span className="text-accent">Not a student? </span>
-                            <span className="text-primary underline">
-                                Register as an instructor
-                            </span>
+                            Register as an instructor
                         </Link>
                     </div>
                 </div>
@@ -109,15 +112,15 @@ const Register = () => {
                         breathtaking landscapes. Register now and let your MTB
                         journey begin!
                     </p>
-                    <div className="text-end">
+                    <div className="text-end description text-sm">
+                        <span className="text-accent no-underline">
+                            Not a student?{" "}
+                        </span>
                         <Link
                             to="/instructor-register"
-                            className="description text-sm link link-hover text-white"
+                            className="text-primary underline"
                         >
-                            Not a student?{" "}
-                            <strong className="text-primary">
-                                Register as an instructor
-                            </strong>
+                            Register as an instructor
                         </Link>
                     </div>
                 </div>
@@ -520,7 +523,20 @@ const Register = () => {
                                 </span>
                             </button>
                         </div>
-                        <div className="z-[10] mt-6 form-control">
+                        <div
+                            onClick={() => {
+                                !loading &&
+                                    isFormValid &&
+                                    !agreed &&
+                                    termsConditionToast(
+                                        isSmallDevice,
+                                        agreed,
+                                        config,
+                                        setHighlightText
+                                    );
+                            }}
+                            className="z-[10] mt-6 form-control"
+                        >
                             <button
                                 disabled={loading || !isFormValid || !agreed}
                                 type="submit"

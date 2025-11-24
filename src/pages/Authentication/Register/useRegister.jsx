@@ -7,6 +7,7 @@ import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
 import Swal from "sweetalert2";
 import { toast, Flip } from "react-toastify";
 import useSoundEffects from "../../../hooks/useSoundEffects";
+import termsConditionToast from "../utility/termsConditionToast";
 
 const useRegister = () => {
     const [isValid, setIsValid] = useState(false);
@@ -85,7 +86,6 @@ const useRegister = () => {
         selectedGender &&
         formFields.image &&
         isValid &&
-        agreed &&
         isContactValid;
 
     // Normalize phone number in plain format removing "+", "-" and spaces
@@ -315,33 +315,15 @@ const useRegister = () => {
             toast.success(<Message />, config);
         };
 
-        const termsAndConditionToast = () => {
-            const Message = () => (
-                <div className="text-center">
-                    <span className="font-bold text-primary text-[17px]">
-                        Action Required
-                    </span>
-                    <br />
-                    <span
-                        className={
-                            !isSmallDevice && " text-justify text-[13px]"
-                        }
-                    >
-                        You need to agree to the{" "}
-                        <strong>Terms and Conditions</strong> before continuing.
-                    </span>
-                </div>
-            );
-
-            toast.warning(<Message />, config);
-        };
-
-        if (!agreed) {
-            setHighlightText(true);
-            setTimeout(() => setHighlightText(false), config.autoClose + 1100);
-            termsAndConditionToast();
+        if (
+            !termsConditionToast(
+                isSmallDevice,
+                agreed,
+                config,
+                setHighlightText
+            )
+        )
             return;
-        }
 
         googleSignIn()
             .then((result) => {
@@ -441,6 +423,8 @@ const useRegister = () => {
         agreed,
         setAgreed,
         highlightText,
+        setHighlightText,
+        config,
     };
 };
 

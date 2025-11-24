@@ -10,6 +10,7 @@ import { VscClearAll } from "react-icons/vsc";
 import PhoneInput from "react-phone-input-2";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
+import termsConditionToast from "../utility/termsConditionToast";
 
 const InstructorRegister = () => {
     const {
@@ -44,6 +45,8 @@ const InstructorRegister = () => {
         agreed,
         setAgreed,
         highlightText,
+        setHighlightText,
+        config,
     } = useInstructorRegister();
 
     const [status, setStatus] = useState("");
@@ -80,17 +83,12 @@ const InstructorRegister = () => {
                     <h1 className="text-3xl md:text-4xl font-bold title tracking-widest uppercase text-primary text-center">
                         Become an instructor!
                     </h1>
-                    <div className="text-center">
-                        <Link
-                            to="/register"
-                            className="description text-sm link link-hover"
-                        >
-                            <span className="text-accent">
-                                Not an instructor?{" "}
-                            </span>
-                            <span className="text-primary underline">
-                                Register as a student
-                            </span>
+                    <div className="text-center description text-sm">
+                        <span className="text-accent no-underline">
+                            Not an instructor?{" "}
+                        </span>
+                        <Link className="text-primary underline" to="/register">
+                            Register as a student
                         </Link>
                     </div>
                 </div>
@@ -110,15 +108,12 @@ const InstructorRegister = () => {
                         and embark on a rewarding journey as a mountain biking
                         instructor!
                     </p>
-                    <div>
-                        <Link
-                            to="/register"
-                            className="description text-sm link link-hover text-white"
-                        >
+                    <div className="description text-sm">
+                        <span className="text-accent no-underline">
                             Not an instructor?{" "}
-                            <strong className="text-primary">
-                                Register as a student
-                            </strong>
+                        </span>
+                        <Link to="/register" className="text-primary underline">
+                            Register as a student
                         </Link>
                     </div>
                 </div>
@@ -521,9 +516,22 @@ const InstructorRegister = () => {
                                 </span>
                             </button>
                         </div>
-                        <div className="z-[10] mt-6 form-control">
+                        <div
+                            onClick={() => {
+                                !loading &&
+                                    isFormValid &&
+                                    !agreed &&
+                                    termsConditionToast(
+                                        isSmallDevice,
+                                        agreed,
+                                        config,
+                                        setHighlightText
+                                    );
+                            }}
+                            className="z-[10] mt-6 form-control"
+                        >
                             <button
-                                disabled={loading || !isFormValid}
+                                disabled={loading || !isFormValid || !agreed}
                                 type="submit"
                                 className="btn bg-amber-500 dark:bg-yellow-500 disabled:bg-amber-900 dark:disabled:bg-yellow-900 disabled:text-stone-500 dark:hover:bg-yellow-600 hover:bg-amber-600 text-accent border-0 text-xl"
                             >

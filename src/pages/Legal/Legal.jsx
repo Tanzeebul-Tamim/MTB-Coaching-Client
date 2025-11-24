@@ -7,7 +7,7 @@ import useGlowingTitle from "../../hooks/useGlowingTitle";
 import useSoundEffects from "../../hooks/useSoundEffects";
 
 const Legal = () => {
-    useTitle("| Legal");
+    useTitle("| Legal Information");
     const { isIOS } = useAuth();
     const { isSmallDevice } = useScreen();
     const { handleScrollGlow } = useGlowingTitle();
