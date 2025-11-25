@@ -1,11 +1,57 @@
 import { motion } from "framer-motion";
 import useAuth from "../../../hooks/useAuth";
 import useScreen from "../../../hooks/useScreen";
+import { useEffect, useState } from "react";
 
 const IntroVideo = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
     const { isIOS } = useAuth();
-    let { isSmallDevice, splashDuration } = useScreen();
+    let { isSmallDevice, splashDuration, splashShown } = useScreen();
     splashDuration /= 1000;
+
+    useEffect(() => {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+
+        window.onYouTubeIframeAPIReady = () => {
+            const { YT } = window;
+            const { PlayerState, Player } = YT;
+
+            // Only try forcing HD on non-mobile
+            const forceHD = !isIOS && window.innerWidth > 600;
+
+            new Player("intro-video", {
+                events: {
+                    onReady: (event) => {
+                        if (forceHD) {
+                            event.target.setPlaybackQuality("hd1080");
+                        }
+                    },
+                    onStateChange: (event) => {
+                        const { data } = event;
+                        console.log({ PlayerState });
+                        const { PLAYING, PAUSED, ENDED, BUFFERING } =
+                            PlayerState;
+
+                        if (data === PLAYING || data === BUFFERING)
+                            setIsPlaying(true);
+                        else if (data === PAUSED || data === ENDED)
+                            setIsPlaying(false);
+                    },
+                },
+            });
+        };
+
+        return () => {
+            // Cleanup the script if component unmounts
+            document.body.removeChild(tag);
+            delete window.onYouTubeIframeAPIReady;
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    console.log({ isPlaying });
 
     return (
         <section
@@ -26,7 +72,11 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                         duration: 0.75,
-                        delay: isSmallDevice ? splashDuration + 0.2 : 0.2,
+                        delay: isSmallDevice
+                            ? splashShown
+                                ? 0.6
+                                : splashDuration + 0.6
+                            : 0.6,
                     }}
                     className="text-3xl lg:text-5xl font-bold tracking-wide lg:mb-4 mb-2"
                 >
@@ -48,7 +98,11 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                         duration: 0.75,
-                        delay: isSmallDevice ? splashDuration + 0.3 : 0.3,
+                        delay: isSmallDevice
+                            ? splashShown
+                                ? 0.8
+                                : splashDuration + 0.8
+                            : 0.8,
                     }}
                     className="lg:text-lg text-sm text-yellow-50 max-w-2xl mx-auto lg:mb-12 mb-6 description"
                 >
@@ -63,12 +117,21 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
                         duration: 0.75,
-                        delay: isSmallDevice ? 0.1 : 0.3,
+                        delay: isSmallDevice
+                            ? splashShown
+                                ? 1.0
+                                : splashDuration + 1.0
+                            : 1.0,
                     }}
-                    className="w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-xl glow-effect"
+                    className={` ${
+                        isPlaying
+                            ? "w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-xl"
+                            : " w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-xl glow-effect"
+                    }`}
                 >
                     <iframe
-                        src="https://www.youtube-nocookie.com/embed/0TMuxmCW3hE?si=iO8woQsHJQG7l9AU"
+                        src="https://www.youtube-nocookie.com/embed/0TMuxmCW3hE?si=iO8woQsHJQG7l9AU&enablejsapi=1&vq=hd1080"
+                        id="intro-video"
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import useScreen from "../../../hooks/useScreen";
 
 const Title = () => {
-    let { isSmallDevice, splashDuration } = useScreen();
+    let { isSmallDevice, splashDuration, splashShown } = useScreen();
     splashDuration /= 1000;
 
     return (
@@ -13,22 +13,39 @@ const Title = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
                     duration: 1,
-                    delay: isSmallDevice ? splashDuration + 0.1 : 0.1,
+                    delay: isSmallDevice
+                        ? splashShown
+                            ? 0.2
+                            : splashDuration + 0.2
+                        : 0.2,
                 }}
                 className="text-base-content mb-1 lg:mb-5 text-xl lg:text-6xl lg:tracking-wider tracking-wide"
             >
                 Embrace the Mountain biking lifestyle !
             </motion.h2>
-            <Typewriter
-                words={["Eat", "Sleep", "Ride", "Repeat!"]}
-                loop={true}
-                cursor={true}
-                cursorBlinking={true}
-                cursorStyle="|"
-                typeSpeed={90}
-                deleteSpeed={60}
-                delaySpeed={400}
-            />
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                    duration: 1,
+                    delay: isSmallDevice
+                        ? splashShown
+                            ? 0.4
+                            : splashDuration + 0.4
+                        : 0.4,
+                }}
+            >
+                <Typewriter
+                    words={["Eat", "Sleep", "Ride", "Repeat!"]}
+                    loop={true}
+                    cursor={true}
+                    cursorBlinking={true}
+                    cursorStyle="|"
+                    typeSpeed={90}
+                    deleteSpeed={60}
+                    delaySpeed={400}
+                />
+            </motion.div>
         </div>
     );
 };
