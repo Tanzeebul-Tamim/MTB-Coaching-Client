@@ -4,8 +4,8 @@ import useScreen from "../../../hooks/useScreen";
 
 const IntroVideo = () => {
     const { isIOS } = useAuth();
-    let { isSmallDevice, splashShown, splashDuration } = useScreen();
-    splashDuration = splashDuration / 1000;
+    let { isSmallDevice, splashDuration } = useScreen();
+    splashDuration /= 1000;
 
     return (
         <section
@@ -26,9 +26,9 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                         duration: 0.75,
-                        delay: splashShown ? 0 : splashDuration,
+                        delay: isSmallDevice ? splashDuration + 0.2 : 0.2,
                     }}
-                    className="text-3xl lg:text-5xl font-bold tracking-wide mb-4"
+                    className="text-3xl lg:text-5xl font-bold tracking-wide lg:mb-4 mb-2"
                 >
                     <span
                         className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent drop-shadow-lg"
@@ -48,9 +48,9 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
                         duration: 0.75,
-                        delay: splashShown ? 0.2 : splashDuration + 0.2,
+                        delay: isSmallDevice ? splashDuration + 0.3 : 0.3,
                     }}
-                    className="lg:text-lg text-sm text-yellow-50 max-w-2xl mx-auto mb-12 description"
+                    className="lg:text-lg text-sm text-yellow-50 max-w-2xl mx-auto lg:mb-12 mb-6 description"
                 >
                     Start with the fundamentals. {!isSmallDevice && <br />} If
                     you&apos;re new to mountain biking, this is the perfect
@@ -63,9 +63,9 @@ const IntroVideo = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
                         duration: 0.75,
-                        delay: splashShown ? 0.5 : splashDuration + 0.5,
+                        delay: isSmallDevice ? 0.1 : 0.3,
                     }}
-                    className="w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-xl glow-effect"
+                    className="w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-xl glow-effect"
                 >
                     <iframe
                         src="https://www.youtube-nocookie.com/embed/0TMuxmCW3hE?si=iO8woQsHJQG7l9AU"

@@ -14,7 +14,7 @@ export default function useSoundEffects() {
     const [playCaptcha] = useSound(captcha, { volume: 0.3 });
     const [playMessage] = useSound(message, { volume: 0.5 });
     const [playAlert] = useSound(alert, { volume: 0.5 });
-    const [playWarning] = useSound(warning, { volume: 0.7 });
+    const [playWarning] = useSound(warning, { volume: 0.1 });
 
     // Expose a function to play any sound
     const play = useCallback(

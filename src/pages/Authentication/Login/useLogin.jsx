@@ -172,17 +172,21 @@ const useLogin = () => {
             return;
 
         googleSignIn()
-            .then((result) => saveUserViaSocial(result.user, welcomeToast))
+            .then(async (result) => {
+                saveUserViaSocial(result.user, welcomeToast).catch((error) =>
+                    console.error(error)
+                );
+                navigate(from, { replace: true });
+            })
             .then(() => play("alert"))
             .catch((error) => {
                 console.error(error);
                 if (error.code === "auth/user-disabled")
                     setError("Your account has been suspended!");
+                else if (error.code === "auth/popup-closed-by-user")
+                    setError("Sign in canceled.");
             })
-            .finally(() => {
-                setLoading(false);
-                navigate(from, { replace: true });
-            });
+            .finally(() => setLoading(false));
     };
 
     const handleLogin = (event) => {

@@ -326,40 +326,38 @@ const useRegister = () => {
             return;
 
         googleSignIn()
-            .then((result) => {
-                saveStudentViaSocial(result.user, welcomeToast).catch(
-                    (error) => {
-                        logOut().then(() => {
-                            toast.warning(
-                                <div className="text-center">
-                                    {error.message}
-                                </div>,
-                                {
-                                    position: "top-center",
-                                    autoClose: 1500,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    transition: Flip,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                }
-                            );
-                            navigate("/login");
-                        });
-                    }
-                );
+            .then(async (result) => {
+                try {
+                    await saveStudentViaSocial(result.user, welcomeToast);
+                    navigate(from, { replace: true });
+                } catch (error) {
+                    await logOut();
+                    toast.warning(
+                        <div className="text-center">{error.message}</div>,
+                        {
+                            position: "top-center",
+                            autoClose: 1500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            transition: Flip,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        }
+                    );
+                    navigate("/login");
+                }
             })
             .then(() => play("alert"))
             .catch((error) => {
                 console.error(error);
-                if (error.code === "auth/user-disabled") {
+                if (error.code === "auth/user-disabled")
                     setError("Your account has been suspended!");
-                }
+                else if (error.code === "auth/popup-closed-by-user")
+                    setError("Sign in canceled.");
             })
             .finally(() => {
                 setLoading(false);
-                navigate(from, { replace: true });
             });
     };
 

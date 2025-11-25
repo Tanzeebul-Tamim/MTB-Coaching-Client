@@ -488,9 +488,13 @@ const Register = () => {
                                     : success
                                     ? "text-green-500"
                                     : ""
-                            } ${status ? "visible" : "invisible"}`}
+                            } ${status || error ? "visible" : "invisible"}`}
                         >
-                            <span className="text-base-content">
+                            <span
+                                className={`text-base-content ${
+                                    status ? "visible" : "invisible"
+                                }`}
+                            >
                                 <strong>Strength:</strong>{" "}
                                 <span style={{ color: colorCode }}>
                                     {status}

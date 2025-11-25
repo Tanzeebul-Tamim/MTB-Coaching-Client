@@ -27,7 +27,7 @@ const SplashScreen = ({ onLogoLoaded, duration }) => {
             >
                 <div className="absolute animate-spin-slow rounded-full bg-gradient-to-tr from-primary to-accent opacity-40 blur-2xl w-56 h-56" />
                 <img
-                    src="/public/logo.png"
+                    src="/logo.png"
                     alt="Logo"
                     className="lg:w-40 w-36 lg:h-40 h-36 drop-shadow-2xl z-10 animate-pulse"
                     onLoad={onLogoLoaded}
