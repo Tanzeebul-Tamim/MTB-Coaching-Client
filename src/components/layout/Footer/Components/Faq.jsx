@@ -2,7 +2,14 @@ import { HashLink } from "react-router-hash-link";
 import scrollWithOffset from "../../../../routes/utils/Scroll/ScrollWithOffset";
 import { Link } from "react-router-dom";
 
-const Faq = () => {
+const Faq = ({ functions }) => {
+    const {
+        handleGettingStartedGlow,
+        handleTroubleShootingGlow,
+        handleAccountAndDataGlow,
+        handleContactSupportGlow,
+    } = functions;
+
     return (
         <div className="lg:flex flex-col items-center text-center w-full h-full">
             <Link
@@ -12,6 +19,7 @@ const Faq = () => {
                 FAQ
             </Link>
             <HashLink
+                onClick={handleGettingStartedGlow}
                 smooth
                 to="/support#getting-started"
                 scroll={scrollWithOffset}
@@ -20,6 +28,7 @@ const Faq = () => {
                 Getting Started
             </HashLink>
             <HashLink
+                onClick={handleTroubleShootingGlow}
                 smooth
                 to="/support#troubleshooting"
                 scroll={scrollWithOffset}
@@ -28,6 +37,7 @@ const Faq = () => {
                 Troubleshooting
             </HashLink>
             <HashLink
+                onClick={handleAccountAndDataGlow}
                 smooth
                 to="/support#account-data"
                 scroll={scrollWithOffset}
@@ -36,6 +46,7 @@ const Faq = () => {
                 Account & Data
             </HashLink>
             <HashLink
+                onClick={handleContactSupportGlow}
                 smooth
                 to="/support#contact-support"
                 scroll={scrollWithOffset}

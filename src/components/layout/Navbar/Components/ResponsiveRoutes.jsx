@@ -9,7 +9,6 @@ import { SlNote } from "react-icons/sl";
 import { GiTeacher } from "react-icons/gi";
 import { BiSolidDashboard } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
-import useSoundEffects from "../../../../hooks/useSoundEffects";
 import { useNavigate } from "react-router-dom";
 import useGlowingTitle from "../../../../hooks/useGlowingTitle";
 
@@ -26,7 +25,6 @@ const ResponsiveRoutes = ({ props, navRef }) => {
     } = props;
 
     const { handleScrollGlow } = useGlowingTitle();
-    const { play } = useSoundEffects();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -142,12 +140,8 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                         navigate("/");
                         setTimeout(() => {
                             handleScrollGlow();
-                            setTimeout(() => play("alert"), 1000);
                         }, 300);
-                    } else {
-                        handleScrollGlow();
-                        setTimeout(() => play("alert"), 1000);
-                    }
+                    } else handleScrollGlow();
                 }}
                 className="flex items-center gap-1"
             >

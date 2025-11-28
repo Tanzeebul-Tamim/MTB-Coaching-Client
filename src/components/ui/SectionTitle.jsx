@@ -21,6 +21,9 @@ const SectionTitle = ({
         pathname === "/classes";
     const MotionOrDiv = isListPage ? motion.div : "div";
     const MotionOrP = isListPage ? motion.p : "p";
+    const duration1 = 0.2;
+    const duration2 =
+        pathname === "/instructors" || pathname === "/classes" ? 0.5 : 0.7;
 
     return (
         <div
@@ -33,9 +36,9 @@ const SectionTitle = ({
                     duration: 1,
                     delay: isSmallDevice
                         ? splashShown
-                            ? 0.2
-                            : splashDuration + 0.2
-                        : 0.2,
+                            ? duration1
+                            : splashDuration + duration1
+                        : duration1,
                 }}
                 className={`title title-res flex gap-3 lg:gap-6 ${
                     textAlign
@@ -71,9 +74,9 @@ const SectionTitle = ({
                     duration: 1,
                     delay: isSmallDevice
                         ? splashShown
-                            ? 0.2
-                            : splashDuration + 0.2
-                        : 0.2,
+                            ? duration2
+                            : splashDuration + duration2
+                        : duration2,
                 }}
                 className={`${textAlign ? "text-end" : ""} lg:mt-5 mt-2 ${
                     dark ? "text-accent" : "text-base-content"

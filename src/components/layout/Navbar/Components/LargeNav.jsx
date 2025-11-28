@@ -15,7 +15,6 @@ const LargeNav = ({ props }) => {
         loading,
         location,
         navigate,
-        play,
         handleScrollGlow,
         authenticationPage,
         isFullscreen,
@@ -31,7 +30,10 @@ const LargeNav = ({ props }) => {
             </div>
 
             <div
-                onMouseLeave={() => setDropdownOpen(false)}
+                onMouseLeave={() => {
+                    const timer = setTimeout(() => setDropdownOpen(false), 300);
+                    return () => clearTimeout(timer);
+                }}
                 className="navbar-center uppercase relative"
             >
                 <Routes
@@ -47,7 +49,6 @@ const LargeNav = ({ props }) => {
                     props={{
                         isOpen: dropdownOpen,
                         navigate,
-                        play,
                         handleScrollGlow,
                         authenticationPage,
                         isFullscreen,

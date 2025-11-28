@@ -11,23 +11,6 @@ import { IoIosStar } from "react-icons/io";
 import { useState } from "react";
 import { FaQuoteLeft } from "react-icons/fa";
 
-const Tooltip = ({ text, children, visible }) => {
-    return (
-        <div className="relative inline-block">
-            {children}
-            <div
-                className={`absolute -top-5 right-1 mb-1 w-max bg-base-300 text-white text-xs py-2 px-3 rounded-full shadow-lg z-50 whitespace-normal text-center ${
-                    text && visible ? "opacity-100" : "opacity-0"
-                } transition-opacity ease-in-out duration-300 flex items-center gap-2`}
-            >
-                <FaQuoteLeft className="text-xs" />
-                <span>{text}</span>
-                <div className="absolute bottom-[-6px] right-2 transform -translate-x-1/2 w-3 h-3 bg-base-300 rotate-45 z-50"></div>
-            </div>
-        </div>
-    );
-};
-
 const InstructorCard = ({
     topInstructor,
     isLoggedIn,
@@ -64,7 +47,7 @@ const InstructorCard = ({
                         <span
                             className={
                                 i <= 2
-                                    ? "text-xl font-extrabold text-primary"
+                                    ? "text-xl font-extrabold dark:text-primary text-secondary"
                                     : ""
                             }
                         >
@@ -92,21 +75,21 @@ const InstructorCard = ({
                                 if (rating >= full) {
                                     return (
                                         <FaStar
-                                            className="text-primary"
+                                            className="dark:text-primary text-secondary"
                                             key={idx}
                                         />
                                     );
                                 } else if (rating >= half) {
                                     return (
                                         <FaRegStarHalfStroke
-                                            className="text-primary"
+                                            className="dark:text-primary text-secondary"
                                             key={idx}
                                         />
                                     );
                                 } else {
                                     return (
                                         <FaRegStar
-                                            className="text-primary"
+                                            className="dark:text-primary text-secondary"
                                             key={idx}
                                         />
                                     );
@@ -124,7 +107,7 @@ const InstructorCard = ({
                     )}
                 </div>
                 <div className="lg:mr-5 hidden lg:block">
-                    <Tooltip visible={visible} text={quote}>
+                    <div className="relative inline-block">
                         <img
                             className={`duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-gray-500 dark:border-zinc-400 lg:border-[4px] transition-all ease-in-out ${
                                 quote && visible
@@ -133,15 +116,23 @@ const InstructorCard = ({
                             }`}
                             src={image}
                         />
-                    </Tooltip>
+
+                        <div
+                            className={`absolute -top-5 right-1 mb-1 w-max bg-base-300 text-white text-xs py-2 px-3 rounded-full shadow-lg z-50 whitespace-normal text-center ${
+                                quote && visible ? "opacity-100" : "opacity-0"
+                            } transition-opacity ease-in-out duration-300 flex items-center gap-2`}
+                        >
+                            <FaQuoteLeft className="text-xs" />
+                            <span>{quote}</span>
+                            <div className="absolute bottom-[-6px] right-3 transform -translate-x-1/2 w-3 h-3 bg-base-300 rotate-45 z-50"></div>
+                        </div>
+                    </div>
                 </div>
                 <div className="lg:hidden absolute right-[2%] mr-2">
-                    <Tooltip visible={visible} text={quote}>
-                        <img
-                            className="group-hover:scale-105 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-gray-500 dark:border-zinc-400 border-[3px] transition-all ease-in-out"
-                            src={image}
-                        />
-                    </Tooltip>
+                    <img
+                        className="group-hover:scale-105 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-gray-500 dark:border-zinc-400 border-[3px] transition-all ease-in-out"
+                        src={image}
+                    />
                 </div>
             </div>
             <div className="absolute lg:bottom-0 left-0 w-1/2 h-full bg-gradient-to-l from-transparent to-base-100"></div>

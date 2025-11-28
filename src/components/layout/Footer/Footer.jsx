@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-import useScreen from "../../../hooks/useScreen";
 import SendMessage from "./Components/SendMessage/SendMessage";
 import OurLocation from "./Components/OurLocation";
 import OpeningHours from "./Components/OpeningHours";
@@ -9,12 +7,22 @@ import Legal from "./Components/Legal";
 import Branding from "./Components/Branding";
 import Notice from "./Components/Notice";
 import Socials from "./Components/Socials";
+import useFooter from "./useFooter";
 
 const Footer = () => {
-    const location = useLocation();
-    const { isSmallDevice } = useScreen();
-    const bgLocations =
-        location.pathname == "/instructors" || location.pathname == "/classes";
+    const {
+        isSmallDevice,
+        supportGlow,
+        bgLocations,
+        handleGettingStartedGlow,
+        handleTroubleShootingGlow,
+        handleAccountAndDataGlow,
+        handleContactSupportGlow,
+        handlePrivacyGlow,
+        handleTermsOfServiceGlow,
+        handleUserDataDeletionGlow,
+        handleCookieNoticeGlow,
+    } = useFooter();
 
     return (
         <div
@@ -35,10 +43,24 @@ const Footer = () => {
             >
                 <OurLocation isSmallDevice={isSmallDevice} />
                 <OpeningHours />
-                <Faq />
-                <Legal />
+                <Faq
+                    functions={{
+                        handleGettingStartedGlow,
+                        handleTroubleShootingGlow,
+                        handleAccountAndDataGlow,
+                        handleContactSupportGlow,
+                    }}
+                />
+                <Legal
+                    functions={{
+                        handlePrivacyGlow,
+                        handleTermsOfServiceGlow,
+                        handleUserDataDeletionGlow,
+                        handleCookieNoticeGlow,
+                    }}
+                />
                 <ContactUs />
-                <SendMessage bgLocations={bgLocations} />
+                <SendMessage props={{ bgLocations, supportGlow }} />
             </footer>
             <div className="flex justify-center">
                 <hr

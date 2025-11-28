@@ -1,7 +1,9 @@
 import useSendMessage from "./useSendMessage";
 import "../../../../../styles/support.css";
 
-const SendMessage = ({ bgLocations }) => {
+const SendMessage = ({ props }) => {
+    const { bgLocations, supportGlow } = props;
+
     const {
         handleSendMessage,
         user,
@@ -17,7 +19,7 @@ const SendMessage = ({ bgLocations }) => {
         subjectFocus,
         setSubjectFocus,
         isSmallDevice,
-    } = useSendMessage();
+    } = useSendMessage(supportGlow);
 
     return (
         <form onSubmit={handleSendMessage} className="relative">

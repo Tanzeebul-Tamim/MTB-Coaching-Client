@@ -2,13 +2,36 @@ import { useState, createContext } from "react";
 import { toast } from "react-toastify";
 import useScreen from "../hooks/useScreen";
 import useAuth from "../hooks/useAuth";
+import useSoundEffects from "../hooks/useSoundEffects";
 
 export const GlowingTitleContext = createContext(null);
 
+const sections = [
+    "gettingStarted",
+    "troubleShooting",
+    "accountAndData",
+    "contactSupport",
+    "privacy",
+    "termsOfService",
+    "userDataDeletion",
+    "cookieNotice",
+    "support",
+];
+
 const GlowingTitleProvider = ({ children }) => {
-    const [supportGlow, setSupportGlow] = useState(false);
     const { isSmallDevice } = useScreen();
     const { user } = useAuth();
+    const { play } = useSoundEffects();
+
+    const glowingSections = sections.map((section) => section + "Glow");
+
+    // Footer sections' states
+    const [glows, setGlows] = useState(
+        glowingSections.reduce(
+            (acc, section) => ({ ...acc, [section]: false }),
+            {}
+        )
+    );
 
     const Message = () => (
         <div className="text-center">
@@ -34,23 +57,70 @@ const GlowingTitleProvider = ({ children }) => {
         progress: undefined,
     };
 
-    const handleScrollGlow = () => {
+    const triggerGlow = (section, duration1 = 500, duration2 = 4000) => {
+        setTimeout(() => {
+            setGlows((prev) => {
+                for (const [key] of Object.entries(prev)) {
+                    prev[key] = false;
+                }
+                return { ...prev, [section]: true };
+            });
+        }, duration1);
+        setTimeout(() => {
+            setGlows((prev) => ({ ...prev, [section]: false }));
+        }, duration2);
+    };
+
+    const handleScrollGlow = async () => {
         toast.info(<Message />, config);
+
+        const start = performance.now();
+        const target = document.body.scrollHeight;
+
+        triggerGlow("supportGlow", 0, 800);
+
         window.scrollTo({
-            top: document.body.scrollHeight,
+            top: target,
             behavior: "smooth",
         });
-        setSupportGlow(true);
-        setTimeout(() => setSupportGlow(false), 4000);
+
+        const duration = await new Promise((resolve) => {
+            const checkScroll = () => {
+                const current = window.scrollY + window.innerHeight;
+
+                if (current >= target - 2) {
+                    const end = performance.now();
+                    resolve(end - start);
+                } else {
+                    requestAnimationFrame(checkScroll);
+                }
+            };
+
+            requestAnimationFrame(checkScroll);
+        });
+
+        setTimeout(() => play("alert"), Math.max(duration - 100, 0));
+
+        return duration;
     };
 
-    const info = {
-        supportGlow,
-        handleScrollGlow,
-    };
+    // dynamically create handlers for other sections
+    const handlers = glowingSections.reduce(
+        (acc, glowingSection) => {
+            if (glowingSection !== "supportGlow")
+                acc[
+                    `handle${
+                        glowingSection[0].toUpperCase() +
+                        glowingSection.slice(1)
+                    }`
+                ] = () => triggerGlow(glowingSection);
+            return acc;
+        },
+        { handleScrollGlow }
+    );
 
     return (
-        <GlowingTitleContext.Provider value={info}>
+        <GlowingTitleContext.Provider value={{ ...glows, ...handlers }}>
             {children}
         </GlowingTitleContext.Provider>
     );

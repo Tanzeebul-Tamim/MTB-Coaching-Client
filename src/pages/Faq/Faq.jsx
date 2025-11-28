@@ -4,14 +4,31 @@ import scrollWithOffset from "../../routes/utils/Scroll/ScrollWithOffset";
 import useScreen from "../../hooks/useScreen";
 import useAuth from "../../hooks/useAuth";
 import useGlowingTitle from "../../hooks/useGlowingTitle";
-import useSoundEffects from "../../hooks/useSoundEffects";
 
 const Faq = () => {
     useTitle("| FAQ & Support");
     const { isIOS } = useAuth();
-    const { handleScrollGlow } = useGlowingTitle();
+    const {
+        handleScrollGlow,
+        gettingStartedGlow,
+        troubleShootingGlow,
+        accountAndDataGlow,
+        contactSupportGlow,
+        handleContactSupportGlow,
+        handleUserDataDeletionGlow,
+    } = useGlowingTitle();
+    console.log({ gettingStartedGlow });
     const { isSmallDevice } = useScreen();
-    const { play } = useSoundEffects();
+
+    const sectionClassName = (glow) =>
+        `${
+            glow ? "glow-effect scale-105" : ""
+        } flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-secondary min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary`;
+
+    const h2ClassName = (glow) =>
+        `${
+            glow ? "auth-glow scale-110" : ""
+        } text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase transition-transform duration-300`;
 
     return (
         <div
@@ -47,9 +64,9 @@ const Faq = () => {
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
                             id="getting-started"
-                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-secondary min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
+                            className={sectionClassName(gettingStartedGlow)}
                         >
-                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className={h2ClassName(gettingStartedGlow)}>
                                 Getting Started
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -69,9 +86,9 @@ const Faq = () => {
 
                         <section
                             id="troubleshooting"
-                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-secondary min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
+                            className={sectionClassName(troubleShootingGlow)}
                         >
-                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className={h2ClassName(troubleShootingGlow)}>
                                 Troubleshooting
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -88,6 +105,7 @@ const Faq = () => {
                                 device or browser. If issues persist, don&#39;t
                                 hesitate to reach out via the{" "}
                                 <HashLink
+                                    onClick={handleContactSupportGlow}
                                     smooth
                                     to="/support#contact-support"
                                     scroll={scrollWithOffset}
@@ -103,9 +121,9 @@ const Faq = () => {
                     <div className="flex flex-col md:flex-row gap-6 w-full justify-center">
                         <section
                             id="account-data"
-                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-secondary min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
+                            className={sectionClassName(accountAndDataGlow)}
                         >
-                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className={h2ClassName(accountAndDataGlow)}>
                                 Account & Data
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
@@ -119,6 +137,7 @@ const Faq = () => {
                                 If you wish to delete your data entirely,
                                 navigate to the{" "}
                                 <HashLink
+                                    onClick={handleUserDataDeletionGlow}
                                     smooth
                                     to="/legal#data-deletion"
                                     scroll={scrollWithOffset}
@@ -134,22 +153,16 @@ const Faq = () => {
 
                         <section
                             id="contact-support"
-                            className="flex-1 bg-base-200 dark:bg-base-100 bg-opacity-60 dark:bg-opacity-60 rounded-xl p-6 shadow-md border border-secondary min-w-[260px] transition-transform duration-300 hover:scale-105 hover:border-primary"
+                            className={sectionClassName(contactSupportGlow)}
                         >
-                            <h2 className="text-lg md:text-2xl text-amber-800 dark:text-yellow-300 font-bold mb-3 tracking-wide uppercase">
+                            <h2 className={h2ClassName(contactSupportGlow)}>
                                 Contact Support
                             </h2>
                             <p className="lg:mb-2 mb-1 text-sm md:text-base">
                                 Need help or want to report a bug? Feel free to
                                 send us a message using the{" "}
                                 <span
-                                    onClick={() => {
-                                        handleScrollGlow();
-                                        setTimeout(
-                                            () => play("alert"),
-                                            isSmallDevice ? 800 : 500
-                                        );
-                                    }}
+                                    onClick={handleScrollGlow}
                                     className="custom-cursor-pointer underline font-semibold"
                                 >
                                     Support Request

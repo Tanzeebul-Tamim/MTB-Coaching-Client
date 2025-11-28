@@ -172,10 +172,8 @@ const useLogin = () => {
             return;
 
         googleSignIn()
-            .then(async (result) => {
-                saveUserViaSocial(result.user, welcomeToast).catch((error) =>
-                    console.error(error)
-                );
+            .then((result) => {
+                saveUserViaSocial(result.user, welcomeToast);
                 navigate(from, { replace: true });
             })
             .then(() => play("alert"))

@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../../hooks/useUserData";
 import { getBookedClasses } from "../../../api/bookApi";
 import useScreen from "../../../hooks/useScreen";
-import useSoundEffects from "../../../hooks/useSoundEffects";
 import useGlowingTitle from "../../../hooks/useGlowingTitle";
 
 const useNavbar = () => {
@@ -17,8 +16,7 @@ const useNavbar = () => {
     const [userBookings, setUserBookings] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();
-    const { play } = useSoundEffects();
+    const navigate = useNavigate();    
     const { handleScrollGlow } = useGlowingTitle();
 
     const checkPrivatePath =
@@ -72,7 +70,6 @@ const useNavbar = () => {
         location,
         isSmallDevice,
         navigate,
-        play,
         handleScrollGlow,
         isFullscreen,
         handleFullscreen,

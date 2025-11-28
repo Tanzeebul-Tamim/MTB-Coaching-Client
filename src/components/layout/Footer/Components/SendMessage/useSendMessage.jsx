@@ -6,12 +6,10 @@ import { useEffect, useState } from "react";
 import useDarkTheme from "../../../../../hooks/useDarkTheme";
 import useScreen from "../../../../../hooks/useScreen";
 import useSoundEffects from "../../../../../hooks/useSoundEffects";
-import useGlowingTitle from "../../../../../hooks/useGlowingTitle";
 
-const useSendMessage = () => {
+const useSendMessage = (supportGlow) => {
     const { userDetails } = useUserData();
     const { user } = useAuth();
-    const { supportGlow } = useGlowingTitle();
     const isDarkTheme = useDarkTheme();
     const { isSmallDevice } = useScreen();
     const { play } = useSoundEffects();
@@ -32,7 +30,7 @@ const useSendMessage = () => {
             setGlowClass(
                 `${className} ${
                     isDarkTheme ? "text-primary" : "text-secondary"
-                } support-glow scale-105`
+                } support-glow scale-110`
             );
             setTimeout(
                 () =>
@@ -43,6 +41,7 @@ const useSendMessage = () => {
                 1200
             );
         } else setGlowClass(`${className} text-secondary`);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [supportGlow]);
 
