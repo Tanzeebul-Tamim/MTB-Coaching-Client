@@ -1,9 +1,45 @@
 import { IoSchoolSharp } from "react-icons/io5";
 import { GiTeacher } from "react-icons/gi";
-import { FaQuoteLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import {
+    FaRankingStar,
+    FaStar,
+    FaRegStarHalfStroke,
+    FaRegStar,
+} from "react-icons/fa6";
+import { IoIosStar } from "react-icons/io";
+import { useState } from "react";
+import { FaQuoteLeft } from "react-icons/fa";
 
-const InstructorCard = ({ topInstructor, isLoggedIn, play }) => {
+const Tooltip = ({ text, children, visible }) => {
+    return (
+        <div className="relative inline-block">
+            {children}
+            <div
+                className={`absolute -top-5 right-1 mb-1 w-max bg-base-300 text-white text-xs py-2 px-3 rounded-full shadow-lg z-50 whitespace-normal text-center ${
+                    text && visible ? "opacity-100" : "opacity-0"
+                } transition-opacity ease-in-out duration-300 flex items-center gap-2`}
+            >
+                <FaQuoteLeft className="text-xs" />
+                <span>{text}</span>
+                <div className="absolute bottom-[-6px] right-2 transform -translate-x-1/2 w-3 h-3 bg-base-300 rotate-45 z-50"></div>
+            </div>
+        </div>
+    );
+};
+
+const InstructorCard = ({
+    topInstructor,
+    isLoggedIn,
+    play,
+    i,
+    isSmallDevice,
+}) => {
+    const [visible, setVisible] = useState(false);
+    const ratingMap = [5, 4.5, 3.5, 4, 4.5, 3, 3.5, 3.5, 3.5, 2.5];
+    const { _id, name, ranking, totalStudents, classes, image, quote } =
+        topInstructor;
+
     return (
         <Link
             onClick={() => {
@@ -14,42 +50,98 @@ const InstructorCard = ({ topInstructor, isLoggedIn, play }) => {
                     return;
                 }
             }}
-            to={`/instructors/${topInstructor._id}`}
-            className="card h-full group description rounded-2xl card-compact lg:mx-3 bg-base-200 dark:shadow-xl"
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+            to={`/instructors/${_id}`}
+            className="card h-full description rounded-2xl card-compact lg:mx-3 bg-base-200 dark:shadow-xl group"
         >
             <div className="flex justify-center items-center">
                 <div className="card-body z-50">
-                    <h2 className="card-title text-secondary">
-                        {topInstructor.name}
-                    </h2>
-                    {topInstructor.quote && (
-                        <div className="text-base-content max-w-[75%] flex gap-2 items-center">
-                            <FaQuoteLeft className="text-lg" />
-                            <strong>&quot;{topInstructor.quote}&quot;</strong>
-                        </div>
-                    )}
+                    <h2 className="card-title text-secondary">{name}</h2>
+                    <div className="text-base-content flex gap-2 items-center">
+                        <FaRankingStar className="text-lg" />
+                        <strong>Instructor Rank:</strong>{" "}
+                        <span
+                            className={
+                                i <= 2
+                                    ? "text-xl font-extrabold text-primary"
+                                    : ""
+                            }
+                        >
+                            {ranking}
+                        </span>
+                    </div>
                     <div className="text-base-content flex gap-2 items-center">
                         <IoSchoolSharp className="text-lg" />
-                        <strong>Total Attendees:</strong>{" "}
-                        {topInstructor.totalStudents}
+                        <strong>Total Attendees:</strong> {totalStudents}
                     </div>
                     <div className="text-base-content flex gap-2 items-center">
                         <GiTeacher className="text-lg" />
-                        <strong>Courses Taken:</strong>{" "}
-                        {topInstructor.classes.length}
+                        <strong>Courses Taken:</strong> {classes.length}
                     </div>
+                    <div className="text-base-content flex gap-2 items-center">
+                        <IoIosStar className="text-lg" />
+                        <strong>Rating:</strong>{" "}
+                        <div className="flex gap-1 items-center">
+                            <span>{ratingMap[i].toFixed(1)}</span> -
+                            {[...Array(5)].map((_, idx) => {
+                                const rating = ratingMap[i]; // 0-based index of instructor
+                                const full = idx + 1;
+                                const half = idx + 0.5;
+
+                                if (rating >= full) {
+                                    return (
+                                        <FaStar
+                                            className="text-primary"
+                                            key={idx}
+                                        />
+                                    );
+                                } else if (rating >= half) {
+                                    return (
+                                        <FaRegStarHalfStroke
+                                            className="text-primary"
+                                            key={idx}
+                                        />
+                                    );
+                                } else {
+                                    return (
+                                        <FaRegStar
+                                            className="text-primary"
+                                            key={idx}
+                                        />
+                                    );
+                                }
+                            })}
+                        </div>
+                    </div>
+                    {isSmallDevice && quote && (
+                        <div className="flex justify-center mt-2">
+                            <div className="text-base-content flex gap-2 items-center font-bold text-center">
+                                <FaQuoteLeft className="text-lg" />
+                                {quote}
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="lg:mr-5 hidden lg:block">
-                    <img
-                        className="group-hover:scale-125 duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-gray-500 dark:border-zinc-400 lg:border-[4px] transition-all ease-in-out"
-                        src={topInstructor.image}
-                    />
+                    <Tooltip visible={visible} text={quote}>
+                        <img
+                            className={`duration-200 lg:w-[6vw] lg:h-[6vw] rounded-full border-gray-500 dark:border-zinc-400 lg:border-[4px] transition-all ease-in-out ${
+                                quote && visible
+                                    ? "translate-y-5 group-hover:scale-90"
+                                    : "group-hover:scale-110"
+                            }`}
+                            src={image}
+                        />
+                    </Tooltip>
                 </div>
                 <div className="lg:hidden absolute right-[2%] mr-2">
-                    <img
-                        className="group-hover:scale-125 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-gray-500 dark:border-zinc-400 border-[3px] transition-all ease-in-out"
-                        src={topInstructor.image}
-                    />
+                    <Tooltip visible={visible} text={quote}>
+                        <img
+                            className="group-hover:scale-105 duration-200 w-[calc(20vw)] h-[calc(20vw)] rounded-full border-gray-500 dark:border-zinc-400 border-[3px] transition-all ease-in-out"
+                            src={image}
+                        />
+                    </Tooltip>
                 </div>
             </div>
             <div className="absolute lg:bottom-0 left-0 w-1/2 h-full bg-gradient-to-l from-transparent to-base-100"></div>

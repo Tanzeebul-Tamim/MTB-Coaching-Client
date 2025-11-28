@@ -23,7 +23,7 @@ const SklInstructors = () => {
                 <table className="description table text-center lg:whitespace-normal whitespace-nowrap text-base-content">
                     <thead className="bg-base-200">
                         <tr className="lg:text-lg text-sm">
-                            <th className="">No</th>
+                            <th className="">#Rank</th>
                             <th className="">Image</th>
                             <th className="">Name - Email</th>
                             <th className="">Quote</th>

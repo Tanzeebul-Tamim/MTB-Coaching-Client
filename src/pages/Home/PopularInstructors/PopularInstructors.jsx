@@ -33,7 +33,7 @@ const PopularInstructors = () => {
         setLoading(true);
         getTopInstructors()
             .then((data) => {
-                setTopInstructors(data.topInstructors);
+                setTopInstructors(data);
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
@@ -43,7 +43,7 @@ const PopularInstructors = () => {
         <div className="px-5 lg:px-10 lg:mb-32 mb-12 pt-11 relative">
             <Slide duration={1300}>
                 <SectionTitle
-                    title1={"popular"}
+                    title1={"top 10"}
                     title2={"instructors"}
                     description={popularInstructorsDes}
                 />
@@ -66,9 +66,11 @@ const PopularInstructors = () => {
                           return (
                               <SwiperSlide key={i}>
                                   <InstructorCard
+                                      isSmallDevice={isSmallDevice}
                                       topInstructor={topInstructor}
                                       isLoggedIn={Boolean(user)}
                                       play={play}
+                                      i={i}
                                   ></InstructorCard>
                               </SwiperSlide>
                           );

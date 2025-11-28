@@ -72,6 +72,7 @@ const InstructorsTable = ({
                                                           ) + "..."
                                                         : instructor?.quote ||
                                                           ""}
+                                                    {!instructor?.quote && "_"}
                                                 </div>
                                             </div>
                                         </td>

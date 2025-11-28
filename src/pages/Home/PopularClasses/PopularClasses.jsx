@@ -42,8 +42,8 @@ const PopularClasses = () => {
         <div className="lg:mb-32 mb-12 px-5 lg:px-10">
             <Slide duration={1300} direction="right">
                 <SectionTitle
-                    title1={"popular"}
-                    title2={"Courses"}
+                    title1={"top 10"}
+                    title2={"courses"}
                     textAlign={"text-end"}
                     description={popularClassesDes}
                 />

@@ -51,8 +51,6 @@ const IntroVideo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log({ isPlaying });
-
     return (
         <section
             style={{

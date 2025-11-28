@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import useScreen from "../../hooks/useScreen";
+import { useLocation } from "react-router-dom";
 
 const SectionTitle = ({
     title1,
@@ -13,11 +14,19 @@ const SectionTitle = ({
     let { isSmallDevice, splashDuration, splashShown } = useScreen();
     splashDuration /= 1000;
 
+    const { pathname } = useLocation();
+    const isListPage =
+        pathname === "/" ||
+        pathname === "/instructors" ||
+        pathname === "/classes";
+    const MotionOrDiv = isListPage ? motion.div : "div";
+    const MotionOrP = isListPage ? motion.p : "p";
+
     return (
         <div
             className={`lg:mb-9 mb-5 flex flex-col ${textAlign && "items-end"}`}
         >
-            <motion.div
+            <MotionOrDiv
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -54,8 +63,8 @@ const SectionTitle = ({
                 >
                     <p className={`${textAlign ? "text-end" : ""}`}>{title2}</p>
                 </span>
-            </motion.div>
-            <motion.p
+            </MotionOrDiv>
+            <MotionOrP
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
@@ -73,7 +82,7 @@ const SectionTitle = ({
                 } description`}
             >
                 {description}
-            </motion.p>
+            </MotionOrP>
         </div>
     );
 };
