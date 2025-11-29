@@ -1,25 +1,32 @@
-import { useEffect, useRef, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import useScreen from "../../../hooks/useScreen";
-import useTitle from "../../../hooks/useTitle";
-import { saveStudent, saveStudentViaSocial } from "../../../api/authApi";
-import Swal from "sweetalert2";
-import { toast, Flip } from "react-toastify";
 import useSoundEffects from "../../../hooks/useSoundEffects";
-import termsConditionToast from "../utility/termsConditionToast";
+import useTitle from "../../../hooks/useTitle";
+import { Flip, toast } from "react-toastify";
+import { useEffect, useRef, useState } from "react";
+import {
+    saveInstructor,
+    saveInstructorViaSocial,
+    saveStudent,
+    saveStudentViaSocial,
+} from "../../../api/authApi";
+import Swal from "sweetalert2";
+import termsConditionToast from "./termsConditionToast";
 
-const useRegister = () => {
-    const [isValid, setIsValid] = useState(false);
-    const [error, setError] = useState("");
-    const [contactError, setContactError] = useState("");
-    const [isContactValid, setIsContactValid] = useState(false);
-    const [success, setSuccess] = useState("");
-    const [selectedGender, setSelectedGender] = useState("");
-    const [country, setCountry] = useState("");
-    const [agreed, setAgreed] = useState(false);
-    const [highlightText, setHighlightText] = useState(false);
+/**
+ * Generic sign up hook for both students and instructors.
+ * @param {Object} options
+ * @param {"student"|"instructor"} options.type - Registration type
+ */
 
+// Main unified sign-up hook that handles both student and instructor registration.
+// The "type" argument switches behavior between student and instructor flows.
+const useSignUp = ({ type = "student" } = {}) => {
+    // Building user role/type with an initial upper case letter
+    const uppercaseRole = type.charAt(0).toUpperCase() + type.slice(1);
+
+    // Auth-related methods: account creation, updates, social login, verification, loading control; and other helper hooks
     const {
         createUser,
         updateUser,
@@ -30,10 +37,46 @@ const useRegister = () => {
         emailVerification,
         isIOS,
     } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { isSmallDevice } = useScreen();
+    const { play } = useSoundEffects();
+
+    // Redirect logic: determine where the user should go after registering.
+    const getPrevLocation = localStorage.getItem("location");
+    const from = location.state?.from?.pathname || getPrevLocation;
+
+    // Dynamic helmet
+    useTitle(`| ${uppercaseRole}-Registration`);
+
+    // Default Toast configuration for consistent notifications across the hook.
+    const config = {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Flip,
+    };
+
+    // Local UI states: input values, validation flags, error messages, toggles, and misc UI helpers.
+    const [isValid, setIsValid] = useState(false);
+    const [error, setError] = useState("");
+    const [contactError, setContactError] = useState("");
+    const [isContactValid, setIsContactValid] = useState(false);
+    const [success, setSuccess] = useState("");
+    const [selectedGender, setSelectedGender] = useState("");
+    const [country, setCountry] = useState("");
+    const [agreed, setAgreed] = useState(false);
+    const [highlightText, setHighlightText] = useState(false);
     const imageRef = useRef();
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const [imageButtonText, setImageButtonText] = useState("Upload Image");
+
+    // Initial shape of the form inputs used to reset or initialize the sign-up form.
     const fields = {
         name: "",
         email: "",
@@ -43,17 +86,10 @@ const useRegister = () => {
         confirmPassword: "",
         image: null,
     };
-    const config = {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    };
+
     const [formFields, setFormFields] = useState(fields);
 
+    // Whenever validation fails, reset confirmPassword so the user re-enters it.
     useEffect(() => {
         if (!isValid) {
             setFormFields((prev) => ({
@@ -63,19 +99,13 @@ const useRegister = () => {
         }
     }, [isValid]);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { isSmallDevice } = useScreen();
-    const getPrevLocation = localStorage.getItem("location");
-    const from = location.state?.from?.pathname || getPrevLocation;
-    const { play } = useSoundEffects();
-    useTitle("| Student-Registration");
-
+    // Gender setter method
     const handleSelectGender = (event) => {
         const selectGender = event.target.value;
         setSelectedGender(selectGender);
     };
 
+    // Check if all required fields and validation flags are satisfied before enabling form submission.
     let isFormValid =
         formFields.name &&
         formFields.email &&
@@ -88,7 +118,7 @@ const useRegister = () => {
         isValid &&
         isContactValid;
 
-    // Normalize phone number in plain format removing "+", "-" and spaces
+    // Normalize phone numbers by stripping symbols (in plain format removing "+", "-" and spaces) so backend validation stays consistent.
     const formatContactNo = (value) => {
         if (!value) return "";
 
@@ -101,7 +131,10 @@ const useRegister = () => {
         return cleaned;
     };
 
+    // Main registration handler for email/password sign-up.
+    // Handles image processing, cropping, uploading, user creation, DB saving, email verification, and redirects.
     const handleRegister = (event) => {
+        // Accessing all the necessary fields and building the API URL
         event.preventDefault();
         const name = formFields.name;
         const email = formFields.email;
@@ -117,7 +150,11 @@ const useRegister = () => {
             import.meta.env.VITE_IMGBB_KEY
         }`;
 
+        // Choose correct save functions
+        const saveUser = type === "student" ? saveStudent : saveInstructor;
+
         if (image) {
+            // Crop the uploaded image to a 1:1 square using a canvas before uploading to imgbb.
             if (selectedGender === "Male" || selectedGender === "Female") {
                 if (!isValid) return;
                 if (password === confirmPassword) {
@@ -175,12 +212,11 @@ const useRegister = () => {
                                             gender,
                                             image: imageUrl,
                                         };
-
                                         createUser(email, password)
                                             .then((result) => {
                                                 const createdUser = result.user;
                                                 emailVerification(createdUser);
-                                                saveStudent(user);
+                                                saveUser(user);
                                                 logOut();
                                                 setSuccess(
                                                     "Registration Successful!"
@@ -244,7 +280,7 @@ const useRegister = () => {
                             },
                             "image/jpeg",
                             0.9
-                        ); // Set the desired image type and quality (here it is JPEG with 90% quality)
+                        );
                     };
 
                     // Load the image file
@@ -281,6 +317,7 @@ const useRegister = () => {
         }
     };
 
+    // Shorten long image file names so the button text stays clean.
     const handleImageButtonText = (image) => {
         const imageName = image.name;
         if (imageName.length > 20) {
@@ -290,6 +327,7 @@ const useRegister = () => {
         }
     };
 
+    // Toggle between showing and hiding password fields.
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
@@ -298,7 +336,13 @@ const useRegister = () => {
         setShowPassword2(!showPassword2);
     };
 
+    // Google OAuth flow shared for student/instructor.
+    // Handles access, saving user profile, welcoming toast, redirects, and cleanup.
     const handleGoogleSignIn = () => {
+        // Choose correct save functions and toast text
+        const saveUserViaSocial =
+            type === "student" ? saveStudentViaSocial : saveInstructorViaSocial;
+
         const welcomeToast = (name) => {
             const Message = () => (
                 <div className="text-center">
@@ -307,7 +351,7 @@ const useRegister = () => {
                     </span>{" "}
                     <br />
                     <span className={!isSmallDevice && " text-justify"}>
-                        You have logged-in as a <strong>Student</strong>
+                        You have logged-in as a <strong>{uppercaseRole}</strong>
                     </span>
                 </div>
             );
@@ -328,7 +372,7 @@ const useRegister = () => {
         googleSignIn()
             .then(async (result) => {
                 try {
-                    await saveStudentViaSocial(result.user, welcomeToast);
+                    await saveUserViaSocial(result.user, welcomeToast);
                     navigate(from, { replace: true });
                 } catch (error) {
                     await logOut();
@@ -361,7 +405,7 @@ const useRegister = () => {
             });
     };
 
-    // Update field values on change
+    // Apply form input changes to state, including file selection for the image upload.
     const handleFieldChange = (e) => {
         const { name, value, files } = e.target;
         if (name === "image") {
@@ -378,7 +422,7 @@ const useRegister = () => {
         }
     };
 
-    // Clear the form
+    // Reset all fields, validation states, and UI indicators after successful submission or logout.
     const clearForm = (setStatus) => {
         imageRef.current.value = "";
         isFormValid = false;
@@ -426,4 +470,4 @@ const useRegister = () => {
     };
 };
 
-export default useRegister;
+export default useSignUp;

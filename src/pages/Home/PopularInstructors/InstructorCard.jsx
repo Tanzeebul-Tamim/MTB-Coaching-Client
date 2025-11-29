@@ -66,7 +66,6 @@ const InstructorCard = ({
                         <IoIosStar className="text-lg" />
                         <strong>Rating:</strong>{" "}
                         <div className="flex gap-1 items-center">
-                            <span>{ratingMap[i].toFixed(1)}</span> -
                             {[...Array(5)].map((_, idx) => {
                                 const rating = ratingMap[i]; // 0-based index of instructor
                                 const full = idx + 1;
@@ -95,6 +94,7 @@ const InstructorCard = ({
                                     );
                                 }
                             })}
+                            <span className="text-xs font-bold">({ratingMap[i].toFixed(1)})</span>
                         </div>
                     </div>
                     {isSmallDevice && quote && (

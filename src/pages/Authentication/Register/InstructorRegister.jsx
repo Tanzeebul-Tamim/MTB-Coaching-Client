@@ -2,14 +2,15 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
-import useInstructorRegister from "./useInstructorRegister";
 import { useState } from "react";
-import passwordStrengthChecker from "../utility/passwordStrengthChecker";
-import { passStrength } from "../../../styles/colors.json";
 import { VscClearAll } from "react-icons/vsc";
+import { passStrength } from "../../../styles/colors.json";
 import PhoneInput from "react-phone-input-2";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
+import "../../../styles/auth.css";
+import useSignUp from "../utility/useSignUp";
+import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import termsConditionToast from "../utility/termsConditionToast";
 
 const InstructorRegister = () => {
@@ -47,7 +48,7 @@ const InstructorRegister = () => {
         highlightText,
         setHighlightText,
         config,
-    } = useInstructorRegister();
+    } = useSignUp({ type: "instructor" });
 
     const [status, setStatus] = useState("");
     const [colorCode, setColorCode] = useState("");

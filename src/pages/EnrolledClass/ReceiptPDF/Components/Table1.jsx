@@ -51,7 +51,7 @@ const Table1 = ({ props }) => {
                     <Text style={styles.bold}>
                         Contact No:{" "}
                         <Text style={styles.normal}>
-                            {userDetails?.contactNo}
+                            +{userDetails?.contactNo}
                         </Text>
                     </Text>
                 </View>

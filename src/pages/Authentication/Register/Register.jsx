@@ -2,7 +2,6 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from "react-icons/fc";
-import useRegister from "./useRegister";
 import { useState } from "react";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import { passStrength } from "../../../styles/colors.json";
@@ -13,6 +12,7 @@ import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
 import "../../../styles/auth.css";
 import termsConditionToast from "../utility/termsConditionToast";
+import useSignUp from "../utility/useSignUp";
 
 const Register = () => {
     const {
@@ -49,7 +49,7 @@ const Register = () => {
         highlightText,
         setHighlightText,
         config,
-    } = useRegister();
+    } = useSignUp();
 
     const [status, setStatus] = useState("");
     const [colorCode, setColorCode] = useState("");

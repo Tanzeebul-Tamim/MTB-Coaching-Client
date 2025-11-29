@@ -39,7 +39,7 @@ const Dropdown = ({ props }) => {
                 </div>
             </button>
             <button
-                data-tip="AI Assistant"
+                data-tip="AI Assistant (Coming Soon)"
                 className="rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary"
                 aria-label="AI Assistant"
             >

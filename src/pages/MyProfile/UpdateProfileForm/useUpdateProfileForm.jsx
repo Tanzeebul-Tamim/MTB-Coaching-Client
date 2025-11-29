@@ -52,6 +52,34 @@ const useUpdateProfileForm = (userDetails) => {
     const [, setCoverImage] = useState(null);
     const [isValidLength, setIsValidLength] = useState(true);
 
+    const saveAndConfirm = (user) => {
+        saveUser(user);
+        play("success");
+        toast.success(
+            <div className="text-center">
+                <h1 className="font-bold text-[18px] text-green-500">
+                    Profile Updated!
+                </h1>
+                <p className="text-[13px] text-base-content">
+                    Your changes might take a moment to show up. If they
+                    don&apos;t, reload the page.
+                </p>
+            </div>,
+            {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                transition: Flip,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            }
+        );
+        setLoading(false);
+        setLoading2(false);
+    };
+
     const handleImageButtonText = (image) => {
         const imageName = image.name;
         if (imageName.length > 20) {
@@ -212,26 +240,7 @@ const useUpdateProfileForm = (userDetails) => {
                                                 contactNo
                                             )
                                                 .then(() => {
-                                                    saveUser(user);
-                                                    play("success");
-                                                    toast.success(
-                                                        <div className="text-center font-bold text-[18px] text-green-500">
-                                                            Profile Updated!
-                                                        </div>,
-                                                        {
-                                                            position:
-                                                                "top-center",
-                                                            autoClose: 1100,
-                                                            hideProgressBar: false,
-                                                            closeOnClick: true,
-                                                            transition: Flip,
-                                                            pauseOnHover: true,
-                                                            draggable: true,
-                                                            progress: undefined,
-                                                        }
-                                                    );
-                                                    setLoading(false);
-                                                    setLoading2(false);
+                                                    saveAndConfirm(user);
                                                 })
                                                 .catch((err) => {
                                                     console.error(err);
@@ -252,25 +261,7 @@ const useUpdateProfileForm = (userDetails) => {
                                     };
                                     updateUser(name, imageUrl, contactNo)
                                         .then(() => {
-                                            saveUser(user);
-                                            play("success");
-                                            toast.success(
-                                                <div className="text-center font-bold text-[18px] text-green-500">
-                                                    Profile Updated!
-                                                </div>,
-                                                {
-                                                    position: "top-center",
-                                                    autoClose: 1100,
-                                                    hideProgressBar: false,
-                                                    closeOnClick: true,
-                                                    transition: Flip,
-                                                    pauseOnHover: true,
-                                                    draggable: true,
-                                                    progress: undefined,
-                                                }
-                                            );
-                                            setLoading(false);
-                                            setLoading2(false);
+                                            saveAndConfirm(user);
                                         })
                                         .catch((err) => {
                                             console.error(err);
@@ -313,25 +304,7 @@ const useUpdateProfileForm = (userDetails) => {
                         user.cover = coverData.data.display_url;
                         updateUser(name)
                             .then(() => {
-                                saveUser(user);
-                                play("success");
-                                toast.success(
-                                    <div className="text-center font-bold text-[18px] text-green-500">
-                                        Profile Updated!
-                                    </div>,
-                                    {
-                                        position: "top-center",
-                                        autoClose: 1100,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        transition: Flip,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                    }
-                                );
-                                setLoading(false);
-                                setLoading2(false);
+                                saveAndConfirm(user);
                             })
                             .catch((err) => {
                                 console.error(err);
@@ -344,25 +317,7 @@ const useUpdateProfileForm = (userDetails) => {
                 setLoading2(true);
                 updateUser(name)
                     .then(() => {
-                        saveUser(user);
-                        play("success");
-                        toast.success(
-                            <div className="text-center font-bold text-[18px] text-green-500">
-                                Profile Updated!
-                            </div>,
-                            {
-                                position: "top-center",
-                                autoClose: 1100,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                transition: Flip,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                            }
-                        );
-                        setLoading(false);
-                        setLoading2(false);
+                        saveAndConfirm(user);
                     })
                     .catch((err) => {
                         console.error(err);

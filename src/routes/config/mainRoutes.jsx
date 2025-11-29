@@ -1,6 +1,6 @@
 import AboutUs from "../../pages/AboutUs/AboutUs";
-import InstructorRegister from "../../pages/Authentication/InstructorRegister/InstructorRegister";
 import Login from "../../pages/Authentication/Login/Login";
+import InstructorRegister from "../../pages/Authentication/Register/InstructorRegister";
 import Register from "../../pages/Authentication/Register/Register";
 import Classes from "../../pages/Classes/Classes";
 import Faq from "../../pages/Faq/Faq";
