@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import ActiveLink from "../../../ui/ActiveLink";
-import ThemeToggle from "../../../ui/ThemeToggle/ThemeToggle";
 import { AiFillHome } from "react-icons/ai";
 import { FaBalanceScale, FaChalkboardTeacher, FaUser } from "react-icons/fa";
-import { MdBugReport, MdOutlineHelp, MdSchool } from "react-icons/md";
+import { MdInstallMobile, MdOutlineHelp, MdSchool } from "react-icons/md";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { SlNote } from "react-icons/sl";
 import { GiTeacher } from "react-icons/gi";
-import { BiSolidDashboard } from "react-icons/bi";
+import { BiSolidDashboard, BiSupport } from "react-icons/bi";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
-import useGlowingTitle from "../../../../hooks/useGlowingTitle";
+import ActiveLink from "../../../../../ui/ActiveLink";
+import ThemeToggle from "../../../../../ui/ThemeToggle/ThemeToggle";
+import usePWAInstall from "../../../../../../hooks/usePWAInstall";
 
 const ResponsiveRoutes = ({ props, navRef }) => {
     const {
@@ -22,38 +20,43 @@ const ResponsiveRoutes = ({ props, navRef }) => {
         open,
         setOpen,
         authenticationPage,
+        navigate,
+        handleScrollGlow,
     } = props;
 
-    const { handleScrollGlow } = useGlowingTitle();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (
-                open &&
-                navRef.current &&
-                !navRef.current.contains(event.target)
-            ) {
-                setOpen(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
+    const { install, installReady } = usePWAInstall();
 
     return (
         <div
             style={{ transition: "right 0.3s ease-in-out" }}
             ref={navRef}
             className={`mt-4 flex flex-col bg-opacity-70 absolute duration-300 uppercase ${
-                open ? "top-10 right-5" : "top-10 -right-[150px]"
+                open ? "top-10 right-5" : "top-10 -right-[170px]"
             } lg:hidden z-10 py-2 px-4 bg-base-100 border border-base-content rounded-xl border-opacity-40`}
         >
             <ThemeToggle />
+            <span
+                onClick={() => {
+                    setOpen(!open);
+                    if (authenticationPage) {
+                        navigate("/");
+                        setTimeout(() => {
+                            handleScrollGlow();
+                        }, 300);
+                    } else handleScrollGlow();
+                }}
+                className="flex items-center gap-1"
+            >
+                <BiSupport className="text-xs" />
+                Support Request
+            </span>
+            {installReady && (
+                <span onClick={install} className="flex items-center gap-1">
+                    <MdInstallMobile className="text-xs" />
+                    Install Web App
+                </span>
+            )}
+
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
             <ActiveLink to="/">
                 <span
@@ -133,21 +136,6 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     FAQ & Support
                 </span>
             </ActiveLink>
-            <span
-                onClick={() => {
-                    setOpen(!open);
-                    if (authenticationPage) {
-                        navigate("/");
-                        setTimeout(() => {
-                            handleScrollGlow();
-                        }, 300);
-                    } else handleScrollGlow();
-                }}
-                className="flex items-center gap-1"
-            >
-                <MdBugReport className="text-xs" />
-                Report an Issue
-            </span>
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
             <ActiveLink customColor={customColor} to="/login">
                 <span

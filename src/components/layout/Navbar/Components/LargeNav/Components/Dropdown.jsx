@@ -1,7 +1,12 @@
 import { BiSupport } from "react-icons/bi";
-import ThemeToggle from "../../../ui/ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../../../../ui/ThemeToggle/ThemeToggle";
 import { RiRobot2Fill } from "react-icons/ri";
-import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
+import {
+    MdFullscreen,
+    MdFullscreenExit,
+    MdInstallDesktop,
+} from "react-icons/md";
+import usePWAInstall from "../../../../../../hooks/usePWAInstall";
 
 const Dropdown = ({ props }) => {
     const {
@@ -12,6 +17,10 @@ const Dropdown = ({ props }) => {
         isFullscreen,
         handleFullscreen,
     } = props;
+
+    const className =
+        "rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary";
+    const { install, installReady } = usePWAInstall();
 
     return (
         <div
@@ -31,16 +40,28 @@ const Dropdown = ({ props }) => {
                     } else handleScrollGlow();
                 }}
                 data-tip="Support Request"
-                className="rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary"
+                className={className}
                 aria-label="Support Request"
             >
                 <div className="hover:scale-125 transition-transform duration-500 ease-in-out">
                     <BiSupport className="text-xl" />
                 </div>
             </button>
+            {installReady && (
+                <button
+                    onClick={install}
+                    data-tip="Install Web App"
+                    className="rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary"
+                    aria-label="Install Web App"
+                >
+                    <div className="hover:scale-125 transition-transform duration-500 ease-in-out">
+                        <MdInstallDesktop className="text-xl" />
+                    </div>
+                </button>
+            )}
             <button
                 data-tip="AI Assistant (Coming Soon)"
-                className="rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary"
+                className={className}
                 aria-label="AI Assistant"
             >
                 <div className="hover:scale-125 transition-transform duration-500 ease-in-out">
@@ -49,7 +70,7 @@ const Dropdown = ({ props }) => {
             </button>
             <button
                 data-tip={`${isFullscreen ? "Exit" : "Toggle"} Fullscreen`}
-                className="rounded-lg glow-effect h-7 w-7 custom-cursor-pointer bg-primary text-accent bg-opacity-60 flex items-center justify-center outline-none tooltip tooltip-bottom tooltip-secondary"
+                className={className}
                 aria-label="Toggle Fullscreen"
                 onClick={handleFullscreen}
             >
@@ -61,7 +82,7 @@ const Dropdown = ({ props }) => {
                     )}
                 </div>
             </button>
-            <ThemeToggle />
+            <ThemeToggle dropDownClass={className} />
         </div>
     );
 };

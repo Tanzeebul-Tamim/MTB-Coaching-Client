@@ -1,11 +1,9 @@
-import { useRef } from "react";
-import Logo from "./Logo";
-import ResponsiveNavbarStart from "./ResponsiveNavbarStart";
-import ResponsiveRoutes from "./ResponsiveRoutes";
-import ResponsiveRoutesBtn from "./ResponsiveRoutesBtn";
+import ResponsiveNavbarStart from "./Components/ResponsiveNavbarStart";
+import ResponsiveRoutes from "./Components/ResponsiveRoutes";
+import ResponsiveRoutesBtn from "./Components/ResponsiveRoutesBtn";
+import Logo from "../Utilities/Logo";
 
 const SmallNav = ({ props }) => {
-    const navRef = useRef(null);
     const {
         isDarkTheme,
         user,
@@ -21,6 +19,9 @@ const SmallNav = ({ props }) => {
         location,
         authenticationPage,
         isSmallDevice,
+        navigate,
+        handleScrollGlow,
+        navRef,
     } = props;
 
     return (
@@ -49,6 +50,8 @@ const SmallNav = ({ props }) => {
                         open,
                         setOpen,
                         authenticationPage,
+                        navigate,
+                        handleScrollGlow,
                     }}
                     navRef={navRef}
                 />

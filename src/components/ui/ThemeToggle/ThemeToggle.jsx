@@ -3,7 +3,7 @@ import DashboardButton from "./buttons/DashboardButton";
 import MobileToggle from "./buttons/MobileToggle";
 import Toggle from "./buttons/Toggle";
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ dropDownClass }) => {
     const { isDark, isSmallDevice, isDashboard, toggleDarkMode } =
         useThemeToggle();
 
@@ -16,7 +16,13 @@ const ThemeToggle = () => {
     if (isSmallDevice) {
         return <MobileToggle isDark={isDark} toggleDarkMode={toggleDarkMode} />;
     } else {
-        return <Toggle toggleDarkMode={toggleDarkMode} isDark={isDark} />;
+        return (
+            <Toggle
+                className={dropDownClass}
+                toggleDarkMode={toggleDarkMode}
+                isDark={isDark}
+            />
+        );
     }
 };
 

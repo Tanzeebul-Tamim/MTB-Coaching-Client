@@ -1,7 +1,7 @@
-import Logo from "./Logo";
-import Routes from "./Routes";
-import NavbarEnd from "./NavbarEnd";
-import Dropdown from "./Dropdown";
+import Logo from "../Utilities/Logo";
+import Dropdown from "./Components/Dropdown";
+import NavbarEnd from "./Components/NavbarEnd";
+import Routes from "./Components/Routes";
 
 const LargeNav = ({ props }) => {
     const {

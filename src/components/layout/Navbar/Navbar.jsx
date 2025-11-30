@@ -1,8 +1,8 @@
 import "../../../styles/navbar.css";
 import useNavbar from "./useNavbar";
-import LargeNav from "./Components/LargeNav";
-import SmallNav from "./Components/SmallNav";
-import ScrollProgressBar from "./Components/ScrollbarProgress";
+import ScrollProgressBar from "./ScrollbarProgress";
+import LargeNav from "./Components/LargeNav/LargeNav";
+import SmallNav from "./Components/SmallNav/SmallNav";
 
 const Navbar = ({ authenticationPage }) => {
     const {
@@ -25,6 +25,7 @@ const Navbar = ({ authenticationPage }) => {
         handleFullscreen,
         dropdownOpen,
         setDropdownOpen,
+        navRef,
     } = useNavbar();
 
     return (
@@ -71,6 +72,9 @@ const Navbar = ({ authenticationPage }) => {
                     location,
                     authenticationPage,
                     isSmallDevice,
+                    navigate,
+                    handleScrollGlow,
+                    navRef,
                 }}
             />
         </>

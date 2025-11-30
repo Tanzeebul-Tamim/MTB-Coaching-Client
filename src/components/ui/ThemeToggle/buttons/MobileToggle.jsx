@@ -7,12 +7,12 @@ const MobileToggle = ({ isDark, toggleDarkMode }) => {
                 {isDark ? (
                     <span className="text-yellow-100 flex items-center gap-1">
                         <MdLightMode className="text-sm" />
-                        <span>Light</span>
+                        <span>Light Mode</span>
                     </span>
                 ) : (
                     <span className="text-blue-700 flex items-center gap-1">
                         <MdDarkMode className="text-sm" />
-                        <span>Dark</span>
+                        <span>Dark Mode</span>
                     </span>
                 )}
             </span>

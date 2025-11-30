@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import useAuth from "../../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -16,8 +16,9 @@ const useNavbar = () => {
     const [userBookings, setUserBookings] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
     const { handleScrollGlow } = useGlowingTitle();
+    const navRef = useRef(null);
 
     const checkPrivatePath =
         location.pathname === "/" ||
@@ -49,6 +50,24 @@ const useNavbar = () => {
         }
     }, [user, userDetails?._id, booking, setUserDetails]);
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (
+                open &&
+                navRef.current &&
+                !navRef.current.contains(event.target)
+            ) {
+                setOpen(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open]);
+
     const handleLogOut = () => {
         logOut()
             .then()
@@ -75,6 +94,7 @@ const useNavbar = () => {
         handleFullscreen,
         dropdownOpen,
         setDropdownOpen,
+        navRef,
     };
 };
 
