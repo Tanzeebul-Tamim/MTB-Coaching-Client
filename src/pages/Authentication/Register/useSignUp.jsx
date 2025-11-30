@@ -1,18 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { Flip, toast } from "react-toastify";
+import { useEffect, useRef, useState } from "react";
+import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useScreen from "../../../hooks/useScreen";
 import useSoundEffects from "../../../hooks/useSoundEffects";
 import useTitle from "../../../hooks/useTitle";
-import { Flip, toast } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
-import {
-    saveInstructor,
-    saveInstructorViaSocial,
-    saveStudent,
-    saveStudentViaSocial,
-} from "../../../api/authApi";
-import Swal from "sweetalert2";
-import termsConditionToast from "./termsConditionToast";
+import { saveInstructor, saveInstructorViaSocial, saveStudent, saveStudentViaSocial } from "../../../api/authApi";
+import termsConditionToast from "../utility/termsConditionToast";
 
 /**
  * Generic sign up hook for both students and instructors.

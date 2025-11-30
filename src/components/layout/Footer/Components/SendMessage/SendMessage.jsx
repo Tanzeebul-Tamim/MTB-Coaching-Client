@@ -23,9 +23,15 @@ const SendMessage = ({ props }) => {
 
     return (
         <form onSubmit={handleSendMessage} className="relative">
-            <div className="lg:flex lg:w-full justify-center">
+            <div
+                className={`${
+                    isSmallDevice ? glowClass : ""
+                } lg:flex lg:w-full justify-center`}
+            >
                 <span
-                    className={`${glowClass} transition-all ease-in-out duration-[500ms] tracking-widest`}
+                    className={`${
+                        isSmallDevice ? "" : glowClass
+                    } transition-all ease-in-out duration-[500ms] tracking-widest`}
                 >
                     Support Request
                 </span>

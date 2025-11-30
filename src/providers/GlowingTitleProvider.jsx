@@ -77,7 +77,7 @@ const GlowingTitleProvider = ({ children }) => {
         const start = performance.now();
         const target = document.body.scrollHeight;
 
-        triggerGlow("supportGlow", 0, 800);
+        triggerGlow("supportGlow", 0, isSmallDevice ? 1200 : 800);
 
         window.scrollTo({
             top: target,

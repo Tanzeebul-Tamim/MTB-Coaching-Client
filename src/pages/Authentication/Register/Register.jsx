@@ -12,7 +12,7 @@ import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
 import "../../../styles/auth.css";
 import termsConditionToast from "../utility/termsConditionToast";
-import useSignUp from "../utility/useSignUp";
+import useSignUp from "./useSignUp";
 
 const Register = () => {
     const {

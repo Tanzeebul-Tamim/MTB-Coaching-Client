@@ -9,9 +9,9 @@ import PhoneInput from "react-phone-input-2";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import "../../../styles/phoneNo.css";
 import "../../../styles/auth.css";
-import useSignUp from "../utility/useSignUp";
 import passwordStrengthChecker from "../utility/passwordStrengthChecker";
 import termsConditionToast from "../utility/termsConditionToast";
+import useSignUp from "./useSignUp";
 
 const InstructorRegister = () => {
     const {
