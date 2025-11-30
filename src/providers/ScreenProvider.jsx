@@ -3,10 +3,11 @@ import { createContext, useEffect, useState } from "react";
 export const ScreenContext = createContext(null);
 
 const ScreenProvider = ({ children }) => {
-    const [isSmallDevice, setIsSmallDevice] = useState(null);
-    const [splashShown, setSplashShown] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
     const splashDuration = 1800;
+    const [splashShown, setSplashShown] = useState(false);
+    const [pwaInstallReady, setPWAInstallReady] = useState(false);
+    const [isSmallDevice, setIsSmallDevice] = useState(null);
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -92,6 +93,8 @@ const ScreenProvider = ({ children }) => {
         splashDuration,
         isFullscreen,
         handleFullscreen,
+        pwaInstallReady,
+        setPWAInstallReady,
     };
 
     return (
