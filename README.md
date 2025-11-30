@@ -8,7 +8,7 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 <br>
 
 <p align="center">
-   <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/banner.png" alt="Banner" />
+   <img src="https://raw.githubusercontent.com/Tanzeebul-Tamim/MTB-Coaching-Client/refs/heads/assets/doc/main-banner.png" alt="Banner" />
 </p>
 
 <br>
@@ -39,10 +39,6 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
    <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router" />
   </a>
-
-  <a href="https://www.npmjs.com/package/react-simple-captcha" target="_blank" rel="noopener noreferrer">
-   <img src="https://img.shields.io/badge/React_Simple_Captcha-6B7280?style=for-the-badge&logo=react&logoColor=white" alt="React Simple Captcha" />
-   </a>
 
    <a href="https://react-leaflet.js.org/" target="_blank" rel="noopener noreferrer">
    <img src="https://img.shields.io/badge/React_Leaflet-44A4AE?style=for-the-badge&logo=leaflet&logoColor=white" alt="React Leaflet" />
@@ -78,7 +74,16 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
   <a href="https://daisyui.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/DaisyUI-5C6BC0?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="DaisyUI" />
-  </a>     
+  </a>
+
+  <a href="https://react-pdf.org/" target="_blank" rel="noopener noreferrer">
+   <img src="https://img.shields.io/badge/React--PDF-FF5252?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="React PDF" />
+  </a>
+
+  <a href="https://www.framer.com/motion/" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Framer--Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
+</a>
+
 </div>
 
 <br>
@@ -94,48 +99,69 @@ Welcome to the client-side repository of the **_Professional Mountain Biking Coa
 
 -   **React.js**: Core library for building user interfaces
 -   **Tailwind CSS**: Utility-first CSS framework
--   **DaisyUI**: Tailwind CSS components
--   **React Icons**: For icons
--   **React Awesome Slider & Swiper**: For creating sliders
--   **React Simple Typewriter**: For typewriter effects
--   **React Awesome Reveal**: For awesome animations
--   **React Credit Cards**: For displaying interactive credit card forms and previews
--   **React Spinners**: For loading spinner components and indicators
+-   **DaisyUI**: Tailwind component library
+-   **React Icons**: Icon collection
+-   **React Credit Cards**: Interactive credit card UI
+-   **React Spinners**: Loading indicators
+
+#### **Animations**
+
+-   **Framer Motion**: Modern animation library for React
+-   **React Awesome Slider** & **Swiper**: Image and content sliders
+-   **React Simple Typewriter**: Typewriter animation
+-   **React Awesome Reveal**: Scroll and reveal animations
 
 #### **Routing & Navigation**
 
--   **React Router**: For routing and navigation
--   **React Router HashLink**: For smooth anchor navigation to sections within pages
+-   **React Router**: Routing system
+-   **React Router HashLink**: Smooth scroll to page sections
 
-#### **State & Data Handling**
+#### **State, Data & Utilities**
 
--   **Environment Variables**: For configuration
--   **Moment**: For date manipulation
+-   **LocalForage**: Local storage wrapper with async support
+-   **Moment.js**: Date formatting and manipulation
+-   **match-sorter**: Fuzzy search and sorting
+-   **sort-by**: Sorting utility
+-   **libphonenumber-js**: Phone number formatting
+-   **i18n-iso-countries**: Country code utilities
+-   **html-react-parser**: Safely render HTML inside React
 
 #### **Authentication & Security**
 
--   **Firebase**: For authentication
--   **React Simple Captcha**: For adding simple captcha validation to forms
+-   **Firebase**: Authentication and backend services
 
 #### **Payments**
 
--   **Stripe**: For payment processing
+-   **Stripe (react-stripe-js & stripe-js)**: Payment integration
 
 #### **Notifications & Alerts**
 
--   **SweetAlert2**: For beautiful alerts
--   **React Toastify**: For toast notifications
+-   **SweetAlert2** & **Theme Dark**: Stylish modals
+-   **React Toastify**: Toast notifications
+-   **use-sound**: Play sounds via hooks
 
-#### **Maps & Media**
+#### **PDF, Media & Embeds**
 
--   **React Leaflet**: For interactive maps
--   **YouTube Data API v3**: For fetching and displaying YouTube video data dynamically
--   **React YouTube**: For embedding and controlling YouTube videos in React components
+-   **@react-pdf/renderer**: Generate PDFs from React components
+-   **React YouTube**: Embed and control YouTube players
 
-#### **Build & Deployment**
+#### **Maps**
 
--   **vite-plugin-pwa**: For enabling Progressive Web App (PWA) features and installability
--   **Vercel**: For seamless and fast deployment of the client-side application
+-   **React Leaflet**: Interactive mapping
+
+#### **PWA, Build & Deployment**
+
+-   **vite-plugin-pwa**: Progressive Web App functionality
+-   **Vite**: Lightning-fast build tool
+-   **Vercel**: Deployment platform
+
+#### **Development Tools**
+
+-   **ESLint & React Hooks Plugin**: Linting and code checks
+-   **PostCSS & Autoprefixer**: Styles processing
+-   **Globals**: Shared global env vars for ESLint
+-   **@vitejs/plugin-react**: React fast-refresh & transformations
+-   **TypeScript type definitions**: React & ReactDOM types (even if you're writing JS)
 
 </details>
 
@@ -151,12 +177,13 @@ MTB-Coaching-Client/
 ├── src/
 │   ├── api/          # API layer
 │   ├── components/   # Reusable UI & layout components
-│   ├── pages/        # Page-level views
+│   ├── firebase/     # Firebase config
 │   ├── hooks/        # Custom React hooks
-│   ├── routes/       # Route configs & guards
+│   ├── layout/       # Main & Dashboard layout definitions
+│   ├── pages/        # Page-level views
 │   ├── providers/    # Context providers
-│   ├── styles/       # CSS & styling resources
-│   └── firebase/     # Firebase config
+│   ├── routes/       # Route configs & guards
+│   └── styles/       # CSS & styling resources
 └── root configs      # ESLint, Tailwind, Vite, PostCSS, Vercel, etc.
 ```
 
@@ -169,13 +196,19 @@ MTB-Coaching-Client/
 
 ```
 MTB-Coaching-Client/
+├── public/
+│   ├── assets/                       # Static assets used in the app
+│   ├── cursors/                      # Custom mouse cursor icons used in the app
+│   ├── favicon.png                   # Favicon for the website
+│   └── manifest.json                 # PWA manifest file defining app metadata (name, icons, theme color, etc.)
+│
 ├── src/
-│   ├── api/                          # API utility functions (authentication, bookings, and general API calls)
+│   ├── api/                          # API utility functions (authentication, bookings, messages, and general API calls)
 │   ├── components/                   # Organized UI components (layout, pages, skeletons, and reusable UI widgets)
 │   │   ├── layout/                   # Main UI Components (Navbar, Footer, SideNav, and Leaflet map integrations)
-│   │   ├── pages/                    # Error page & No Internet warning page
+│   │   ├── pages/                    # Splash Screen, Error page & No Internet warning page
 │   │   ├── skeletons/                # Skeleton loaders for all UI components
-│   │   └── ui/                       # Reusable UI components (toggles, pagination, banners, etc.)
+│   │   └── ui/                       # Reusable UI components (theme togglers, pagination, banners, etc.)
 │   │
 │   ├── firebase/                     # Firebase configuration for auth and services
 │   ├── hooks/                        # Custom React hooks (auth, theme, screen size, etc.)
@@ -186,19 +219,24 @@ MTB-Coaching-Client/
 │   │   ├── Authentication/           # Login, Register, Instructor Register + shared logic
 │   │   ├── Classes/                  # Class listings, cards, and filter logic
 │   │   ├── EnrolledClass/            # Student's enrolled class dashboard
-│   │   ├── Faq/                      # Static or dynamic FAQ section
+│   │   ├── Faq/                      # Static FAQ & Support section
 │   │   ├── Home/                     # Main homepage – banner, testimonials, popular sections
 │   │   ├── Instructors/              # Public instructor directory view
 │   │   ├── Legal/                    # Privacy policy, terms & conditions
-│   │   ├── MyCourses/                # Instructor's own published classes + enrolled students
+│   │   ├── Messages/                 # User's submitted ticket dashboard
+│   │   ├── MyCourses/                # Instructor's own published classes
+│   │   │   └── ...                   # Other files and folders
+│   │   │       └── MyStudents/       # Instructor's course specific enrolled students
+│   │   │
 │   │   ├── MyProfile/                # Profile page with update/edit capability
 │   │   ├── PaymentHistory/           # Record of past transactions for users
-│   │   ├── SelectedClasses/          # Cart-like system before enrollment
+│   │   ├── SelectedClasses/          # Student's Cart-like system before course enrollment
 │   │   │   ├── ...                   # Other files and folders
 │   │   │   └── PaymentConfirmation/  # Checkout page + Stripe form, success/fail feedback
+│   │   │
 │   │   └── SingleInstructorsClasses/ # Detail page showing all classes information of a specific instructor
 │   │
-│   ├── providers/                    # React context providers (auth, screen size & network status)
+│   ├── providers/                    # React context providers (auth, screen size, network status, etc.)
 │   ├── routes/
 │   │   ├── config/                   # Route definitions for main and dashboard views (mainRoutes, dashboardRoutes & router)
 │   │   ├── guard/                    # Route-level protection for components (private route & role based route protection)
@@ -206,12 +244,6 @@ MTB-Coaching-Client/
 │   │
 │   ├── styles/                       # Centralized theme colors for Tailwind and component styling
 │   └── App.jsx                       # Root application component
-│
-├── public/
-│   ├── assets/                       # Static assets used in the app
-│   ├── cursors/                      # Custom mouse cursor icons used in the app
-│   ├── favicon.png                   # Favicon for the website
-│   └── manifest.json                 # PWA manifest file defining app metadata (name, icons, theme color, etc.)
 │
 ├── .env.example                      # Sample environment variable file for local development
 ├── .eslintrc.cjs                     # ESLint configuration
@@ -368,7 +400,6 @@ Use the following **Visa** test card during checkout:
 -   **ZIP/Postal:** `12345` or any 5-digit number
 
 <br>
-
 
 > [!IMPORTANT]
 > **Please avoid submitting any sensitive personal information or inappropriate content (e.g., images, names, course titles).**
