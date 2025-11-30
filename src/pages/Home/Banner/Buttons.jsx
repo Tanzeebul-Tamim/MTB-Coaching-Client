@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import { BiLogInCircle, BiSupport } from "react-icons/bi";
+import { BiLogInCircle } from "react-icons/bi";
 import useScreen from "../../../hooks/useScreen";
-import useGlowingTitle from "../../../hooks/useGlowingTitle";
+import { RiRobot2Fill } from "react-icons/ri";
 
 const Buttons = ({ alignment }) => {
     const { user } = useAuth();
-    const { handleScrollGlow } = useGlowingTitle();
     const { isSmallDevice } = useScreen();
 
     return (
@@ -32,19 +31,19 @@ const Buttons = ({ alignment }) => {
                 </button>
             )}
             <button
-                onClick={handleScrollGlow}
+                data-tip="Coming Soon"
                 style={{ fontFamily: "Khand" }}
-                className="uppercase z-10 font-bold lg:text-xl text-[10px] hover:scale-105 ease-in-out transition-transform duration-300 lg:text-start lg:mt-4"
+                className="uppercase tooltip tooltip-bottom tooltip-primary z-10 font-bold lg:text-xl text-[10px] hover:scale-105 ease-in-out transition-transform duration-300 lg:text-start lg:mt-4"
             >
                 <span
                     className={`${
                         user
                             ? "bg-secondary text-accent"
                             : "bg-accent text-secondary"
-                    } glow-effect lg:px-5 px-2 lg:py-2 lg:rounded-3xl rounded-xl lg:flex lg:items-center lg:gap-2`}
+                    } glow-effect lg:px-5 px-2 lg:py-2 lg:rounded-3xl rounded-xl lg:flex lg:gap-2`}
                 >
-                    <span>Support Request</span>
-                    {!isSmallDevice && <BiSupport className="lg:text-2xl" />}
+                    <span>Your AI Coach</span>
+                    {!isSmallDevice && <RiRobot2Fill className="lg:text-2xl" />}
                 </span>
             </button>
         </div>

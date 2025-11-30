@@ -9,6 +9,7 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import ActiveLink from "../../../../../ui/ActiveLink";
 import ThemeToggle from "../../../../../ui/ThemeToggle/ThemeToggle";
 import usePWAInstall from "../../../../../../hooks/usePWAInstall";
+import { RiRobot2Fill } from "react-icons/ri";
 
 const ResponsiveRoutes = ({ props, navRef }) => {
     const {
@@ -34,7 +35,12 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                 open ? "top-10 right-5" : "top-10 -right-[170px]"
             } lg:hidden z-10 py-2 px-4 bg-base-100 border border-base-content rounded-xl border-opacity-40`}
         >
+            {/* Theme Toggler */}
             <ThemeToggle />
+            
+            {/* ---------------------Utility & Support Actions */}
+            <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
+
             <span
                 onClick={() => {
                     setOpen(!open);
@@ -50,6 +56,10 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                 <BiSupport className="text-xs" />
                 Support Request
             </span>
+            <span data-tip="Coming Soon" className="flex items-center gap-1">
+                <RiRobot2Fill className="text-xs" />
+                Your AI Coach
+            </span>
             {installReady && (
                 <span onClick={install} className="flex items-center gap-1">
                     <MdInstallMobile className="text-xs" />
@@ -57,7 +67,10 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                 </span>
             )}
 
+            {/* ---------------------Routes Section */}
+
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
+
             <ActiveLink to="/">
                 <span
                     onClick={() => setOpen(!open)}
@@ -136,7 +149,10 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     FAQ & Support
                 </span>
             </ActiveLink>
+
+            {/* ---------------------Auth Section */}
             <hr className="opacity-60 pb-[3px] border-t-1 border-base-content" />
+
             <ActiveLink customColor={customColor} to="/login">
                 <span
                     onClick={() => setOpen(!open)}
