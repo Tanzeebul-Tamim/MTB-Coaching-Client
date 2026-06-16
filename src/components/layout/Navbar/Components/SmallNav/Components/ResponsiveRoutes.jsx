@@ -137,7 +137,7 @@ const ResponsiveRoutes = ({ props, navRef }) => {
                     className="flex items-center gap-1"
                 >
                     <FaBalanceScale className="text-xs" />
-                    Legal
+                    Legal Info
                 </span>
             </ActiveLink>
             <ActiveLink to="/support">

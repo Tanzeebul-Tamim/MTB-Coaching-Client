@@ -61,7 +61,7 @@ const useCheckoutForm = (classItem) => {
         });
 
         if (error) {
-            console.log("[error]", error);
+            console.error("[error]", error);
             setCardError(error.message);
         } else {
             console.log("[PaymentMethod]", paymentMethod);
@@ -79,7 +79,7 @@ const useCheckoutForm = (classItem) => {
             });
 
         if (confirmError) {
-            console.log("[error]", confirmError);
+            console.error("[error]", confirmError);
             setCardError(confirmError.message);
             setDisabled(false);
         } else {

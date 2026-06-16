@@ -14,7 +14,6 @@ const useFooter = () => {
         handleUserDataDeletionGlow,
         handleCookieNoticeGlow,
     } = useGlowingTitle();
-    console.log({ bal: useGlowingTitle() });
     const location = useLocation();
     const { isSmallDevice } = useScreen();
     const bgLocations =

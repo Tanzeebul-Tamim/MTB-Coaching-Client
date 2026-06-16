@@ -17,7 +17,6 @@ const Faq = () => {
         handleContactSupportGlow,
         handleUserDataDeletionGlow,
     } = useGlowingTitle();
-    console.log({ gettingStartedGlow });
     const { isSmallDevice } = useScreen();
 
     const sectionClassName = (glow) =>

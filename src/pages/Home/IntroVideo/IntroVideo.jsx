@@ -30,7 +30,6 @@ const IntroVideo = () => {
                     },
                     onStateChange: (event) => {
                         const { data } = event;
-                        console.log({ PlayerState });
                         const { PLAYING, PAUSED, ENDED, BUFFERING } =
                             PlayerState;
 
